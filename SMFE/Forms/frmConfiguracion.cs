@@ -60,6 +60,8 @@ public partial class frmConfiguracion : Form
     private int step = 1;
     private int TarjetaCAN = 0;
     private bool segundaPaginaSistemas = false;
+    private bool primeraPaginaSistemas = false;
+    private bool terceraPaginaSistemas = false;
     private bool segundaPaginaAutobus = false;
     private bool seleccionSistema = false;
     private Sistemas Catsistemas;
@@ -300,6 +302,7 @@ public partial class frmConfiguracion : Form
         btnArriba.Visible = false;
 
         segundaPaginaSistemas = false;
+        terceraPaginaSistemas = false;
 
         lblInidicaciones.Text = "Seleccione los sistemas que desea activar";
 
@@ -321,7 +324,9 @@ public partial class frmConfiguracion : Form
         btnArriba.Visible = true;
         btnAbajo.Visible = false;
 
+        primeraPaginaSistemas = false;
         segundaPaginaSistemas = true;
+        terceraPaginaSistemas = false;
 
         lblInidicaciones.Text = "Seleccione los sistemas que desea activar";
 
@@ -334,6 +339,33 @@ public partial class frmConfiguracion : Form
         _lblDescripcion_1.Text = "PLAT";
         _lblDescripcion_2.Text = "SIA DLL";
         _lblDescripcion_3.Text = "SIIAB TELEMATICS";
+        //_lblOpcion_3.Visible = false;
+
+        CargarSeleccionSistemas();
+    }
+    private void TerceraPaginaSistemas()
+    {
+        btnArriba.Visible = true;
+        btnAbajo.Visible = false;
+
+        terceraPaginaSistemas = true;
+        segundaPaginaSistemas = false;
+        primeraPaginaSistemas = false;
+
+        lblInidicaciones.Text = "Seleccione los sistemas que desea activar";
+
+        BlanquearBotones();
+
+        BlanquearOpciones();
+
+
+        _lblDescripcion_0.Text = "SIIAB POI";
+        _lblDescripcion_1.Visible = false;
+        _lblDescripcion_2.Visible = false;
+        _lblDescripcion_3.Visible = false;
+        _lblOpcion_1.Visible = false;
+        _lblOpcion_2.Visible = false;
+        _lblOpcion_3.Visible = false;
         //_lblOpcion_3.Visible = false;
 
         CargarSeleccionSistemas();
@@ -449,7 +481,7 @@ public partial class frmConfiguracion : Form
                 _lblOpcion_3.Text = "";
             }
         }
-        else //Para las selecciones de la segunda página
+        else if (!terceraPaginaSistemas && !primeraPaginaSistemas) //Para las selecciones de la segunda página
         {
             if (Catsistemas.Antivirus)
             {
@@ -490,7 +522,19 @@ public partial class frmConfiguracion : Form
             {
                 _lblOpcion_3.Text = "";
             }
-        }  
+        }
+        else
+        {
+            if (Catsistemas.SIIAB_POI)
+            {
+                _lblOpcion_0.Text = "<";
+                seleccionSistema = true;
+            }
+            else
+            {
+                _lblOpcion_0.Text = "";
+            }
+        }
     }
 
     /// <summary>
@@ -546,7 +590,7 @@ public partial class frmConfiguracion : Form
                 break;
 
             case 2: //Para los sistemas
-                if (!segundaPaginaSistemas)
+                if (!segundaPaginaSistemas && !terceraPaginaSistemas)
                 {
 
                     if (!Catsistemas.CAN)
@@ -558,7 +602,7 @@ public partial class frmConfiguracion : Form
                         Catsistemas.CAN = false;
                     }
                 }
-                else
+                else if(!primeraPaginaSistemas && !terceraPaginaSistemas)
                 {
 
                     if (!Catsistemas.Antivirus)
@@ -568,6 +612,17 @@ public partial class frmConfiguracion : Form
                     else
                     {
                         Catsistemas.Antivirus = false;
+                    }
+                }
+                else
+                {
+                    if (!Catsistemas.SIIAB_POI)
+                    {
+                        Catsistemas.SIIAB_POI = true;
+                    }
+                    else
+                    {
+                        Catsistemas.SIIAB_POI = false;
                     }
                 }
                 CargarSeleccionSistemas();
@@ -958,7 +1013,17 @@ public partial class frmConfiguracion : Form
                 break;
 
             case 2://Para los sistemas
-                PrimerPaginaSistemas();
+                if (terceraPaginaSistemas)
+                {
+                    SegundaPaginaSistemas();
+                    terceraPaginaSistemas = false;
+                }
+                else if (segundaPaginaSistemas)
+                {
+                    PrimerPaginaSistemas();
+                    segundaPaginaAutobus = false;
+                }
+
                 break;
 
             case 3://Para la seleccion de meta por region
@@ -985,7 +1050,16 @@ public partial class frmConfiguracion : Form
                 break;
 
             case 2://Para los sistemas
-                SegundaPaginaSistemas();
+                if (segundaPaginaSistemas)
+                {
+                    TerceraPaginaSistemas();
+                    segundaPaginaSistemas = false;
+                }
+                else if (primeraPaginaSistemas)
+                {
+                    SegundaPaginaSistemas();
+                    primeraPaginaSistemas = false;
+                }
                 break;
 
             case 3://Para la seleccion de meta por region
