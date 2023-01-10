@@ -23,6 +23,8 @@ public class Sistemas
 
     public bool TELEMETRIA { get; set; }
 
+    public bool SIIAB_POI { get; set; }
+
     public void InicializarVariables()
     {
         CAN = false;
@@ -33,6 +35,7 @@ public class Sistemas
         PLAT = true;
         SIADLL = false;
         TELEMETRIA = false;
+        SIIAB_POI = false;
     }
 
 }
