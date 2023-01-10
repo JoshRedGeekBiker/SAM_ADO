@@ -1,0 +1,29 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\DLL_Mini_SIA.MiniSIA.SIA]
+@="DLL_Mini_SIA.MiniSIA.SIA"
+
+[HKEY_CLASSES_ROOT\DLL_Mini_SIA.MiniSIA.SIA\CLSID]
+@="{DF31FEE8-9B15-38FE-8C3D-130474B7062F}"
+
+[HKEY_CLASSES_ROOT\CLSID\{DF31FEE8-9B15-38FE-8C3D-130474B7062F}]
+@="DLL_Mini_SIA.MiniSIA.SIA"
+
+[HKEY_CLASSES_ROOT\CLSID\{DF31FEE8-9B15-38FE-8C3D-130474B7062F}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="DLL_Mini_SIA.MiniSIA.SIA"
+"Assembly"="DLL_Mini_SIA, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSIA/DLL_Mini_SIA.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{DF31FEE8-9B15-38FE-8C3D-130474B7062F}\InprocServer32\1.0.0.0]
+"Class"="DLL_Mini_SIA.MiniSIA.SIA"
+"Assembly"="DLL_Mini_SIA, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSIA/DLL_Mini_SIA.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{DF31FEE8-9B15-38FE-8C3D-130474B7062F}\ProgId]
+@="DLL_Mini_SIA.MiniSIA.SIA"
+
+[HKEY_CLASSES_ROOT\CLSID\{DF31FEE8-9B15-38FE-8C3D-130474B7062F}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]

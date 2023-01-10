@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuracion>
+  <SAM id="BDProviderName" valor="MySql.Data.MySql.Client" />
+  <SAM id="BDServer" valor="localhost" />
+  <SAM id="BDName" valor="vmd" />
+  <SAM id="BDUser" valor="root" />
+  <SAM id="BDPass" valor="root" />
+  <SAM id="ModoPrueba" valor="0" />
+  <SAM id="ReinicioAutomatico" valor="0" />
+  <SAM id="ADOCAN" valor="1" />
+  <SAM id="ADOCONDUSAT" valor="1" />
+  <SAM id ="TiempoADOCAN" valor="10000" />
+  <SAM id ="TiempoADOGPS" valor="5000" />
+  <SAM id="TiempoCONDUSAT" valor="5000" />
+  <SAM id ="TiempoSIA" valor ="5000" />
+  <SAM id ="PuertoWS" valor ="8080" />
+</Configuracion>

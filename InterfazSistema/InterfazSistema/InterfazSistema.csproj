@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InterfazSistema</RootNamespace>
+    <AssemblyName>InterfazSistema</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MySql.Data.6.7.9\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF5, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MySql.Data.Entity.6.7.9\lib\net45\MySql.Data.Entity.EF5.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="actividad.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="archivos.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="audiovmd.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="autobuses.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_catbuses.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_catmetas.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_catmetasregionros.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_cattipometasregion.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_contadores.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_detsecuencia.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_logsincroniza.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_movtoscan.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_operadores.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_parametrosinicio.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_poblaciones.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_redes.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_referenciaregion.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_regsecuencia.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_secuencia.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_terminales.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_versiones.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_viajes.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_zonasdescarga.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_zonasdescarga2.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="can_zonasdescargainstancias.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="catclasif.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="catdestinatarios.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="catpautas.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="catsms.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cat_codigo.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cat_type_action.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cat_type_codigo.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="clsMessage.cs" />
+    <Compile Include="codigo.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="codigo_envio.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CondusatEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CondusatEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CondusatEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CondusatEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CondusatEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CondusatEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="configcintillo.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\WSCAN\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="controlsecuencias.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cuadros.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="detsecuencias.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="falla_envio.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GPSData.cs" />
+    <Compile Include="historialpublicidad.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IBBContextSIA.cs" />
+    <Compile Include="IBDContext.cs" />
+    <Compile Include="IBDContextCon.cs" />
+    <Compile Include="IBDContextTs.cs" />
+    <Compile Include="ICloud.cs" />
+    <Compile Include="IGPS.cs" />
+    <Compile Include="IMessage.cs" />
+    <Compile Include="ISistema.cs" />
+    <Compile Include="listamensajes.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="logprogramacion.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mensajes.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mensajesrecibidos.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="orden_descarga.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parametros.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parametrostelematics.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="parametros_vmd.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="plat_versiones.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="programacion.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="puntosinteres.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="random.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="regiones.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="secuencias.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SIAEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIAEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SIAEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SIAEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIAEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="siaparametrosinicio.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sia_historicoconductores.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sia_scripts.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sia_testigo_puntointeres.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sistema.cs" />
+    <Compile Include="smstouch.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spot_parametros.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelematicsEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelematicsEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelematicsEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TelematicsEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TelematicsEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="versiones.cs">
+      <DependentUpon>CondusatEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="version_tabla.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VMDEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMDEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VMDEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VMDEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VMDEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="vmd_dpauta_autorizada.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vmd_testigo_video.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zonas.cs">
+      <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="CondusatEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CondusatEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CondusatEntities.edmx.diagram">
+      <DependentUpon>CondusatEntities.edmx</DependentUpon>
+    </None>
+    <None Include="Connected Services\WSCAN\InterfazSistema.WSCAN.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\WSCAN\Service.wsdl" />
+    <None Include="Connected Services\WSCAN\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WSCAN\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WSCAN\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WSCAN\Service3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WSCAN\Service4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <EntityDeploy Include="VMDEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VMDEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="TelematicsEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TelematicsEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SIAEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SIAEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SIAEntities.edmx.diagram">
+      <DependentUpon>SIAEntities.edmx</DependentUpon>
+    </None>
+    <None Include="TelematicsEntities.edmx.diagram">
+      <DependentUpon>TelematicsEntities.edmx</DependentUpon>
+    </None>
+    <None Include="VMDEntities.edmx.diagram">
+      <DependentUpon>VMDEntities.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WSCAN\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WSCAN\Service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WSCAN\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WSCAN\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WSCAN\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CondusatEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CondusatEntities.edmx</DependentUpon>
+      <LastGenOutput>CondusatEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CondusatEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CondusatEntities.edmx</DependentUpon>
+      <LastGenOutput>CondusatEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="SIAEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SIAEntities.edmx</DependentUpon>
+      <LastGenOutput>SIAEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SIAEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SIAEntities.edmx</DependentUpon>
+      <LastGenOutput>SIAEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="TelematicsEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelematicsEntities.edmx</DependentUpon>
+      <LastGenOutput>TelematicsEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TelematicsEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TelematicsEntities.edmx</DependentUpon>
+      <LastGenOutput>TelematicsEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="VMDEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VMDEntities.Context.cs</LastGenOutput>
+      <DependentUpon>VMDEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="VMDEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VMDEntities.edmx</DependentUpon>
+      <LastGenOutput>VMDEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

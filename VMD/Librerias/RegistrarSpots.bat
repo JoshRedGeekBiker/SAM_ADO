@@ -1,0 +1,2 @@
+C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\regasm.exe "C:\Documents and Settings\Administrador\Mis documentos\VMDTouch 7.0.4 TVE\VMD Touch 7.0.4\LibreriasSPOTS\Sincronizar.dll" /tlb: "C:\Documents and Settings\Administrador\Mis documentos\VMDTouch 7.0.4 TVE\VMD Touch 7.0.4\LibreriasSPOTS\Sincronizar.tlb" /Codebase
+pause

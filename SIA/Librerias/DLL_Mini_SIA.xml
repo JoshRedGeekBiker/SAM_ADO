@@ -1,0 +1,100 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+DLL_Mini_SIA
+</name>
+</assembly>
+<members>
+<member name="M:DLL_Mini_SIA.MiniSIA.SIAVMD.Verificar_PuntoInteres(System.Double,System.Double,System.String,System.String,System.Double,System.String)">
+	<summary>
+ Método que se encarga de verificar si las coordenadas proporcionadas se 
+ encuentran dentro de algun punto de interes registrado en SIA
+ </summary>
+	<param name="Latitud"></param>
+	<param name="Longitud"></param>
+	<param name="NS"></param>
+	<param name="WE"></param>
+	<param name="Velocidad"></param>
+	<param name="Orientacion"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DLL_Mini_SIA.MiniSIA.SIAVMD.Actualizar">
+	<summary>
+ Método que se encarga de sincronizar toda la información de SIA
+ </summary>
+	<returns>0 si no se actualizo nada, mayor a 0 dependiendo de los catalogos actualizados y  - 1 cuando ocurrio un error</returns>
+	<remarks></remarks>
+</member><member name="M:DLL_Mini_SIA.MiniSIA.SIAVMD.Testigo_Punto_Interes(System.Int32)">
+	<summary>
+ Definimos un testigo de Punto de Interes
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:DLL_Mini_SIA.MiniSIA.SIAVMD.Ultimo_Log_SIA">
+	<summary>
+ Propiedad que describe las acciones que se SIA se encuentra realizando 
+ durante la ejecución de un proceso
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:DLL_Mini_SIA.MiniSIA.SIAVMD.Log_SIA_Actualizacion">
+	<summary>
+ Ultimos mensaje del sistema SIA, ideal para el proceso de Actualizacion 
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:DLL_Mini_SIA.MiniSIA.SIAVMD">
+	<summary>
+ Interfaces para SIA VMD
+ </summary>
+	<remarks></remarks>
+</member><member name="M:DLL_Mini_SIA.MiniSIA.SIA.verificar_PuntoInteres(System.Double,System.Double,System.String,System.String,System.Double,System.String)">
+	<summary>
+ Verificamos si hay algun punto de interes
+ </summary>
+	<param name="Latitud"></param>
+	<param name="Longitud"></param>
+	<param name="NS"></param>
+	<param name="WE"></param>
+	<param name="Velocidad"></param>
+	<param name="Orientacion"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:DLL_Mini_SIA.MiniSIA.SIA.actualizar">
+	<summary>
+ Enviamos a actualizar la información.
+ </summary>
+	<returns>0 si no se actualizo nada, mayor a 0 dependiendo de los catalogos actualizados y  - 1 cuando ocurrio un error</returns>
+	<remarks></remarks>
+</member><member name="M:DLL_Mini_SIA.MiniSIA.SIA.Testigo_Punto_Interes(System.Int32)">
+	<summary>
+ Enviamos una notificacion de que se presento el punto de interes
+ </summary>
+	<param name="idPuntoInteres"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:DLL_Mini_SIA.MiniSIA.SIA.Ultimo_Log_SIA">
+	<summary>
+ Enviamos un log con los mensajes del sistema SIA.
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:DLL_Mini_SIA.MiniSIA.SIA.Log_SIA_Actualizacion">
+	<summary>
+ Metodo que se encarga de obtener el log de actualización de SIA
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:DLL_Mini_SIA.MiniSIA.SIA">
+	<summary>
+ Clase de consumo de SIA para VMD en Visual Basic 6 
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

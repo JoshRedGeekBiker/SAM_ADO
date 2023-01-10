@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+  <xs:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="value" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDataResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContract">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="composite" nillable="true" type="q1:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataUsingDataContractResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/" minOccurs="0" name="GetDataUsingDataContractResult" nillable="true" type="q2:CompositeType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Prueba">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PruebaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PruebaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFechaServidor">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFechaServidorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtenerFechaServidorResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibeMovtos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idregion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idmarca" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idzona" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="servicio" type="xs:int" />
+        <xs:element minOccurs="0" name="autobus" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="protocolo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IdDireccion" type="xs:int" />
+        <xs:element minOccurs="0" name="IdRegionOperativa" type="xs:int" />
+        <xs:element minOccurs="0" name="movtos" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="numeromovtos" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibeMovtosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RecibeMovtosResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerCodigoDescarga">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_idRegion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_idMarca" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_idZona" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_servicio" type="xs:int" />
+        <xs:element minOccurs="0" name="_autobus" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_operador" type="xs:int" />
+        <xs:element minOccurs="0" name="_lat" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_lon" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_ns" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_we" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_ultvel" type="xs:double" />
+        <xs:element minOccurs="0" name="_ip" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="_versioneSistemas" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerCodigoDescargaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtenerCodigoDescargaResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopiarMovtosCanX">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="_numautobus" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CopiarMovtosCanXResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CopiarMovtosCanXResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerTablasVerServer">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerTablasVerServerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ObtenerTablasVerServerResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegsServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="StrQuery" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegsServerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegsServerResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibeLogVMD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="logVMD" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="numeroLog" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecibeLogVMDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RecibeLogVMDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

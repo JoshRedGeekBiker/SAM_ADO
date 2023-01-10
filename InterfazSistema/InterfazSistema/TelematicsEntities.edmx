@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="telematicsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cat_codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type_Action_Id" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Rango1" Type="varchar" MaxLength="10" />
+          <Property Name="Rango2" Type="varchar" MaxLength="10" />
+          <Property Name="Tiempo" Type="uint" />
+          <Property Name="Type_Codigo_Id" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Activo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Tiempo_Minimo" Type="uint" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Tiempo_Maximo" Type="uint" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Tolerancia" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_type_action">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Orden" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_type_codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modulo" Type="varchar" MaxLength="15" />
+          <Property Name="Codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="15" />
+          <Property Name="Type_Codigo_Id" Type="uint" Nullable="false" />
+          <Property Name="FechaHora_Inicio" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Autobus" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Lat" Type="double" />
+          <Property Name="Lng" Type="double" />
+          <Property Name="NS" Type="varchar" MaxLength="1" />
+          <Property Name="WE" Type="varchar" MaxLength="1" />
+          <Property Name="Marca_Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Region_Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Region_Operativa_Id" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Clave_Operador" Type="uint" />
+          <Property Name="Nombre_Operador" Type="varchar" MaxLength="150" />
+          <Property Name="Fecha_Evento_Viaje" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Tipo_Viaje" Type="varchar" MaxLength="2" />
+          <Property Name="Status_Id" Type="uint" Nullable="false" />
+          <Property Name="Procesado" Type="uint" Nullable="false" />
+          <Property Name="Enviado" Type="uint" Nullable="false" />
+          <Property Name="Lote" Type="varchar" MaxLength="150" />
+          <Property Name="TipoLectura" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Contador" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FechaHora_Fin" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Protocolo" Type="varchar" MaxLength="20" />
+          <Property Name="Firmware" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="codigo_envio">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modulo" Type="varchar" MaxLength="15" />
+          <Property Name="Codigo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Valor" Type="varchar" MaxLength="15" />
+          <Property Name="Type_Envio_Id" Type="uint" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Autobus" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Lat" Type="double" />
+          <Property Name="Lng" Type="double" />
+          <Property Name="NS" Type="varchar" MaxLength="1" />
+          <Property Name="WE" Type="varchar" MaxLength="1" />
+          <Property Name="Marca_Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Region_Id" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Region_Operativa_Id" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Clave_Operador" Type="uint" />
+          <Property Name="Nombre_Operador" Type="varchar" MaxLength="150" />
+          <Property Name="Fecha_Evento_Viaje" Type="datetime" Precision="0" />
+          <Property Name="Tipo_Viaje" Type="varchar" MaxLength="2" />
+          <Property Name="Status_Id" Type="uint" Nullable="false" />
+          <Property Name="Enviado" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="falla_envio">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JSON" Type="varchar" MaxLength="10000" />
+          <Property Name="Enviado" Type="uint" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="parametrostelematics">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+            <PropertyRef Name="Tiempo_Envio" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Servidor" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Puerto" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tiempo_Envio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Limite_Cola_Fallas" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="WSSTREAM" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="FactorAceleracion" Type="uint" Nullable="false" />
+          <Property Name="FactorDesaceleracion" Type="uint" Nullable="false" />
+          <Property Name="WSPACKAGE" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="GuardarLote" Type="uint" Nullable="false" />
+          <Property Name="ServerPing" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="UserWS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PassWS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CalculoAceleracion" Type="uint" Nullable="false" />
+          <Property Name="CalculoAcelerador" Type="uint" Nullable="false" />
+          <Property Name="PorcentajeAcelerador" Type="uint" Nullable="false" />
+          <Property Name="IdLAN" Type="varchar" MaxLength="100" />
+          <Property Name="FiltroCodigos" Type="bool" Nullable="false" />
+          <Property Name="FiltroFallas" Type="bool" Nullable="false" />
+          <Property Name="WSVersion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="WSCatalogo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="LotePorStream" Type="bool" Nullable="false" />
+          <Property Name="WSPACKAGESTREAM" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="TEMASTREAM" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Protocolo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Firmware" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="version_tabla">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTabla" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Version" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="telematicsModelStoreContainer">
+          <EntitySet Name="cat_codigo" EntityType="Self.cat_codigo" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="cat_type_action" EntityType="Self.cat_type_action" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="cat_type_codigo" EntityType="Self.cat_type_codigo" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="codigo" EntityType="Self.codigo" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="codigo_envio" EntityType="Self.codigo_envio" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="falla_envio" EntityType="Self.falla_envio" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="parametrostelematics" EntityType="Self.parametrostelematics" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="version_tabla" EntityType="Self.version_tabla" Schema="telematics" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="telematicsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cat_codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type_Action_Id" Type="String" Nullable="false" FixedLength="false" MaxLength="45" Unicode="false" />
+          <Property Name="Rango1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Rango2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tiempo" Type="Int64" />
+          <Property Name="Type_Codigo_Id" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Pro_Tolerancia_Activo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Pro_Tolerancia_Tiempo_Minimo" Type="Int64" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Tiempo_Maximo" Type="Int64" Nullable="false" />
+          <Property Name="Pro_Tolerancia_Tolerancia" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_type_action">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Orden" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_type_codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="codigo">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modulo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Type_Codigo_Id" Type="Int64" Nullable="false" />
+          <Property Name="Autobus" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lng" Type="Double" />
+          <Property Name="NS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="WE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Marca_Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region_Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region_Operativa_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave_Operador" Type="Int64" />
+          <Property Name="Nombre_Operador" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Evento_Viaje" Type="DateTime" Nullable="false" />
+          <Property Name="Tipo_Viaje" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Status_Id" Type="Int64" Nullable="false" />
+          <Property Name="Procesado" Type="Int64" Nullable="false" />
+          <Property Name="Enviado" Type="Int64" Nullable="false" />
+          <Property Name="Lote" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TipoLectura" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Contador" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHora_Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="FechaHora_Fin" Type="DateTime" Nullable="false" />
+          <Property Name="Protocolo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Firmware" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="codigo_envio">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modulo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" />
+          <Property Name="Autobus" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lng" Type="Double" />
+          <Property Name="NS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="WE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Marca_Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region_Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region_Operativa_Id" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave_Operador" Type="Int64" />
+          <Property Name="Nombre_Operador" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Evento_Viaje" Type="DateTime" Nullable="false" />
+          <Property Name="Tipo_Viaje" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Status_Id" Type="Int64" Nullable="false" />
+          <Property Name="Enviado" Type="Int64" Nullable="false" />
+          <Property Name="Type_Envio_Id" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="version_tabla">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTabla" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Version" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="telematicsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cat_codigo" EntityType="Self.cat_codigo" />
+          <EntitySet Name="cat_type_action" EntityType="Self.cat_type_action" />
+          <EntitySet Name="cat_type_codigo" EntityType="Self.cat_type_codigo" />
+          <EntitySet Name="codigo" EntityType="Self.codigo" />
+          <EntitySet Name="codigo_envio" EntityType="Self.codigo_envio" />
+          <EntitySet Name="version_tabla" EntityType="Self.version_tabla" />
+          <EntitySet Name="parametrostelematics" EntityType="telematicsModel.parametrostelematics" />
+          <EntitySet Name="falla_envio" EntityType="telematicsModel.falla_envio" />
+        </EntityContainer>
+        <EntityType Name="parametrostelematics">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+            <PropertyRef Name="Tiempo_Envio" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Servidor" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Puerto" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tiempo_Envio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Limite_Cola_Fallas" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WSSTREAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="FactorAceleracion" Type="Int64" Nullable="false" />
+          <Property Name="FactorDesaceleracion" Type="Int64" Nullable="false" />
+          <Property Name="WSPACKAGE" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="GuardarLote" Type="Int64" Nullable="false" />
+          <Property Name="ServerPing" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="UserWS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PassWS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CalculoAceleracion" Type="Int64" Nullable="false" />
+          <Property Name="CalculoAcelerador" Type="Int64" Nullable="false" />
+          <Property Name="PorcentajeAcelerador" Type="Int64" Nullable="false" />
+          <Property Name="IdLAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FiltroCodigos" Type="Boolean" Nullable="false" />
+          <Property Name="FiltroFallas" Type="Boolean" Nullable="false" />
+          <Property Name="WSVersion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="WSCatalogo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LotePorStream" Type="Boolean" Nullable="false" />
+          <Property Name="WSPACKAGESTREAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TEMASTREAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Protocolo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Firmware" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="falla_envio">
+          <Key>
+            <PropertyRef Name="PK_ID" />
+          </Key>
+          <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JSON" Type="String" MaxLength="10000" FixedLength="false" Unicode="false" />
+          <Property Name="Enviado" Type="Int64" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="telematicsModelStoreContainer" CdmEntityContainer="telematicsEntities">
+          <EntitySetMapping Name="cat_codigo">
+            <EntityTypeMapping TypeName="telematicsModel.cat_codigo">
+              <MappingFragment StoreEntitySet="cat_codigo">
+                <ScalarProperty Name="Pro_Tolerancia_Tolerancia" ColumnName="Pro_Tolerancia_Tolerancia" />
+                <ScalarProperty Name="Pro_Tolerancia_Tiempo_Maximo" ColumnName="Pro_Tolerancia_Tiempo_Maximo" />
+                <ScalarProperty Name="Pro_Tolerancia_Tiempo_Minimo" ColumnName="Pro_Tolerancia_Tiempo_Minimo" />
+                <ScalarProperty Name="Pro_Tolerancia_Activo" ColumnName="Pro_Tolerancia_Activo" />
+                <ScalarProperty Name="Type_Codigo_Id" ColumnName="Type_Codigo_Id" />
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Type_Action_Id" ColumnName="Type_Action_Id" />
+                <ScalarProperty Name="Rango1" ColumnName="Rango1" />
+                <ScalarProperty Name="Rango2" ColumnName="Rango2" />
+                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cat_type_action">
+            <EntityTypeMapping TypeName="telematicsModel.cat_type_action">
+              <MappingFragment StoreEntitySet="cat_type_action">
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cat_type_codigo">
+            <EntityTypeMapping TypeName="telematicsModel.cat_type_codigo">
+              <MappingFragment StoreEntitySet="cat_type_codigo">
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="codigo">
+            <EntityTypeMapping TypeName="telematicsModel.codigo">
+              <MappingFragment StoreEntitySet="codigo">
+                <ScalarProperty Name="Firmware" ColumnName="Firmware" />
+                <ScalarProperty Name="Protocolo" ColumnName="Protocolo" />
+                <ScalarProperty Name="FechaHora_Fin" ColumnName="FechaHora_Fin" />
+                <ScalarProperty Name="FechaHora_Inicio" ColumnName="FechaHora_Inicio" />
+                <ScalarProperty Name="Contador" ColumnName="Contador" />
+                <ScalarProperty Name="TipoLectura" ColumnName="TipoLectura" />
+                <ScalarProperty Name="Lote" ColumnName="Lote" />
+                <ScalarProperty Name="Enviado" ColumnName="Enviado" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Codigo1" ColumnName="Codigo" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Type_Codigo_Id" ColumnName="Type_Codigo_Id" />
+                <ScalarProperty Name="Autobus" ColumnName="Autobus" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="NS" ColumnName="NS" />
+                <ScalarProperty Name="WE" ColumnName="WE" />
+                <ScalarProperty Name="Marca_Id" ColumnName="Marca_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Region_Operativa_Id" ColumnName="Region_Operativa_Id" />
+                <ScalarProperty Name="Clave_Operador" ColumnName="Clave_Operador" />
+                <ScalarProperty Name="Nombre_Operador" ColumnName="Nombre_Operador" />
+                <ScalarProperty Name="Fecha_Evento_Viaje" ColumnName="Fecha_Evento_Viaje" />
+                <ScalarProperty Name="Tipo_Viaje" ColumnName="Tipo_Viaje" />
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="codigo_envio">
+            <EntityTypeMapping TypeName="telematicsModel.codigo_envio">
+              <MappingFragment StoreEntitySet="codigo_envio">
+                <ScalarProperty Name="Type_Envio_Id" ColumnName="Type_Envio_Id" />
+                <ScalarProperty Name="Enviado" ColumnName="Enviado" />
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Autobus" ColumnName="Autobus" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="NS" ColumnName="NS" />
+                <ScalarProperty Name="WE" ColumnName="WE" />
+                <ScalarProperty Name="Marca_Id" ColumnName="Marca_Id" />
+                <ScalarProperty Name="Region_Id" ColumnName="Region_Id" />
+                <ScalarProperty Name="Region_Operativa_Id" ColumnName="Region_Operativa_Id" />
+                <ScalarProperty Name="Clave_Operador" ColumnName="Clave_Operador" />
+                <ScalarProperty Name="Nombre_Operador" ColumnName="Nombre_Operador" />
+                <ScalarProperty Name="Fecha_Evento_Viaje" ColumnName="Fecha_Evento_Viaje" />
+                <ScalarProperty Name="Tipo_Viaje" ColumnName="Tipo_Viaje" />
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="version_tabla">
+            <EntityTypeMapping TypeName="telematicsModel.version_tabla">
+              <MappingFragment StoreEntitySet="version_tabla">
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+                <ScalarProperty Name="NombreTabla" ColumnName="NombreTabla" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametrostelematics">
+            <EntityTypeMapping TypeName="telematicsModel.parametrostelematics">
+              <MappingFragment StoreEntitySet="parametrostelematics">
+                <ScalarProperty Name="Firmware" ColumnName="Firmware" />
+                <ScalarProperty Name="Protocolo" ColumnName="Protocolo" />
+                <ScalarProperty Name="TEMASTREAM" ColumnName="TEMASTREAM" />
+                <ScalarProperty Name="WSPACKAGESTREAM" ColumnName="WSPACKAGESTREAM" />
+                <ScalarProperty Name="LotePorStream" ColumnName="LotePorStream" />
+                <ScalarProperty Name="WSCatalogo" ColumnName="WSCatalogo" />
+                <ScalarProperty Name="WSVersion" ColumnName="WSVersion" />
+                <ScalarProperty Name="FiltroFallas" ColumnName="FiltroFallas" />
+                <ScalarProperty Name="FiltroCodigos" ColumnName="FiltroCodigos" />
+                <ScalarProperty Name="IdLAN" ColumnName="IdLAN" />
+                <ScalarProperty Name="PorcentajeAcelerador" ColumnName="PorcentajeAcelerador" />
+                <ScalarProperty Name="CalculoAcelerador" ColumnName="CalculoAcelerador" />
+                <ScalarProperty Name="CalculoAceleracion" ColumnName="CalculoAceleracion" />
+                <ScalarProperty Name="PassWS" ColumnName="PassWS" />
+                <ScalarProperty Name="UserWS" ColumnName="UserWS" />
+                <ScalarProperty Name="ServerPing" ColumnName="ServerPing" />
+                <ScalarProperty Name="GuardarLote" ColumnName="GuardarLote" />
+                <ScalarProperty Name="WSPACKAGE" ColumnName="WSPACKAGE" />
+                <ScalarProperty Name="FactorDesaceleracion" ColumnName="FactorDesaceleracion" />
+                <ScalarProperty Name="FactorAceleracion" ColumnName="FactorAceleracion" />
+                <ScalarProperty Name="WSSTREAM" ColumnName="WSSTREAM" />
+                <ScalarProperty Name="Limite_Cola_Fallas" ColumnName="Limite_Cola_Fallas" />
+                <ScalarProperty Name="Tiempo_Envio" ColumnName="Tiempo_Envio" />
+                <ScalarProperty Name="Puerto" ColumnName="Puerto" />
+                <ScalarProperty Name="Servidor" ColumnName="Servidor" />
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="falla_envio">
+            <EntityTypeMapping TypeName="telematicsModel.falla_envio">
+              <MappingFragment StoreEntitySet="falla_envio">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Enviado" ColumnName="Enviado" />
+                <ScalarProperty Name="JSON" ColumnName="JSON" />
+                <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

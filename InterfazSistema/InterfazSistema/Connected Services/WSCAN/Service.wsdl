@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/" />
+      <xsd:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost/WSCAN/Service.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Prueba_InputMessage">
+    <wsdl:part name="parameters" element="tns:Prueba" />
+  </wsdl:message>
+  <wsdl:message name="IService_Prueba_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PruebaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerFechaServidor_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFechaServidor" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerFechaServidor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFechaServidorResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecibeMovtos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecibeMovtos" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecibeMovtos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecibeMovtosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerCodigoDescarga_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCodigoDescarga" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerCodigoDescarga_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCodigoDescargaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CopiarMovtosCanX_InputMessage">
+    <wsdl:part name="parameters" element="tns:CopiarMovtosCanX" />
+  </wsdl:message>
+  <wsdl:message name="IService_CopiarMovtosCanX_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CopiarMovtosCanXResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerTablasVerServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTablasVerServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ObtenerTablasVerServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTablasVerServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RegsServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegsServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_RegsServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegsServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecibeLogVMD_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecibeLogVMD" />
+  </wsdl:message>
+  <wsdl:message name="IService_RecibeLogVMD_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecibeLogVMDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetData" message="tns:IService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetDataResponse" message="tns:IService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetDataUsingDataContract" message="tns:IService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetDataUsingDataContractResponse" message="tns:IService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Prueba" message="tns:IService_Prueba_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/PruebaResponse" message="tns:IService_Prueba_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFechaServidor">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ObtenerFechaServidor" message="tns:IService_ObtenerFechaServidor_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ObtenerFechaServidorResponse" message="tns:IService_ObtenerFechaServidor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibeMovtos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RecibeMovtos" message="tns:IService_RecibeMovtos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RecibeMovtosResponse" message="tns:IService_RecibeMovtos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCodigoDescarga">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ObtenerCodigoDescarga" message="tns:IService_ObtenerCodigoDescarga_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ObtenerCodigoDescargaResponse" message="tns:IService_ObtenerCodigoDescarga_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CopiarMovtosCanX">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CopiarMovtosCanX" message="tns:IService_CopiarMovtosCanX_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CopiarMovtosCanXResponse" message="tns:IService_CopiarMovtosCanX_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablasVerServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ObtenerTablasVerServer" message="tns:IService_ObtenerTablasVerServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ObtenerTablasVerServerResponse" message="tns:IService_ObtenerTablasVerServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegsServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RegsServer" message="tns:IService_RegsServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RegsServerResponse" message="tns:IService_RegsServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibeLogVMD">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RecibeLogVMD" message="tns:IService_RecibeLogVMD_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RecibeLogVMDResponse" message="tns:IService_RecibeLogVMD_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IService/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Prueba">
+      <soap:operation soapAction="http://tempuri.org/IService/Prueba" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFechaServidor">
+      <soap:operation soapAction="http://tempuri.org/IService/ObtenerFechaServidor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibeMovtos">
+      <soap:operation soapAction="http://tempuri.org/IService/RecibeMovtos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCodigoDescarga">
+      <soap:operation soapAction="http://tempuri.org/IService/ObtenerCodigoDescarga" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopiarMovtosCanX">
+      <soap:operation soapAction="http://tempuri.org/IService/CopiarMovtosCanX" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTablasVerServer">
+      <soap:operation soapAction="http://tempuri.org/IService/ObtenerTablasVerServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegsServer">
+      <soap:operation soapAction="http://tempuri.org/IService/RegsServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecibeLogVMD">
+      <soap:operation soapAction="http://tempuri.org/IService/RecibeLogVMD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost/WSCAN/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

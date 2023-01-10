@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SIAModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="catsms">
+          <Key>
+            <PropertyRef Name="IdSMS" />
+          </Key>
+          <Property Name="IdSMS" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextoSMS" Type="varchar" MaxLength="400" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historialpublicidad">
+          <Key>
+            <PropertyRef Name="IdHistorial" />
+          </Key>
+          <Property Name="IdHistorial" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextoSMS" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="listamensajes">
+          <Key>
+            <PropertyRef Name="idmensaje" />
+          </Key>
+          <Property Name="idmensaje" Type="int" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tiempo" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="puntosinteres">
+          <Key>
+            <PropertyRef Name="IdPunto" />
+          </Key>
+          <Property Name="IdPunto" Type="uint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Latitud" Type="float" Nullable="false" />
+          <Property Name="Longitud" Type="float" Nullable="false" />
+          <Property Name="MargenError" Type="uint" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="punto_regreso" Type="uint" />
+          <Property Name="tiempo_exposicion" Type="int" />
+          <Property Name="TipoPunto" Type="varchar" MaxLength="10" />
+          <Property Name="Sentido" Type="varchar" MaxLength="5" />
+          <Property Name="Hora_Inicio" Type="uint" />
+          <Property Name="Hora_Fin" Type="uint" />
+        </EntityType>
+        <EntityType Name="sia_historicoconductores">
+          <Key>
+            <PropertyRef Name="FechaIngreso" />
+          </Key>
+          <Property Name="FechaIngreso" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="FechaSalida" Type="datetime" Precision="0" />
+          <Property Name="CvlOperador" Type="varchar" MaxLength="45" />
+          <Property Name="activo" Type="char" MaxLength="1" />
+          <Property Name="id_circuito" Type="int" />
+          <Property Name="id_viaje" Type="varchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="sia_scripts">
+          <Key>
+            <PropertyRef Name="IDScript" />
+          </Key>
+          <Property Name="IDScript" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Script" Type="longtext" Nullable="false" />
+          <Property Name="Ejecutado" Type="bool" Nullable="false" />
+          <Property Name="FechaEjecucion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="FechaDescarga" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="BD" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sia_testigo_puntointeres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Autobus" Type="uint" Nullable="false" />
+          <Property Name="IDPunto" Type="uint" Nullable="false" />
+          <Property Name="FechaDeteccion" Type="datetime" Precision="0" />
+          <Property Name="Presentado" Type="bool" />
+          <Property Name="FechaPresentacion" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="siaparametrosinicio">
+          <Key>
+            <PropertyRef Name="IDVersion" />
+          </Key>
+          <Property Name="Tiempo_Localiza" Type="uint" Nullable="false" />
+          <Property Name="Tiempo_Disponibilidad" Type="uint" Nullable="false" />
+          <Property Name="IDVersion" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTarjetaLAN" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ServidorInternet" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ServidorSIA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Tiempo_ParametrosExtendidos" Type="uint" Nullable="false" />
+          <Property Name="No_RegistrosHistoricos" Type="uint" Nullable="false" />
+          <Property Name="No_ParametrosExtendidos" Type="uint" Nullable="false" />
+          <Property Name="Tiempo_Actualizacion" Type="uint" Nullable="false" />
+          <Property Name="Habilitar_Envio_ParametrosExtendidos" Type="bit" Nullable="false" />
+          <Property Name="Habilitar_Envio_RegistrosHistoricos" Type="bit" Nullable="false" />
+          <Property Name="Tiempo_GuardadoHistoricos" Type="uint" Nullable="false" />
+          <Property Name="servidor_actualizacion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="smstouch">
+          <Key>
+            <PropertyRef Name="IdSmsTouch" />
+          </Key>
+          <Property Name="IdSmsTouch" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSms" Type="uint" />
+          <Property Name="IdMarca" Type="uint" />
+          <Property Name="FechaSMS" Type="datetime" Precision="0" />
+          <Property Name="IdTipoSms" Type="uint" />
+          <Property Name="IdEstatusAtendido" Type="uint" />
+          <Property Name="IdDestinatario" Type="uint" Nullable="false" />
+          <Property Name="TextoSMS" Type="varchar" MaxLength="150" />
+          <Property Name="clvConductor" Type="uint" />
+          <Property Name="NombreConductor" Type="varchar" MaxLength="200" />
+          <Property Name="IdPunto" Type="uint" />
+        </EntityType>
+        <EntityContainer Name="SIAModelStoreContainer">
+          <EntitySet Name="catsms" EntityType="Self.catsms" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="historialpublicidad" EntityType="Self.historialpublicidad" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="listamensajes" EntityType="Self.listamensajes" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="parametros" EntityType="Self.parametros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="puntosinteres" EntityType="Self.puntosinteres" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="sia_historicoconductores" EntityType="Self.sia_historicoconductores" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="sia_scripts" EntityType="Self.sia_scripts" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="sia_testigo_puntointeres" EntityType="Self.sia_testigo_puntointeres" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="siaparametrosinicio" EntityType="Self.siaparametrosinicio" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="smstouch" EntityType="Self.smstouch" Schema="vmd" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="catsms">
+          <Key>
+            <PropertyRef Name="IdSMS" />
+          </Key>
+          <Property Name="IdSMS" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextoSMS" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historialpublicidad">
+          <Key>
+            <PropertyRef Name="IdHistorial" />
+          </Key>
+          <Property Name="IdHistorial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextoSMS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="listamensajes">
+          <Key>
+            <PropertyRef Name="idmensaje" />
+          </Key>
+          <Property Name="idmensaje" Type="Int32" Nullable="false" />
+          <Property Name="mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tiempo" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="puntosinteres">
+          <Key>
+            <PropertyRef Name="IdPunto" />
+          </Key>
+          <Property Name="IdPunto" Type="Int64" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Latitud" Type="Single" Nullable="false" />
+          <Property Name="Longitud" Type="Single" Nullable="false" />
+          <Property Name="MargenError" Type="Int64" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="punto_regreso" Type="Int64" />
+          <Property Name="tiempo_exposicion" Type="Int32" />
+          <Property Name="TipoPunto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sentido" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Hora_Inicio" Type="Int64" />
+          <Property Name="Hora_Fin" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sia_historicoconductores">
+          <Key>
+            <PropertyRef Name="FechaIngreso" />
+          </Key>
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" />
+          <Property Name="FechaSalida" Type="DateTime" />
+          <Property Name="CvlOperador" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="id_circuito" Type="Int32" />
+          <Property Name="id_viaje" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sia_scripts">
+          <Key>
+            <PropertyRef Name="IDScript" />
+          </Key>
+          <Property Name="IDScript" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Script" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ejecutado" Type="Boolean" Nullable="false" />
+          <Property Name="FechaEjecucion" Type="DateTime" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaDescarga" Type="DateTime" Nullable="false" />
+          <Property Name="BD" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sia_testigo_puntointeres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Autobus" Type="Int64" Nullable="false" />
+          <Property Name="IDPunto" Type="Int64" Nullable="false" />
+          <Property Name="FechaDeteccion" Type="DateTime" />
+          <Property Name="Presentado" Type="Boolean" />
+          <Property Name="FechaPresentacion" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="siaparametrosinicio">
+          <Key>
+            <PropertyRef Name="IDVersion" />
+          </Key>
+          <Property Name="Tiempo_Localiza" Type="Int64" Nullable="false" />
+          <Property Name="Tiempo_Disponibilidad" Type="Int64" Nullable="false" />
+          <Property Name="IDVersion" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTarjetaLAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServidorInternet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServidorSIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tiempo_ParametrosExtendidos" Type="Int64" Nullable="false" />
+          <Property Name="No_RegistrosHistoricos" Type="Int64" Nullable="false" />
+          <Property Name="No_ParametrosExtendidos" Type="Int64" Nullable="false" />
+          <Property Name="Tiempo_Actualizacion" Type="Int64" Nullable="false" />
+          <Property Name="Habilitar_Envio_ParametrosExtendidos" Type="Boolean" Nullable="false" />
+          <Property Name="Habilitar_Envio_RegistrosHistoricos" Type="Boolean" Nullable="false" />
+          <Property Name="Tiempo_GuardadoHistoricos" Type="Int64" Nullable="false" />
+          <Property Name="servidor_actualizacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="smstouch">
+          <Key>
+            <PropertyRef Name="IdSmsTouch" />
+          </Key>
+          <Property Name="IdSmsTouch" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSms" Type="Int64" />
+          <Property Name="IdMarca" Type="Int64" />
+          <Property Name="FechaSMS" Type="DateTime" />
+          <Property Name="IdTipoSms" Type="Int64" />
+          <Property Name="IdEstatusAtendido" Type="Int64" Nullable="true" />
+          <Property Name="IdDestinatario" Type="Int64" Nullable="false" />
+          <Property Name="TextoSMS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="clvConductor" Type="Int64" />
+          <Property Name="NombreConductor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IdPunto" Type="Int64" />
+        </EntityType>
+        <EntityContainer Name="SIAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="catsms" EntityType="Self.catsms" />
+          <EntitySet Name="historialpublicidad" EntityType="Self.historialpublicidad" />
+          <EntitySet Name="listamensajes" EntityType="Self.listamensajes" />
+          <EntitySet Name="parametros" EntityType="Self.parametros" />
+          <EntitySet Name="puntosinteres" EntityType="Self.puntosinteres" />
+          <EntitySet Name="sia_historicoconductores" EntityType="Self.sia_historicoconductores" />
+          <EntitySet Name="sia_scripts" EntityType="Self.sia_scripts" />
+          <EntitySet Name="sia_testigo_puntointeres" EntityType="Self.sia_testigo_puntointeres" />
+          <EntitySet Name="siaparametrosinicio" EntityType="Self.siaparametrosinicio" />
+          <EntitySet Name="smstouch" EntityType="Self.smstouch" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIAModelStoreContainer" CdmEntityContainer="SIAEntities">
+          <EntitySetMapping Name="catsms">
+            <EntityTypeMapping TypeName="SIAModel.catsms">
+              <MappingFragment StoreEntitySet="catsms">
+                <ScalarProperty Name="IdSMS" ColumnName="IdSMS" />
+                <ScalarProperty Name="TextoSMS" ColumnName="TextoSMS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historialpublicidad">
+            <EntityTypeMapping TypeName="SIAModel.historialpublicidad">
+              <MappingFragment StoreEntitySet="historialpublicidad">
+                <ScalarProperty Name="IdHistorial" ColumnName="IdHistorial" />
+                <ScalarProperty Name="TextoSMS" ColumnName="TextoSMS" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="listamensajes">
+            <EntityTypeMapping TypeName="SIAModel.listamensajes">
+              <MappingFragment StoreEntitySet="listamensajes">
+                <ScalarProperty Name="idmensaje" ColumnName="idmensaje" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametros">
+            <EntityTypeMapping TypeName="SIAModel.parametros">
+              <MappingFragment StoreEntitySet="parametros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puntosinteres">
+            <EntityTypeMapping TypeName="SIAModel.puntosinteres">
+              <MappingFragment StoreEntitySet="puntosinteres">
+                <ScalarProperty Name="IdPunto" ColumnName="IdPunto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+                <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+                <ScalarProperty Name="MargenError" ColumnName="MargenError" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="punto_regreso" ColumnName="punto_regreso" />
+                <ScalarProperty Name="tiempo_exposicion" ColumnName="tiempo_exposicion" />
+                <ScalarProperty Name="TipoPunto" ColumnName="TipoPunto" />
+                <ScalarProperty Name="Sentido" ColumnName="Sentido" />
+                <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
+                <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sia_historicoconductores">
+            <EntityTypeMapping TypeName="SIAModel.sia_historicoconductores">
+              <MappingFragment StoreEntitySet="sia_historicoconductores">
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="FechaSalida" ColumnName="FechaSalida" />
+                <ScalarProperty Name="CvlOperador" ColumnName="CvlOperador" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="id_circuito" ColumnName="id_circuito" />
+                <ScalarProperty Name="id_viaje" ColumnName="id_viaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sia_scripts">
+            <EntityTypeMapping TypeName="SIAModel.sia_scripts">
+              <MappingFragment StoreEntitySet="sia_scripts">
+                <ScalarProperty Name="IDScript" ColumnName="IDScript" />
+                <ScalarProperty Name="Script" ColumnName="Script" />
+                <ScalarProperty Name="Ejecutado" ColumnName="Ejecutado" />
+                <ScalarProperty Name="FechaEjecucion" ColumnName="FechaEjecucion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaDescarga" ColumnName="FechaDescarga" />
+                <ScalarProperty Name="BD" ColumnName="BD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sia_testigo_puntointeres">
+            <EntityTypeMapping TypeName="SIAModel.sia_testigo_puntointeres">
+              <MappingFragment StoreEntitySet="sia_testigo_puntointeres">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Autobus" ColumnName="Autobus" />
+                <ScalarProperty Name="IDPunto" ColumnName="IDPunto" />
+                <ScalarProperty Name="FechaDeteccion" ColumnName="FechaDeteccion" />
+                <ScalarProperty Name="Presentado" ColumnName="Presentado" />
+                <ScalarProperty Name="FechaPresentacion" ColumnName="FechaPresentacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="siaparametrosinicio">
+            <EntityTypeMapping TypeName="SIAModel.siaparametrosinicio">
+              <MappingFragment StoreEntitySet="siaparametrosinicio">
+                <ScalarProperty Name="Tiempo_Localiza" ColumnName="Tiempo_Localiza" />
+                <ScalarProperty Name="Tiempo_Disponibilidad" ColumnName="Tiempo_Disponibilidad" />
+                <ScalarProperty Name="IDVersion" ColumnName="IDVersion" />
+                <ScalarProperty Name="IDTarjetaLAN" ColumnName="IDTarjetaLAN" />
+                <ScalarProperty Name="ServidorInternet" ColumnName="ServidorInternet" />
+                <ScalarProperty Name="ServidorSIA" ColumnName="ServidorSIA" />
+                <ScalarProperty Name="Tiempo_ParametrosExtendidos" ColumnName="Tiempo_ParametrosExtendidos" />
+                <ScalarProperty Name="No_RegistrosHistoricos" ColumnName="No_RegistrosHistoricos" />
+                <ScalarProperty Name="No_ParametrosExtendidos" ColumnName="No_ParametrosExtendidos" />
+                <ScalarProperty Name="Tiempo_Actualizacion" ColumnName="Tiempo_Actualizacion" />
+                <ScalarProperty Name="Habilitar_Envio_ParametrosExtendidos" ColumnName="Habilitar_Envio_ParametrosExtendidos" />
+                <ScalarProperty Name="Habilitar_Envio_RegistrosHistoricos" ColumnName="Habilitar_Envio_RegistrosHistoricos" />
+                <ScalarProperty Name="Tiempo_GuardadoHistoricos" ColumnName="Tiempo_GuardadoHistoricos" />
+                <ScalarProperty Name="servidor_actualizacion" ColumnName="servidor_actualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="smstouch">
+            <EntityTypeMapping TypeName="SIAModel.smstouch">
+              <MappingFragment StoreEntitySet="smstouch">
+                <ScalarProperty Name="IdSmsTouch" ColumnName="IdSmsTouch" />
+                <ScalarProperty Name="IdSms" ColumnName="IdSms" />
+                <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+                <ScalarProperty Name="FechaSMS" ColumnName="FechaSMS" />
+                <ScalarProperty Name="IdTipoSms" ColumnName="IdTipoSms" />
+                <ScalarProperty Name="IdEstatusAtendido" ColumnName="IdEstatusAtendido" />
+                <ScalarProperty Name="IdDestinatario" ColumnName="IdDestinatario" />
+                <ScalarProperty Name="TextoSMS" ColumnName="TextoSMS" />
+                <ScalarProperty Name="clvConductor" ColumnName="clvConductor" />
+                <ScalarProperty Name="NombreConductor" ColumnName="NombreConductor" />
+                <ScalarProperty Name="IdPunto" ColumnName="IdPunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,645 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\ComInterop.CComInterop]
+@="ComInterop.CComInterop"
+
+[HKEY_CLASSES_ROOT\ComInterop.CComInterop\CLSID]
+@="{FDF035DD-3BF5-36B2-8334-EC04BEA18157}"
+
+[HKEY_CLASSES_ROOT\CLSID\{FDF035DD-3BF5-36B2-8334-EC04BEA18157}]
+@="ComInterop.CComInterop"
+
+[HKEY_CLASSES_ROOT\CLSID\{FDF035DD-3BF5-36B2-8334-EC04BEA18157}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="ComInterop.CComInterop"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{FDF035DD-3BF5-36B2-8334-EC04BEA18157}\InprocServer32\2.0.0.0]
+"Class"="ComInterop.CComInterop"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{FDF035DD-3BF5-36B2-8334-EC04BEA18157}\ProgId]
+@="ComInterop.CComInterop"
+
+[HKEY_CLASSES_ROOT\CLSID\{FDF035DD-3BF5-36B2-8334-EC04BEA18157}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.pauta]
+@="Sincronizar.pauta"
+
+[HKEY_CLASSES_ROOT\Sincronizar.pauta\CLSID]
+@="{12410CB6-140E-3F45-8F67-140EA1A87C28}"
+
+[HKEY_CLASSES_ROOT\CLSID\{12410CB6-140E-3F45-8F67-140EA1A87C28}]
+@="Sincronizar.pauta"
+
+[HKEY_CLASSES_ROOT\CLSID\{12410CB6-140E-3F45-8F67-140EA1A87C28}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.pauta"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{12410CB6-140E-3F45-8F67-140EA1A87C28}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.pauta"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{12410CB6-140E-3F45-8F67-140EA1A87C28}\ProgId]
+@="Sincronizar.pauta"
+
+[HKEY_CLASSES_ROOT\CLSID\{12410CB6-140E-3F45-8F67-140EA1A87C28}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldRequest]
+@="Sincronizar.SR.HelloWorldRequest"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldRequest\CLSID]
+@="{0421A609-1B44-3894-A273-DF2F0F873DF7}"
+
+[HKEY_CLASSES_ROOT\CLSID\{0421A609-1B44-3894-A273-DF2F0F873DF7}]
+@="Sincronizar.SR.HelloWorldRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{0421A609-1B44-3894-A273-DF2F0F873DF7}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.HelloWorldRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{0421A609-1B44-3894-A273-DF2F0F873DF7}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.HelloWorldRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{0421A609-1B44-3894-A273-DF2F0F873DF7}\ProgId]
+@="Sincronizar.SR.HelloWorldRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{0421A609-1B44-3894-A273-DF2F0F873DF7}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldRequestBody]
+@="Sincronizar.SR.HelloWorldRequestBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldRequestBody\CLSID]
+@="{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}"
+
+[HKEY_CLASSES_ROOT\CLSID\{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}]
+@="Sincronizar.SR.HelloWorldRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.HelloWorldRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.HelloWorldRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}\ProgId]
+@="Sincronizar.SR.HelloWorldRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{5B743AAD-B85B-3FFF-830F-1E0A22D6937A}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldResponse]
+@="Sincronizar.SR.HelloWorldResponse"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldResponse\CLSID]
+@="{7BD82282-641D-3FB7-A7BE-4552223CC16E}"
+
+[HKEY_CLASSES_ROOT\CLSID\{7BD82282-641D-3FB7-A7BE-4552223CC16E}]
+@="Sincronizar.SR.HelloWorldResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{7BD82282-641D-3FB7-A7BE-4552223CC16E}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.HelloWorldResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{7BD82282-641D-3FB7-A7BE-4552223CC16E}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.HelloWorldResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{7BD82282-641D-3FB7-A7BE-4552223CC16E}\ProgId]
+@="Sincronizar.SR.HelloWorldResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{7BD82282-641D-3FB7-A7BE-4552223CC16E}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldResponseBody]
+@="Sincronizar.SR.HelloWorldResponseBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.HelloWorldResponseBody\CLSID]
+@="{1F964515-F70E-325C-9CB4-67310074869A}"
+
+[HKEY_CLASSES_ROOT\CLSID\{1F964515-F70E-325C-9CB4-67310074869A}]
+@="Sincronizar.SR.HelloWorldResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{1F964515-F70E-325C-9CB4-67310074869A}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.HelloWorldResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1F964515-F70E-325C-9CB4-67310074869A}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.HelloWorldResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1F964515-F70E-325C-9CB4-67310074869A}\ProgId]
+@="Sincronizar.SR.HelloWorldResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{1F964515-F70E-325C-9CB4-67310074869A}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosRequest]
+@="Sincronizar.SR.insertarTestigosRequest"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosRequest\CLSID]
+@="{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}"
+
+[HKEY_CLASSES_ROOT\CLSID\{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}]
+@="Sincronizar.SR.insertarTestigosRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigosRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigosRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}\ProgId]
+@="Sincronizar.SR.insertarTestigosRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{AAD8EB23-A103-3550-AC8D-A5A5183B5AF5}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosRequestBody]
+@="Sincronizar.SR.insertarTestigosRequestBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosRequestBody\CLSID]
+@="{126E827D-598E-399B-A841-1EE674E68932}"
+
+[HKEY_CLASSES_ROOT\CLSID\{126E827D-598E-399B-A841-1EE674E68932}]
+@="Sincronizar.SR.insertarTestigosRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{126E827D-598E-399B-A841-1EE674E68932}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigosRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{126E827D-598E-399B-A841-1EE674E68932}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigosRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{126E827D-598E-399B-A841-1EE674E68932}\ProgId]
+@="Sincronizar.SR.insertarTestigosRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{126E827D-598E-399B-A841-1EE674E68932}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosResponse]
+@="Sincronizar.SR.insertarTestigosResponse"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosResponse\CLSID]
+@="{A99586A7-13D3-3F78-A632-6207D2FF66BF}"
+
+[HKEY_CLASSES_ROOT\CLSID\{A99586A7-13D3-3F78-A632-6207D2FF66BF}]
+@="Sincronizar.SR.insertarTestigosResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{A99586A7-13D3-3F78-A632-6207D2FF66BF}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigosResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{A99586A7-13D3-3F78-A632-6207D2FF66BF}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigosResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{A99586A7-13D3-3F78-A632-6207D2FF66BF}\ProgId]
+@="Sincronizar.SR.insertarTestigosResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{A99586A7-13D3-3F78-A632-6207D2FF66BF}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosResponseBody]
+@="Sincronizar.SR.insertarTestigosResponseBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigosResponseBody\CLSID]
+@="{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}"
+
+[HKEY_CLASSES_ROOT\CLSID\{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}]
+@="Sincronizar.SR.insertarTestigosResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigosResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigosResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}\ProgId]
+@="Sincronizar.SR.insertarTestigosResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{89B23969-6FB5-3FA0-98D3-6AC6F42F12C7}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaRequest]
+@="Sincronizar.SR.obtenerPautaRequest"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaRequest\CLSID]
+@="{60AAB0FA-4478-379A-A076-39ED370852D6}"
+
+[HKEY_CLASSES_ROOT\CLSID\{60AAB0FA-4478-379A-A076-39ED370852D6}]
+@="Sincronizar.SR.obtenerPautaRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{60AAB0FA-4478-379A-A076-39ED370852D6}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerPautaRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{60AAB0FA-4478-379A-A076-39ED370852D6}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerPautaRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{60AAB0FA-4478-379A-A076-39ED370852D6}\ProgId]
+@="Sincronizar.SR.obtenerPautaRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{60AAB0FA-4478-379A-A076-39ED370852D6}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaRequestBody]
+@="Sincronizar.SR.obtenerPautaRequestBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaRequestBody\CLSID]
+@="{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}"
+
+[HKEY_CLASSES_ROOT\CLSID\{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}]
+@="Sincronizar.SR.obtenerPautaRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerPautaRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerPautaRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}\ProgId]
+@="Sincronizar.SR.obtenerPautaRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{BE1E7F4F-D4D8-3AB1-979C-69943087CD38}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaResponse]
+@="Sincronizar.SR.obtenerPautaResponse"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaResponse\CLSID]
+@="{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}"
+
+[HKEY_CLASSES_ROOT\CLSID\{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}]
+@="Sincronizar.SR.obtenerPautaResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerPautaResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerPautaResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}\ProgId]
+@="Sincronizar.SR.obtenerPautaResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{1CE74F3B-7A69-364A-8EC9-0F55FA2E8F01}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaResponseBody]
+@="Sincronizar.SR.obtenerPautaResponseBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerPautaResponseBody\CLSID]
+@="{6FF5886B-76A5-3E73-802E-D121B17FE193}"
+
+[HKEY_CLASSES_ROOT\CLSID\{6FF5886B-76A5-3E73-802E-D121B17FE193}]
+@="Sincronizar.SR.obtenerPautaResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{6FF5886B-76A5-3E73-802E-D121B17FE193}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerPautaResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{6FF5886B-76A5-3E73-802E-D121B17FE193}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerPautaResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{6FF5886B-76A5-3E73-802E-D121B17FE193}\ProgId]
+@="Sincronizar.SR.obtenerPautaResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{6FF5886B-76A5-3E73-802E-D121B17FE193}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionRequest]
+@="Sincronizar.SR.insertarTestigoActualizacionRequest"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionRequest\CLSID]
+@="{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}"
+
+[HKEY_CLASSES_ROOT\CLSID\{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}]
+@="Sincronizar.SR.insertarTestigoActualizacionRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigoActualizacionRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigoActualizacionRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}\ProgId]
+@="Sincronizar.SR.insertarTestigoActualizacionRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{9CB1EA44-9ADA-3104-AEFC-8F07185E0B18}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionRequestBody]
+@="Sincronizar.SR.insertarTestigoActualizacionRequestBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionRequestBody\CLSID]
+@="{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}"
+
+[HKEY_CLASSES_ROOT\CLSID\{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}]
+@="Sincronizar.SR.insertarTestigoActualizacionRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigoActualizacionRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigoActualizacionRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}\ProgId]
+@="Sincronizar.SR.insertarTestigoActualizacionRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{000AE9F8-59E9-30A4-A3DC-BCE6AC4FA186}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionResponse]
+@="Sincronizar.SR.insertarTestigoActualizacionResponse"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionResponse\CLSID]
+@="{741BC9D3-A410-3A6B-A181-93E67215209D}"
+
+[HKEY_CLASSES_ROOT\CLSID\{741BC9D3-A410-3A6B-A181-93E67215209D}]
+@="Sincronizar.SR.insertarTestigoActualizacionResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{741BC9D3-A410-3A6B-A181-93E67215209D}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigoActualizacionResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{741BC9D3-A410-3A6B-A181-93E67215209D}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigoActualizacionResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{741BC9D3-A410-3A6B-A181-93E67215209D}\ProgId]
+@="Sincronizar.SR.insertarTestigoActualizacionResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{741BC9D3-A410-3A6B-A181-93E67215209D}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionResponseBody]
+@="Sincronizar.SR.insertarTestigoActualizacionResponseBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.insertarTestigoActualizacionResponseBody\CLSID]
+@="{E11B7490-B810-3BD0-9BE2-25A393D01421}"
+
+[HKEY_CLASSES_ROOT\CLSID\{E11B7490-B810-3BD0-9BE2-25A393D01421}]
+@="Sincronizar.SR.insertarTestigoActualizacionResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{E11B7490-B810-3BD0-9BE2-25A393D01421}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.insertarTestigoActualizacionResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{E11B7490-B810-3BD0-9BE2-25A393D01421}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.insertarTestigoActualizacionResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{E11B7490-B810-3BD0-9BE2-25A393D01421}\ProgId]
+@="Sincronizar.SR.insertarTestigoActualizacionResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{E11B7490-B810-3BD0-9BE2-25A393D01421}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoRequest]
+@="Sincronizar.SR.obtenerTiempoMaximoRequest"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoRequest\CLSID]
+@="{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}"
+
+[HKEY_CLASSES_ROOT\CLSID\{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}]
+@="Sincronizar.SR.obtenerTiempoMaximoRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerTiempoMaximoRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerTiempoMaximoRequest"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}\ProgId]
+@="Sincronizar.SR.obtenerTiempoMaximoRequest"
+
+[HKEY_CLASSES_ROOT\CLSID\{BFE235E1-AD6D-38FD-AB93-4CD034F7ECEE}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoRequestBody]
+@="Sincronizar.SR.obtenerTiempoMaximoRequestBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoRequestBody\CLSID]
+@="{F3FC65E0-C164-3FCC-96DB-9995E569A135}"
+
+[HKEY_CLASSES_ROOT\CLSID\{F3FC65E0-C164-3FCC-96DB-9995E569A135}]
+@="Sincronizar.SR.obtenerTiempoMaximoRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{F3FC65E0-C164-3FCC-96DB-9995E569A135}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerTiempoMaximoRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{F3FC65E0-C164-3FCC-96DB-9995E569A135}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerTiempoMaximoRequestBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{F3FC65E0-C164-3FCC-96DB-9995E569A135}\ProgId]
+@="Sincronizar.SR.obtenerTiempoMaximoRequestBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{F3FC65E0-C164-3FCC-96DB-9995E569A135}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoResponse]
+@="Sincronizar.SR.obtenerTiempoMaximoResponse"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoResponse\CLSID]
+@="{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}"
+
+[HKEY_CLASSES_ROOT\CLSID\{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}]
+@="Sincronizar.SR.obtenerTiempoMaximoResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerTiempoMaximoResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerTiempoMaximoResponse"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}\ProgId]
+@="Sincronizar.SR.obtenerTiempoMaximoResponse"
+
+[HKEY_CLASSES_ROOT\CLSID\{B3A59F7C-96A4-3E9C-9817-0A4EEF4D4E47}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoResponseBody]
+@="Sincronizar.SR.obtenerTiempoMaximoResponseBody"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.obtenerTiempoMaximoResponseBody\CLSID]
+@="{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}"
+
+[HKEY_CLASSES_ROOT\CLSID\{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}]
+@="Sincronizar.SR.obtenerTiempoMaximoResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.obtenerTiempoMaximoResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.obtenerTiempoMaximoResponseBody"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}\ProgId]
+@="Sincronizar.SR.obtenerTiempoMaximoResponseBody"
+
+[HKEY_CLASSES_ROOT\CLSID\{5DB44F91-DD6C-3F13-BC79-CCC1C1DFF204}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.webServiceSoapClient]
+@="Sincronizar.SR.webServiceSoapClient"
+
+[HKEY_CLASSES_ROOT\Sincronizar.SR.webServiceSoapClient\CLSID]
+@="{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}"
+
+[HKEY_CLASSES_ROOT\CLSID\{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}]
+@="Sincronizar.SR.webServiceSoapClient"
+
+[HKEY_CLASSES_ROOT\CLSID\{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="Sincronizar.SR.webServiceSoapClient"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}\InprocServer32\2.0.0.0]
+"Class"="Sincronizar.SR.webServiceSoapClient"
+"Assembly"="Sincronizar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null"
+"RuntimeVersion"="v2.0.50727"
+"CodeBase"="file:///C:/Drive/Desarrollos SIIAB/VB/CFInstaladorVMDInstaller/LibreriasSPOTS/Sincronizar.dll"
+
+[HKEY_CLASSES_ROOT\CLSID\{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}\ProgId]
+@="Sincronizar.SR.webServiceSoapClient"
+
+[HKEY_CLASSES_ROOT\CLSID\{555AC0CB-E0A0-3E22-B65E-F2394BE9423F}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}]

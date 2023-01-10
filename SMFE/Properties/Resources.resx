@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LogoCONDUSATChicoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoCONDUSATChicoNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FerrocarrilNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\FerrocarrilNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoSIAChico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoSIAChico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PasoPeatonalNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\PasoPeatonalNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_conductorinspector" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_conductorinspector.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonENVIARpekeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonENVIARpekeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonENVIARpeke" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonENVIARpeke.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonOpciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonOpciones.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonENVIADOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonENVIADOS.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonRECIBIDOSpekeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonRECIBIDOSpekeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Alto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\Alto.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonMOVCAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botonmovcan.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_123" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_123.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Semaforo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\Semaforo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_recibidosatisfactoriamenteNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_recibidosatisfactoriamenteNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoRECUADROSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FondoRECUADROSNoc.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_aceptar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_aceptar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_cancelar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_cancelar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoSIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoSIA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_antena_verdeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_antena_verdeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonRELEVONoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonRELEVONoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonHerramientas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonHerramientas.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaABAJO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FlechaABAJO.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonBloquear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonBloquear.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_rojoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\telemetria_rojoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ferrocarril" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\Ferrocarril.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreINBOX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\EncuadreINBOX.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_telemetria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_telemetria.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AceptarSincronizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\AceptarSincronizar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_verdeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\gps_verdeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonPautaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonPautaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="letavanzando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\letavanzando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonoSINCRONIZARNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonoSINCRONIZARNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WarningNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\WarningNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonMOVCANNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonMOVCANNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonPauta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonPauta.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCONDUSATChico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoCONDUSATChico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no-internetNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\no-internetNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonRECIBIDOSpeke" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonRECIBIDOSpeke.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVolumenMENOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonVolumenMENOS.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonIniciarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonIniciarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\btn_off.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDATOSVIAJE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botondatosviaje.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_aceptarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_aceptarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreSincronizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\EncuadreSincronizar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVolumenMAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonVolumenMAS.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cruceropeligroso" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\cruceropeligroso.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_discopeliculasNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_discopeliculasNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_statusconexion_rojoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_statusconexion_rojoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRARNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonCERRARNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaARRIBA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FlechaARRIBA.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaMENSAJES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FlechaMENSAJES.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_amarillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\telemetria_amarillo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="curvapeligrosaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\curvapeligrosaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreENVIANDOMENSAJENoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\EncuadreENVIANDOMENSAJENoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_intentedenuevoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_intentedenuevoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cruceropeligrosoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\cruceropeligrosoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoCONblanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FondoCONblanco.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVIAJEPRUEBANoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonVIAJEPRUEBANoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoVMDChico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoVMDChico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AdvertenciaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\AdvertenciaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoVMD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoVMD.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_conductorinspectorNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btl_conductorinspectorNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_statusconexion_verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_statusconexion_verde.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreAVISOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\EncuadreAVISOS.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mensaje" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\mensaje.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CancelarSincronizarNOC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\CancelarSincronizarNOC.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCONDUSATNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoCONDUSATNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_bitacora" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_bitacora.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_antena_rojaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_antena_rojaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="si-internetNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\si-internetNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_tarjetadeviaje" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_tarjetadeviaje.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaABAJONoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FlechaABAJONoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonABRIRVIAJENoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonABRIRVIAJENoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Avanzando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Avanzando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonoSINCRONIZAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botonosincronizar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_amarillo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\gps_amarillo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Detenida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Detenida.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\Warning.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cuadroGRANDE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\cuadroGRANDE.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaMENSAJESNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FlechaMENSAJESNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondomenuNocturno" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\fondomenuNocturno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="medio-internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\medio-internet.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonAdelanteNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonAdelanteNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_discopeliculas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_discopeliculas.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_rojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\gps_rojo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoSIAChicoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoSIAChicoNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoADONoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoADONoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\telemetria_verde.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AltoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\AltoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DetenidaChica" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\DetenidaChica.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AceptarSincronizarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AceptarSincronizarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDetenerNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonDetenerNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_naranjaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\telemetria_naranjaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_statusconexion_verdeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\img_statusconexion_verdeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_statusconexion_rojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_statusconexion_rojo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoCAN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AvanzandoChica" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\AvanzandoChica.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="backReproductor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\backReproductor.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encuadremensajesAzulNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\encuadremensajesAzulNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonNUEVOenvioNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonNUEVOenvioNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRGrandeRedNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FRGrandeRedNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRGrandeGreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FRGrandeGreen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ConductorIncorrectoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\ConductorIncorrectoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRAMENSAJES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonCERRAMENSAJES.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_verdeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\telemetria_verdeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonIniciar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonIniciar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreINBOXNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\EncuadreINBOXNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_antena_verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_antena_verde.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_transparenciaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btl_transparenciaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_borrarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_borrarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_transparencia1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_transparencia.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Advertencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\Advertencia.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_antena_roja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_antena_roja.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCANChico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoCANChico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRARVIAJE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botoncerrarviaje.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_bitacoraNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btl_bitacoraNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="topes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\topes.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn-medioextraibleusbNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn-medioextraibleusbNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonLEERNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\botonLEERNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRGrandeGreenNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FRGrandeGreenNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_recibidosatisfactoriamente" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_recibidosatisfactoriamente.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVolumenMENOSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonVolumenMENOSNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no-internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\no-internet.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRAMENSAJESNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonCERRAMENSAJESNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="loading_SIIAB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\loading-SIIAB.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cuadroPEQUEÑO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\cuadroPEQUEÑO.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreSincronizarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\EncuadreSincronizarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonBorrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonBorrar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="si-internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\si-internet.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonABRIRVIAJE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botonabrirviaje.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonBorrarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonBorrarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonReiniciar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonReiniciar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonReiniciarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonReiniciarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCANChicoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoCANChicoNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_borrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_borrar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FRGrandeRed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FRGrandeRed.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonHerramientasNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonHerramientasNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDetener" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonDetener.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ConductorVALIDO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\ConductorVALIDO.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoCONblancoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FondoCONblancoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoRECUADROS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FondoRECUADROS.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoCVpoblacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\fondoCVpoblacion.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonOpcionesNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonOpcionesNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="topesNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\topesNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PasoPeatonal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\PasoPeatonal.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MetaCAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\MetaCAN.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cuadroPEQUEÑONoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\cuadroPEQUEÑONoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ConductorIncorrecto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\ConductorIncorrecto.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVIAJEPRUEBA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botonviajeprueba.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonREGRESAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonREGRESAR.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoPISIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\FondoPISIA.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_offNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_offNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonRELEVO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botonrelevo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_naranjaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\gps_naranjaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_consulta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_consulta.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreENVIANDOMENSAJE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\EncuadreENVIANDOMENSAJE.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonREGRESARNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonREGRESARNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_naranja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\gps_naranja.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_rojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\telemetria_rojo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FlechaARRIBANoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\FlechaARRIBANoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mensajeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\mensajeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRARVIAJENoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonCERRARVIAJENoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonNUMEROSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonNUMEROSNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cuadroGRANDENoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\cuadroGRANDENoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_abcNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_abcNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoVMDChicoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoVMDChicoNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_intentedenuevo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\img_intentedenuevo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_tarjetadeviajeNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btl_tarjetadeviajeNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_amarilloNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\telemetria_amarilloNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn-medioextraibleusb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn-medioextraibleusb.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonNUEVOenvio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonNUEVOenvio.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDATOSGPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\botondatosgps.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCONDUSAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoCONDUSAT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoVMDNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoVMDNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="telemetria_naranja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\telemetria_naranja.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_telemetriaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_telemetriaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonAdelante" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonAdelante.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encuadremensajesAzul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\encuadremensajesAzul.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonNUMEROS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonNUMEROS.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EncuadreAVISOSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\EncuadreAVISOSNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="botonLEER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\botonLEER.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SemaforoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\AlertasNoc\SemaforoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="medio-internetNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\medio-internetNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="letdetenida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\letdetenida.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_rojoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\gps_rojoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonCERRAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonCERRAR.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoCANNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoCANNoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_verde" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\imagenes\gps_verde.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoSIANoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\LogoSIANoc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDATOSVIAJENoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonDATOSVIAJENoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonBloquearNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonBloquearNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fondoCVPoblacionNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\fondoCVPoblacionNoc.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonDATOSGPSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonDATOSGPSNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonVolumenMASNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonVolumenMASNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoADO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\LogoADO.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_consultaNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btl_consultaNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="curvapeligrosa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Alertas\curvapeligrosa.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btl_transparencia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btl_transparencia.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CancelarSincronizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\CancelarSincronizar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gps_amarilloNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\gps_amarilloNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_123Noc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_123Noc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_cancelarNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\btn_cancelarNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonENVIADOSNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonENVIADOSNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btn_abc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\btn_abc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ConductorValidoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\ConductorValidoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonPANICOblanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonPANICOblanco.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonPANICOAzul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\BotonPANICOAzul.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonPANICOblancoNoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\Nocturno\BotonPANICOblancoNoc.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+</root>

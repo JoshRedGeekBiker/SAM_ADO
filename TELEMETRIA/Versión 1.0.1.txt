@@ -1,0 +1,17 @@
+Requerimiento: Que el sistema de Telemetria, mande a pedir los codigos
+por medio de un mensje a través de toda la infraestructura de ADOCAN
+
+27/04 ByRED 2020
+
+*TelematicsEntities -> Tabla Codigo --> se agregaron dos campos a la tabla: "TipoLectura, Contador" ambos son string
+Se actualizó el modelo
+
+*TELEMETRIAXP.TELEMETRIA -> RecibirFallas() --> se manda ejecutar la funcion de cliente de ADOCAN: PeticionFallas()
+Se manda a ejecutar para que el cliente de ADOCAN mande el mensaje a través del socket y envie el mensaje hasta
+la tarjeta COM (DIDCOM)
+
+*TELEMETRIAXP.TELEMETRIA -> RecibirFallas() --> Se añaden las 2 nuevas propiedades de la clase "Codigo" y se le asignan
+los valores correspondientes: "TipoLectura, Contador"
+
+*TELEMETRIAXP.TELEMETRIA -> EnviarCodigoFalla() --> Se agrega al formato del JSON los dos nuevos campos hasta el final: "TipoLectura y contador"
+en las 4 posibles combinaciones de creación de JSON de acuerdo al GPS y a estatus de Viaje

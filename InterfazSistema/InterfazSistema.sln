@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfazSistema", "InterfazSistema\InterfazSistema.csproj", "{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04A1A74-8257-4ABE-8A23-486C4C9BB05A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B97B235-0D7C-41B8-8980-DACF0A5F33E6}
+	EndGlobalSection
+EndGlobal

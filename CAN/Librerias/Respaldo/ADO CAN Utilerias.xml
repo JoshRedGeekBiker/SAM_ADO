@@ -1,0 +1,102 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ADOCANUtilerias
+</name>
+</assembly>
+<members>
+<member name="T:ADO_CAN_Utilerias.Configuracion.EstadoConfiguracion">
+	<summary>
+ Enumerador del estado de la configuracion.
+ </summary>
+	<remarks></remarks>
+</member><member name="T:ADO_CAN_Utilerias.Configuracion.Fuente_CAN">
+	<summary>
+ Definimos las posibles fuentes de CAN
+ </summary>
+	<remarks></remarks>
+</member><member name="P:ADO_CAN_Utilerias.Configuracion.Estado">
+	<summary>
+ OBtenemos el estado de la configuración
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.#ctor">
+	<summary>
+ Cargamos la configuración de la base de datos
+ </summary>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.#ctor(System.Int32,System.Int32,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Creamos un nuevo archivo de configuracion.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.obtenerConfiguracion">
+	<summary>
+ Cargamos el archivo de configuracion.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.generarConfiguracion(System.Int32,System.Int32,System.String,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Generamos el archivo de configuracion
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.EliminarArchivoConfiguracion">
+	<summary>
+ Eliminamos los archivos de configuracion.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Configuracion.generar_Configuracion_Predeterminada(ADO_CAN_Utilerias.Configuracion.Fuente_CAN)">
+	<summary>
+ Cargamos una configuracion predeterminada de ADO CAN
+ </summary>
+	<param name="fuente"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.CAN_Datos.Cadena_Envio">
+	<summary>
+ Generamos la cadena de envio a travez del socket
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.CAN_Datos.Obtener_Valores(System.Byte[])">
+	<summary>
+ Reconstruimos los valores de la cadena de envio.
+ </summary>
+	<param name="Cadena_Envio"></param>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Utilerias.Verificar_Reinicio_Variables_ST(System.Byte[])">
+	<summary>
+ Verificamos si contenemos un mensaje de reinicio de ST
+ </summary>
+	<param name="Cadena_Envio"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:ADO_CAN_Utilerias.Utilerias.Verificar_Cambio_Configuracion(System.Byte[])">
+	<summary>
+ Verificamos si se envio un cambio en la configuracion.
+ </summary>
+	<param name="Cadena_Envio"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:ADO_CAN_Utilerias.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ADO_CAN_Utilerias.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ADO_CAN_Utilerias.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>
