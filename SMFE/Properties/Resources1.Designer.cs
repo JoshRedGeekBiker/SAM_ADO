@@ -743,6 +743,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btl_audios {
+            get {
+                object obj = ResourceManager.GetObject("btl_audios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btl_bitacora {
             get {
                 object obj = ResourceManager.GetObject("btl_bitacora", resourceCulture);
@@ -803,6 +813,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btl_imagenes {
+            get {
+                object obj = ResourceManager.GetObject("btl_imagenes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btl_tarjetadeviaje {
             get {
                 object obj = ResourceManager.GetObject("btl_tarjetadeviaje", resourceCulture);
@@ -846,6 +866,16 @@ namespace SMFE.Properties {
         internal static System.Drawing.Bitmap btl_transparenciaNoc {
             get {
                 object obj = ResourceManager.GetObject("btl_transparenciaNoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btl_videos {
+            get {
+                object obj = ResourceManager.GetObject("btl_videos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1613,6 +1643,26 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap img_audio {
+            get {
+                object obj = ResourceManager.GetObject("img_audio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_img {
+            get {
+                object obj = ResourceManager.GetObject("img_img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img_intentedenuevo {
             get {
                 object obj = ResourceManager.GetObject("img_intentedenuevo", resourceCulture);
@@ -1686,6 +1736,16 @@ namespace SMFE.Properties {
         internal static System.Drawing.Bitmap img_statusconexion_verdeNoc {
             get {
                 object obj = ResourceManager.GetObject("img_statusconexion_verdeNoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_video {
+            get {
+                object obj = ResourceManager.GetObject("img_video", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
