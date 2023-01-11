@@ -361,7 +361,9 @@
     <None Include="Connected Services\WSCAN\Service4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <EntityDeploy Include="VMDEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
