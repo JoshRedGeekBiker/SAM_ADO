@@ -76,6 +76,7 @@ namespace InterfazSistema
         public Nullable<bool> EncCondusat { get; set; }
         public Nullable<bool> VMD { get; set; }
         public Nullable<bool> CAN { get; set; }
+        public Nullable<bool> SIIAB_POI { get; set; }//Powered byToto
         public Nullable<bool> CONDUSAT { get; set; }
         public Nullable<bool> MensajesConductor { get; set; }
         public Nullable<long> InicioViaje { get; set; }
