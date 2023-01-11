@@ -140,6 +140,7 @@ public class FrontEngine : IDisposable
     public bool TELEMETRIA { get; set; } = false;
     public bool GPS { get; set; } = false; //Powered ByRED 01/JUL/2020
     public bool MINISIA { get; set; } = false;//Powered ByRED 17MAR2021
+    public bool SIIAB_POI { get; set; } = false; //powered byToto
 
     //Lista De Vistas
 
@@ -3902,6 +3903,7 @@ public class FrontEngine : IDisposable
         //Powered ByRED 17MAR2021
         this.SIA = _CatSistemas.SIA;
         this.MINISIA = _CatSistemas.SIADLL;
+        this.SIIAB_POI = _CatSistemas.SIIAB_POI;//powered byToto
 
         ConfigSAM(_TarjetaCAN, _CatSistemas.Antivirus);
 
