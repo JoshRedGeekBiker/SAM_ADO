@@ -1181,6 +1181,8 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         FE.PautasVMD += this.eFObtenerListaPautas; //Powered ByRED16JUN2020
         FE.Pauta += this.eFPlancharPautaVMD; //Powered ByRED 16JUN2020
         FE.PautaUSB += this.eFRecuperarPautaUSB; //Powered ByRED 17JUN2020
+        FE.SpotsVMD += this.eFObtenerListaSpots; //Powered ByToto16JUN2020
+        //para hcer commit
         FE.ProgresoCopiado += this.eFPedirProgresoCopiado; //Powered ByRED 17JUN2020
 
         FE.ValidaPauta += this.eFValidaPautaVMD; //Powered ByRED 16JUL2020
@@ -2940,7 +2942,24 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
         return listaRetorno;
     }
+    /// <summary>
+    /// Se encarga de pedirle al Sistema VMD la pauta alojada en el 
+    /// disco de peliculas
+    /// </summary>
+    /// <returns></returns>
+    private List<string> eFObtenerListaSpots(int tipo)
+    {
+        var _VMD = ListaSistemas.Where(x => x.Sistema == Sistema.VMD).ToList();
+        var listanueva = new List<string>();
 
+        foreach (VMD v in _VMD)
+        {
+            var MyVMD = (VMD)v;
+            listanueva = MyVMD.ObtenerSpots();
+        }
+
+        return listanueva;
+    }
     /// <summary>
     /// Se encarga de replicar el progreso de copiado 
     /// de las peliculas
