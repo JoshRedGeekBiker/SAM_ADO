@@ -733,7 +733,7 @@ public class FrontEngine : IDisposable
             //Asignamos la posición al reproductor
             VistaReproductor.Location = GetlocationPantSec();
 
-            
+
             VistaReproductor.Cintillo += this.eMostrandoCintillo;//Powered ByRED 14ABR2021
 
             //ParaCintillo SIA
@@ -1511,7 +1511,7 @@ public class FrontEngine : IDisposable
 
         if (Activar)
         {
-            if(this.PISIA.Count == 3)
+            if (this.PISIA.Count == 3)
             {
                 //Flaggeamos que estamos mostrando PI
                 this.MostrandoPISIA = true;
@@ -1542,7 +1542,7 @@ public class FrontEngine : IDisposable
         }
         else
         {
-           
+
             VistaReproductor.AudioInicial = VistaReproductor.AudioTemp;
             VistaReproductor.AudioTemp = 0;
             VistaReproductor.vlcControl1.Audio.Volume = VistaReproductor.AudioInicial;
@@ -1608,8 +1608,8 @@ public class FrontEngine : IDisposable
     /// <param name="activo"></param>
     public void RecibeLedDeGPS(int Estado, bool HorarioNocturno)
     {
-        if (!HorarioNocturno) { EstadoGPS = Estado;}
-       
+        if (!HorarioNocturno) { EstadoGPS = Estado; }
+
         switch (Estado)
         {
             case -1:
@@ -1754,7 +1754,7 @@ public class FrontEngine : IDisposable
             VistaSistemas.imgAlertaCondusat.Visible = false;
             VistaSistemas.imgAlertaCondusat.BackgroundImage = null;
         }
-       
+
         ///Cambiamos el semáforo de control de velocidad///
 
         if (ColorVel.Equals("Verde") || ColorVel.Equals(""))
@@ -2106,7 +2106,7 @@ public class FrontEngine : IDisposable
     {
         switch (estado)
         {
-       
+
             case 1:
 
                 VistaSistemas.lblStatusSIA.Text = "SEÑAL DE INTERNET LIMITADA";
@@ -2176,7 +2176,7 @@ public class FrontEngine : IDisposable
                     this.PISIA = _multimedia;
                     respuesta = true;
                 }
-            }   
+            }
         }
         return respuesta;
     }
@@ -2793,7 +2793,7 @@ public class FrontEngine : IDisposable
     /// </summary>
     private void MostrarHerramientasVMD()
     {
-        if(VistaHerramientasVMD == null || VistaHerramientasVMD.IsDisposed)
+        if (VistaHerramientasVMD == null || VistaHerramientasVMD.IsDisposed)
         {
             VistaHerramientasVMD = new frmHerramientasVMD(this.ModoPrueba, this.ModoNocturno);
             VistaHerramientasVMD.Cerrar += this.CerrarForm;
@@ -2857,7 +2857,7 @@ public class FrontEngine : IDisposable
                 default:
                     MostrarError("No se pudieron Recuperar Pautas");
                     break;
-            }   
+            }
         }
     }
     /// <summary>
@@ -2896,7 +2896,13 @@ public class FrontEngine : IDisposable
             switch (tipo)
             {
                 case 0:
-                    MostrarError("No se encontraron Medios Extraibles");
+                    MostrarError("No se encontraron Medios de imagenes");
+                    break;
+                case 1:
+                    MostrarError("No se encontraron Medios Audio");
+                    break;
+                case 2:
+                    MostrarError("No se encontraron Medios video");
                     break;
 
                 default:
@@ -2962,18 +2968,18 @@ public class FrontEngine : IDisposable
     /// Powered ByRED 19MAR2021
     /// </summary>
     private void MostrarMensajeSMSSIA(string _texto)
-    { 
-            this.MostrandoMensajeSIA = true;
+    {
+        this.MostrandoMensajeSIA = true;
 
-            if (VistaMostrarSMS == null || VistaMostrarSMS.IsDisposed)
-            {
-                VistaMostrarSMS = new frmMostrarMensaje(this.ModoPrueba, this.ModoNocturno, _texto);
-                VistaMostrarSMS.Cerrar += this.CerrarFormMostrarSMS;
-                VistaMostrarSMS.Ubicacion += this.GetlocationPant;
-                VistaMostrarSMS.Error += this.MostrarError;
-            }
+        if (VistaMostrarSMS == null || VistaMostrarSMS.IsDisposed)
+        {
+            VistaMostrarSMS = new frmMostrarMensaje(this.ModoPrueba, this.ModoNocturno, _texto);
+            VistaMostrarSMS.Cerrar += this.CerrarFormMostrarSMS;
+            VistaMostrarSMS.Ubicacion += this.GetlocationPant;
+            VistaMostrarSMS.Error += this.MostrarError;
+        }
 
-            FocusON(VistaMostrarSMS);
+        FocusON(VistaMostrarSMS);
     }
     #endregion
 
@@ -3571,9 +3577,9 @@ public class FrontEngine : IDisposable
     /// Se encarga de regresar la informacion de la corrida
     /// </summary>
     /// <returns></returns>
-    private string einfoCorrida() 
+    private string einfoCorrida()
     {
-        return  InfoCorrida();
+        return InfoCorrida();
     }
 
     /// <summary>
@@ -3722,7 +3728,7 @@ public class FrontEngine : IDisposable
             //CerrarForm(VistaLogin);
             VistaLogin.Hide();
             VistaLogin.Dispose();
-        }        
+        }
     }
 
     /// <summary>
@@ -3839,7 +3845,7 @@ public class FrontEngine : IDisposable
                 case 2:
                     ConfigMeta.Hide();
                     break;
-            }    
+            }
         }
         else
         {
@@ -3888,7 +3894,7 @@ public class FrontEngine : IDisposable
                     //Lanzamos pantalla #3
                     ConfigTipoAutobus(PantallaOrigen);
                 }
-                
+
                 break;
 
             case 2:
@@ -4070,7 +4076,7 @@ public class FrontEngine : IDisposable
         //verificamos si tenemos que darle foco a la vista de los sistemas
 
         if (this.VistaActual.Equals(VistaSistemas.Name)) VistaSistemas.TopMost = true;
-        
+
         timerActualizaEncabezado.Start();
     }
 
@@ -4148,7 +4154,7 @@ public class FrontEngine : IDisposable
     {
         timerActualizaVMD.Stop();
 
-        if(VistaReproductor != null)
+        if (VistaReproductor != null)
         {
             //Actualizamos el tiempo Real de reproducción
             VistaSistemas.lblREproduccion.Text = VistaReproductor.TiempoReal.ToString(@"hh\:mm\:ss") + " Tiempo de reproducción";
@@ -4210,7 +4216,7 @@ public class FrontEngine : IDisposable
         timerTerminaPISIA.Enabled = false;
 
         //Para dejar de mostrar el PI
-         MostrarPISIA(false);
+        MostrarPISIA(false);
     }
 
     /// <summary>
@@ -4231,7 +4237,7 @@ public class FrontEngine : IDisposable
 
             var pant = ListaPantallas.Where(x => !x.Primary).ToList();
 
-            foreach( Pantalla p in pant)
+            foreach (Pantalla p in pant)
             {
                 var MyPant = (Pantalla)p;
 
@@ -4240,7 +4246,7 @@ public class FrontEngine : IDisposable
             if (ModoPrueba)
             {
                 if (!(xR >= xP - 20 && xR <= xP + 20))
-                {                    
+                {
                     VistaReproductor.Location = GetlocationPantSec();
                 }
             }
@@ -4248,7 +4254,7 @@ public class FrontEngine : IDisposable
             {
                 //Evita un reacomodo mientras de pintan puntos de interes o cintillo
                 //Powered ByRED 23ABR2021
-                if(!this.MostrandoCintilloSIA)
+                if (!this.MostrandoCintilloSIA)
                 {
                     if (!this.MostrandoPISIA)
                     {
@@ -4283,7 +4289,7 @@ public class FrontEngine : IDisposable
     private void timerSiempreAdelante_Tick(object sender, EventArgs e)
     {
         timerSiempreAdelante.Stop();
-        
+
         //Si nos encontramos en modo configuración no pondremos el topmost a todas
         //las vistas, sólo para mandar un error o un popup
         if (!ModoConfig)
@@ -4364,10 +4370,10 @@ public class FrontEngine : IDisposable
             SAMPLAY();
         }
     }
-   // public void Func_BuscarPauta()
-  //  {
-  //      eVMDbuscarPauta();
-  //  }
+    // public void Func_BuscarPauta()
+    //  {
+    //      eVMDbuscarPauta();
+    //  }
 
     public void Func_ReiniciarPauta(bool DetenerVideo)
     {
@@ -4390,7 +4396,7 @@ public class FrontEngine : IDisposable
 
         eVMDChecaSiguienteVideo();
     }
-    
+
     /// <summary>
     /// *Tarjeta de circulacion Vencida*
     /// </summary>
@@ -4398,7 +4404,7 @@ public class FrontEngine : IDisposable
     /// <param name="TiempoVideo"></param>
     public void Func_InfoVideo(string nombreVideo, TimeSpan TiempoVideo)
     {
-      VistaSistemas.InfoVideo(nombreVideo, TiempoVideo);
+        VistaSistemas.InfoVideo(nombreVideo, TiempoVideo);
     }
 
     /// <summary>
@@ -4415,9 +4421,9 @@ public class FrontEngine : IDisposable
         if (VistaReproductor == null) return -1;
 
         if (Tipo == SMFE.Forms.frmVolumen.TipoDeVolumen.Mas)
-           return VistaReproductor.Func_SubirVolumen();
+            return VistaReproductor.Func_SubirVolumen();
         else
-           return VistaReproductor.Func_BajarVolumen();
+            return VistaReproductor.Func_BajarVolumen();
     }
 
     /// <summary>
