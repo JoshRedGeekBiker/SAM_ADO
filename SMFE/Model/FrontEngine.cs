@@ -231,6 +231,7 @@ public class FrontEngine : IDisposable
     //VMD
     private frmHerramientasVMD VistaHerramientasVMD;//Contiene las herramientas para VMD Powered ByRED 16JUN2020
     private frmCargadorDePautas VistaCargadorPauta; //Contiene la logica para cargar Pauta desde Medios Externos Powered ByRED 15JUN2020
+    private frmSpots VistaSpots; //Contiene los spots powered by Toto
 
     //SIA
     private frmPanelMensajes VistaMensajesSIA;//Muestra los mensajes de SIA Powered ByRED 17MAR2021 
@@ -380,6 +381,12 @@ public class FrontEngine : IDisposable
     /// <returns></returns>
     public delegate List<string> PautasListVMD(string tipo);
     public event PautasListVMD PautasVMD;
+    /// <summary>
+    /// Se encarga de mandar a pedir la lista de Spots disponibles para VMD
+    /// </summary>
+    /// <returns></returns>
+    public delegate List<string> listaSpotsVMD(int tipo);
+    public event listaSpotsVMD SpotsVMD;
 
     /// <summary>
     /// Se encarga de mandar a planchar la pauta
@@ -2792,6 +2799,8 @@ public class FrontEngine : IDisposable
             VistaHerramientasVMD.Cerrar += this.CerrarForm;
             VistaHerramientasVMD.Ubicacion += this.GetlocationPant;
             VistaHerramientasVMD.CargadorPautas += this.MostrarCargadorDePautasVMD;
+            VistaHerramientasVMD.CargadorSpots += this.MostarCargadorSpots;
+
         }
 
         FocusON(VistaHerramientasVMD);
@@ -2851,7 +2860,51 @@ public class FrontEngine : IDisposable
             }   
         }
     }
+    /// <summary>
+    /// Se encarga de mostrar la vista de cargador de pauta de VMD
+    /// Powered ByToto 
+    /// </summary>
+    private void MostarCargadorSpots(int tipo)
+    {
+        var listaSpots = SpotsVMD(tipo);
 
+        if (listaSpots.Count > 0)
+        {
+            //Mandamos a detener la película, si hubiera en reproducción
+            Func_DetenerPelicula();
+
+            if (VistaSpots == null || VistaSpots.IsDisposed)
+            {
+                VistaSpots = new frmSpots(this.ModoPrueba, this.ModoNocturno, listaSpots, tipo);
+
+                VistaSpots.Cerrar += this.CerrarForm;
+                VistaSpots.Ubicacion += this.GetlocationPant;
+                VistaSpots.Pauta += this.ePlanchaPauta;
+                VistaSpots.PautaUSB += this.eRecuperarPautasUSB;
+                VistaSpots.MandaError += this.MostrarError;
+                VistaSpots.ProgresoCopiado += this.ePedirProgresoCopiado;
+                VistaSpots.PopUp += this.MostrarPopUp;
+
+                VistaSpots.ValidaPauta += this.eValidaPauta; //Powered byToto 2023
+            }
+
+            FocusON(VistaSpots);
+        }
+        else
+        {
+            //Mandamos a mostrar un error, según su tipo
+            switch (tipo)
+            {
+                case 0:
+                    MostrarError("No se encontraron Medios Extraibles");
+                    break;
+
+                default:
+                    MostrarError("No se pudieron Recuperar Pautas");
+                    break;
+            }
+        }
+    }
 
     /// <summary>
     /// Se detona por que el Sistema Operativo está apagandose
