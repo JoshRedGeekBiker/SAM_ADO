@@ -2500,6 +2500,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
             ParametrosInicio.CONDUSAT = FE.CONDUSAT;
             ParametrosInicio.PLAT = FE.PLAT;
             ParametrosInicio.SIA = FE.SIA;
+            ParametrosInicio.SIIAB_POI = FE.SIIAB_POI;
 
             //Powered ByRED2021 & ClausMolko
             //Por Regla de negocio, no se puede tener ambos funcionando
