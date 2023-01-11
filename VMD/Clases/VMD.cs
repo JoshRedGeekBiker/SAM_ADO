@@ -15,6 +15,7 @@ public class VMD : ISistema, IBDContext
 
     #region "Variables"
     private List<string> ListaPautas = new List<string>(); //PoweredByRED 15JUN2020
+    private List<string> ListaSpots = new List<string>(); //PoweredByToto
     private string UsbSeleccionado = ""; //Powered BYRED 16JUN2020
 
     //Logicas
@@ -272,7 +273,15 @@ public class VMD : ISistema, IBDContext
                 return ListaPautas;
         }
     }
+    /// <summary>
+    /// Se encarga de pedir el nombre de las pautas
+    /// </summary>
+    /// <returns></returns>
+    public List<string> ObtenerSpots()
+    {
+        return ListaSpots;
 
+    }
     /// <summary>
     /// Se encarga de recibir el tipo y nombre de la pauta
     /// </summary>
