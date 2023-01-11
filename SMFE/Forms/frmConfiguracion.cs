@@ -310,7 +310,7 @@ public partial class frmConfiguracion : Form
         _lblDescripcion_1.Text = "VMD";
         _lblDescripcion_2.Text = "CONDUSAT";
         _lblDescripcion_3.Text = "SIA";
-
+        primeraPaginaSistemas = true;
         CargarSeleccionSistemas();
 
     }
@@ -322,7 +322,7 @@ public partial class frmConfiguracion : Form
     private void SegundaPaginaSistemas()
     {
         btnArriba.Visible = true;
-        btnAbajo.Visible = false;
+        btnAbajo.Visible = true;
 
         primeraPaginaSistemas = false;
         segundaPaginaSistemas = true;
@@ -439,7 +439,7 @@ public partial class frmConfiguracion : Form
     {
         seleccionSistema = false;
 
-        if (!segundaPaginaSistemas)
+        if (!segundaPaginaSistemas && !terceraPaginaSistemas)
         {
             if (Catsistemas.CAN)
             {
