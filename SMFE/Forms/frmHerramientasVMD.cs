@@ -76,6 +76,9 @@ public partial class frmHerramientasVMD : Form
     /// </summary>
     public delegate void VMDCargadorPautas(string tipo);
     public event VMDCargadorPautas CargadorPautas;
+
+    public delegate void VMDCargadorSpots(int tipo);
+    public event VMDCargadorSpots CargadorSpots;
     #endregion
 
     #region "Métodos"
@@ -197,6 +200,26 @@ public partial class frmHerramientasVMD : Form
         UltActividad = DateTime.Now;
         CargadorPautas("USB");
     }
+    private void btnAudio_Click(object sender, EventArgs e)
+    {
+        UltActividad = DateTime.Now;
+        CargadorSpots(0);
+    }
+
+    private void btnImagen_Click(object sender, EventArgs e)
+    {
+        UltActividad = DateTime.Now;
+        CargadorSpots(1);
+
+    }
+
+    private void btnVideo_Click(object sender, EventArgs e)
+    {
+        UltActividad = DateTime.Now;
+        CargadorSpots(2);
+
+    }
+
 
     private void btnRegresar_Click(object sender, EventArgs e)
     {
