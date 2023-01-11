@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using InterfazSistema.ModelosBD;
 
-public class SIA : ISistema, IBDContext, IGPS, IBBContextSIA
+public class SIA : ISistema, IBDContext, IGPS, IBDContextSIA
 {
     #region "Propiedades"
 

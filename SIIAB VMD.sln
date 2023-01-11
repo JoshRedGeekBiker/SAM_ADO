@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abordaje", "Abordaje\Aborda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TELEMETRIA", "Telemetria\TELEMETRIA.csproj", "{E3F734D7-9BF5-4A13-81A7-F0EEFC66734B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POI", "POI\POI.csproj", "{C97C30A8-54C9-4B8A-8758-68C41C3D6539}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,12 +129,20 @@ Global
 		{E3F734D7-9BF5-4A13-81A7-F0EEFC66734B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3F734D7-9BF5-4A13-81A7-F0EEFC66734B}.Release|x64.ActiveCfg = Release|Any CPU
 		{E3F734D7-9BF5-4A13-81A7-F0EEFC66734B}.Release|x64.Build.0 = Release|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Debug|x64.Build.0 = Debug|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Release|x64.ActiveCfg = Release|Any CPU
+		{C97C30A8-54C9-4B8A-8758-68C41C3D6539}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {86D1F4AE-284F-41A0-9BE7-9DAFE12CECD0}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {86D1F4AE-284F-41A0-9BE7-9DAFE12CECD0}
 	EndGlobalSection
 EndGlobal

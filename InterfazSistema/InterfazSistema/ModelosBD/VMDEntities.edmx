@@ -1,0 +1,2155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="vmdModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="idprogramacion" Type="int" Nullable="false" />
+          <Property Name="consec" Type="int" Nullable="false" />
+          <Property Name="posicion" Type="double" Nullable="false" />
+          <Property Name="longitud" Type="double" Nullable="false" />
+          <Property Name="consecsecuencia" Type="int" Nullable="false" />
+          <Property Name="PosRandom" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ruta" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="UltimaVez" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ExisteEnDVB" Type="bit" Nullable="false" />
+          <Property Name="caducidad" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Duracion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="clasificacion" Type="int" Nullable="false" />
+          <Property Name="idioma" Type="int" Nullable="false" />
+          <Property Name="subtitulos" Type="int" Nullable="false" />
+          <Property Name="formato" Type="int" Nullable="false" />
+          <Property Name="tipoarchivo" Type="int" Nullable="false" />
+          <Property Name="InicioVig" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="audiovmd">
+          <Key>
+            <PropertyRef Name="IDAUIDOVMD" />
+          </Key>
+          <Property Name="IDAUIDOVMD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HORAINICIO" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="VOLUMEN" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="autobuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="autobus" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="sim" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_catbuses">
+          <Key>
+            <PropertyRef Name="cvebus" />
+          </Key>
+          <Property Name="cvebus" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="tipovehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="matricula" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="numeconomico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rpmsmax" Type="float" Nullable="false" />
+          <Property Name="velmax" Type="float" Nullable="false" />
+          <Property Name="idmarca" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_catmetas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Clasificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Consejo" Type="float" Nullable="false" />
+          <Property Name="Odometro" Type="float" Nullable="false" />
+          <Property Name="Mes" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_catmetasregionros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Clasificacion" Type="varchar" MaxLength="20" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="Consejo" Type="float" />
+          <Property Name="Odometro" Type="float" />
+          <Property Name="Mes" Type="varchar" MaxLength="20" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Region" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_cattipometasregion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_region" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre_tipo_meta" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_contadores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="numvuelta" Type="int" Nullable="false" />
+          <Property Name="numreg" Type="int" Nullable="false" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_detsecuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="numerotramo" Type="int" Nullable="false" />
+          <Property Name="origen" Type="int" Nullable="false" />
+          <Property Name="destino" Type="int" Nullable="false" />
+          <Property Name="via" Type="int" />
+          <Property Name="oper1" Type="int" Nullable="false" />
+          <Property Name="oper2" Type="int" />
+          <Property Name="confirmado" Type="bit" />
+          <Property Name="pobactual" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_logsincroniza">
+          <Key>
+            <PropertyRef Name="cvebus" />
+          </Key>
+          <Property Name="cvebus" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="tipomonitoreo" Type="utinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_movtoscan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idregion" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="idmarca" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="idzona" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="servicio" Type="int" Nullable="false" />
+          <Property Name="numerotramo" Type="int" Nullable="false" />
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="origenviaje" Type="int" Nullable="false" />
+          <Property Name="destinoviaje" Type="int" Nullable="false" />
+          <Property Name="via" Type="int" Nullable="false" />
+          <Property Name="fechaviaje" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="operador" Type="int" Nullable="false" />
+          <Property Name="autobus" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="fechahora" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="latitud" Type="double" Nullable="false" />
+          <Property Name="longitud" Type="double" Nullable="false" />
+          <Property Name="ns" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="we" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="gps_velocidad" Type="float" Nullable="false" />
+          <Property Name="accion" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="FuelLevel" Type="float" Nullable="false" />
+          <Property Name="TachoShaftSpeed" Type="float" Nullable="false" />
+          <Property Name="KmPerLiter" Type="float" Nullable="false" />
+          <Property Name="TachoVehicleSpeed" Type="float" Nullable="false" />
+          <Property Name="LiterPerHour" Type="double" Nullable="false" />
+          <Property Name="AmbientTemp" Type="float" Nullable="false" />
+          <Property Name="EconomyAverageKMpL" Type="float" Nullable="false" />
+          <Property Name="FuelEconomyEstimationLMAF" Type="float" Nullable="false" />
+          <Property Name="FuelEconomyEstimationFE" Type="float" Nullable="false" />
+          <Property Name="RealKmPerLiterHighLevel" Type="float" Nullable="false" />
+          <Property Name="TotalDistance" Type="double" Nullable="false" />
+          <Property Name="TripDistance" Type="float" Nullable="false" />
+          <Property Name="TripDistanceEstimationVS" Type="float" Nullable="false" />
+          <Property Name="TripDistanceEstimationWVS" Type="float" Nullable="false" />
+          <Property Name="WheelSpeed" Type="float" Nullable="false" />
+          <Property Name="EngineForce" Type="float" Nullable="false" />
+          <Property Name="EngineLoad" Type="float" Nullable="false" />
+          <Property Name="MassAirFlow" Type="float" Nullable="false" />
+          <Property Name="Protocolo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDDireccion" Type="int" Nullable="false" />
+          <Property Name="IDRegionOperativa" Type="int" Nullable="false" />
+          <Property Name="NumVuelta" Type="int" Nullable="false" />
+          <Property Name="NumReg" Type="int" Nullable="false" />
+          <Property Name="NumVueltaServer" Type="int" Nullable="false" />
+          <Property Name="NumRegServer" Type="int" Nullable="false" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_operadores">
+          <Key>
+            <PropertyRef Name="cveemp" />
+          </Key>
+          <Property Name="cveemp" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_parametrosinicio">
+          <Key>
+            <PropertyRef Name="IdParametrosInicio" />
+          </Key>
+          <Property Name="IdParametrosInicio" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TiempoUltimaVez" Type="uint" />
+          <Property Name="PlaySobrePlay" Type="bool" />
+          <Property Name="AnilloRedValido" Type="varchar" MaxLength="10" />
+          <Property Name="CarpetaFTP" Type="varchar" MaxLength="2000" />
+          <Property Name="RutaHTTP" Type="varchar" MaxLength="2000" />
+          <Property Name="IntervaloResultado" Type="uint" />
+          <Property Name="TiempoActivaSec" Type="uint" />
+          <Property Name="RutaDVB" Type="varchar" MaxLength="2000" />
+          <Property Name="SincronizaSubida" Type="bool" />
+          <Property Name="SincronizaBajada" Type="bool" />
+          <Property Name="AlwaysOnTop" Type="bool" />
+          <Property Name="HoraInicial" Type="varchar" MaxLength="45" />
+          <Property Name="HoraFinal" Type="varchar" MaxLength="45" />
+          <Property Name="Password" Type="varchar" MaxLength="45" />
+          <Property Name="Autobus" Type="varchar" MaxLength="10" />
+          <Property Name="Region" Type="uint" />
+          <Property Name="Marca" Type="uint" />
+          <Property Name="Zona" Type="varchar" MaxLength="45" />
+          <Property Name="IDGrupo" Type="uint" />
+          <Property Name="TecladoActivo" Type="bool" />
+          <Property Name="CodigoSalir" Type="varchar" MaxLength="45" />
+          <Property Name="CodigoReinicio" Type="uint" />
+          <Property Name="CodigoBuscaSecuencia" Type="uint" />
+          <Property Name="CodigoEjecutaDVB" Type="uint" />
+          <Property Name="CodigoMensajes" Type="uint" />
+          <Property Name="CodigoCargaUSB" Type="uint" />
+          <Property Name="CodigoPautas" Type="uint" />
+          <Property Name="PautaAutomatica" Type="uint" />
+          <Property Name="RemoteHost" Type="varchar" MaxLength="45" />
+          <Property Name="RemotePort" Type="uint" />
+          <Property Name="MargenGPS" Type="uint" />
+          <Property Name="TiempoGPS" Type="uint" />
+          <Property Name="PuertoSerial" Type="uint" />
+          <Property Name="ConfigSerial" Type="varchar" MaxLength="400" />
+          <Property Name="MemoriaSIM" Type="varchar" MaxLength="45" />
+          <Property Name="SIMCentral" Type="varchar" MaxLength="100" />
+          <Property Name="CONTROLPROPIO" Type="bool" />
+          <Property Name="RemoteServerName" Type="varchar" MaxLength="45" />
+          <Property Name="RemoteServerDB" Type="varchar" MaxLength="45" />
+          <Property Name="RemoteServerUser" Type="varchar" MaxLength="45" />
+          <Property Name="RemoteServerPass" Type="varchar" MaxLength="45" />
+          <Property Name="ValidarCveCondSec" Type="bool" />
+          <Property Name="HabilitarCintillo" Type="bool" />
+          <Property Name="MensajeInicial" Type="varchar" MaxLength="2000" />
+          <Property Name="VueltasMensaje" Type="uint" />
+          <Property Name="AltoCintillo" Type="uint" />
+          <Property Name="ColorFuente" Type="varchar" MaxLength="45" />
+          <Property Name="TamanoFuente" Type="uint" />
+          <Property Name="ColorFondo" Type="varchar" MaxLength="45" />
+          <Property Name="Velocidad" Type="uint" />
+          <Property Name="PosicionMarquee" Type="varchar" MaxLength="45" />
+          <Property Name="HabilitarPI" Type="bool" />
+          <Property Name="PantallaSerial" Type="uint" />
+          <Property Name="ConfigPantallaSerial" Type="varchar" MaxLength="1000" />
+          <Property Name="PosicionBuzzer" Type="uint" />
+          <Property Name="PantallaTouch" Type="bool" />
+          <Property Name="EncCAN" Type="bool" />
+          <Property Name="EncVMD" Type="bool" />
+          <Property Name="EncCondusat" Type="bool" />
+          <Property Name="VMD" Type="bool" />
+          <Property Name="CAN" Type="bool" />
+          <Property Name="CONDUSAT" Type="bool" />
+          <Property Name="MensajesConductor" Type="bool" />
+          <Property Name="InicioViaje" Type="uint" />
+          <Property Name="FinViaje" Type="uint" />
+          <Property Name="CambioManos" Type="uint" />
+          <Property Name="Sincronizar" Type="uint" />
+          <Property Name="MetaRendimiento" Type="double" />
+          <Property Name="SegsGraba" Type="uint" />
+          <Property Name="SegsMuestra" Type="uint" />
+          <Property Name="Servicio" Type="varchar" MaxLength="45" />
+          <Property Name="CnStrServer" Type="varchar" MaxLength="4000" />
+          <Property Name="LedVerde" Type="uint" />
+          <Property Name="LedAmarillo" Type="uint" />
+          <Property Name="LedRojo" Type="uint" />
+          <Property Name="LedX" Type="varchar" MaxLength="45" />
+          <Property Name="MaxVel" Type="double" />
+          <Property Name="IDDireccion" Type="uint" />
+          <Property Name="IDRegionOperativa" Type="uint" />
+          <Property Name="DatosCAN" Type="uint" />
+          <Property Name="NombreTipoMetaCAN" Type="varchar" MaxLength="45" />
+          <Property Name="NombreRegionOperCAN" Type="varchar" MaxLength="45" />
+          <Property Name="ViajePrueba" Type="uint" />
+          <Property Name="IDWIFI" Type="varchar" MaxLength="1000" />
+          <Property Name="ExcesosVel" Type="double" />
+          <Property Name="ExcesosRPMs" Type="double" />
+          <Property Name="SegsEsperaApp" Type="uint" />
+          <Property Name="LogSincronizacionBien" Type="bool" />
+          <Property Name="LogSincronizacionMal" Type="bool" />
+          <Property Name="MonitorGPS" Type="uint" />
+          <Property Name="RutaDiscoMBR" Type="varchar" MaxLength="400" />
+          <Property Name="SincronizaEnAlterno" Type="bool" />
+          <Property Name="TablasPorBus" Type="bool" />
+          <Property Name="CarpetaVideos" Type="varchar" MaxLength="400" />
+          <Property Name="SIA" Type="bool" />
+          <Property Name="ValidaOperadorSIA" Type="bool" />
+          <Property Name="UsoMetrobus" Type="bool" />
+          <Property Name="ValidaVolumen" Type="bool" />
+          <Property Name="tmrAlerta" Type="uint" Nullable="false" />
+          <Property Name="BotonPanico" Type="bool" />
+          <Property Name="BotonTachuela" Type="bool" />
+          <Property Name="BotonOff" Type="bool" />
+          <Property Name="tmrProtector" Type="uint" Nullable="false" />
+          <Property Name="tmrSegVMDSIA" Type="uint" Nullable="false" />
+          <Property Name="tmrSegCANSIA" Type="uint" Nullable="false" />
+          <Property Name="horaInicioModoNocturno" Type="varchar" MaxLength="8" />
+          <Property Name="horaFinModoNocturno" Type="varchar" MaxLength="8" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ADOGPS" Type="bool" />
+          <Property Name="ReinicioTerminal" Type="utinyint" Nullable="false" />
+          <Property Name="HrsReinicioTerminal" Type="uint" />
+          <Property Name="MinApagadoSincronizacion" Type="uint" />
+          <Property Name="ReinicioCM" Type="utinyint" Nullable="false" />
+          <Property Name="ProtectorDiurno" Type="utinyint" Nullable="false" />
+          <Property Name="ProtectorNocturno" Type="utinyint" Nullable="false" />
+          <Property Name="MiniSIA" Type="bool" />
+          <Property Name="ReinicioTiempoTerminal" Type="int" />
+          <Property Name="PLAT" Type="bool" Nullable="false" />
+          <Property Name="TELEMATICS" Type="bool" Nullable="false" />
+          <Property Name="IdLAN" Type="varchar" MaxLength="100" />
+          <Property Name="SPOTS" Type="bool" Nullable="false" />
+          <Property Name="SIIAB_POI" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_poblaciones">
+          <Key>
+            <PropertyRef Name="idpob" />
+          </Key>
+          <Property Name="idpob" Type="uint" Nullable="false" />
+          <Property Name="despob" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="latitud" Type="double" Nullable="false" />
+          <Property Name="ns" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="longitud" Type="double" Nullable="false" />
+          <Property Name="we" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="IDTIPOPUNTO" Type="uint" Nullable="false" />
+          <Property Name="IDRegion" Type="uint" Nullable="false" />
+          <Property Name="IDSeccion" Type="uint" />
+          <Property Name="CVEPOB" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Nuevo" Type="bool" />
+          <Property Name="LatMax" Type="double" />
+          <Property Name="LatMin" Type="double" />
+          <Property Name="LonMax" Type="double" />
+          <Property Name="LonMin" Type="double" />
+        </EntityType>
+        <EntityType Name="can_redes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sufijo" Type="uint" Nullable="false" />
+          <Property Name="IdZonaDescarga" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_referenciaregion">
+          <Key>
+            <PropertyRef Name="IdRegion" />
+          </Key>
+          <Property Name="IdRegion" Type="uint" Nullable="false" />
+          <Property Name="Region" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Zona" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IdGrupo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IdDireccion" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IdRegionOperativa" Type="varchar" MaxLength="45" />
+          <Property Name="NombreTipoMetaCAN" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="NombreRegionOperCAN" Type="varchar" MaxLength="45" />
+          <Property Name="CnStrServer" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="can_regsecuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="conductor" Type="int" />
+        </EntityType>
+        <EntityType Name="can_secuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="idregion" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="idmarca" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="idzona" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="servicio" Type="int" Nullable="false" />
+          <Property Name="autobus" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="version" Type="int" Nullable="false" />
+          <Property Name="confirmado" Type="bit" />
+        </EntityType>
+        <EntityType Name="can_terminales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdPob" Type="uint" Nullable="false" />
+          <Property Name="Lat" Type="double" Nullable="false" />
+          <Property Name="NS" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Lon" Type="double" Nullable="false" />
+          <Property Name="WE" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdZonaDescarga" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_versiones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nomtabla" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="version" Type="int" Nullable="false" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_viajes">
+          <Key>
+            <PropertyRef Name="idviaje" />
+          </Key>
+          <Property Name="idviaje" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="origen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="destino" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescarga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RutaDescarga" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescarga2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RutaDescarga" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nube" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescargainstancias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RutaDescarga" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="EsquemaInstancias" Type="bool" Nullable="false" />
+          <Property Name="RutaDescargaAPP" Type="varchar" MaxLength="100" />
+          <Property Name="PuertoAPP" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="catclasif">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catdestinatarios">
+          <Key>
+            <PropertyRef Name="IdDestinatario" />
+          </Key>
+          <Property Name="IdDestinatario" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destinatario" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catpautas">
+          <Key>
+            <PropertyRef Name="idpauta" />
+          </Key>
+          <Property Name="idpauta" Type="int" Nullable="false" />
+          <Property Name="despauta" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idprogramacion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="configcintillo">
+          <Key>
+            <PropertyRef Name="altocintillo" />
+          </Key>
+          <Property Name="altocintillo" Type="int" Nullable="false" />
+          <Property Name="colorfuente" Type="int" Nullable="false" />
+          <Property Name="tamanofuente" Type="int" Nullable="false" />
+          <Property Name="colorfondo" Type="int" Nullable="false" />
+          <Property Name="velocidad" Type="int" Nullable="false" />
+          <Property Name="vueltas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="controlsecuencias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cuadros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cve_pob" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LatIni" Type="float" Nullable="false" />
+          <Property Name="LonIni" Type="float" Nullable="false" />
+          <Property Name="LatFin" Type="float" Nullable="false" />
+          <Property Name="LonFin" Type="float" Nullable="false" />
+          <Property Name="Tip_Cua" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Num_Con" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detsecuencias">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+            <PropertyRef Name="consec" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="consec" Type="int" Nullable="false" />
+          <Property Name="idprogramacion" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ejecutada" Type="utinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="logprogramacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="rutavideo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="idvideo" Type="int" Nullable="false" />
+          <Property Name="minutosmax" Type="int" Nullable="false" />
+          <Property Name="ejecucion" Type="bool" Nullable="false" />
+          <Property Name="error" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+          <Property Name="autobus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fechahora" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="secuencia" Type="int" Nullable="false" />
+          <Property Name="consecsecuencia" Type="int" Nullable="false" />
+          <Property Name="idprogramacion" Type="int" Nullable="false" />
+          <Property Name="fechaprogramacion" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mensajes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="autobus" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fechahora" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mensajesrecibidos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fechahora" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orden_descarga">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sistema" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Orden" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametros_vmd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VersionPauta" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="plat_versiones">
+          <Key>
+            <PropertyRef Name="Id_Plat_Versiones" />
+          </Key>
+          <Property Name="Id_Plat_Versiones" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sistemas" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="SubSistemas" Type="varchar" MaxLength="1000" />
+          <Property Name="Modulo_Sis" Type="varchar" MaxLength="1000" />
+          <Property Name="SubModulo_sis" Type="varchar" MaxLength="1000" />
+          <Property Name="Versiones" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="programacion">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consec" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Archivo" Type="int" Nullable="false" />
+          <Property Name="Consec" Type="int" Nullable="false" />
+          <Property Name="TipoPunto" Type="tinyint" Nullable="false" />
+          <Property Name="IdPoblacion" Type="int" Nullable="false" />
+          <Property Name="Detener" Type="bit" Nullable="false" />
+          <Property Name="TipoReprodRandom" Type="bit" Nullable="false" />
+          <Property Name="TiempoRecorrido" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="TiempoSpots" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="random">
+          <Key>
+            <PropertyRef Name="idruta" />
+            <PropertyRef Name="idreg" />
+            <PropertyRef Name="consec" />
+          </Key>
+          <Property Name="idruta" Type="int" Nullable="false" />
+          <Property Name="idreg" Type="int" Nullable="false" />
+          <Property Name="consec" Type="int" Nullable="false" />
+          <Property Name="idarchivo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="regiones">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="35" />
+          <Property Name="regrido" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="secuencias">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="int" Nullable="false" />
+          <Property Name="region" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="zona" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="autobus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fechahorareal" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="ejecutada" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spot_parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vmd_dpauta_autorizada">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAUTA_CLAVE" Type="varchar" MaxLength="50" />
+          <Property Name="ORDEN" Type="uint" Nullable="false" />
+          <Property Name="VIDEO_CLAVE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIDEO_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VIDEO_ARCHIVO" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="VIGENCIA_INICIO" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="VIGENCIA_FINAL" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="DURACION" Type="uint" Nullable="false" />
+          <Property Name="CODEC_VIDEO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CODEC_AUDIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FORMATO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SUBTITULOS" Type="bit" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="MD5" Type="varchar" MaxLength="8000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vmd_testigo_video">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VIDEO_CLAVE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PAUTA_CLAVE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AUTOBUS" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FECHA_REPRODUCCION" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="COMPLETO" Type="bit" Nullable="false" />
+          <Property Name="IMPACTOS" Type="bit" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zonas">
+          <Key>
+            <PropertyRef Name="idzona" />
+          </Key>
+          <Property Name="idzona" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="35" />
+          <Property Name="zonrido" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityContainer Name="vmdModelStoreContainer">
+          <EntitySet Name="actividad" EntityType="Self.actividad" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="archivos" EntityType="Self.archivos" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="audiovmd" EntityType="Self.audiovmd" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="autobuses" EntityType="Self.autobuses" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_catbuses" EntityType="Self.can_catbuses" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_catmetas" EntityType="Self.can_catmetas" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_catmetasregionros" EntityType="Self.can_catmetasregionros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_cattipometasregion" EntityType="Self.can_cattipometasregion" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_contadores" EntityType="Self.can_contadores" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_detsecuencia" EntityType="Self.can_detsecuencia" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_logsincroniza" EntityType="Self.can_logsincroniza" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_movtoscan" EntityType="Self.can_movtoscan" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_operadores" EntityType="Self.can_operadores" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_parametrosinicio" EntityType="Self.can_parametrosinicio" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_poblaciones" EntityType="Self.can_poblaciones" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_redes" EntityType="Self.can_redes" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_referenciaregion" EntityType="Self.can_referenciaregion" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_regsecuencia" EntityType="Self.can_regsecuencia" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_secuencia" EntityType="Self.can_secuencia" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_terminales" EntityType="Self.can_terminales" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_versiones" EntityType="Self.can_versiones" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_viajes" EntityType="Self.can_viajes" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_zonasdescarga" EntityType="Self.can_zonasdescarga" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_zonasdescarga2" EntityType="Self.can_zonasdescarga2" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can_zonasdescargainstancias" EntityType="Self.can_zonasdescargainstancias" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="catclasif" EntityType="Self.catclasif" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="catdestinatarios" EntityType="Self.catdestinatarios" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="catpautas" EntityType="Self.catpautas" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="configcintillo" EntityType="Self.configcintillo" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="controlsecuencias" EntityType="Self.controlsecuencias" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="cuadros" EntityType="Self.cuadros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="detsecuencias" EntityType="Self.detsecuencias" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="logprogramacion" EntityType="Self.logprogramacion" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="mensajes" EntityType="Self.mensajes" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="mensajesrecibidos" EntityType="Self.mensajesrecibidos" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="orden_descarga" EntityType="Self.orden_descarga" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="parametros_vmd" EntityType="Self.parametros_vmd" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="plat_versiones" EntityType="Self.plat_versiones" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="programacion" EntityType="Self.programacion" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="random" EntityType="Self.random" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="regiones" EntityType="Self.regiones" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="secuencias" EntityType="Self.secuencias" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="spot_parametros" EntityType="Self.spot_parametros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="vmd_dpauta_autorizada" EntityType="Self.vmd_dpauta_autorizada" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="vmd_testigo_video" EntityType="Self.vmd_testigo_video" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="zonas" EntityType="Self.zonas" Schema="vmd" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="vmdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="idprogramacion" Type="Int32" Nullable="false" />
+          <Property Name="consec" Type="Int32" Nullable="false" />
+          <Property Name="posicion" Type="Double" Nullable="false" />
+          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="consecsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="PosRandom" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ruta" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UltimaVez" Type="DateTime" Nullable="false" />
+          <Property Name="ExisteEnDVB" Type="Boolean" Nullable="false" />
+          <Property Name="caducidad" Type="DateTime" Nullable="false" />
+          <Property Name="Duracion" Type="DateTime" Nullable="false" />
+          <Property Name="clasificacion" Type="Int32" Nullable="false" />
+          <Property Name="idioma" Type="Int32" Nullable="false" />
+          <Property Name="subtitulos" Type="Int32" Nullable="false" />
+          <Property Name="formato" Type="Int32" Nullable="false" />
+          <Property Name="tipoarchivo" Type="Int32" Nullable="false" />
+          <Property Name="InicioVig" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="audiovmd">
+          <Key>
+            <PropertyRef Name="IDAUIDOVMD" />
+          </Key>
+          <Property Name="IDAUIDOVMD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HORAINICIO" Type="DateTime" Nullable="false" />
+          <Property Name="VOLUMEN" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="autobuses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sim" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_catbuses">
+          <Key>
+            <PropertyRef Name="cvebus" />
+          </Key>
+          <Property Name="cvebus" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipovehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matricula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numeconomico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rpmsmax" Type="Single" Nullable="false" />
+          <Property Name="velmax" Type="Single" Nullable="false" />
+          <Property Name="idmarca" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_catmetas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Clasificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Consejo" Type="Single" Nullable="false" />
+          <Property Name="Odometro" Type="Single" Nullable="false" />
+          <Property Name="Mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="can_catmetasregionros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Clasificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Consejo" Type="Single" />
+          <Property Name="Odometro" Type="Single" />
+          <Property Name="Mes" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Region" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="can_contadores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="numvuelta" Type="Int32" Nullable="false" />
+          <Property Name="numreg" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="can_detsecuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="numerotramo" Type="Int32" Nullable="false" />
+          <Property Name="origen" Type="Int32" Nullable="false" />
+          <Property Name="destino" Type="Int32" Nullable="false" />
+          <Property Name="via" Type="Int32" />
+          <Property Name="oper1" Type="Int32" Nullable="false" />
+          <Property Name="oper2" Type="Int32" />
+          <Property Name="confirmado" Type="Boolean" />
+          <Property Name="pobactual" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_logsincroniza">
+          <Key>
+            <PropertyRef Name="cvebus" />
+          </Key>
+          <Property Name="cvebus" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipomonitoreo" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_movtoscan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idregion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idmarca" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idzona" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="servicio" Type="Int32" Nullable="false" />
+          <Property Name="numerotramo" Type="Int32" Nullable="false" />
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="origenviaje" Type="Int32" Nullable="false" />
+          <Property Name="destinoviaje" Type="Int32" Nullable="false" />
+          <Property Name="via" Type="Int32" Nullable="false" />
+          <Property Name="fechaviaje" Type="DateTime" Nullable="false" />
+          <Property Name="operador" Type="Int32" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechahora" Type="DateTime" Nullable="false" />
+          <Property Name="latitud" Type="Double" Nullable="false" />
+          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="ns" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="we" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gps_velocidad" Type="Single" Nullable="false" />
+          <Property Name="accion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FuelLevel" Type="Single" Nullable="false" />
+          <Property Name="TachoShaftSpeed" Type="Single" Nullable="false" />
+          <Property Name="KmPerLiter" Type="Single" Nullable="false" />
+          <Property Name="TachoVehicleSpeed" Type="Single" Nullable="false" />
+          <Property Name="LiterPerHour" Type="Double" Nullable="false" />
+          <Property Name="AmbientTemp" Type="Single" Nullable="false" />
+          <Property Name="EconomyAverageKMpL" Type="Single" Nullable="false" />
+          <Property Name="FuelEconomyEstimationLMAF" Type="Single" Nullable="false" />
+          <Property Name="FuelEconomyEstimationFE" Type="Single" Nullable="false" />
+          <Property Name="RealKmPerLiterHighLevel" Type="Single" Nullable="false" />
+          <Property Name="TotalDistance" Type="Double" Nullable="false" />
+          <Property Name="TripDistance" Type="Single" Nullable="false" />
+          <Property Name="TripDistanceEstimationVS" Type="Single" Nullable="false" />
+          <Property Name="TripDistanceEstimationWVS" Type="Single" Nullable="false" />
+          <Property Name="WheelSpeed" Type="Single" Nullable="false" />
+          <Property Name="EngineForce" Type="Single" Nullable="false" />
+          <Property Name="EngineLoad" Type="Single" Nullable="false" />
+          <Property Name="MassAirFlow" Type="Single" Nullable="false" />
+          <Property Name="Protocolo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDDireccion" Type="Int32" Nullable="false" />
+          <Property Name="IDRegionOperativa" Type="Int32" Nullable="false" />
+          <Property Name="NumVuelta" Type="Int32" Nullable="false" />
+          <Property Name="NumReg" Type="Int32" Nullable="false" />
+          <Property Name="NumVueltaServer" Type="Int32" Nullable="false" />
+          <Property Name="NumRegServer" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="can_operadores">
+          <Key>
+            <PropertyRef Name="cveemp" />
+          </Key>
+          <Property Name="cveemp" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_parametrosinicio">
+          <Key>
+            <PropertyRef Name="IdParametrosInicio" />
+          </Key>
+          <Property Name="IdParametrosInicio" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TiempoUltimaVez" Type="Int64" />
+          <Property Name="PlaySobrePlay" Type="Boolean" />
+          <Property Name="AnilloRedValido" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CarpetaFTP" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="RutaHTTP" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IntervaloResultado" Type="Int64" />
+          <Property Name="TiempoActivaSec" Type="Int64" />
+          <Property Name="RutaDVB" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="SincronizaSubida" Type="Boolean" />
+          <Property Name="SincronizaBajada" Type="Boolean" />
+          <Property Name="AlwaysOnTop" Type="Boolean" />
+          <Property Name="HoraInicial" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="HoraFinal" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Autobus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Region" Type="Int64" />
+          <Property Name="Marca" Type="Int64" />
+          <Property Name="Zona" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="IDGrupo" Type="Int64" />
+          <Property Name="TecladoActivo" Type="Boolean" />
+          <Property Name="CodigoSalir" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoReinicio" Type="Int64" />
+          <Property Name="CodigoBuscaSecuencia" Type="Int64" />
+          <Property Name="CodigoEjecutaDVB" Type="Int64" />
+          <Property Name="CodigoMensajes" Type="Int64" />
+          <Property Name="CodigoCargaUSB" Type="Int64" />
+          <Property Name="CodigoPautas" Type="Int64" />
+          <Property Name="PautaAutomatica" Type="Int64" />
+          <Property Name="RemoteHost" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RemotePort" Type="Int64" />
+          <Property Name="MargenGPS" Type="Int64" />
+          <Property Name="TiempoGPS" Type="Int64" />
+          <Property Name="PuertoSerial" Type="Int64" />
+          <Property Name="ConfigSerial" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="MemoriaSIM" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="SIMCentral" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CONTROLPROPIO" Type="Boolean" />
+          <Property Name="RemoteServerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteServerDB" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteServerUser" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteServerPass" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ValidarCveCondSec" Type="Boolean" />
+          <Property Name="HabilitarCintillo" Type="Boolean" />
+          <Property Name="MensajeInicial" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="VueltasMensaje" Type="Int64" />
+          <Property Name="AltoCintillo" Type="Int64" />
+          <Property Name="ColorFuente" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="TamanoFuente" Type="Int64" />
+          <Property Name="ColorFondo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Velocidad" Type="Int64" />
+          <Property Name="PosicionMarquee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="HabilitarPI" Type="Boolean" />
+          <Property Name="PantallaSerial" Type="Int64" />
+          <Property Name="ConfigPantallaSerial" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="PosicionBuzzer" Type="Int64" />
+          <Property Name="PantallaTouch" Type="Boolean" />
+          <Property Name="EncCAN" Type="Boolean" />
+          <Property Name="EncVMD" Type="Boolean" />
+          <Property Name="EncCondusat" Type="Boolean" />
+          <Property Name="VMD" Type="Boolean" />
+          <Property Name="CAN" Type="Boolean" />
+          <Property Name="CONDUSAT" Type="Boolean" />
+          <Property Name="MensajesConductor" Type="Boolean" />
+          <Property Name="InicioViaje" Type="Int64" />
+          <Property Name="FinViaje" Type="Int64" />
+          <Property Name="CambioManos" Type="Int64" />
+          <Property Name="Sincronizar" Type="Int64" />
+          <Property Name="MetaRendimiento" Type="Double" />
+          <Property Name="SegsGraba" Type="Int64" />
+          <Property Name="SegsMuestra" Type="Int64" />
+          <Property Name="Servicio" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CnStrServer" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="LedVerde" Type="Int64" />
+          <Property Name="LedAmarillo" Type="Int64" />
+          <Property Name="LedRojo" Type="Int64" />
+          <Property Name="LedX" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MaxVel" Type="Double" />
+          <Property Name="IDDireccion" Type="Int64" />
+          <Property Name="IDRegionOperativa" Type="Int64" />
+          <Property Name="DatosCAN" Type="Int64" />
+          <Property Name="NombreTipoMetaCAN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="NombreRegionOperCAN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ViajePrueba" Type="Int64" />
+          <Property Name="IDWIFI" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ExcesosVel" Type="Double" />
+          <Property Name="ExcesosRPMs" Type="Double" />
+          <Property Name="SegsEsperaApp" Type="Int64" />
+          <Property Name="LogSincronizacionBien" Type="Boolean" />
+          <Property Name="LogSincronizacionMal" Type="Boolean" />
+          <Property Name="MonitorGPS" Type="Int64" />
+          <Property Name="RutaDiscoMBR" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="SincronizaEnAlterno" Type="Boolean" />
+          <Property Name="TablasPorBus" Type="Boolean" />
+          <Property Name="CarpetaVideos" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="SIA" Type="Boolean" />
+          <Property Name="ValidaOperadorSIA" Type="Boolean" />
+          <Property Name="UsoMetrobus" Type="Boolean" />
+          <Property Name="ValidaVolumen" Type="Boolean" />
+          <Property Name="tmrAlerta" Type="Int64" Nullable="false" />
+          <Property Name="BotonPanico" Type="Boolean" />
+          <Property Name="BotonTachuela" Type="Boolean" />
+          <Property Name="BotonOff" Type="Boolean" />
+          <Property Name="tmrProtector" Type="Int64" Nullable="false" />
+          <Property Name="tmrSegVMDSIA" Type="Int64" Nullable="false" />
+          <Property Name="tmrSegCANSIA" Type="Int64" Nullable="false" />
+          <Property Name="horaInicioModoNocturno" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="horaFinModoNocturno" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MacAddress" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADOGPS" Type="Boolean" Nullable="false" />
+          <Property Name="ReinicioTerminal" Type="Byte" Nullable="false" />
+          <Property Name="HrsReinicioTerminal" Type="Int64" />
+          <Property Name="MinApagadoSincronizacion" Type="Int64" />
+          <Property Name="ReinicioCM" Type="Byte" Nullable="false" />
+          <Property Name="ProtectorDiurno" Type="Byte" Nullable="false" />
+          <Property Name="ProtectorNocturno" Type="Byte" Nullable="false" />
+          <Property Name="MiniSIA" Type="Boolean" />
+          <Property Name="ReinicioTiempoTerminal" Type="Int32" />
+          <Property Name="PLAT" Type="Boolean" Nullable="false" />
+          <Property Name="TELEMATICS" Type="Boolean" Nullable="false" />
+          <Property Name="IdLAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SPOTS" Type="Boolean" Nullable="false" />
+          <Property Name="SIIAB_POI" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_poblaciones">
+          <Key>
+            <PropertyRef Name="idpob" />
+          </Key>
+          <Property Name="idpob" Type="Int64" Nullable="false" />
+          <Property Name="despob" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="latitud" Type="Double" Nullable="false" />
+          <Property Name="ns" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="we" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDTIPOPUNTO" Type="Int64" Nullable="false" />
+          <Property Name="IDRegion" Type="Int64" Nullable="false" />
+          <Property Name="IDSeccion" Type="Int64" />
+          <Property Name="CVEPOB" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nuevo" Type="Boolean" />
+          <Property Name="LatMax" Type="Double" />
+          <Property Name="LatMin" Type="Double" />
+          <Property Name="LonMax" Type="Double" />
+          <Property Name="LonMin" Type="Double" />
+        </EntityType>
+        <EntityType Name="can_redes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sufijo" Type="Int64" Nullable="false" />
+          <Property Name="IdZonaDescarga" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_referenciaregion">
+          <Key>
+            <PropertyRef Name="IdRegion" />
+          </Key>
+          <Property Name="IdRegion" Type="Int64" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zona" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdGrupo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdDireccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdRegionOperativa" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="NombreTipoMetaCAN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreRegionOperCAN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CnStrServer" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="can_regsecuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <Property Name="conductor" Type="Int32" />
+        </EntityType>
+        <EntityType Name="can_secuencia">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="idregion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idmarca" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idzona" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="servicio" Type="Int32" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+          <Property Name="confirmado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="can_terminales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPob" Type="Int64" Nullable="false" />
+          <Property Name="Lat" Type="Double" Nullable="false" />
+          <Property Name="NS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lon" Type="Double" Nullable="false" />
+          <Property Name="WE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdZonaDescarga" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_versiones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nomtabla" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="can_viajes">
+          <Key>
+            <PropertyRef Name="idviaje" />
+          </Key>
+          <Property Name="idviaje" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="origen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="destino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescarga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RutaDescarga" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescarga2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RutaDescarga" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nube" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catclasif">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catdestinatarios">
+          <Key>
+            <PropertyRef Name="IdDestinatario" />
+          </Key>
+          <Property Name="IdDestinatario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destinatario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catpautas">
+          <Key>
+            <PropertyRef Name="idpauta" />
+          </Key>
+          <Property Name="idpauta" Type="Int32" Nullable="false" />
+          <Property Name="despauta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idprogramacion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="configcintillo">
+          <Key>
+            <PropertyRef Name="altocintillo" />
+          </Key>
+          <Property Name="altocintillo" Type="Int32" Nullable="false" />
+          <Property Name="colorfuente" Type="Int32" Nullable="false" />
+          <Property Name="tamanofuente" Type="Int32" Nullable="false" />
+          <Property Name="colorfondo" Type="Int32" Nullable="false" />
+          <Property Name="velocidad" Type="Int32" Nullable="false" />
+          <Property Name="vueltas" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="controlsecuencias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="cuadros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cve_pob" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LatIni" Type="Single" Nullable="false" />
+          <Property Name="LonIni" Type="Single" Nullable="false" />
+          <Property Name="LatFin" Type="Single" Nullable="false" />
+          <Property Name="LonFin" Type="Single" Nullable="false" />
+          <Property Name="Tip_Cua" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num_Con" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detsecuencias">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+            <PropertyRef Name="consec" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="consec" Type="Int32" Nullable="false" />
+          <Property Name="idprogramacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="ejecutada" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="logprogramacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="rutavideo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idvideo" Type="Int32" Nullable="false" />
+          <Property Name="minutosmax" Type="Int32" Nullable="false" />
+          <Property Name="ejecucion" Type="Boolean" Nullable="false" />
+          <Property Name="error" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="latitud" Type="Single" Nullable="false" />
+          <Property Name="longitud" Type="Single" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechahora" Type="DateTime" Nullable="false" />
+          <Property Name="secuencia" Type="Int32" Nullable="false" />
+          <Property Name="consecsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="idprogramacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaprogramacion" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mensajes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechahora" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mensajesrecibidos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechahora" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orden_descarga">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sistema" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Orden" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="plat_versiones">
+          <Key>
+            <PropertyRef Name="Id_Plat_Versiones" />
+          </Key>
+          <Property Name="Id_Plat_Versiones" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sistemas" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubSistemas" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Modulo_Sis" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="SubModulo_sis" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Versiones" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="programacion">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Consec" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Grupo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Archivo" Type="Int32" Nullable="false" />
+          <Property Name="Consec" Type="Int32" Nullable="false" />
+          <Property Name="TipoPunto" Type="SByte" Nullable="false" />
+          <Property Name="IdPoblacion" Type="Int32" Nullable="false" />
+          <Property Name="Detener" Type="Boolean" Nullable="false" />
+          <Property Name="TipoReprodRandom" Type="Boolean" Nullable="false" />
+          <Property Name="TiempoRecorrido" Type="DateTime" Nullable="false" />
+          <Property Name="TiempoSpots" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="random">
+          <Key>
+            <PropertyRef Name="idruta" />
+            <PropertyRef Name="idreg" />
+            <PropertyRef Name="consec" />
+          </Key>
+          <Property Name="idruta" Type="Int32" Nullable="false" />
+          <Property Name="idreg" Type="Int32" Nullable="false" />
+          <Property Name="consec" Type="Int32" Nullable="false" />
+          <Property Name="idarchivo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="regiones">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="regrido" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="secuencias">
+          <Key>
+            <PropertyRef Name="idsecuencia" />
+          </Key>
+          <Property Name="idsecuencia" Type="Int32" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zona" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="autobus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechahorareal" Type="DateTime" Nullable="false" />
+          <Property Name="ejecutada" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spot_parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vmd_dpauta_autorizada">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAUTA_CLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ORDEN" Type="Int64" Nullable="false" />
+          <Property Name="VIDEO_CLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VIDEO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VIDEO_ARCHIVO" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VIGENCIA_INICIO" Type="DateTime" Nullable="false" />
+          <Property Name="VIGENCIA_FINAL" Type="DateTime" Nullable="false" />
+          <Property Name="DURACION" Type="Int64" Nullable="false" />
+          <Property Name="CODEC_VIDEO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODEC_AUDIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FORMATO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUBTITULOS" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="MD5" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vmd_testigo_video">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VIDEO_CLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAUTA_CLAVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AUTOBUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_REPRODUCCION" Type="DateTime" Nullable="false" />
+          <Property Name="COMPLETO" Type="Boolean" Nullable="false" />
+          <Property Name="IMPACTOS" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zonas">
+          <Key>
+            <PropertyRef Name="idzona" />
+          </Key>
+          <Property Name="idzona" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="zonrido" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="vmdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividad" EntityType="Self.actividad" />
+          <EntitySet Name="archivos" EntityType="Self.archivos" />
+          <EntitySet Name="audiovmd" EntityType="Self.audiovmd" />
+          <EntitySet Name="autobuses" EntityType="Self.autobuses" />
+          <EntitySet Name="can_catbuses" EntityType="Self.can_catbuses" />
+          <EntitySet Name="can_catmetas" EntityType="Self.can_catmetas" />
+          <EntitySet Name="can_catmetasregionros" EntityType="Self.can_catmetasregionros" />
+          <EntitySet Name="can_contadores" EntityType="Self.can_contadores" />
+          <EntitySet Name="can_detsecuencia" EntityType="Self.can_detsecuencia" />
+          <EntitySet Name="can_logsincroniza" EntityType="Self.can_logsincroniza" />
+          <EntitySet Name="can_movtoscan" EntityType="Self.can_movtoscan" />
+          <EntitySet Name="can_operadores" EntityType="Self.can_operadores" />
+          <EntitySet Name="can_parametrosinicio" EntityType="Self.can_parametrosinicio" />
+          <EntitySet Name="can_poblaciones" EntityType="Self.can_poblaciones" />
+          <EntitySet Name="can_redes" EntityType="Self.can_redes" />
+          <EntitySet Name="can_referenciaregion" EntityType="Self.can_referenciaregion" />
+          <EntitySet Name="can_regsecuencia" EntityType="Self.can_regsecuencia" />
+          <EntitySet Name="can_secuencia" EntityType="Self.can_secuencia" />
+          <EntitySet Name="can_terminales" EntityType="Self.can_terminales" />
+          <EntitySet Name="can_versiones" EntityType="Self.can_versiones" />
+          <EntitySet Name="can_viajes" EntityType="Self.can_viajes" />
+          <EntitySet Name="can_zonasdescarga" EntityType="Self.can_zonasdescarga" />
+          <EntitySet Name="can_zonasdescarga2" EntityType="Self.can_zonasdescarga2" />
+          <EntitySet Name="catclasif" EntityType="Self.catclasif" />
+          <EntitySet Name="catdestinatarios" EntityType="Self.catdestinatarios" />
+          <EntitySet Name="catpautas" EntityType="Self.catpautas" />
+          <EntitySet Name="configcintillo" EntityType="Self.configcintillo" />
+          <EntitySet Name="controlsecuencias" EntityType="Self.controlsecuencias" />
+          <EntitySet Name="cuadros" EntityType="Self.cuadros" />
+          <EntitySet Name="detsecuencias" EntityType="Self.detsecuencias" />
+          <EntitySet Name="logprogramacion" EntityType="Self.logprogramacion" />
+          <EntitySet Name="mensajes" EntityType="Self.mensajes" />
+          <EntitySet Name="mensajesrecibidos" EntityType="Self.mensajesrecibidos" />
+          <EntitySet Name="orden_descarga" EntityType="Self.orden_descarga" />
+          <EntitySet Name="plat_versiones" EntityType="Self.plat_versiones" />
+          <EntitySet Name="programacion" EntityType="Self.programacion" />
+          <EntitySet Name="random" EntityType="Self.random" />
+          <EntitySet Name="regiones" EntityType="Self.regiones" />
+          <EntitySet Name="secuencias" EntityType="Self.secuencias" />
+          <EntitySet Name="spot_parametros" EntityType="Self.spot_parametros" />
+          <EntitySet Name="vmd_dpauta_autorizada" EntityType="Self.vmd_dpauta_autorizada" />
+          <EntitySet Name="vmd_testigo_video" EntityType="Self.vmd_testigo_video" />
+          <EntitySet Name="zonas" EntityType="Self.zonas" />
+          <EntitySet Name="parametros_vmd" EntityType="vmdModel.parametros_vmd" />
+          <EntitySet Name="can_cattipometasregion" EntityType="vmdModel.can_cattipometasregion" />
+          <EntitySet Name="can_zonasdescargainstancias" EntityType="vmdModel.can_zonasdescargainstancias" />
+        </EntityContainer>
+        <EntityType Name="parametros_vmd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VersionPauta" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="can_cattipometasregion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_region" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_tipo_meta" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="can_zonasdescargainstancias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RutaDescarga" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EsquemaInstancias" Type="Boolean" Nullable="false" />
+          <Property Name="RutaDescargaAPP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PuertoAPP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="vmdModelStoreContainer" CdmEntityContainer="vmdEntities">
+          <EntitySetMapping Name="actividad">
+            <EntityTypeMapping TypeName="vmdModel.actividad">
+              <MappingFragment StoreEntitySet="actividad">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="idprogramacion" ColumnName="idprogramacion" />
+                <ScalarProperty Name="consec" ColumnName="consec" />
+                <ScalarProperty Name="posicion" ColumnName="posicion" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="consecsecuencia" ColumnName="consecsecuencia" />
+                <ScalarProperty Name="PosRandom" ColumnName="PosRandom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="archivos">
+            <EntityTypeMapping TypeName="vmdModel.archivos">
+              <MappingFragment StoreEntitySet="archivos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+                <ScalarProperty Name="UltimaVez" ColumnName="UltimaVez" />
+                <ScalarProperty Name="ExisteEnDVB" ColumnName="ExisteEnDVB" />
+                <ScalarProperty Name="caducidad" ColumnName="caducidad" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+                <ScalarProperty Name="idioma" ColumnName="idioma" />
+                <ScalarProperty Name="subtitulos" ColumnName="subtitulos" />
+                <ScalarProperty Name="formato" ColumnName="formato" />
+                <ScalarProperty Name="tipoarchivo" ColumnName="tipoarchivo" />
+                <ScalarProperty Name="InicioVig" ColumnName="InicioVig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="audiovmd">
+            <EntityTypeMapping TypeName="vmdModel.audiovmd">
+              <MappingFragment StoreEntitySet="audiovmd">
+                <ScalarProperty Name="IDAUIDOVMD" ColumnName="IDAUIDOVMD" />
+                <ScalarProperty Name="HORAINICIO" ColumnName="HORAINICIO" />
+                <ScalarProperty Name="VOLUMEN" ColumnName="VOLUMEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="autobuses">
+            <EntityTypeMapping TypeName="vmdModel.autobuses">
+              <MappingFragment StoreEntitySet="autobuses">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="sim" ColumnName="sim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_catbuses">
+            <EntityTypeMapping TypeName="vmdModel.can_catbuses">
+              <MappingFragment StoreEntitySet="can_catbuses">
+                <ScalarProperty Name="cvebus" ColumnName="cvebus" />
+                <ScalarProperty Name="tipovehiculo" ColumnName="tipovehiculo" />
+                <ScalarProperty Name="matricula" ColumnName="matricula" />
+                <ScalarProperty Name="numeconomico" ColumnName="numeconomico" />
+                <ScalarProperty Name="rpmsmax" ColumnName="rpmsmax" />
+                <ScalarProperty Name="velmax" ColumnName="velmax" />
+                <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_catmetas">
+            <EntityTypeMapping TypeName="vmdModel.can_catmetas">
+              <MappingFragment StoreEntitySet="can_catmetas">
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Consejo" ColumnName="Consejo" />
+                <ScalarProperty Name="Odometro" ColumnName="Odometro" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_catmetasregionros">
+            <EntityTypeMapping TypeName="vmdModel.can_catmetasregionros">
+              <MappingFragment StoreEntitySet="can_catmetasregionros">
+                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Consejo" ColumnName="Consejo" />
+                <ScalarProperty Name="Odometro" ColumnName="Odometro" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_contadores">
+            <EntityTypeMapping TypeName="vmdModel.can_contadores">
+              <MappingFragment StoreEntitySet="can_contadores">
+                <ScalarProperty Name="numvuelta" ColumnName="numvuelta" />
+                <ScalarProperty Name="numreg" ColumnName="numreg" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_detsecuencia">
+            <EntityTypeMapping TypeName="vmdModel.can_detsecuencia">
+              <MappingFragment StoreEntitySet="can_detsecuencia">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="numerotramo" ColumnName="numerotramo" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="via" ColumnName="via" />
+                <ScalarProperty Name="oper1" ColumnName="oper1" />
+                <ScalarProperty Name="oper2" ColumnName="oper2" />
+                <ScalarProperty Name="confirmado" ColumnName="confirmado" />
+                <ScalarProperty Name="pobactual" ColumnName="pobactual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_logsincroniza">
+            <EntityTypeMapping TypeName="vmdModel.can_logsincroniza">
+              <MappingFragment StoreEntitySet="can_logsincroniza">
+                <ScalarProperty Name="cvebus" ColumnName="cvebus" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="tipomonitoreo" ColumnName="tipomonitoreo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_movtoscan">
+            <EntityTypeMapping TypeName="vmdModel.can_movtoscan">
+              <MappingFragment StoreEntitySet="can_movtoscan">
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+                <ScalarProperty Name="idzona" ColumnName="idzona" />
+                <ScalarProperty Name="servicio" ColumnName="servicio" />
+                <ScalarProperty Name="numerotramo" ColumnName="numerotramo" />
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="origenviaje" ColumnName="origenviaje" />
+                <ScalarProperty Name="destinoviaje" ColumnName="destinoviaje" />
+                <ScalarProperty Name="via" ColumnName="via" />
+                <ScalarProperty Name="fechaviaje" ColumnName="fechaviaje" />
+                <ScalarProperty Name="operador" ColumnName="operador" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="ns" ColumnName="ns" />
+                <ScalarProperty Name="we" ColumnName="we" />
+                <ScalarProperty Name="gps_velocidad" ColumnName="gps_velocidad" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="FuelLevel" ColumnName="FuelLevel" />
+                <ScalarProperty Name="TachoShaftSpeed" ColumnName="TachoShaftSpeed" />
+                <ScalarProperty Name="KmPerLiter" ColumnName="KmPerLiter" />
+                <ScalarProperty Name="TachoVehicleSpeed" ColumnName="TachoVehicleSpeed" />
+                <ScalarProperty Name="LiterPerHour" ColumnName="LiterPerHour" />
+                <ScalarProperty Name="AmbientTemp" ColumnName="AmbientTemp" />
+                <ScalarProperty Name="EconomyAverageKMpL" ColumnName="EconomyAverageKMpL" />
+                <ScalarProperty Name="FuelEconomyEstimationLMAF" ColumnName="FuelEconomyEstimationLMAF" />
+                <ScalarProperty Name="FuelEconomyEstimationFE" ColumnName="FuelEconomyEstimationFE" />
+                <ScalarProperty Name="RealKmPerLiterHighLevel" ColumnName="RealKmPerLiterHighLevel" />
+                <ScalarProperty Name="TotalDistance" ColumnName="TotalDistance" />
+                <ScalarProperty Name="TripDistance" ColumnName="TripDistance" />
+                <ScalarProperty Name="TripDistanceEstimationVS" ColumnName="TripDistanceEstimationVS" />
+                <ScalarProperty Name="TripDistanceEstimationWVS" ColumnName="TripDistanceEstimationWVS" />
+                <ScalarProperty Name="WheelSpeed" ColumnName="WheelSpeed" />
+                <ScalarProperty Name="EngineForce" ColumnName="EngineForce" />
+                <ScalarProperty Name="EngineLoad" ColumnName="EngineLoad" />
+                <ScalarProperty Name="MassAirFlow" ColumnName="MassAirFlow" />
+                <ScalarProperty Name="Protocolo" ColumnName="Protocolo" />
+                <ScalarProperty Name="IDDireccion" ColumnName="IDDireccion" />
+                <ScalarProperty Name="IDRegionOperativa" ColumnName="IDRegionOperativa" />
+                <ScalarProperty Name="NumVuelta" ColumnName="NumVuelta" />
+                <ScalarProperty Name="NumReg" ColumnName="NumReg" />
+                <ScalarProperty Name="NumVueltaServer" ColumnName="NumVueltaServer" />
+                <ScalarProperty Name="NumRegServer" ColumnName="NumRegServer" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_operadores">
+            <EntityTypeMapping TypeName="vmdModel.can_operadores">
+              <MappingFragment StoreEntitySet="can_operadores">
+                <ScalarProperty Name="cveemp" ColumnName="cveemp" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_parametrosinicio">
+            <EntityTypeMapping TypeName="vmdModel.can_parametrosinicio">
+              <MappingFragment StoreEntitySet="can_parametrosinicio">
+                <ScalarProperty Name="SIIAB_POI" ColumnName="SIIAB_POI" />
+                <ScalarProperty Name="SPOTS" ColumnName="SPOTS" />
+                <ScalarProperty Name="IdLAN" ColumnName="IdLAN" />
+                <ScalarProperty Name="TELEMATICS" ColumnName="TELEMATICS" />
+                <ScalarProperty Name="IdParametrosInicio" ColumnName="IdParametrosInicio" />
+                <ScalarProperty Name="TiempoUltimaVez" ColumnName="TiempoUltimaVez" />
+                <ScalarProperty Name="PlaySobrePlay" ColumnName="PlaySobrePlay" />
+                <ScalarProperty Name="AnilloRedValido" ColumnName="AnilloRedValido" />
+                <ScalarProperty Name="CarpetaFTP" ColumnName="CarpetaFTP" />
+                <ScalarProperty Name="RutaHTTP" ColumnName="RutaHTTP" />
+                <ScalarProperty Name="IntervaloResultado" ColumnName="IntervaloResultado" />
+                <ScalarProperty Name="TiempoActivaSec" ColumnName="TiempoActivaSec" />
+                <ScalarProperty Name="RutaDVB" ColumnName="RutaDVB" />
+                <ScalarProperty Name="SincronizaSubida" ColumnName="SincronizaSubida" />
+                <ScalarProperty Name="SincronizaBajada" ColumnName="SincronizaBajada" />
+                <ScalarProperty Name="AlwaysOnTop" ColumnName="AlwaysOnTop" />
+                <ScalarProperty Name="HoraInicial" ColumnName="HoraInicial" />
+                <ScalarProperty Name="HoraFinal" ColumnName="HoraFinal" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Autobus" ColumnName="Autobus" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="IDGrupo" ColumnName="IDGrupo" />
+                <ScalarProperty Name="TecladoActivo" ColumnName="TecladoActivo" />
+                <ScalarProperty Name="CodigoSalir" ColumnName="CodigoSalir" />
+                <ScalarProperty Name="CodigoReinicio" ColumnName="CodigoReinicio" />
+                <ScalarProperty Name="CodigoBuscaSecuencia" ColumnName="CodigoBuscaSecuencia" />
+                <ScalarProperty Name="CodigoEjecutaDVB" ColumnName="CodigoEjecutaDVB" />
+                <ScalarProperty Name="CodigoMensajes" ColumnName="CodigoMensajes" />
+                <ScalarProperty Name="CodigoCargaUSB" ColumnName="CodigoCargaUSB" />
+                <ScalarProperty Name="CodigoPautas" ColumnName="CodigoPautas" />
+                <ScalarProperty Name="PautaAutomatica" ColumnName="PautaAutomatica" />
+                <ScalarProperty Name="RemoteHost" ColumnName="RemoteHost" />
+                <ScalarProperty Name="RemotePort" ColumnName="RemotePort" />
+                <ScalarProperty Name="MargenGPS" ColumnName="MargenGPS" />
+                <ScalarProperty Name="TiempoGPS" ColumnName="TiempoGPS" />
+                <ScalarProperty Name="PuertoSerial" ColumnName="PuertoSerial" />
+                <ScalarProperty Name="ConfigSerial" ColumnName="ConfigSerial" />
+                <ScalarProperty Name="MemoriaSIM" ColumnName="MemoriaSIM" />
+                <ScalarProperty Name="SIMCentral" ColumnName="SIMCentral" />
+                <ScalarProperty Name="CONTROLPROPIO" ColumnName="CONTROLPROPIO" />
+                <ScalarProperty Name="RemoteServerName" ColumnName="RemoteServerName" />
+                <ScalarProperty Name="RemoteServerDB" ColumnName="RemoteServerDB" />
+                <ScalarProperty Name="RemoteServerUser" ColumnName="RemoteServerUser" />
+                <ScalarProperty Name="RemoteServerPass" ColumnName="RemoteServerPass" />
+                <ScalarProperty Name="ValidarCveCondSec" ColumnName="ValidarCveCondSec" />
+                <ScalarProperty Name="HabilitarCintillo" ColumnName="HabilitarCintillo" />
+                <ScalarProperty Name="MensajeInicial" ColumnName="MensajeInicial" />
+                <ScalarProperty Name="VueltasMensaje" ColumnName="VueltasMensaje" />
+                <ScalarProperty Name="AltoCintillo" ColumnName="AltoCintillo" />
+                <ScalarProperty Name="ColorFuente" ColumnName="ColorFuente" />
+                <ScalarProperty Name="TamanoFuente" ColumnName="TamanoFuente" />
+                <ScalarProperty Name="ColorFondo" ColumnName="ColorFondo" />
+                <ScalarProperty Name="Velocidad" ColumnName="Velocidad" />
+                <ScalarProperty Name="PosicionMarquee" ColumnName="PosicionMarquee" />
+                <ScalarProperty Name="HabilitarPI" ColumnName="HabilitarPI" />
+                <ScalarProperty Name="PantallaSerial" ColumnName="PantallaSerial" />
+                <ScalarProperty Name="ConfigPantallaSerial" ColumnName="ConfigPantallaSerial" />
+                <ScalarProperty Name="PosicionBuzzer" ColumnName="PosicionBuzzer" />
+                <ScalarProperty Name="PantallaTouch" ColumnName="PantallaTouch" />
+                <ScalarProperty Name="EncCAN" ColumnName="EncCAN" />
+                <ScalarProperty Name="EncVMD" ColumnName="EncVMD" />
+                <ScalarProperty Name="EncCondusat" ColumnName="EncCondusat" />
+                <ScalarProperty Name="VMD" ColumnName="VMD" />
+                <ScalarProperty Name="CAN" ColumnName="CAN" />
+                <ScalarProperty Name="CONDUSAT" ColumnName="CONDUSAT" />
+                <ScalarProperty Name="MensajesConductor" ColumnName="MensajesConductor" />
+                <ScalarProperty Name="InicioViaje" ColumnName="InicioViaje" />
+                <ScalarProperty Name="FinViaje" ColumnName="FinViaje" />
+                <ScalarProperty Name="CambioManos" ColumnName="CambioManos" />
+                <ScalarProperty Name="Sincronizar" ColumnName="Sincronizar" />
+                <ScalarProperty Name="MetaRendimiento" ColumnName="MetaRendimiento" />
+                <ScalarProperty Name="SegsGraba" ColumnName="SegsGraba" />
+                <ScalarProperty Name="SegsMuestra" ColumnName="SegsMuestra" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="CnStrServer" ColumnName="CnStrServer" />
+                <ScalarProperty Name="LedVerde" ColumnName="LedVerde" />
+                <ScalarProperty Name="LedAmarillo" ColumnName="LedAmarillo" />
+                <ScalarProperty Name="LedRojo" ColumnName="LedRojo" />
+                <ScalarProperty Name="LedX" ColumnName="LedX" />
+                <ScalarProperty Name="MaxVel" ColumnName="MaxVel" />
+                <ScalarProperty Name="IDDireccion" ColumnName="IDDireccion" />
+                <ScalarProperty Name="IDRegionOperativa" ColumnName="IDRegionOperativa" />
+                <ScalarProperty Name="DatosCAN" ColumnName="DatosCAN" />
+                <ScalarProperty Name="NombreTipoMetaCAN" ColumnName="NombreTipoMetaCAN" />
+                <ScalarProperty Name="NombreRegionOperCAN" ColumnName="NombreRegionOperCAN" />
+                <ScalarProperty Name="ViajePrueba" ColumnName="ViajePrueba" />
+                <ScalarProperty Name="IDWIFI" ColumnName="IDWIFI" />
+                <ScalarProperty Name="ExcesosVel" ColumnName="ExcesosVel" />
+                <ScalarProperty Name="ExcesosRPMs" ColumnName="ExcesosRPMs" />
+                <ScalarProperty Name="SegsEsperaApp" ColumnName="SegsEsperaApp" />
+                <ScalarProperty Name="LogSincronizacionBien" ColumnName="LogSincronizacionBien" />
+                <ScalarProperty Name="LogSincronizacionMal" ColumnName="LogSincronizacionMal" />
+                <ScalarProperty Name="MonitorGPS" ColumnName="MonitorGPS" />
+                <ScalarProperty Name="RutaDiscoMBR" ColumnName="RutaDiscoMBR" />
+                <ScalarProperty Name="SincronizaEnAlterno" ColumnName="SincronizaEnAlterno" />
+                <ScalarProperty Name="TablasPorBus" ColumnName="TablasPorBus" />
+                <ScalarProperty Name="CarpetaVideos" ColumnName="CarpetaVideos" />
+                <ScalarProperty Name="SIA" ColumnName="SIA" />
+                <ScalarProperty Name="ValidaOperadorSIA" ColumnName="ValidaOperadorSIA" />
+                <ScalarProperty Name="UsoMetrobus" ColumnName="UsoMetrobus" />
+                <ScalarProperty Name="ValidaVolumen" ColumnName="ValidaVolumen" />
+                <ScalarProperty Name="tmrAlerta" ColumnName="tmrAlerta" />
+                <ScalarProperty Name="BotonPanico" ColumnName="BotonPanico" />
+                <ScalarProperty Name="BotonTachuela" ColumnName="BotonTachuela" />
+                <ScalarProperty Name="BotonOff" ColumnName="BotonOff" />
+                <ScalarProperty Name="tmrProtector" ColumnName="tmrProtector" />
+                <ScalarProperty Name="tmrSegVMDSIA" ColumnName="tmrSegVMDSIA" />
+                <ScalarProperty Name="tmrSegCANSIA" ColumnName="tmrSegCANSIA" />
+                <ScalarProperty Name="horaInicioModoNocturno" ColumnName="horaInicioModoNocturno" />
+                <ScalarProperty Name="horaFinModoNocturno" ColumnName="horaFinModoNocturno" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="ADOGPS" ColumnName="ADOGPS" />
+                <ScalarProperty Name="ReinicioTerminal" ColumnName="ReinicioTerminal" />
+                <ScalarProperty Name="HrsReinicioTerminal" ColumnName="HrsReinicioTerminal" />
+                <ScalarProperty Name="MinApagadoSincronizacion" ColumnName="MinApagadoSincronizacion" />
+                <ScalarProperty Name="ReinicioCM" ColumnName="ReinicioCM" />
+                <ScalarProperty Name="ProtectorDiurno" ColumnName="ProtectorDiurno" />
+                <ScalarProperty Name="ProtectorNocturno" ColumnName="ProtectorNocturno" />
+                <ScalarProperty Name="MiniSIA" ColumnName="MiniSIA" />
+                <ScalarProperty Name="ReinicioTiempoTerminal" ColumnName="ReinicioTiempoTerminal" />
+                <ScalarProperty Name="PLAT" ColumnName="PLAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_poblaciones">
+            <EntityTypeMapping TypeName="vmdModel.can_poblaciones">
+              <MappingFragment StoreEntitySet="can_poblaciones">
+                <ScalarProperty Name="idpob" ColumnName="idpob" />
+                <ScalarProperty Name="despob" ColumnName="despob" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="ns" ColumnName="ns" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="we" ColumnName="we" />
+                <ScalarProperty Name="IDTIPOPUNTO" ColumnName="IDTIPOPUNTO" />
+                <ScalarProperty Name="IDRegion" ColumnName="IDRegion" />
+                <ScalarProperty Name="IDSeccion" ColumnName="IDSeccion" />
+                <ScalarProperty Name="CVEPOB" ColumnName="CVEPOB" />
+                <ScalarProperty Name="Nuevo" ColumnName="Nuevo" />
+                <ScalarProperty Name="LatMax" ColumnName="LatMax" />
+                <ScalarProperty Name="LatMin" ColumnName="LatMin" />
+                <ScalarProperty Name="LonMax" ColumnName="LonMax" />
+                <ScalarProperty Name="LonMin" ColumnName="LonMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_redes">
+            <EntityTypeMapping TypeName="vmdModel.can_redes">
+              <MappingFragment StoreEntitySet="can_redes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Sufijo" ColumnName="Sufijo" />
+                <ScalarProperty Name="IdZonaDescarga" ColumnName="IdZonaDescarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_referenciaregion">
+            <EntityTypeMapping TypeName="vmdModel.can_referenciaregion">
+              <MappingFragment StoreEntitySet="can_referenciaregion">
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+                <ScalarProperty Name="IdRegionOperativa" ColumnName="IdRegionOperativa" />
+                <ScalarProperty Name="NombreTipoMetaCAN" ColumnName="NombreTipoMetaCAN" />
+                <ScalarProperty Name="NombreRegionOperCAN" ColumnName="NombreRegionOperCAN" />
+                <ScalarProperty Name="CnStrServer" ColumnName="CnStrServer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_regsecuencia">
+            <EntityTypeMapping TypeName="vmdModel.can_regsecuencia">
+              <MappingFragment StoreEntitySet="can_regsecuencia">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="conductor" ColumnName="conductor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_secuencia">
+            <EntityTypeMapping TypeName="vmdModel.can_secuencia">
+              <MappingFragment StoreEntitySet="can_secuencia">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="idmarca" ColumnName="idmarca" />
+                <ScalarProperty Name="idzona" ColumnName="idzona" />
+                <ScalarProperty Name="servicio" ColumnName="servicio" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="confirmado" ColumnName="confirmado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_terminales">
+            <EntityTypeMapping TypeName="vmdModel.can_terminales">
+              <MappingFragment StoreEntitySet="can_terminales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdPob" ColumnName="IdPob" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="NS" ColumnName="NS" />
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="WE" ColumnName="WE" />
+                <ScalarProperty Name="IdZonaDescarga" ColumnName="IdZonaDescarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_versiones">
+            <EntityTypeMapping TypeName="vmdModel.can_versiones">
+              <MappingFragment StoreEntitySet="can_versiones">
+                <ScalarProperty Name="nomtabla" ColumnName="nomtabla" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_viajes">
+            <EntityTypeMapping TypeName="vmdModel.can_viajes">
+              <MappingFragment StoreEntitySet="can_viajes">
+                <ScalarProperty Name="idviaje" ColumnName="idviaje" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_zonasdescarga">
+            <EntityTypeMapping TypeName="vmdModel.can_zonasdescarga">
+              <MappingFragment StoreEntitySet="can_zonasdescarga">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RutaDescarga" ColumnName="RutaDescarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_zonasdescarga2">
+            <EntityTypeMapping TypeName="vmdModel.can_zonasdescarga2">
+              <MappingFragment StoreEntitySet="can_zonasdescarga2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RutaDescarga" ColumnName="RutaDescarga" />
+                <ScalarProperty Name="Nube" ColumnName="Nube" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catclasif">
+            <EntityTypeMapping TypeName="vmdModel.catclasif">
+              <MappingFragment StoreEntitySet="catclasif">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catdestinatarios">
+            <EntityTypeMapping TypeName="vmdModel.catdestinatarios">
+              <MappingFragment StoreEntitySet="catdestinatarios">
+                <ScalarProperty Name="IdDestinatario" ColumnName="IdDestinatario" />
+                <ScalarProperty Name="Destinatario" ColumnName="Destinatario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catpautas">
+            <EntityTypeMapping TypeName="vmdModel.catpautas">
+              <MappingFragment StoreEntitySet="catpautas">
+                <ScalarProperty Name="idpauta" ColumnName="idpauta" />
+                <ScalarProperty Name="despauta" ColumnName="despauta" />
+                <ScalarProperty Name="idprogramacion" ColumnName="idprogramacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configcintillo">
+            <EntityTypeMapping TypeName="vmdModel.configcintillo">
+              <MappingFragment StoreEntitySet="configcintillo">
+                <ScalarProperty Name="altocintillo" ColumnName="altocintillo" />
+                <ScalarProperty Name="colorfuente" ColumnName="colorfuente" />
+                <ScalarProperty Name="tamanofuente" ColumnName="tamanofuente" />
+                <ScalarProperty Name="colorfondo" ColumnName="colorfondo" />
+                <ScalarProperty Name="velocidad" ColumnName="velocidad" />
+                <ScalarProperty Name="vueltas" ColumnName="vueltas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="controlsecuencias">
+            <EntityTypeMapping TypeName="vmdModel.controlsecuencias">
+              <MappingFragment StoreEntitySet="controlsecuencias">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuadros">
+            <EntityTypeMapping TypeName="vmdModel.cuadros">
+              <MappingFragment StoreEntitySet="cuadros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cve_pob" ColumnName="Cve_pob" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="LatIni" ColumnName="LatIni" />
+                <ScalarProperty Name="LonIni" ColumnName="LonIni" />
+                <ScalarProperty Name="LatFin" ColumnName="LatFin" />
+                <ScalarProperty Name="LonFin" ColumnName="LonFin" />
+                <ScalarProperty Name="Tip_Cua" ColumnName="Tip_Cua" />
+                <ScalarProperty Name="Num_Con" ColumnName="Num_Con" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detsecuencias">
+            <EntityTypeMapping TypeName="vmdModel.detsecuencias">
+              <MappingFragment StoreEntitySet="detsecuencias">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="consec" ColumnName="consec" />
+                <ScalarProperty Name="idprogramacion" ColumnName="idprogramacion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="ejecutada" ColumnName="ejecutada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logprogramacion">
+            <EntityTypeMapping TypeName="vmdModel.logprogramacion">
+              <MappingFragment StoreEntitySet="logprogramacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="rutavideo" ColumnName="rutavideo" />
+                <ScalarProperty Name="idvideo" ColumnName="idvideo" />
+                <ScalarProperty Name="minutosmax" ColumnName="minutosmax" />
+                <ScalarProperty Name="ejecucion" ColumnName="ejecucion" />
+                <ScalarProperty Name="error" ColumnName="error" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+                <ScalarProperty Name="secuencia" ColumnName="secuencia" />
+                <ScalarProperty Name="consecsecuencia" ColumnName="consecsecuencia" />
+                <ScalarProperty Name="idprogramacion" ColumnName="idprogramacion" />
+                <ScalarProperty Name="fechaprogramacion" ColumnName="fechaprogramacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mensajes">
+            <EntityTypeMapping TypeName="vmdModel.mensajes">
+              <MappingFragment StoreEntitySet="mensajes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mensajesrecibidos">
+            <EntityTypeMapping TypeName="vmdModel.mensajesrecibidos">
+              <MappingFragment StoreEntitySet="mensajesrecibidos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orden_descarga">
+            <EntityTypeMapping TypeName="vmdModel.orden_descarga">
+              <MappingFragment StoreEntitySet="orden_descarga">
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
+                <ScalarProperty Name="Sistema" ColumnName="Sistema" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="plat_versiones">
+            <EntityTypeMapping TypeName="vmdModel.plat_versiones">
+              <MappingFragment StoreEntitySet="plat_versiones">
+                <ScalarProperty Name="Id_Plat_Versiones" ColumnName="Id_Plat_Versiones" />
+                <ScalarProperty Name="Sistemas" ColumnName="Sistemas" />
+                <ScalarProperty Name="SubSistemas" ColumnName="SubSistemas" />
+                <ScalarProperty Name="Modulo_Sis" ColumnName="Modulo_Sis" />
+                <ScalarProperty Name="SubModulo_sis" ColumnName="SubModulo_sis" />
+                <ScalarProperty Name="Versiones" ColumnName="Versiones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programacion">
+            <EntityTypeMapping TypeName="vmdModel.programacion">
+              <MappingFragment StoreEntitySet="programacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="Consec" ColumnName="Consec" />
+                <ScalarProperty Name="TipoPunto" ColumnName="TipoPunto" />
+                <ScalarProperty Name="IdPoblacion" ColumnName="IdPoblacion" />
+                <ScalarProperty Name="Detener" ColumnName="Detener" />
+                <ScalarProperty Name="TipoReprodRandom" ColumnName="TipoReprodRandom" />
+                <ScalarProperty Name="TiempoRecorrido" ColumnName="TiempoRecorrido" />
+                <ScalarProperty Name="TiempoSpots" ColumnName="TiempoSpots" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="random">
+            <EntityTypeMapping TypeName="vmdModel.random">
+              <MappingFragment StoreEntitySet="random">
+                <ScalarProperty Name="idruta" ColumnName="idruta" />
+                <ScalarProperty Name="idreg" ColumnName="idreg" />
+                <ScalarProperty Name="consec" ColumnName="consec" />
+                <ScalarProperty Name="idarchivo" ColumnName="idarchivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regiones">
+            <EntityTypeMapping TypeName="vmdModel.regiones">
+              <MappingFragment StoreEntitySet="regiones">
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="regrido" ColumnName="regrido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="secuencias">
+            <EntityTypeMapping TypeName="vmdModel.secuencias">
+              <MappingFragment StoreEntitySet="secuencias">
+                <ScalarProperty Name="idsecuencia" ColumnName="idsecuencia" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="zona" ColumnName="zona" />
+                <ScalarProperty Name="autobus" ColumnName="autobus" />
+                <ScalarProperty Name="fechahorareal" ColumnName="fechahorareal" />
+                <ScalarProperty Name="ejecutada" ColumnName="ejecutada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spot_parametros">
+            <EntityTypeMapping TypeName="vmdModel.spot_parametros">
+              <MappingFragment StoreEntitySet="spot_parametros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vmd_dpauta_autorizada">
+            <EntityTypeMapping TypeName="vmdModel.vmd_dpauta_autorizada">
+              <MappingFragment StoreEntitySet="vmd_dpauta_autorizada">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PAUTA_CLAVE" ColumnName="PAUTA_CLAVE" />
+                <ScalarProperty Name="ORDEN" ColumnName="ORDEN" />
+                <ScalarProperty Name="VIDEO_CLAVE" ColumnName="VIDEO_CLAVE" />
+                <ScalarProperty Name="VIDEO_NOMBRE" ColumnName="VIDEO_NOMBRE" />
+                <ScalarProperty Name="VIDEO_ARCHIVO" ColumnName="VIDEO_ARCHIVO" />
+                <ScalarProperty Name="VIGENCIA_INICIO" ColumnName="VIGENCIA_INICIO" />
+                <ScalarProperty Name="VIGENCIA_FINAL" ColumnName="VIGENCIA_FINAL" />
+                <ScalarProperty Name="DURACION" ColumnName="DURACION" />
+                <ScalarProperty Name="CODEC_VIDEO" ColumnName="CODEC_VIDEO" />
+                <ScalarProperty Name="CODEC_AUDIO" ColumnName="CODEC_AUDIO" />
+                <ScalarProperty Name="FORMATO" ColumnName="FORMATO" />
+                <ScalarProperty Name="SUBTITULOS" ColumnName="SUBTITULOS" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="MD5" ColumnName="MD5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vmd_testigo_video">
+            <EntityTypeMapping TypeName="vmdModel.vmd_testigo_video">
+              <MappingFragment StoreEntitySet="vmd_testigo_video">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VIDEO_CLAVE" ColumnName="VIDEO_CLAVE" />
+                <ScalarProperty Name="PAUTA_CLAVE" ColumnName="PAUTA_CLAVE" />
+                <ScalarProperty Name="AUTOBUS" ColumnName="AUTOBUS" />
+                <ScalarProperty Name="FECHA_REPRODUCCION" ColumnName="FECHA_REPRODUCCION" />
+                <ScalarProperty Name="COMPLETO" ColumnName="COMPLETO" />
+                <ScalarProperty Name="IMPACTOS" ColumnName="IMPACTOS" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zonas">
+            <EntityTypeMapping TypeName="vmdModel.zonas">
+              <MappingFragment StoreEntitySet="zonas">
+                <ScalarProperty Name="idzona" ColumnName="idzona" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="zonrido" ColumnName="zonrido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametros_vmd">
+            <EntityTypeMapping TypeName="vmdModel.parametros_vmd">
+              <MappingFragment StoreEntitySet="parametros_vmd">
+                <ScalarProperty Name="VersionPauta" ColumnName="VersionPauta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_cattipometasregion">
+            <EntityTypeMapping TypeName="vmdModel.can_cattipometasregion">
+              <MappingFragment StoreEntitySet="can_cattipometasregion">
+                <ScalarProperty Name="nombre_tipo_meta" ColumnName="nombre_tipo_meta" />
+                <ScalarProperty Name="id_region" ColumnName="id_region" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can_zonasdescargainstancias">
+            <EntityTypeMapping TypeName="vmdModel.can_zonasdescargainstancias">
+              <MappingFragment StoreEntitySet="can_zonasdescargainstancias">
+                <ScalarProperty Name="PuertoAPP" ColumnName="PuertoAPP" />
+                <ScalarProperty Name="RutaDescargaAPP" ColumnName="RutaDescargaAPP" />
+                <ScalarProperty Name="EsquemaInstancias" ColumnName="EsquemaInstancias" />
+                <ScalarProperty Name="RutaDescarga" ColumnName="RutaDescarga" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

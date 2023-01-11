@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 
-public class ProtocoloCAN : IBDContext , IMessage
-    {
+public class ProtocoloCAN : IBDContext, IMessage
+{
 
 
     public vmdEntities VMD_BD { get; }
@@ -26,12 +26,12 @@ public class ProtocoloCAN : IBDContext , IMessage
     public double LiterPerHour { get; set; }
     public double TachoVehicleSpeed { get; set; }
     public double AmbientTemp { get; set; }
-    public double FuelEconomyEstimationLMAF{ get; set; }
+    public double FuelEconomyEstimationLMAF { get; set; }
     public double RealKmPerLiterHighLevel { get; set; }
     public double TripDistance { get; set; }
     public double TripDistanceEstimationWVS { get; set; }
     public double EngineForce { get; set; }
-    public double MassAirFlow{ get; set; }
+    public double MassAirFlow { get; set; }
     public double FuelLevel { get; set; }
     public double TachoShaftSpeed { get; set; }
     public double KmPerLiter { get; set; }
@@ -52,7 +52,7 @@ public class ProtocoloCAN : IBDContext , IMessage
         ParametrosInicio = (from x in VMD_BD.can_parametrosinicio
                             select x).FirstOrDefault();
     }
-   
+
     /// <summary>
     /// Inicia El socket de CAN
     /// </summary>
@@ -172,15 +172,15 @@ public class ProtocoloCAN : IBDContext , IMessage
     /// </summary>
     /// <param name="Param_ADOCAN"></param>
     /// <param name="AdvMsg"></param>
-    public void ProcesaCAN(bool Param_ADOCAN,ref Globales iGlobales, clsMessage AdvMsg = null)
+    public void ProcesaCAN(bool Param_ADOCAN, ref Globales iGlobales, clsMessage AdvMsg = null)
     {
         try
         {
             if (Param_ADOCAN)
             {
-                try{FuelLevel = Convert.ToDouble(ADOCAN.VAL_FuelLevel);}catch{FuelLevel = 0;}
+                try { FuelLevel = Convert.ToDouble(ADOCAN.VAL_FuelLevel); } catch { FuelLevel = 0; }
 
-                try{ TachoShaftSpeed = Convert.ToDouble(ADOCAN.VAL_RPMs); }catch{TachoShaftSpeed = 0;}
+                try { TachoShaftSpeed = Convert.ToDouble(ADOCAN.VAL_RPMs); } catch { TachoShaftSpeed = 0; }
 
                 try { KmPerLiter = Convert.ToDouble(ADOCAN.VAL_KmPerLiter); } catch { KmPerLiter = 0; }
 
@@ -213,7 +213,7 @@ public class ProtocoloCAN : IBDContext , IMessage
                 try { EngineLoad = Convert.ToDouble(ADOCAN.VAL_EngineLoad); } catch { EngineLoad = 0; }
 
                 try { MassAirFlow = Convert.ToDouble(ADOCAN.VAL_MassAirFlow); } catch { MassAirFlow = 0; }
-                    
+
                 if (ADOCAN.VAL_Protocolo != null)
                 {
                     if (ADOCAN.VAL_Protocolo.Equals("INICIO"))
@@ -421,13 +421,13 @@ public class ProtocoloCAN : IBDContext , IMessage
                 LtsIniDG = FuelEconomyEstimationFE;
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }
 
 
-       
+
 
     }
 
@@ -508,12 +508,12 @@ public class ProtocoloCAN : IBDContext , IMessage
                 {
                     if (TachoShaftSpeed == 0 || FuelEconomyEstimationFE == 0 || TripDistanceEstimationVS == 0)
                     {
-                        Resultado =  false;
+                        Resultado = false;
                     }
                 }
                 else
                 {
-                    if(TachoShaftSpeed == 0)
+                    if (TachoShaftSpeed == 0)
                     {
                         Resultado = false;
                     }

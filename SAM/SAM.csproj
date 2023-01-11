@@ -126,6 +126,10 @@
       <Project>{72b1f500-3177-4e4d-860e-c3ef2246eb04}</Project>
       <Name>PLAT</Name>
     </ProjectReference>
+    <ProjectReference Include="..\POI\POI.csproj">
+      <Project>{c97c30a8-54c9-4b8a-8758-68c41c3d6539}</Project>
+      <Name>POI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SIA\SIA.csproj">
       <Project>{90ca8ef9-356c-4d12-85a2-6ea39246361e}</Project>
       <Name>SIA</Name>

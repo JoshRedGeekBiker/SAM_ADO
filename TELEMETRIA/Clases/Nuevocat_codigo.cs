@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 
 /// <summary>
 /// Se crea ésta clase para poder serializar el catalogo que descargamos

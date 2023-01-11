@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using System.IO;
 
 /// <summary>
 /// Powered ByRED 23MAR2021
 /// </summary>
-public class PuntosInteres: IBBContextSIA, IBDContext
+public class PuntosInteres: IBDContextSIA, IBDContext
 {
     #region "Propiedades"
 

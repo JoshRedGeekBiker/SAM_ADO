@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using ADO_CAN_Utilerias;
 using ADO_CAN_Cliente_Telemetría;
 using Newtonsoft.Json;
@@ -2673,7 +2674,6 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         Parametros = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
     }
     #endregion
-
 
     #region "Nuevos Métodos Fabian - VSP"
 

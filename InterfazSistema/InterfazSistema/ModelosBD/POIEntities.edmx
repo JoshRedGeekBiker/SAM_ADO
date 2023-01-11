@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="poiModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="archivo_poi">
+          <Key>
+            <PropertyRef Name="id_archivo_poi" />
+          </Key>
+          <Property Name="id_archivo_poi" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spotId" Type="uint" Nullable="false" />
+          <Property Name="spotArchivoId" Type="uint" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_poi">
+          <Key>
+            <PropertyRef Name="id_cat_poi" />
+          </Key>
+          <Property Name="id_cat_poi" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spotId" Type="uint" Nullable="false" />
+          <Property Name="paradaId" Type="uint" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="coor_polygon">
+          <Key>
+            <PropertyRef Name="id_coor_polygon" />
+          </Key>
+          <Property Name="id_coor_polygon" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cat_poi" Type="uint" Nullable="false" />
+          <Property Name="paradaId" Type="uint" Nullable="false" />
+          <Property Name="sequence" Type="uint" Nullable="false" />
+          <Property Name="active" Type="bool" Nullable="false" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalles_poi">
+          <Key>
+            <PropertyRef Name="spotId" />
+          </Key>
+          <Property Name="spotId" Type="uint" Nullable="false" />
+          <Property Name="orientacionInicial" Type="uint" Nullable="false" />
+          <Property Name="orientacionFinal" Type="uint" Nullable="false" />
+          <Property Name="programacionHoraria" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="duracion" Type="uint" Nullable="false" />
+          <Property Name="tiempoEspera" Type="uint" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="parametros_poi">
+          <Key>
+            <PropertyRef Name="id_parametro_poi" />
+          </Key>
+          <Property Name="id_parametro_poi" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cve_parametro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="valor_parametro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="estatus" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="testigo_poi">
+          <Key>
+            <PropertyRef Name="id_testigo_poi" />
+          </Key>
+          <Property Name="id_testigo_poi" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroEconomico" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="spotId" Type="uint" Nullable="false" />
+          <Property Name="fechaReproduccion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_archivo_poi">
+          <Key>
+            <PropertyRef Name="id_tipo_archivo_poi" />
+          </Key>
+          <Property Name="id_tipo_archivo_poi" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_archivo_poi" Type="uint" Nullable="false" />
+          <Property Name="spotArchivoTipoId" Type="uint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_archivo_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="archivo_poi" Type="Self.archivo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="archivo_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cat_poi">
+          <End Role="cat_poi" Type="Self.cat_poi" Multiplicity="1" />
+          <End Role="coor_polygon" Type="Self.coor_polygon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_poi">
+              <PropertyRef Name="id_cat_poi" />
+            </Principal>
+            <Dependent Role="coor_polygon">
+              <PropertyRef Name="id_cat_poi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parametros_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="cat_poi" Type="Self.cat_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="cat_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_testigo_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="testigo_poi" Type="Self.testigo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="testigo_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipo_archivo_poi">
+          <End Role="archivo_poi" Type="Self.archivo_poi" Multiplicity="1" />
+          <End Role="tipo_archivo_poi" Type="Self.tipo_archivo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivo_poi">
+              <PropertyRef Name="id_archivo_poi" />
+            </Principal>
+            <Dependent Role="tipo_archivo_poi">
+              <PropertyRef Name="id_archivo_poi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="poiModelStoreContainer">
+          <EntitySet Name="archivo_poi" EntityType="Self.archivo_poi" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="cat_poi" EntityType="Self.cat_poi" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="coor_polygon" EntityType="Self.coor_polygon" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="detalles_poi" EntityType="Self.detalles_poi" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="parametros_poi" EntityType="Self.parametros_poi" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="testigo_poi" EntityType="Self.testigo_poi" Schema="poi" store:Type="Tables" />
+          <EntitySet Name="tipo_archivo_poi" EntityType="Self.tipo_archivo_poi" Schema="poi" store:Type="Tables" />
+          <AssociationSet Name="FK_archivo_poi" Association="Self.FK_archivo_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="archivo_poi" EntitySet="archivo_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cat_poi" Association="Self.FK_cat_poi">
+            <End Role="cat_poi" EntitySet="cat_poi" />
+            <End Role="coor_polygon" EntitySet="coor_polygon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parametros_poi" Association="Self.FK_parametros_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="cat_poi" EntitySet="cat_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_testigo_poi" Association="Self.FK_testigo_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="testigo_poi" EntitySet="testigo_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipo_archivo_poi" Association="Self.FK_tipo_archivo_poi">
+            <End Role="archivo_poi" EntitySet="archivo_poi" />
+            <End Role="tipo_archivo_poi" EntitySet="tipo_archivo_poi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="poiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="archivo_poi">
+          <Key>
+            <PropertyRef Name="id_archivo_poi" />
+          </Key>
+          <Property Name="id_archivo_poi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spotId" Type="Int64" Nullable="false" />
+          <Property Name="spotArchivoId" Type="Int64" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="detalles_poi" Relationship="Self.FK_archivo_poi" FromRole="archivo_poi" ToRole="detalles_poi" />
+          <NavigationProperty Name="tipo_archivo_poi" Relationship="Self.FK_tipo_archivo_poi" FromRole="archivo_poi" ToRole="tipo_archivo_poi" />
+        </EntityType>
+        <EntityType Name="cat_poi">
+          <Key>
+            <PropertyRef Name="id_cat_poi" />
+          </Key>
+          <Property Name="id_cat_poi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spotId" Type="Int64" Nullable="false" />
+          <Property Name="paradaId" Type="Int64" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="coor_polygon" Relationship="Self.FK_cat_poi" FromRole="cat_poi" ToRole="coor_polygon" />
+          <NavigationProperty Name="detalles_poi" Relationship="Self.FK_parametros_poi" FromRole="cat_poi" ToRole="detalles_poi" />
+        </EntityType>
+        <EntityType Name="coor_polygon">
+          <Key>
+            <PropertyRef Name="id_coor_polygon" />
+          </Key>
+          <Property Name="id_coor_polygon" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cat_poi" Type="Int64" Nullable="false" />
+          <Property Name="paradaId" Type="Int64" Nullable="false" />
+          <Property Name="sequence" Type="Int64" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="latitud" Type="Single" Nullable="false" />
+          <Property Name="longitud" Type="Single" Nullable="false" />
+          <NavigationProperty Name="cat_poi" Relationship="Self.FK_cat_poi" FromRole="coor_polygon" ToRole="cat_poi" />
+        </EntityType>
+        <EntityType Name="detalles_poi">
+          <Key>
+            <PropertyRef Name="spotId" />
+          </Key>
+          <Property Name="spotId" Type="Int64" Nullable="false" />
+          <Property Name="orientacionInicial" Type="Int64" Nullable="false" />
+          <Property Name="orientacionFinal" Type="Int64" Nullable="false" />
+          <Property Name="programacionHoraria" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duracion" Type="Int64" Nullable="false" />
+          <Property Name="tiempoEspera" Type="Int64" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="archivo_poi" Relationship="Self.FK_archivo_poi" FromRole="detalles_poi" ToRole="archivo_poi" />
+          <NavigationProperty Name="cat_poi" Relationship="Self.FK_parametros_poi" FromRole="detalles_poi" ToRole="cat_poi" />
+          <NavigationProperty Name="testigo_poi" Relationship="Self.FK_testigo_poi" FromRole="detalles_poi" ToRole="testigo_poi" />
+        </EntityType>
+        <EntityType Name="parametros_poi">
+          <Key>
+            <PropertyRef Name="id_parametro_poi" />
+          </Key>
+          <Property Name="id_parametro_poi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cve_parametro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor_parametro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="testigo_poi">
+          <Key>
+            <PropertyRef Name="id_testigo_poi" />
+          </Key>
+          <Property Name="id_testigo_poi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroEconomico" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="spotId" Type="Int64" Nullable="false" />
+          <Property Name="fechaReproduccion" Type="DateTime" Nullable="false" />
+          <Property Name="latitud" Type="Single" Nullable="false" />
+          <Property Name="longitud" Type="Single" Nullable="false" />
+          <NavigationProperty Name="detalles_poi" Relationship="Self.FK_testigo_poi" FromRole="testigo_poi" ToRole="detalles_poi" />
+        </EntityType>
+        <EntityType Name="tipo_archivo_poi">
+          <Key>
+            <PropertyRef Name="id_tipo_archivo_poi" />
+          </Key>
+          <Property Name="id_tipo_archivo_poi" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_archivo_poi" Type="Int64" Nullable="false" />
+          <Property Name="spotArchivoTipoId" Type="Int64" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="archivo_poi" Relationship="Self.FK_tipo_archivo_poi" FromRole="tipo_archivo_poi" ToRole="archivo_poi" />
+        </EntityType>
+        <Association Name="FK_archivo_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="archivo_poi" Type="Self.archivo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="archivo_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tipo_archivo_poi">
+          <End Role="archivo_poi" Type="Self.archivo_poi" Multiplicity="1" />
+          <End Role="tipo_archivo_poi" Type="Self.tipo_archivo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivo_poi">
+              <PropertyRef Name="id_archivo_poi" />
+            </Principal>
+            <Dependent Role="tipo_archivo_poi">
+              <PropertyRef Name="id_archivo_poi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cat_poi">
+          <End Role="cat_poi" Type="Self.cat_poi" Multiplicity="1" />
+          <End Role="coor_polygon" Type="Self.coor_polygon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_poi">
+              <PropertyRef Name="id_cat_poi" />
+            </Principal>
+            <Dependent Role="coor_polygon">
+              <PropertyRef Name="id_cat_poi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parametros_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="cat_poi" Type="Self.cat_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="cat_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_testigo_poi">
+          <End Role="detalles_poi" Type="Self.detalles_poi" Multiplicity="1" />
+          <End Role="testigo_poi" Type="Self.testigo_poi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalles_poi">
+              <PropertyRef Name="spotId" />
+            </Principal>
+            <Dependent Role="testigo_poi">
+              <PropertyRef Name="spotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="poiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="archivo_poi" EntityType="Self.archivo_poi" />
+          <EntitySet Name="cat_poi" EntityType="Self.cat_poi" />
+          <EntitySet Name="coor_polygon" EntityType="Self.coor_polygon" />
+          <EntitySet Name="detalles_poi" EntityType="Self.detalles_poi" />
+          <EntitySet Name="parametros_poi" EntityType="Self.parametros_poi" />
+          <EntitySet Name="testigo_poi" EntityType="Self.testigo_poi" />
+          <EntitySet Name="tipo_archivo_poi" EntityType="Self.tipo_archivo_poi" />
+          <AssociationSet Name="FK_archivo_poi" Association="Self.FK_archivo_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="archivo_poi" EntitySet="archivo_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tipo_archivo_poi" Association="Self.FK_tipo_archivo_poi">
+            <End Role="archivo_poi" EntitySet="archivo_poi" />
+            <End Role="tipo_archivo_poi" EntitySet="tipo_archivo_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cat_poi" Association="Self.FK_cat_poi">
+            <End Role="cat_poi" EntitySet="cat_poi" />
+            <End Role="coor_polygon" EntitySet="coor_polygon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parametros_poi" Association="Self.FK_parametros_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="cat_poi" EntitySet="cat_poi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_testigo_poi" Association="Self.FK_testigo_poi">
+            <End Role="detalles_poi" EntitySet="detalles_poi" />
+            <End Role="testigo_poi" EntitySet="testigo_poi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="poiModelStoreContainer" CdmEntityContainer="poiEntities">
+          <EntitySetMapping Name="archivo_poi">
+            <EntityTypeMapping TypeName="poiModel.archivo_poi">
+              <MappingFragment StoreEntitySet="archivo_poi">
+                <ScalarProperty Name="id_archivo_poi" ColumnName="id_archivo_poi" />
+                <ScalarProperty Name="spotId" ColumnName="spotId" />
+                <ScalarProperty Name="spotArchivoId" ColumnName="spotArchivoId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cat_poi">
+            <EntityTypeMapping TypeName="poiModel.cat_poi">
+              <MappingFragment StoreEntitySet="cat_poi">
+                <ScalarProperty Name="id_cat_poi" ColumnName="id_cat_poi" />
+                <ScalarProperty Name="spotId" ColumnName="spotId" />
+                <ScalarProperty Name="paradaId" ColumnName="paradaId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coor_polygon">
+            <EntityTypeMapping TypeName="poiModel.coor_polygon">
+              <MappingFragment StoreEntitySet="coor_polygon">
+                <ScalarProperty Name="id_coor_polygon" ColumnName="id_coor_polygon" />
+                <ScalarProperty Name="id_cat_poi" ColumnName="id_cat_poi" />
+                <ScalarProperty Name="paradaId" ColumnName="paradaId" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalles_poi">
+            <EntityTypeMapping TypeName="poiModel.detalles_poi">
+              <MappingFragment StoreEntitySet="detalles_poi">
+                <ScalarProperty Name="spotId" ColumnName="spotId" />
+                <ScalarProperty Name="orientacionInicial" ColumnName="orientacionInicial" />
+                <ScalarProperty Name="orientacionFinal" ColumnName="orientacionFinal" />
+                <ScalarProperty Name="programacionHoraria" ColumnName="programacionHoraria" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="tiempoEspera" ColumnName="tiempoEspera" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametros_poi">
+            <EntityTypeMapping TypeName="poiModel.parametros_poi">
+              <MappingFragment StoreEntitySet="parametros_poi">
+                <ScalarProperty Name="id_parametro_poi" ColumnName="id_parametro_poi" />
+                <ScalarProperty Name="cve_parametro" ColumnName="cve_parametro" />
+                <ScalarProperty Name="valor_parametro" ColumnName="valor_parametro" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="testigo_poi">
+            <EntityTypeMapping TypeName="poiModel.testigo_poi">
+              <MappingFragment StoreEntitySet="testigo_poi">
+                <ScalarProperty Name="id_testigo_poi" ColumnName="id_testigo_poi" />
+                <ScalarProperty Name="numeroEconomico" ColumnName="numeroEconomico" />
+                <ScalarProperty Name="spotId" ColumnName="spotId" />
+                <ScalarProperty Name="fechaReproduccion" ColumnName="fechaReproduccion" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_archivo_poi">
+            <EntityTypeMapping TypeName="poiModel.tipo_archivo_poi">
+              <MappingFragment StoreEntitySet="tipo_archivo_poi">
+                <ScalarProperty Name="id_tipo_archivo_poi" ColumnName="id_tipo_archivo_poi" />
+                <ScalarProperty Name="id_archivo_poi" ColumnName="id_archivo_poi" />
+                <ScalarProperty Name="spotArchivoTipoId" ColumnName="spotArchivoTipoId" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

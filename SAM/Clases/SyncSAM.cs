@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using System.Runtime.InteropServices;
 using System.Net;
 using System.Threading;

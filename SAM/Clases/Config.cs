@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using Microsoft.Win32;
 
 public class Config

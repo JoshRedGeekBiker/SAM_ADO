@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using System.Data.SqlClient;
 using InterfazSistema.WSCAN;
 using System.IO;

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
 using System.IO;
 using System.Data;
+using InterfazSistema;
+
 public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 {
     #region "Variables"

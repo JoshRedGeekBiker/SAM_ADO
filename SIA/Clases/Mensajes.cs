@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 
 /// <summary>
 /// Powered ByRED 23FEB2021
 /// </summary>
-public class Mensajes: IBBContextSIA, IBDContext
+public class Mensajes: IBDContextSIA, IBDContext
 {
 
     #region "Propiedades"

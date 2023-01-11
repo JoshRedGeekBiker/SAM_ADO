@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using InterfazSistema;
+using InterfazSistema.ModelosBD;
 using System.Threading;
 
 public class CONDUSAT : ISistema, IBDContext, IMessage
