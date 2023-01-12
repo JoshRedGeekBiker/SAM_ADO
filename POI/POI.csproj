@@ -31,8 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.7.9\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF5, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.7.9\lib\net45\MySql.Data.Entity.EF5.dll</HintPath>
+    </Reference>
+    <Reference Include="NCrontab, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NCrontab.3.3.1\lib\net35\NCrontab.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Numpy.Bare, Version=3.7.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Numpy.Bare.3.8.1.28\lib\netstandard2.0\Numpy.Bare.dll</HintPath>
+    </Reference>
+    <Reference Include="Python.Runtime, Version=2.5.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\pythonnet_netstandard_py38_win.2.5.1\lib\netstandard2.0\Python.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +64,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Matematica\ARISTA.cs" />
+    <Compile Include="Clases\Matematica\MATH.cs" />
+    <Compile Include="Clases\Matematica\POINT.cs" />
+    <Compile Include="Clases\Matematica\POLYGON.cs" />
+    <Compile Include="Clases\Objeto\Archivo.cs" />
+    <Compile Include="Clases\Objeto\Coordenadas.cs" />
+    <Compile Include="Clases\Objeto\Parada.cs" />
+    <Compile Include="Clases\Objeto\Request_spot.cs" />
+    <Compile Include="Clases\Objeto\Response_spot.cs" />
+    <Compile Include="Clases\Objeto\Testigo.cs" />
+    <Compile Include="Clases\Objeto\Tipo.cs" />
     <Compile Include="Clases\POI.cs" />
+    <Compile Include="Clases\Utilidades.cs" />
+    <Compile Include="Clases\WS_Spot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +85,10 @@
       <Project>{b04a1a74-8257-4abe-8a23-486c4c9bb05a}</Project>
       <Name>InterfazSistema</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
