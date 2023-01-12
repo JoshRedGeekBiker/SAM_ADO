@@ -2687,6 +2687,18 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 nuevoOrden.Orden = i;
 
                 VMD_BD.orden_descarga.Add(nuevoOrden);
+                i++;
+            }
+            //Para SIIAB_POI
+
+            if (FE.SIIAB_POI)
+            {
+                nuevoOrden = new orden_descarga();
+
+                nuevoOrden.Sistema = "SIIAB_POI";
+                nuevoOrden.Orden = i;
+
+                VMD_BD.orden_descarga.Add(nuevoOrden);
             }
 
             VMD_BD.SaveChanges();
