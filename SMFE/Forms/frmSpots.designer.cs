@@ -45,8 +45,6 @@ partial class frmSpots
             this.lblTitulo = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lblCopia = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tmrProgreso = new System.Windows.Forms.Timer(this.components);
             this.tmrFecha = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).BeginInit();
@@ -100,7 +98,7 @@ partial class frmSpots
             this.lblPauta.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblPauta.Size = new System.Drawing.Size(347, 33);
             this.lblPauta.TabIndex = 48;
-            this.lblPauta.Text = "Spots de";
+            this.lblPauta.Text = "Spots de video:";
             // 
             // lblTitPauta1
             // 
@@ -203,28 +201,6 @@ partial class frmSpots
             this.imageList1.Images.SetKeyName(1, "img_img.gif");
             this.imageList1.Images.SetKeyName(2, "img_video.gif");
             // 
-            // lblCopia
-            // 
-            this.lblCopia.BackColor = System.Drawing.Color.Transparent;
-            this.lblCopia.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblCopia.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCopia.ForeColor = System.Drawing.Color.Red;
-            this.lblCopia.Location = new System.Drawing.Point(335, 496);
-            this.lblCopia.Name = "lblCopia";
-            this.lblCopia.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblCopia.Size = new System.Drawing.Size(331, 33);
-            this.lblCopia.TabIndex = 66;
-            this.lblCopia.Text = "Copiando Archivos...";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(43, 506);
-            this.progressBar1.MarqueeAnimationSpeed = 30;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(286, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 65;
-            // 
             // tmrFecha
             // 
             this.tmrFecha.Enabled = true;
@@ -236,8 +212,6 @@ partial class frmSpots
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SMFE.Properties.Resources.FondoCONblanco;
             this.ClientSize = new System.Drawing.Size(798, 595);
-            this.Controls.Add(this.lblCopia);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -279,8 +253,6 @@ partial class frmSpots
     private System.Windows.Forms.PictureBox btnAceptar;
     public System.Windows.Forms.Label lblTitulo;
     private System.Windows.Forms.ListView listView1;
-    public System.Windows.Forms.Label lblCopia;
-    private System.Windows.Forms.ProgressBar progressBar1;
     private System.Windows.Forms.Timer tmrProgreso;
     private System.Windows.Forms.ImageList imageList1;
     private System.Windows.Forms.Timer tmrFecha;

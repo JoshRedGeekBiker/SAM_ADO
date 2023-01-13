@@ -40,8 +40,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnVideo = new System.Windows.Forms.PictureBox();
             this.btnAudio = new System.Windows.Forms.PictureBox();
-            this.btnImagen = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnImagen = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).BeginInit();
             this.gpBox1.SuspendLayout();
@@ -187,7 +187,7 @@
             this.btnVideo.BackColor = System.Drawing.Color.Transparent;
             this.btnVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnVideo.Image = global::SMFE.Properties.Resources.btl_videos;
-            this.btnVideo.Location = new System.Drawing.Point(20, 242);
+            this.btnVideo.Location = new System.Drawing.Point(20, 153);
             this.btnVideo.Name = "btnVideo";
             this.btnVideo.Size = new System.Drawing.Size(360, 55);
             this.btnVideo.TabIndex = 46;
@@ -199,24 +199,12 @@
             this.btnAudio.BackColor = System.Drawing.Color.Transparent;
             this.btnAudio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAudio.Image = global::SMFE.Properties.Resources.btl_audios;
-            this.btnAudio.Location = new System.Drawing.Point(20, 153);
+            this.btnAudio.Location = new System.Drawing.Point(20, 72);
             this.btnAudio.Name = "btnAudio";
             this.btnAudio.Size = new System.Drawing.Size(360, 55);
             this.btnAudio.TabIndex = 45;
             this.btnAudio.TabStop = false;
             this.btnAudio.Click += new System.EventHandler(this.btnAudio_Click);
-            // 
-            // btnImagen
-            // 
-            this.btnImagen.BackColor = System.Drawing.Color.Transparent;
-            this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnImagen.Image = global::SMFE.Properties.Resources.btl_imagenes;
-            this.btnImagen.Location = new System.Drawing.Point(20, 72);
-            this.btnImagen.Name = "btnImagen";
-            this.btnImagen.Size = new System.Drawing.Size(360, 55);
-            this.btnImagen.TabIndex = 44;
-            this.btnImagen.TabStop = false;
-            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
             // 
             // label2
             // 
@@ -230,6 +218,18 @@
             this.label2.Size = new System.Drawing.Size(340, 41);
             this.label2.TabIndex = 43;
             this.label2.Text = "Menú spots";
+            // 
+            // btnImagen
+            // 
+            this.btnImagen.BackColor = System.Drawing.Color.Transparent;
+            this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnImagen.Image = global::SMFE.Properties.Resources.btl_imagenes;
+            this.btnImagen.Location = new System.Drawing.Point(20, 242);
+            this.btnImagen.Name = "btnImagen";
+            this.btnImagen.Size = new System.Drawing.Size(360, 55);
+            this.btnImagen.TabIndex = 44;
+            this.btnImagen.TabStop = false;
+            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
             // 
             // frmHerramientasVMD
             // 
@@ -283,6 +283,6 @@
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.PictureBox btnVideo;
     private System.Windows.Forms.PictureBox btnAudio;
-    private System.Windows.Forms.PictureBox btnImagen;
     public System.Windows.Forms.Label label2;
+    private System.Windows.Forms.PictureBox btnImagen;
 }

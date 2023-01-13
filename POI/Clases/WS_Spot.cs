@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 class WS_Spot
 {
@@ -59,6 +60,7 @@ class WS_Spot
             foreach (testigo_poi x in tes)
             {
                 t = new Testigo();
+                //String id = x.detalles_poiReference.EntityKey.EntityKeyValues[0].Value.ToString();
                 String id = x.detalles_poiReference.EntityKey.EntityKeyValues[0].Value.ToString();
                 t.spotId = Convert.ToInt32(id);
                 t.numeroEconomico = numeroEconomico;
@@ -109,7 +111,8 @@ class WS_Spot
         Boolean res = false;
         try
         {
-            POI_BD.AddTotestigo_poi(t);
+            //POI_BD.AddTotestigo_poi(t);
+            POI_BD.testigo_poi.Add(t);
             res = POI_BD.SaveChanges() > 0;
         }
         catch (Exception ex)
@@ -352,7 +355,8 @@ class WS_Spot
                 det.tiempoEspera = response.tiempoEspera;
                 det.activo = response.activo;
                 det.fechaCreacion = response.fechaCreacion;
-                POI_BD.AddTodetalles_poi(det);
+                //POI_BD.AddTodetalles_poi(det);
+                POI_BD.detalles_poi.Add(det);
                 cat_poi cat = new cat_poi();
                 cat.detalles_poi = det;
                 cat.paradaId = response.parada.paradaId;
@@ -360,7 +364,7 @@ class WS_Spot
                 cat.activo = response.parada.activo;
                 cat.clave = response.parada.clave;
                 cat.fechaCreacion = response.parada.fechaCreacion;
-                POI_BD.AddTocat_poi(cat);
+                POI_BD.cat_poi.Add(cat);
                 POI_BD.SaveChanges();
                 archivo_poi archivo = new archivo_poi();
                 archivo.detalles_poi = det;
@@ -368,14 +372,16 @@ class WS_Spot
                 archivo.nombre = response.archivo.nombre;
                 archivo.url = response.archivo.url;
                 archivo.activo = response.archivo.activo;
-                POI_BD.AddToarchivo_poi(archivo);
+                //POI_BD.AddToarchivo_poi(archivo);
+                POI_BD.archivo_poi.Add(archivo);
                 POI_BD.SaveChanges();
                 tipo_archivo_poi tipo = new tipo_archivo_poi();
                 tipo.archivo_poi = archivo;
                 tipo.spotArchivoTipoId = response.archivo.tipo.spotArchivoTipoId;
                 tipo.descripcion = response.archivo.tipo.descripcion;
                 tipo.activo = response.archivo.tipo.activo;
-                POI_BD.AddTotipo_archivo_poi(tipo);
+                //POI_BD.AddTotipo_archivo_poi(tipo);
+                POI_BD.tipo_archivo_poi.Add(tipo);
                 POI_BD.SaveChanges();
                 coor_polygon coor = null;
                 foreach (Coordenadas x in response.parada.coordenadas)
@@ -387,7 +393,8 @@ class WS_Spot
                     coor.active = x.active;
                     coor.latitud = Utilidades.ConvertirCordenadasCANaDecimalLatitud(x.latitud);
                     coor.longitud = Utilidades.ConvertirCordenadasCANaDecimalLongitud(x.longitud);
-                    POI_BD.AddTocoor_polygon(coor);
+                    POI_BD.coor_polygon.Add(coor);
+                    //POI_BD.AddTocoor_polygon(coor);
                     coor = null;
                 }
                 res = POI_BD.SaveChanges() > 0;

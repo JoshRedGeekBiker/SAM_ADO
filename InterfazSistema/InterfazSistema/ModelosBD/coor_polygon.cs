@@ -21,6 +21,8 @@ namespace InterfazSistema.ModelosBD
         public bool active { get; set; }
         public float latitud { get; set; }
         public float longitud { get; set; }
+        public float latitudCan { get; set; }
+        public float longitudCan { get; set; }
     
         public virtual cat_poi cat_poi { get; set; }
     }

@@ -20,6 +20,7 @@ namespace InterfazSistema.ModelosBD
         public System.DateTime fechaReproduccion { get; set; }
         public float latitud { get; set; }
         public float longitud { get; set; }
+        public bool enviado { get; set; }
     
         public virtual detalles_poi detalles_poi { get; set; }
     }
