@@ -256,9 +256,6 @@ public partial class frmSpots : Form
     {
 
         listView1.SelectedItems.Clear();
-        progressBar1.Visible = false;
-        progressBar1.Value = 0;
-        lblCopia.Visible = false;
 
         switch (this.Tipo)
         {
@@ -379,31 +376,31 @@ public partial class frmSpots : Form
     }
 
 
-    private void tmrProgreso_Tick(object sender, EventArgs e)
-    {
-        tmrProgreso.Stop();
+    //private void tmrProgreso_Tick(object sender, EventArgs e)
+    //{
+    //    tmrProgreso.Stop();
 
-        progressBar1.Visible = true;
-        this.lblCopia.Visible = true;
+    //    progressBar1.Visible = true;
+    //    this.lblCopia.Visible = true;
 
-        if (lblCopia.ForeColor == Color.Red)
-        {
-            lblCopia.ForeColor = Color.Yellow;
-        }
-        else if (lblCopia.ForeColor == Color.Yellow)
-        {
-            lblCopia.ForeColor = Color.Red;
-        }
+    //    if (lblCopia.ForeColor == Color.Red)
+    //    {
+    //        lblCopia.ForeColor = Color.Yellow;
+    //    }
+    //    else if (lblCopia.ForeColor == Color.Yellow)
+    //    {
+    //        lblCopia.ForeColor = Color.Red;
+    //    }
 
-        var progreso = ProgresoCopiado();
+    //    var progreso = ProgresoCopiado();
 
-        if (progreso <= 100)
-        {
-            progressBar1.Value = progreso;
-            tmrProgreso.Start();
-        }
+    //    if (progreso <= 100)
+    //    {
+    //        progressBar1.Value = progreso;
+    //        tmrProgreso.Start();
+    //    }
 
-    }
+    //}
 
     #endregion
     
