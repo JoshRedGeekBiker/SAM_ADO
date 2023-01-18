@@ -37,20 +37,11 @@
             this.btnDiscoPel = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrFecha = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnVideo = new System.Windows.Forms.PictureBox();
-            this.btnAudio = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnImagen = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).BeginInit();
             this.gpBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnUSB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDiscoPel)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnVideo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAudio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -120,7 +111,7 @@
             this.gpBox1.Controls.Add(this.btnUSB);
             this.gpBox1.Controls.Add(this.btnDiscoPel);
             this.gpBox1.Controls.Add(this.label1);
-            this.gpBox1.Location = new System.Drawing.Point(414, 158);
+            this.gpBox1.Location = new System.Drawing.Point(22, 158);
             this.gpBox1.Name = "gpBox1";
             this.gpBox1.Size = new System.Drawing.Size(340, 224);
             this.gpBox1.TabIndex = 44;
@@ -169,75 +160,12 @@
             this.tmrFecha.Interval = 1000;
             this.tmrFecha.Tick += new System.EventHandler(this.tmrFecha_Tick);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.btnVideo);
-            this.groupBox1.Controls.Add(this.btnAudio);
-            this.groupBox1.Controls.Add(this.btnImagen);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(22, 158);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 319);
-            this.groupBox1.TabIndex = 49;
-            this.groupBox1.TabStop = false;
-            // 
-            // btnVideo
-            // 
-            this.btnVideo.BackColor = System.Drawing.Color.Transparent;
-            this.btnVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnVideo.Image = global::SMFE.Properties.Resources.btl_videos;
-            this.btnVideo.Location = new System.Drawing.Point(20, 153);
-            this.btnVideo.Name = "btnVideo";
-            this.btnVideo.Size = new System.Drawing.Size(360, 55);
-            this.btnVideo.TabIndex = 46;
-            this.btnVideo.TabStop = false;
-            this.btnVideo.Click += new System.EventHandler(this.btnVideo_Click);
-            // 
-            // btnAudio
-            // 
-            this.btnAudio.BackColor = System.Drawing.Color.Transparent;
-            this.btnAudio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAudio.Image = global::SMFE.Properties.Resources.btl_audios;
-            this.btnAudio.Location = new System.Drawing.Point(20, 72);
-            this.btnAudio.Name = "btnAudio";
-            this.btnAudio.Size = new System.Drawing.Size(360, 55);
-            this.btnAudio.TabIndex = 45;
-            this.btnAudio.TabStop = false;
-            this.btnAudio.Click += new System.EventHandler(this.btnAudio_Click);
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label2.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(6, 16);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(340, 41);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Menú spots";
-            // 
-            // btnImagen
-            // 
-            this.btnImagen.BackColor = System.Drawing.Color.Transparent;
-            this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnImagen.Image = global::SMFE.Properties.Resources.btl_imagenes;
-            this.btnImagen.Location = new System.Drawing.Point(20, 242);
-            this.btnImagen.Name = "btnImagen";
-            this.btnImagen.Size = new System.Drawing.Size(360, 55);
-            this.btnImagen.TabIndex = 44;
-            this.btnImagen.TabStop = false;
-            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
-            // 
             // frmHerramientasVMD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SMFE.Properties.Resources.FondoCONblanco;
             this.ClientSize = new System.Drawing.Size(800, 601);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gpBox1);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.lblTitulo);
@@ -260,10 +188,6 @@
             this.gpBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnUSB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDiscoPel)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnVideo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAudio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnImagen)).EndInit();
             this.ResumeLayout(false);
 
     }
@@ -280,9 +204,4 @@
     private System.Windows.Forms.PictureBox btnDiscoPel;
     private System.Windows.Forms.PictureBox btnUSB;
     private System.Windows.Forms.Timer tmrFecha;
-    private System.Windows.Forms.GroupBox groupBox1;
-    private System.Windows.Forms.PictureBox btnVideo;
-    private System.Windows.Forms.PictureBox btnAudio;
-    public System.Windows.Forms.Label label2;
-    private System.Windows.Forms.PictureBox btnImagen;
 }

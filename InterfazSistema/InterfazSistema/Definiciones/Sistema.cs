@@ -9,6 +9,6 @@
         SIA = 5,
         TELEMETRIA = 6,
         MINI_SIA = 7, //Claus & ROjO
-        SIIAB_POI =8
+        POI = 8
 }
 

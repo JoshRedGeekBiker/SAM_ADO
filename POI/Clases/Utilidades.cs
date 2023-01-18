@@ -1,12 +1,13 @@
 ﻿using NCrontab;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
-class Utilidades
+public class Utilidades
 {
     public static float ConvertirDecimalesACANLatitud(float fltCordenada)
     {
@@ -250,4 +251,31 @@ class Utilidades
         //Console.WriteLine(string.Join(Environment.NewLine,from t in occurrences select $"{t:ddd, dd MMM yyyy HH:mm}"));
         //DateTime d = s.GetNextOccurrence();
     }
+
+    #region "Métodos públicos"
+    /// <summary>
+    /// Se encarga de recuperar el nombre de las carpetas que contienen un arhivo de script
+    /// para pauta de VMD del Disco de Películas
+    /// </summary>
+    /// <returns></returns>
+    public List<string> RecuperarScripts(string RutaCarpeta, int tipo)
+    {
+        List<String> ListaRetorno = new List<string>();
+
+        var RutaScripts = RutaCarpeta + (tipo == 0 ? "\\SPOTS\\Audio" : "\\SPOTS\\Video");
+
+        if (Directory.Exists(RutaScripts))
+        {
+            var Subcarpetas = Directory.GetDirectories(RutaScripts);
+
+            foreach (string dir in Subcarpetas)
+            {
+                ListaRetorno.Add(dir.Split('\\').Last());
+
+            }
+
+        }
+        return ListaRetorno;
+    }
+    #endregion
 }

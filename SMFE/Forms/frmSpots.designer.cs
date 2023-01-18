@@ -28,9 +28,9 @@ partial class frmSpots
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
             "Element"}, 0, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "Element 1"}, 0, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 15.75F));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpots));
             this.btnRegresar = new System.Windows.Forms.PictureBox();
@@ -45,7 +45,6 @@ partial class frmSpots
             this.lblTitulo = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tmrProgreso = new System.Windows.Forms.Timer(this.components);
             this.tmrFecha = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdo)).BeginInit();
@@ -62,6 +61,7 @@ partial class frmSpots
             this.btnRegresar.Size = new System.Drawing.Size(106, 81);
             this.btnRegresar.TabIndex = 49;
             this.btnRegresar.TabStop = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // lblFecha
             // 
@@ -161,6 +161,7 @@ partial class frmSpots
             this.btnAceptar.Size = new System.Drawing.Size(90, 84);
             this.btnAceptar.TabIndex = 62;
             this.btnAceptar.TabStop = false;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // lblTitulo
             // 
@@ -174,6 +175,7 @@ partial class frmSpots
             this.lblTitulo.Size = new System.Drawing.Size(316, 33);
             this.lblTitulo.TabIndex = 64;
             this.lblTitulo.Text = "Spots Multimedia";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // listView1
             // 
@@ -182,8 +184,8 @@ partial class frmSpots
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(22, 190);
             this.listView1.Name = "listView1";
@@ -192,19 +194,20 @@ partial class frmSpots
             this.listView1.TabIndex = 47;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.SmallIcon;
+            this.listView1.Click += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "img_audio.gif");
-            this.imageList1.Images.SetKeyName(1, "img_img.gif");
-            this.imageList1.Images.SetKeyName(2, "img_video.gif");
+            this.imageList1.Images.SetKeyName(1, "img_video.gif");
             // 
             // tmrFecha
             // 
             this.tmrFecha.Enabled = true;
             this.tmrFecha.Interval = 1000;
+            this.tmrFecha.Tick += new System.EventHandler(this.tmrFecha_Tick);
             // 
             // frmSpots
             // 
@@ -253,7 +256,6 @@ partial class frmSpots
     private System.Windows.Forms.PictureBox btnAceptar;
     public System.Windows.Forms.Label lblTitulo;
     private System.Windows.Forms.ListView listView1;
-    private System.Windows.Forms.Timer tmrProgreso;
     private System.Windows.Forms.ImageList imageList1;
     private System.Windows.Forms.Timer tmrFecha;
 }

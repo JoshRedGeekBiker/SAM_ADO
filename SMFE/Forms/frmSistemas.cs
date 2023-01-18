@@ -136,6 +136,12 @@ public partial class frmSistemas : Form
     /// </summary>
     public delegate void VistaHerramientasVMD();
     public event VistaHerramientasVMD MuestraHerramientasVMD;
+    // <summary>
+    /// Se encarga de mandar a mostrar el menu de herramientas
+    /// Powered ByRED 16JUN2020
+    /// </summary>
+    public delegate void VistaMenuSpots();
+    public event VistaMenuSpots MuestraMenuSpots;
 
     /// <summary>
     /// Se encarga mandar la instrucción de apagado del sistema SAM
@@ -318,6 +324,16 @@ public partial class frmSistemas : Form
     {
         UltActividad = DateTime.Now;
         MuestraHerramientasVMD();
+    }
+    /// <summary>
+    /// Se encarga de mandar a mostrar el menu de Spots POI
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnSpots_Click(object sender, EventArgs e)
+    {
+        UltActividad = DateTime.Now;
+        MuestraMenuSpots();
     }
 
     #endregion
@@ -961,7 +977,6 @@ public partial class frmSistemas : Form
     {
         BotonFocus(btnVMD.Name);
     }
-
     /// <summary>
     /// Se encarga de redimencionar el menú de sistemas cuando se aprieta el de CONDUSAT
     /// </summary>
@@ -1106,5 +1121,6 @@ public partial class frmSistemas : Form
     }
 
     #endregion
+
 }
 

@@ -231,12 +231,17 @@ public class FrontEngine : IDisposable
     //VMD
     private frmHerramientasVMD VistaHerramientasVMD;//Contiene las herramientas para VMD Powered ByRED 16JUN2020
     private frmCargadorDePautas VistaCargadorPauta; //Contiene la logica para cargar Pauta desde Medios Externos Powered ByRED 15JUN2020
-    private frmSpots VistaSpots; //Contiene los spots powered by Toto
+ 
 
     //SIA
     private frmPanelMensajes VistaMensajesSIA;//Muestra los mensajes de SIA Powered ByRED 17MAR2021 
     private frmMostrarMensaje VistaMostrarSMS;//Muestra a detalle el contenido de un mensaje Powered ByRED19MAR2021
     private frmEnviandoMensaje VistaMensajeEnviado;//Muestra cuando un mensaje ha sido enviado Powered ByRED 19MAR2021
+
+    //SIIAB POI
+    public frmMenuSpots VistaMenuSpots;//Contiene el menu spots para VMD Powered ByToto 16JUN2020
+    public frmSpots VistaSpots; //Contiene la logica para cargar Spots Powered ByToto ENERO2023
+
 
     #endregion
 
@@ -710,6 +715,7 @@ public class FrontEngine : IDisposable
         VistaSistemas.LockPant += this.BloquearPantalla;
         VistaSistemas.Ubicacion += this.GetlocationPant;
         VistaSistemas.MuestraHerramientasVMD += this.MostrarHerramientasVMD; //Powered ByRED 16JUN2020
+        VistaSistemas.MuestraMenuSpots += this.MuestraMenuSpots; //Powered ByToto 16JUN2020
         VistaSistemas.ApagarPorSistema += this.ApagadoPorSistema; //Powered ByRED 10DIC2020
         VistaSistemas.MuestraMensajesSIA += this.MostrarMensajesSIA; //Powered ByRED 17MAR2021
         VistaSistemas.LedGPSView += this.LedGPSHorarioNocturno;//Powered ByRED 27MAY2021
@@ -769,7 +775,6 @@ public class FrontEngine : IDisposable
         //ListaVistasActividad.Add("frmSync");
         //ListaVistasActividad.Add("frmHerramientasVMD");
     }
-
     /// <summary>
     /// Se encarga de levantar la primer vista
     /// para el modo configuracion
@@ -1097,8 +1102,13 @@ public class FrontEngine : IDisposable
             case "frmHerramientasVMD":
                 return VistaHerramientasVMD; //Powered ByRED 16JUN2020
 
+            case "frmMenuSpots":
+                return VistaMenuSpots; //Powered ByToto ENERO 2023
+
             case "frmCargadorDePautas":
                 return VistaCargadorPauta; // Powered ByRED 16JUN2020
+            case "frmSpots":
+                return VistaSpots; // Powered ByRED 16JUN2020
 
             case "frmPanelMensajes":
                 return VistaMensajesSIA;//Powered ByRED 17MAR2021
@@ -1152,6 +1162,9 @@ public class FrontEngine : IDisposable
 
             case "frmHerramientasVMD":
                 return VistaHerramientasVMD.VerificaActividad(TiempoCierreVentanas);
+
+            case "frmMenuSpots":
+                return VistaMenuSpots.VerificaActividad(TiempoCierreVentanas);
 
 
             default: return true; //Si no enlistamos algun Form Aquí es porque no queremos que se cierre en automatico
@@ -1319,6 +1332,9 @@ public class FrontEngine : IDisposable
             case "frmHerramientasVMD":
                 VistaHerramientasVMD.ReiniciaActividad();
                 break;
+            case "frmMenuSpots":
+                VistaMenuSpots.ReiniciaActividad();
+                break;
 
             default: return;
         }
@@ -1421,11 +1437,19 @@ public class FrontEngine : IDisposable
                 //PoweredByRED 16JUN2020
                 case "frmHerramientasVMD":
                     VistaHerramientasVMD.ActivarModonocturno(Activar);
+                    break; 
+                //PoweredByToto enero2023
+                case "frmMenuSpots":
+                    VistaMenuSpots.ActivarModonocturno(Activar);
                     break;
 
                 //PoweredByRED 16JUN2020
                 case "frmCargadorDePauta":
                     VistaCargadorPauta.ActivarModonocturno(Activar);
+                    break;
+                //PoweredByTOTO ENERO2023
+                case "frmSpots":
+                    VistaSpots.ActivarModonocturno(Activar);
                     break;
 
                 //Powered ByRED 17MAR2021
@@ -2805,6 +2829,24 @@ public class FrontEngine : IDisposable
 
         FocusON(VistaHerramientasVMD);
     }
+    /// <summary>
+    /// Se encarga de mostrar la vista de Herramientas para VMD
+    /// Powered ByRED 16JUN2020
+    /// </summary>
+    private void MuestraMenuSpots()
+    {
+        if (VistaMenuSpots == null || VistaMenuSpots.IsDisposed)
+        {
+            VistaMenuSpots = new frmMenuSpots(this.ModoPrueba, this.ModoNocturno);
+            VistaMenuSpots.Cerrar += this.CerrarForm;
+            VistaMenuSpots.Ubicacion += this.GetlocationPant;
+            VistaMenuSpots.CargadorSpots += this.MostarCargadorSpots;
+
+        }
+
+        FocusON(VistaMenuSpots);
+    }
+
 
     /// <summary>
     /// Se encarga de mostrar la vista de cargador de pauta de VMD
@@ -2880,7 +2922,6 @@ public class FrontEngine : IDisposable
                 VistaSpots.Cerrar += this.CerrarForm;
                 VistaSpots.Ubicacion += this.GetlocationPant;
                 VistaSpots.Pauta += this.ePlanchaPauta;
-                VistaSpots.PautaUSB += this.eRecuperarPautasUSB;
                 VistaSpots.MandaError += this.MostrarError;
                 VistaSpots.ProgresoCopiado += this.ePedirProgresoCopiado;
                 VistaSpots.PopUp += this.MostrarPopUp;
@@ -2896,13 +2937,10 @@ public class FrontEngine : IDisposable
             switch (tipo)
             {
                 case 0:
-                    MostrarError("No se encontraron Medios de imagenes");
+                    MostrarError("No se encontraron Medios de Audio");
                     break;
                 case 1:
-                    MostrarError("No se encontraron Medios Audio");
-                    break;
-                case 2:
-                    MostrarError("No se encontraron Medios video");
+                    MostrarError("No se encontraron Medios Video");
                     break;
 
                 default:
@@ -2980,6 +3018,23 @@ public class FrontEngine : IDisposable
         }
 
         FocusON(VistaMostrarSMS);
+    }
+    
+    /// <summary>
+    /// Este metodo se encarga de reanudar la reproducción de una pauta despues de un Spot Poi
+    /// PoweredbyToto 16/01/2023
+    /// </summary>
+    private void TerminarPoi()
+    {
+        if (VistaReproductor != null)
+        {
+            VistaReproductor.spotPoi = false;
+            InicializarRepro();
+            //Crear evento para avisar a POI que ya ser termino la reprodución del spot
+        }
+    }
+    private void MostrarSiiabPoi() {
+
     }
     #endregion
 
@@ -4366,6 +4421,16 @@ public class FrontEngine : IDisposable
     private void InicializarRepro()
     {
         if (this.VMD && !VistaReproductor.EnReproduccion()) //Powered ByRED 20JUN2020
+        {
+            SAMPLAY();
+        }
+    }
+    /// <summary>
+    /// se encarga de inicializar la logica del reproductor de VMD Spots
+    /// </summary>
+    private void InicializarReproSpots(int Tipo)
+    {
+        if (this.VMD) //Powered ByRED 20JUN2020
         {
             SAMPLAY();
         }

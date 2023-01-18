@@ -90,13 +90,6 @@ public partial class frmSpots : Form
     public delegate Task<bool> ValidarPauta(string tipo, string nombrepauta);
     public event ValidarPauta ValidaPauta;
 
-    /// <summary>
-    /// Se encarga de recuperar las pautas desde una unidad USB
-    /// </summary>
-    /// <param name="_letraUnidad"></param>
-    /// <returns></returns>
-    public delegate List<string> RecuperarPautaUSB(string _letraUnidad);
-    public event RecuperarPautaUSB PautaUSB;
 
     //Para mostrar algun Error
     public delegate void MandarError(string mensaje);
@@ -115,6 +108,10 @@ public partial class frmSpots : Form
     /// <param name="tipo"></param>
     public delegate void MostrarPopUp(string tipo);
     public event MostrarPopUp PopUp;
+
+    //Para iniciar la reproduccion del video
+    public delegate void IniciaRepro(int Tipo);
+    public event IniciaRepro Repro;
     #endregion
     #region "Métodos"
     /// <summary>
@@ -171,7 +168,6 @@ public partial class frmSpots : Form
     private void Detener()
     {
         this.tmrFecha.Stop();
-        this.tmrProgreso.Stop();
     }
     private void CargadorDePautas_Load(object sender, EventArgs e)
     {
@@ -230,22 +226,8 @@ public partial class frmSpots : Form
         if (listView1.SelectedItems.Count > 0)
         {
             ListViewItem item = listView1.SelectedItems[0];
+            SeleccionDePauta(item.Text);
 
-            if (Tipo.Equals("USB"))
-            {
-                if (stepUSB == 1)
-                {
-                    SeleccionDeUSB(item.Text);
-                }
-                else
-                {
-                    SeleccionDePauta(item.Text);
-                }
-            }
-            else
-            {
-                SeleccionDePauta(item.Text);
-            }
         }
     }
 
@@ -295,60 +277,16 @@ public partial class frmSpots : Form
     {
         PautaSeleccionada = _nombrePauta;
 
-        this.lblTitPauta.Text = "Pauta Seleccionada:";
+        this.lblTitPauta.Text = "Spot Seleccionado:";
 
         this.lblNomPauta.Text = PautaSeleccionada;
         this.lblNomPauta.Visible = true;
 
-        this.lblTitPauta1.Text = "¿Desea ingresar esta pauta?";
+        this.lblTitPauta1.Text = "¿Desea ingresar este spot?";
         this.lblTitPauta1.Visible = true;
 
         this.btnAceptar.Visible = true;
         this.BtnCancelar.Visible = true;
-
-        //Mandamos una advertencia
-        if (Tipo.Equals("USB"))
-        {
-            MandaError("Advertencia: Se copiaran todos los" + Environment.NewLine + "archivos de Video de la USB");
-        }
-    }
-
-
-    /// <summary>
-    /// Se encarga de ajustrar la patalla para un USB seleccionado
-    /// </summary>
-    /// <param name="_nombreUSB"></param>
-    private void SeleccionDeUSB(string _nombreUSB)
-    {
-        USBSeleccionado = _nombreUSB;
-
-        this.lblTitPauta.Text = "Dispositivo USB Seleccionado:";
-
-        this.lblNomPauta.Text = USBSeleccionado;
-        this.lblNomPauta.Visible = true;
-
-        this.lblTitPauta1.Text = "¿Desea cargar las pautas?";
-        this.lblTitPauta1.Visible = true;
-
-        this.btnAceptar.Visible = true;
-        this.BtnCancelar.Visible = true;
-    }
-
-    private void RecuperacionDesdeUSB(string _nombreUSB)
-    {
-        //Mandamos a recuperar las pautas del medioextraible
-        var listaObtenida = PautaUSB(_nombreUSB);
-
-        if (listaObtenida.Count > 0)
-        {
-            stepUSB++; //Subimos de Step
-            CrearLayout(listaObtenida);
-        }
-        else
-        {
-            //Mandamos un error
-            MandaError("No existen Pautas en la USB");
-        }
     }
 
     private void frmCargadorDePautas_FormClosing(object sender, FormClosingEventArgs e)
@@ -365,6 +303,11 @@ public partial class frmSpots : Form
     {
         Detener();
         Cerrar(this);
+    }
+    private void btnAceptar_Click(object sender, EventArgs e)
+    {
+        PrepararPrimerInicio();
+        Repro(Tipo);
     }
     #endregion
     #region "Timers"
@@ -403,6 +346,7 @@ public partial class frmSpots : Form
     //}
 
     #endregion
-    
+
+ 
 }
 

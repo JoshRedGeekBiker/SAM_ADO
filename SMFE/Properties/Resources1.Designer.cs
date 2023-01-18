@@ -683,6 +683,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BotonSpots {
+            get {
+                object obj = ResourceManager.GetObject("BotonSpots", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BotonVIAJEPRUEBA {
             get {
                 object obj = ResourceManager.GetObject("BotonVIAJEPRUEBA", resourceCulture);
@@ -713,6 +723,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BotonVolumenMAS1 {
+            get {
+                object obj = ResourceManager.GetObject("BotonVolumenMAS1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BotonVolumenMASNoc {
             get {
                 object obj = ResourceManager.GetObject("BotonVolumenMASNoc", resourceCulture);
@@ -726,6 +746,16 @@ namespace SMFE.Properties {
         internal static System.Drawing.Bitmap BotonVolumenMENOS {
             get {
                 object obj = ResourceManager.GetObject("BotonVolumenMENOS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BotonVolumenMENOS1 {
+            get {
+                object obj = ResourceManager.GetObject("BotonVolumenMENOS1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1267,6 +1267,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 MyPlat.ModoPrueba = confXML.ModoPrueba;
             }
         }
+      
 
         //Cargamos CAN
 
@@ -1701,6 +1702,20 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
             }
 
+        }
+        //Cargamos POI
+
+        if ((bool)ParametrosInicio.SIIAB_POI)
+        {
+            FE.SIIAB_POI = true;
+            ListaSistemas.Add(new POI());
+            var _POI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
+
+            foreach (POI p in _POI)
+            {
+                var MyPlat = (POI)p;
+                MyPlat.ModoPrueba = confXML.ModoPrueba;
+            }
         }
 
         Thread.Sleep(5000);
@@ -2963,13 +2978,13 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     /// <returns></returns>
     private List<string> eFObtenerListaSpots(int tipo)
     {
-        var _VMD = ListaSistemas.Where(x => x.Sistema == Sistema.VMD).ToList();
+        var _POI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
         var listanueva = new List<string>();
 
-        foreach (VMD v in _VMD)
+        foreach (POI v in _POI)
         {
-            var MyVMD = (VMD)v;
-            listanueva = MyVMD.ObtenerSpots();
+            var myPoi = (POI) v;
+            listanueva = myPoi.ObtenerSpots(tipo);
         }
 
         return listanueva;

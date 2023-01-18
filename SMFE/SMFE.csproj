@@ -109,6 +109,12 @@
     <Compile Include="Forms\frmDatosTelemetria.Designer.cs">
       <DependentUpon>frmDatosTelemetria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmMenuSpots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMenuSpots.Designer.cs">
+      <DependentUpon>frmMenuSpots.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmMostrarMensaje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +285,9 @@
     <EmbeddedResource Include="Forms\frmEnviandoMensaje.resx">
       <DependentUpon>frmEnviandoMensaje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMenuSpots.resx">
+      <DependentUpon>frmMenuSpots.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMostrarMensaje.resx">
       <DependentUpon>frmMostrarMensaje.cs</DependentUpon>
     </EmbeddedResource>
@@ -360,6 +369,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\BotonVolumenMENOS.gif" />
+    <None Include="Resources\BotonVolumenMAS.gif" />
+    <None Include="Resources\BotonSpots.gif" />
     <None Include="Resources\img_video.gif" />
     <None Include="Resources\img_img.gif" />
     <None Include="Resources\img_audio.gif" />

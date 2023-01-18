@@ -18,7 +18,7 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
     public int OrdenDescarga { get; set; }
     public int OrdenLoad { get; set; }
 
-    public Sistema Sistema { get { return Sistema.SIIAB_POI; } }
+    public Sistema Sistema { get { return Sistema.POI; } }
 
     public string GetVersionSistema => throw new System.NotImplementedException();
 
@@ -31,12 +31,14 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
     #region "Variables"
     //Parametros
     private can_parametrosinicio ParametrosInicioCAN;
+    private Utilidades MyUtils;
 
     //Flags
     private bool EsperandoSync = false;
 
     //Hilos
     private Thread HiloDeteccionColision;
+    private List<string> ListaSpots = new List<string>(); //PoweredByToto
 
 
     //Timers
@@ -83,6 +85,8 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
         POI_BD = new poiEntities();
         punto_actual = new POINT();
         punto_anterior = new POINT();
+        ListaSpots = new List<string>();
+        MyUtils = new Utilidades();
     }
 
     #endregion
@@ -312,15 +316,23 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
     #endregion
 
     #region "Métodos publicos"
-
+    /// <summary>
+    /// Se encarga de pedir el nombre de los Spots
+    /// </summary>
+    /// <returns></returns>
+    public List<string> ObtenerSpots(int tipo)
+    {
+        ListaSpots = MyUtils.RecuperarScripts(ParametrosInicioCAN.CarpetaVideos, tipo);
+        return ListaSpots;
+    }
     #endregion
 
     #region "Métodos heredados"
     public void Inicializar()
     {
-        CargarCatalogos();
+        //CargarCatalogos();
         //CrearGPS();
-        DetectarColisiones();
+        //DetectarColisiones();
     }
 
     public void Finalizar()
@@ -356,7 +368,7 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
 
     public void Actualizar()
     {
-        throw new System.NotImplementedException();
+       
     }
     #endregion
 

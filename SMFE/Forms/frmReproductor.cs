@@ -38,6 +38,7 @@ public partial class frmReproductor : Form
     public int AudioTemp = 0; //Powered ByRED 31MAR2021
     private static System.Timers.Timer TmrActividad;
     private static System.Timers.Timer TmrRevisarReproduccion;
+    public bool spotPoi = false;
 
     private Thread hiloBarridoCintillo;//Powered ByRED 22ABR2021
 
@@ -116,6 +117,8 @@ public partial class frmReproductor : Form
     public event delEstadoVideoReproduccion evtEstadoReproduccion;
     public delegate void delAgregarLog(string VideoURL, int idPelicula, int MinutosMax, bool Ejecuta);
     public event delAgregarLog evtAgregarLog;
+    public delegate void delTerminarPoi();
+    public event delTerminarPoi evtTerminarPoi;
 
     /// <summary>
     /// Sirve para trar los datos mutimedia
@@ -628,10 +631,18 @@ public partial class frmReproductor : Form
 
         try
         {
-            if (vlcControl1.State != MediaStates.Playing) return;
-            var posicion = (double)this.vlcControl1.Position;
-            var Longitud = (double)this.vlcControl1.Length;
-            evtActualizaActividad(posicion, Longitud);
+            if (vlcControl1.State == MediaStates.Playing) {
+                if (spotPoi) return;
+                var posicion = (double)this.vlcControl1.Position;
+                var Longitud = (double)this.vlcControl1.Length;
+                evtActualizaActividad(posicion, Longitud);
+            }
+            else {
+                if (spotPoi) {
+                    //Crear evento para avisar a Front engine  para reanudar el video
+                    evtTerminarPoi();
+                }
+            }
         }
         catch (Exception o)
         {

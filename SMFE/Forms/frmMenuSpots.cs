@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SMFE.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,29 +8,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SMFE.Properties;
 
 
-/// <summary>
-/// Este Form se creo el 16JUN2020 Powered ByRED
-/// </summary>
-public partial class frmHerramientasVMD : Form
+public partial class frmMenuSpots : Form
 {
+
     #region "Constructores"
-    /// <summary>
-    /// Constructor Principal
-    /// </summary>
-    public frmHerramientasVMD()
+    public frmMenuSpots()
     {
         InitializeComponent();
     }
-
     /// <summary>
     /// Constructor productivo
     /// </summary>
     /// <param name="_modoPrueba"></param>
     /// <param name="Nocturno"></param>
-    public frmHerramientasVMD(bool _ModoPrueba, bool Nocturno)
+    public frmMenuSpots(bool _ModoPrueba, bool Nocturno)
     {
         InitializeComponent();
 
@@ -51,16 +45,17 @@ public partial class frmHerramientasVMD : Form
     }
     #endregion
 
-    #region "Propiedades"
+    #region "Porpiedades"
     private bool ModoNocturno { get; set; } = false;
+
     #endregion
 
     #region "Variables"
     private DateTime UltActividad;
+
     #endregion
 
     #region "Eventos"
-    //Avisa al front para que cierre correctamente el form
     public delegate void CerrarForm(Form vista);
     public event CerrarForm Cerrar;
 
@@ -70,13 +65,9 @@ public partial class frmHerramientasVMD : Form
     /// <returns></returns>
     public delegate Point ObtenerUbicacion();
     public event ObtenerUbicacion Ubicacion;
-
     /// <summary>
-    /// Se encargará de mandar a llamar el cargador de PAutas
+    /// Se encargará de mandar a llamar el cargador de Spots
     /// </summary>
-    public delegate void VMDCargadorPautas(string tipo);
-    public event VMDCargadorPautas CargadorPautas;
-
     public delegate void VMDCargadorSpots(int tipo);
     public event VMDCargadorSpots CargadorSpots;
     #endregion
@@ -102,8 +93,6 @@ public partial class frmHerramientasVMD : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESARNoc;
-                btnDiscoPel.BackgroundImage = Resources.btn_discopeliculasNoc;
-                btnUSB.BackgroundImage = Resources.btn_medioextraibleusbNoc;
 
                 ModoNocturno = true;
             }
@@ -121,8 +110,6 @@ public partial class frmHerramientasVMD : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESAR;
-                btnDiscoPel.BackgroundImage = Resources.btn_discopeliculas;
-                btnUSB.BackgroundImage = Resources.btn_medioextraibleusb;
 
                 ModoNocturno = false;
             }
@@ -164,21 +151,20 @@ public partial class frmHerramientasVMD : Form
     {
         this.tmrFecha.Stop();
     }
-    private void frmHerramientasVMD_Load(object sender, EventArgs e)
+    private void frmMenuSpots_Load(object sender, EventArgs e)
     {
         this.Location = Ubicacion();
         UltActividad = DateTime.Now;
         this.TopMost = true;
     }
-
-    private void frmHerramientasVMD_Click(object sender, EventArgs e)
+    private void frmMenuSpots_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
-    }
 
-    private void frmHerramientasVMD_FormClosing(object sender, FormClosingEventArgs e)
+    }
+    private void frmMenuSpots_FormClosing(object sender, FormClosingEventArgs e)
     {
-        //Powered ByRED 10DIC2020
+        //Powered ByToto ENERO2023
         if (e.CloseReason != CloseReason.WindowsShutDown)
         {
             e.Cancel = true;
@@ -188,18 +174,6 @@ public partial class frmHerramientasVMD : Form
     #endregion
 
     #region "Botones"
-
-    private void btnDiscoPel_Click(object sender, EventArgs e)
-    {
-        UltActividad = DateTime.Now;
-        CargadorPautas("HD");
-    }
-
-    private void btnUSB_Click(object sender, EventArgs e)
-    {
-        UltActividad = DateTime.Now;
-        CargadorPautas("USB");
-    }
     private void btnAudio_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
@@ -229,5 +203,10 @@ public partial class frmHerramientasVMD : Form
         lblFecha.Text = DateTime.Now.ToString();
         tmrFecha.Start();
     }
+
+
     #endregion
+
+   
 }
+

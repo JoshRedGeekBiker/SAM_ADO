@@ -246,6 +246,7 @@
     #endregion
 
     public Vlc.DotNet.Forms.VlcControl vlcControl1;
+    public Vlc.DotNet.Forms.VlcControl vlcControl2;
     public Vlc.DotNet.Forms.VlcControl Mp3;
     public System.Windows.Forms.Panel BackImage;
     public System.Windows.Forms.PictureBox pictureBox1;

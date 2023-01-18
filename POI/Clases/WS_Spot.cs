@@ -61,8 +61,7 @@ class WS_Spot
             {
                 t = new Testigo();
                 //String id = x.detalles_poiReference.EntityKey.EntityKeyValues[0].Value.ToString();
-                //String id = x.detalles_poiReference.EntityKey.EntityKeyValues[0].Value.ToString();
-                String id = "";
+                var id = x.id_testigo_poi;
                 t.spotId = Convert.ToInt32(id);
                 t.numeroEconomico = numeroEconomico;
                 t.fechaReproduccion = x.fechaReproduccion;

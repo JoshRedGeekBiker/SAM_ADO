@@ -69,6 +69,7 @@
             this.imgStatusInternet = new System.Windows.Forms.PictureBox();
             this.lblTituloSIA = new System.Windows.Forms.Label();
             this.frmVMD = new System.Windows.Forms.GroupBox();
+            this.btnSpots = new System.Windows.Forms.PictureBox();
             this.btnHerramientasVMD = new System.Windows.Forms.PictureBox();
             this.btnVolumeDown = new System.Windows.Forms.PictureBox();
             this.btnNuevaPauta = new System.Windows.Forms.PictureBox();
@@ -106,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMensajes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgStatusInternet)).BeginInit();
             this.frmVMD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSpots)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHerramientasVMD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVolumeDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevaPauta)).BeginInit();
@@ -649,6 +651,7 @@
             // 
             this.frmVMD.BackColor = System.Drawing.Color.Transparent;
             this.frmVMD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.frmVMD.Controls.Add(this.btnSpots);
             this.frmVMD.Controls.Add(this.btnHerramientasVMD);
             this.frmVMD.Controls.Add(this.btnVolumeDown);
             this.frmVMD.Controls.Add(this.btnNuevaPauta);
@@ -669,12 +672,24 @@
             this.frmVMD.TabStop = false;
             this.frmVMD.Enter += new System.EventHandler(this.btnNuevaPauta_Click);
             // 
+            // btnSpots
+            // 
+            this.btnSpots.BackgroundImage = global::SMFE.Properties.Resources.BotonSpots;
+            this.btnSpots.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSpots.Location = new System.Drawing.Point(315, 329);
+            this.btnSpots.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSpots.Name = "btnSpots";
+            this.btnSpots.Size = new System.Drawing.Size(78, 89);
+            this.btnSpots.TabIndex = 50;
+            this.btnSpots.TabStop = false;
+            this.btnSpots.Click += new System.EventHandler(this.btnSpots_Click);
+            // 
             // btnHerramientasVMD
             // 
             this.btnHerramientasVMD.BackColor = System.Drawing.Color.Transparent;
             this.btnHerramientasVMD.BackgroundImage = global::SMFE.Properties.Resources.BotonHerramientas;
             this.btnHerramientasVMD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnHerramientasVMD.Location = new System.Drawing.Point(469, 329);
+            this.btnHerramientasVMD.Location = new System.Drawing.Point(473, 329);
             this.btnHerramientasVMD.Name = "btnHerramientasVMD";
             this.btnHerramientasVMD.Size = new System.Drawing.Size(78, 89);
             this.btnHerramientasVMD.TabIndex = 49;
@@ -683,12 +698,12 @@
             // 
             // btnVolumeDown
             // 
-            this.btnVolumeDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVolumeDown.BackgroundImage")));
+            this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOS1;
             this.btnVolumeDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVolumeDown.Location = new System.Drawing.Point(393, 329);
+            this.btnVolumeDown.Location = new System.Drawing.Point(394, 369);
             this.btnVolumeDown.Margin = new System.Windows.Forms.Padding(0);
             this.btnVolumeDown.Name = "btnVolumeDown";
-            this.btnVolumeDown.Size = new System.Drawing.Size(78, 89);
+            this.btnVolumeDown.Size = new System.Drawing.Size(78, 55);
             this.btnVolumeDown.TabIndex = 48;
             this.btnVolumeDown.TabStop = false;
             this.btnVolumeDown.Click += new System.EventHandler(this.btnVolumeDown_Click);
@@ -707,12 +722,12 @@
             // 
             // btnVolumeUp
             // 
-            this.btnVolumeUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVolumeUp.BackgroundImage")));
+            this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMAS1;
             this.btnVolumeUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVolumeUp.Location = new System.Drawing.Point(315, 329);
+            this.btnVolumeUp.Location = new System.Drawing.Point(394, 314);
             this.btnVolumeUp.Margin = new System.Windows.Forms.Padding(0);
             this.btnVolumeUp.Name = "btnVolumeUp";
-            this.btnVolumeUp.Size = new System.Drawing.Size(78, 89);
+            this.btnVolumeUp.Size = new System.Drawing.Size(78, 55);
             this.btnVolumeUp.TabIndex = 46;
             this.btnVolumeUp.TabStop = false;
             this.btnVolumeUp.Click += new System.EventHandler(this.btnVolumeUp_Click);
@@ -981,6 +996,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMensajes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgStatusInternet)).EndInit();
             this.frmVMD.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSpots)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnHerramientasVMD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVolumeDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNuevaPauta)).EndInit();
@@ -1061,4 +1077,5 @@
     public System.Windows.Forms.PictureBox imgStatusInternet;
     private System.Windows.Forms.PictureBox btn_Panico;
     private System.Windows.Forms.Timer tmr_Robo;
+    private System.Windows.Forms.PictureBox btnSpots;
 }
