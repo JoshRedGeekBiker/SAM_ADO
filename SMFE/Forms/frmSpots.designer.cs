@@ -28,9 +28,9 @@ partial class frmSpots
     private void InitializeComponent()
     {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "Element"}, 0, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0))));
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "Element 1"}, 0, System.Drawing.Color.Empty, System.Drawing.Color.Empty, new System.Drawing.Font("Microsoft Sans Serif", 15.75F));
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSpots));
             this.btnRegresar = new System.Windows.Forms.PictureBox();
@@ -151,6 +151,7 @@ partial class frmSpots
             this.BtnCancelar.Size = new System.Drawing.Size(90, 84);
             this.BtnCancelar.TabIndex = 63;
             this.BtnCancelar.TabStop = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -184,8 +185,8 @@ partial class frmSpots
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(22, 190);
             this.listView1.Name = "listView1";
@@ -214,7 +215,7 @@ partial class frmSpots
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::SMFE.Properties.Resources.FondoCONblanco;
-            this.ClientSize = new System.Drawing.Size(798, 595);
+            this.ClientSize = new System.Drawing.Size(800, 601);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.BtnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -228,13 +229,14 @@ partial class frmSpots
             this.Controls.Add(this.imgAdo);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(814, 634);
-            this.MinimumSize = new System.Drawing.Size(814, 634);
+            this.MaximumSize = new System.Drawing.Size(816, 640);
+            this.MinimumSize = new System.Drawing.Size(816, 640);
             this.Name = "frmSpots";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CargadorSpots";
+            this.Load += new System.EventHandler(this.frmSpots_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnCancelar)).EndInit();

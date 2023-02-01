@@ -689,7 +689,7 @@
             this.btnHerramientasVMD.BackColor = System.Drawing.Color.Transparent;
             this.btnHerramientasVMD.BackgroundImage = global::SMFE.Properties.Resources.BotonHerramientas;
             this.btnHerramientasVMD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnHerramientasVMD.Location = new System.Drawing.Point(473, 329);
+            this.btnHerramientasVMD.Location = new System.Drawing.Point(394, 329);
             this.btnHerramientasVMD.Name = "btnHerramientasVMD";
             this.btnHerramientasVMD.Size = new System.Drawing.Size(78, 89);
             this.btnHerramientasVMD.TabIndex = 49;
@@ -700,7 +700,7 @@
             // 
             this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOS1;
             this.btnVolumeDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVolumeDown.Location = new System.Drawing.Point(394, 369);
+            this.btnVolumeDown.Location = new System.Drawing.Point(473, 369);
             this.btnVolumeDown.Margin = new System.Windows.Forms.Padding(0);
             this.btnVolumeDown.Name = "btnVolumeDown";
             this.btnVolumeDown.Size = new System.Drawing.Size(78, 55);
@@ -724,7 +724,7 @@
             // 
             this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMAS1;
             this.btnVolumeUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnVolumeUp.Location = new System.Drawing.Point(394, 314);
+            this.btnVolumeUp.Location = new System.Drawing.Point(473, 314);
             this.btnVolumeUp.Margin = new System.Windows.Forms.Padding(0);
             this.btnVolumeUp.Name = "btnVolumeUp";
             this.btnVolumeUp.Size = new System.Drawing.Size(78, 55);

@@ -322,7 +322,7 @@ public class POI : IBDContext, IBDContextPOI, IGPS, ISistema
     /// <returns></returns>
     public List<string> ObtenerSpots(int tipo)
     {
-        ListaSpots = MyUtils.RecuperarScripts(ParametrosInicioCAN.CarpetaVideos, tipo);
+        ListaSpots = MyUtils.RecuperarSpots(ParametrosInicioCAN.CarpetaVideos, tipo);
         return ListaSpots;
     }
     #endregion

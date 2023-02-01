@@ -258,19 +258,19 @@ public class Utilidades
     /// para pauta de VMD del Disco de Películas
     /// </summary>
     /// <returns></returns>
-    public List<string> RecuperarScripts(string RutaCarpeta, int tipo)
+    public List<string> RecuperarSpots(string RutaCarpeta, int tipo)
     {
         List<String> ListaRetorno = new List<string>();
 
-        var RutaScripts = RutaCarpeta + (tipo == 0 ? "\\SPOTS\\Audio" : "\\SPOTS\\Video");
+        var rutaSpots = RutaCarpeta + (tipo == 0 ? "\\PUBLICIDAD\\AUDIOS" : "\\PUBLICIDAD\\VIDEOS");
 
-        if (Directory.Exists(RutaScripts))
+        if (Directory.Exists(rutaSpots))
         {
-            var Subcarpetas = Directory.GetDirectories(RutaScripts);
+            var Subcarpetas = Directory.GetFiles(rutaSpots);
 
             foreach (string dir in Subcarpetas)
             {
-                ListaRetorno.Add(dir.Split('\\').Last());
+                ListaRetorno.Add(dir);
 
             }
 

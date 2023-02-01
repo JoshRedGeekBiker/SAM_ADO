@@ -27,7 +27,7 @@ public partial class frmSpots : Form
     /// </summary>
     /// <param name="_ModoPrueba"></param>
     /// <param name="Nocturno"></param>
-    public frmSpots(bool _ModoPrueba, bool Nocturno, List<string> Items, int _tipo)
+    public frmSpots(bool _ModoPrueba, bool Nocturno, List<string> Items, int _tipo, List<String> Spots)
     {
         Tipo = _tipo;
         InitializeComponent();
@@ -40,7 +40,7 @@ public partial class frmSpots : Form
             this.Size = new Size(800, 600);
             Cursor.Hide();
         }
-
+        listaSpots = Spots;
         CrearLayout(Items);
 
         lblFecha.Text = DateTime.Now.ToString();
@@ -49,22 +49,24 @@ public partial class frmSpots : Form
         {
             ActivarModonocturno(Nocturno);
         }
+
     }
     #endregion
     #region "Propiedades"
     private bool ModoNocturno { get; set; } = false;
     private int Tipo { get; set; }
-    private string PautaSeleccionada { get; set; } = "";
-    private string USBSeleccionado { get; set; } = "";
+    private string SpotSeleccionado { get; set; } = "";
+    public List<String> listaSpots = null;
     #endregion
     #region "Variables"
     private int stepUSB = 1;
+    private String path = "";
     #endregion
     #region "Eventos"
     //Avisa al front para que cierre correctamente el form
     public delegate void CerrarForm(Form vista);
     public event CerrarForm Cerrar;
-
+    private DateTime UltActividad;
     /// <summary>
     /// Se encarga de recuperar la ubicación de la pantalla principal
     /// </summary>
@@ -110,8 +112,8 @@ public partial class frmSpots : Form
     public event MostrarPopUp PopUp;
 
     //Para iniciar la reproduccion del video
-    public delegate void IniciaRepro(int Tipo);
-    public event IniciaRepro Repro;
+    public delegate void IniciaRepro(int Tipo, String rutaSpot, List<String>lSpots);
+    public event IniciaRepro ReproducirSpot;
     #endregion
     #region "Métodos"
     /// <summary>
@@ -169,7 +171,7 @@ public partial class frmSpots : Form
     {
         this.tmrFecha.Stop();
     }
-    private void CargadorDePautas_Load(object sender, EventArgs e)
+    private void frmSpots_Load(object sender, EventArgs e)
     {
         this.Location = Ubicacion();
         this.TopMost = true;
@@ -188,28 +190,17 @@ public partial class frmSpots : Form
 
         var index = 0;
         lblPauta.Text = "Spots disponibles: ";
-        //if (Tipo.Equals("USB"))
-        //{
-
-        //    if (stepUSB == 1)
-        //    {
-        //        lblPauta.Text = "Medios Extraibles:";
-        //        index = 1;
-        //    }
-        //    else
-        //    {
-        //        lblPauta.Text = "Pautas en USB";
-        //    }
-
-        //}
-        //else
-        //{
-        //    lblPauta.Text = "Pautas en Disco:";
-        //}
-
+        bool primera = true;
         foreach (string item in Items)
         {
-            ListViewItem nuevoitem = new ListViewItem(item, Tipo);
+            if (primera) {
+                path += item.Split('\\').First();
+                path += "\\" + item.Split('\\').ElementAt(1);
+                path += "\\" + item.Split('\\').ElementAt(2);
+                path += "\\" + item.Split('\\').ElementAt(3) + "\\" ;
+                primera = false;
+            }
+            ListViewItem nuevoitem = new ListViewItem(item.Split('\\').Last(), Tipo);
             nuevoitem.Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Bold);
             listView1.Items.Add(nuevoitem);
         }
@@ -226,7 +217,7 @@ public partial class frmSpots : Form
         if (listView1.SelectedItems.Count > 0)
         {
             ListViewItem item = listView1.SelectedItems[0];
-            SeleccionDePauta(item.Text);
+            SeleccionDeSpot(item.Text);
 
         }
     }
@@ -239,24 +230,8 @@ public partial class frmSpots : Form
 
         listView1.SelectedItems.Clear();
 
-        switch (this.Tipo)
-        {
-            case 0:
 
-                if (stepUSB == 1)
-                {
-                    this.lblTitPauta.Text = "Seleccione un Disco Extraíble";
-                }
-                else
-                {
-                    this.lblTitPauta.Text = "Seleccione una Pauta";
-                }
-                break;
-
-            default:
-                this.lblTitPauta.Text = "Seleccione una Pauta";
-                break;
-        }
+        this.lblTitPauta.Text = "Seleccione un Spot";
 
         this.lblNomPauta.Text = "";
         this.lblNomPauta.Visible = false;
@@ -266,20 +241,20 @@ public partial class frmSpots : Form
         this.btnAceptar.Visible = false;
         this.BtnCancelar.Visible = false;
 
-        PautaSeleccionada = "";
+        SpotSeleccionado = "";
     }
 
     /// <summary>
-    /// Se encarga de ajustar la pantalla para una pauta seleccionada
+    /// Se encarga de ajustar la pantalla para un spot seleccionado
     /// </summary>
-    /// <param name="_nombrePauta"></param>
-    private void SeleccionDePauta(string _nombrePauta)
+    /// <param name="_nombreSpot"></param>
+    private void SeleccionDeSpot(string _nombreSpot)
     {
-        PautaSeleccionada = _nombrePauta;
+        SpotSeleccionado = _nombreSpot;
 
         this.lblTitPauta.Text = "Spot Seleccionado:";
 
-        this.lblNomPauta.Text = PautaSeleccionada;
+        this.lblNomPauta.Text = SpotSeleccionado;
         this.lblNomPauta.Visible = true;
 
         this.lblTitPauta1.Text = "¿Desea ingresar este spot?";
@@ -289,6 +264,22 @@ public partial class frmSpots : Form
         this.BtnCancelar.Visible = true;
     }
 
+    /// <summary>
+    /// Se encarga de ajustar la pantalla como al inicio
+    /// </summary>
+    private void deseleccionarSpot()
+    {
+        this.lblTitPauta.Text = "Selecciona un Spot:";
+
+        this.lblNomPauta.Text = "";
+        this.lblNomPauta.Visible = false;
+
+        this.lblTitPauta1.Text = "";
+        this.lblTitPauta1.Visible = false;
+
+        this.btnAceptar.Visible = false;
+        this.BtnCancelar.Visible = false;
+    }
     private void frmCargadorDePautas_FormClosing(object sender, FormClosingEventArgs e)
     {
         //Powered ByRED 10DIC2020
@@ -306,8 +297,12 @@ public partial class frmSpots : Form
     }
     private void btnAceptar_Click(object sender, EventArgs e)
     {
-        PrepararPrimerInicio();
-        Repro(Tipo);
+        ReproducirSpot(Tipo, path+SpotSeleccionado, listaSpots);
+    }
+
+    private void BtnCancelar_Click(object sender, EventArgs e)
+    {
+        deseleccionarSpot();
     }
     #endregion
     #region "Timers"
@@ -317,6 +312,7 @@ public partial class frmSpots : Form
         lblFecha.Text = DateTime.Now.ToString();
         tmrFecha.Start();
     }
+
 
 
     //private void tmrProgreso_Tick(object sender, EventArgs e)
@@ -344,9 +340,24 @@ public partial class frmSpots : Form
     //    }
 
     //}
-
+    /// <summary>
+    /// Se encarga de verificar si ya pasó el tiempo de 
+    /// actividad del form
+    /// </summary>
+    /// <returns></returns>
+    public bool VerificaActividad(int TiempoEspera)
+    {
+        if ((DateTime.Now - UltActividad).TotalSeconds >= TiempoEspera)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     #endregion
 
- 
+  
 }
 

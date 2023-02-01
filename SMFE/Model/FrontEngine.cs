@@ -231,7 +231,7 @@ public class FrontEngine : IDisposable
     //VMD
     private frmHerramientasVMD VistaHerramientasVMD;//Contiene las herramientas para VMD Powered ByRED 16JUN2020
     private frmCargadorDePautas VistaCargadorPauta; //Contiene la logica para cargar Pauta desde Medios Externos Powered ByRED 15JUN2020
- 
+
 
     //SIA
     private frmPanelMensajes VistaMensajesSIA;//Muestra los mensajes de SIA Powered ByRED 17MAR2021 
@@ -735,6 +735,9 @@ public class FrontEngine : IDisposable
             VistaReproductor.evtPosicionVideo += this.Func_PosicionVideo;
             VistaReproductor.evtEstadoReproduccion += this.Func_EstadoReproduccion;
             VistaReproductor.evtAgregarLog += this.Func_AgregarLogReproductor;
+            VistaReproductor.evtTerminarPoi += this.TerminaSpotPoi;
+            VistaReproductor.ReanudarPeliculaPOI += this.InicializarRepro;
+
 
             //Asignamos la posición al reproductor
             VistaReproductor.Location = GetlocationPantSec();
@@ -1166,6 +1169,9 @@ public class FrontEngine : IDisposable
             case "frmMenuSpots":
                 return VistaMenuSpots.VerificaActividad(TiempoCierreVentanas);
 
+            case "frmSpots":
+                return VistaMenuSpots.VerificaActividad(60);
+
 
             default: return true; //Si no enlistamos algun Form Aquí es porque no queremos que se cierre en automatico
 
@@ -1437,7 +1443,7 @@ public class FrontEngine : IDisposable
                 //PoweredByRED 16JUN2020
                 case "frmHerramientasVMD":
                     VistaHerramientasVMD.ActivarModonocturno(Activar);
-                    break; 
+                    break;
                 //PoweredByToto enero2023
                 case "frmMenuSpots":
                     VistaMenuSpots.ActivarModonocturno(Activar);
@@ -2913,11 +2919,11 @@ public class FrontEngine : IDisposable
         if (listaSpots.Count > 0)
         {
             //Mandamos a detener la película, si hubiera en reproducción
-            Func_DetenerPelicula();
+            //Func_DetenerPelicula();
 
             if (VistaSpots == null || VistaSpots.IsDisposed)
             {
-                VistaSpots = new frmSpots(this.ModoPrueba, this.ModoNocturno, listaSpots, tipo);
+                VistaSpots = new frmSpots(this.ModoPrueba, this.ModoNocturno, listaSpots, tipo, listaSpots);
 
                 VistaSpots.Cerrar += this.CerrarForm;
                 VistaSpots.Ubicacion += this.GetlocationPant;
@@ -2925,7 +2931,7 @@ public class FrontEngine : IDisposable
                 VistaSpots.MandaError += this.MostrarError;
                 VistaSpots.ProgresoCopiado += this.ePedirProgresoCopiado;
                 VistaSpots.PopUp += this.MostrarPopUp;
-
+                VistaSpots.ReproducirSpot += this.ReproduceSpotPOI;
                 VistaSpots.ValidaPauta += this.eValidaPauta; //Powered byToto 2023
             }
 
@@ -3019,23 +3025,8 @@ public class FrontEngine : IDisposable
 
         FocusON(VistaMostrarSMS);
     }
-    
-    /// <summary>
-    /// Este metodo se encarga de reanudar la reproducción de una pauta despues de un Spot Poi
-    /// PoweredbyToto 16/01/2023
-    /// </summary>
-    private void TerminarPoi()
-    {
-        if (VistaReproductor != null)
-        {
-            VistaReproductor.spotPoi = false;
-            InicializarRepro();
-            //Crear evento para avisar a POI que ya ser termino la reprodución del spot
-        }
-    }
-    private void MostrarSiiabPoi() {
 
-    }
+
     #endregion
 
 
@@ -4435,6 +4426,50 @@ public class FrontEngine : IDisposable
             SAMPLAY();
         }
     }
+    /// <summary>
+    /// SE encarga de iniciar la logica para reproducir un nuevo spot
+    /// </summary>
+    private void ReproduceSpotPOI(int tipo, String nombreSpot, List<String> lSPots)
+    {
+        //VistaReproductor.PlaySobrePlay = playToPlay;
+        if (VistaReproductor != null)
+        {
+            if (!VistaReproductor.spotPoi) { Func_DetenerPeliculaPOI(); }
+            //switch (tipo)
+            //{
+            //    case 0:
+            //        VistaReproductor.ReproducirMP3POI(nombreSpot);
+            //        break;
+            //    case 1:
+            //        VistaReproductor.Func_SpotPlay(new frmReproductor.SpotPoi
+            //        {
+            //            idArchivo = 0,
+            //            rutaVideo = nombreSpot
+            //        },
+            //    true);
+            //        break;
+            //}
+                    VistaReproductor.Func_SpotPlay(new frmReproductor.SpotPoi
+                    {
+                        idArchivo = VistaReproductor.colaSpots.Count(),
+                        rutaVideo = nombreSpot,
+                        tipoSpot = tipo
+                    },
+                true);
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    private void TerminaSpotPoi()
+    {
+        if (VistaReproductor != null)
+        {
+            VistaReproductor.spotPoi = false;
+            InicializarRepro();
+        }
+    }
     // public void Func_BuscarPauta()
     //  {
     //      eVMDbuscarPauta();
@@ -4522,6 +4557,10 @@ public class FrontEngine : IDisposable
         VistaReproductor.Func_DetenerPelicula();
     }
 
+    public void Func_DetenerPeliculaPOI()
+    {
+        VistaReproductor.Func_DetenerPeliculaPOI();
+    }
     /// <summary>
     /// Se encarga de detener la pelicula por sincronización ByRed
     /// </summary>

@@ -17,7 +17,10 @@ public partial class frmReproductor : Form
     #region "Propiedades"
     public VideoVMD VideoEnReproduccion { get; set; }
     public VideoVMD VideoAnterior { get; set; }
+    public SpotPoi SpotEnReproduccion { get; set; }
+    public SpotPoi SpotSiguiente { get; set; }
     public List<VideoVMD> ColaVideo { get; set; }
+    public List<SpotPoi> colaSpots { get; set; }
     public bool detenida { get; set; } = false;
     public string Error_ { get; set; }
     public ParametrosCintillo ParamCintillo { get; set; }
@@ -38,6 +41,7 @@ public partial class frmReproductor : Form
     public int AudioTemp = 0; //Powered ByRED 31MAR2021
     private static System.Timers.Timer TmrActividad;
     private static System.Timers.Timer TmrRevisarReproduccion;
+    private static System.Timers.Timer TmrDuracion; //Powered ByRED 26ENE2023
     public bool spotPoi = false;
 
     private Thread hiloBarridoCintillo;//Powered ByRED 22ABR2021
@@ -64,6 +68,7 @@ public partial class frmReproductor : Form
         }
 
         ColaVideo = new List<VideoVMD>();
+        colaSpots = new List<SpotPoi>();
         TmrActividad = new System.Timers.Timer(1000);
         TmrRevisarReproduccion = new System.Timers.Timer(5000);
         TmrActividad.Enabled = false;
@@ -71,9 +76,14 @@ public partial class frmReproductor : Form
         TmrActividad.Elapsed += new System.Timers.ElapsedEventHandler(tmrActividad_Tick);
         TmrRevisarReproduccion.Elapsed += new System.Timers.ElapsedEventHandler(tmrRevisarVideo_Tick);
 
+        //Powered ByRED 26ENE2023
+        TmrDuracion = new System.Timers.Timer(1000);
+        TmrDuracion.Enabled = false;
+        TmrDuracion.Elapsed += new System.Timers.ElapsedEventHandler(tmrDuracion_Tick);
+
         //hiloBarridoCintillo = new Thread(new ThreadStart(BarridoCintillo));
 
-}
+    }
 
     /// <summary>
     /// Se ocupara para Modo Configuración
@@ -92,6 +102,7 @@ public partial class frmReproductor : Form
             Cursor.Hide();
         }
         ColaVideo = new List<VideoVMD>();
+        colaSpots = new List<SpotPoi>();
         TmrActividad = new System.Timers.Timer(1000);
         TmrRevisarReproduccion = new System.Timers.Timer(5000);
         TmrActividad.Enabled = false;
@@ -120,6 +131,8 @@ public partial class frmReproductor : Form
     public delegate void delTerminarPoi();
     public event delTerminarPoi evtTerminarPoi;
 
+    public delegate void delReaudarPeliculaPOI();
+    public event delReaudarPeliculaPOI ReanudarPeliculaPOI;
     /// <summary>
     /// Sirve para trar los datos mutimedia
     /// Powered ByRED 30MAR2021
@@ -173,6 +186,7 @@ public partial class frmReproductor : Form
         evtEstadoReproduccion("play");
 
         TmrActividad.Start();//Powered ByRED 20JUN2020
+        TmrDuracion.Start();//Powered ByRED 24ENE2023
 
     }
 
@@ -193,7 +207,71 @@ public partial class frmReproductor : Form
         Func_ReproductorPlay();
 
     }
+    public void Func_SpotPlay(SpotPoi VideoEntrante, bool DetenerVideoActual)
+    {
 
+        if (vlcControl1.State == MediaStates.Playing)
+        {
+            colaSpots.Add(VideoEntrante);
+            VideoEntrante.idArchivo = VideoEntrante.idArchivo + 1;
+            return;
+        }
+
+        this.SpotEnReproduccion = VideoEntrante;
+        //En este punto ya deja reproducir
+        //switch (tipo) {
+        //    case 0:
+        //        ReproducirMP3POI();
+        //        break;
+        //    case 1:
+        //        Func_ReproSpots(tipo);
+        //        break;
+        //}
+        Func_ReproSpots();
+    }
+    /// <summary>
+    /// Metodo que reproduce los Spots
+    /// </summary>
+    /// <param name="VideoEntrante"></param>
+    /// <param name="DetenerVideoActual"></param>
+    public void Func_ReproSpots()
+    {
+
+        var archivo = new System.IO.FileInfo(this.SpotEnReproduccion.rutaVideo );
+        this.vlcControl1.SetMedia(archivo);
+        this.vlcControl1.BringToFront();
+        if (SpotEnReproduccion.tipoSpot == 1)
+        {
+            this.vlcControl1.Visible = true;
+        }
+        //this.vlcControl1.Play();
+        evtEstadoReproduccion("play");//Avisa al Front para cambiar el ícono
+        var posicion = (float)this.VideoEnReproduccion.posicion;
+        //this.vlcControl1.Position = posicion; //Debemos de poner la posición más adelante
+        //this.vlcControl1.Audio.Volume = AudioInicial;
+
+        //var hilo = new System.Threading.Thread(Func_EstablecerPosicionInicial);
+        //hilo.IsBackground = true;
+        //hilo.Start();//En caso de que no cambie la posición pido la ejecución desde este hilo
+
+        this.NombreVideo = this.vlcControl1.GetCurrentMedia().Title;
+
+        TmrActividad.Start();
+        TmrDuracion.Start();//Powered ByRED 24ENE2023
+
+        TmrRevisarReproduccion.Start(); //Inicio del ciclo de recuperaciones
+
+
+
+        this.vlcControl1.Play(); //Powered ByRED 20JUN2020
+        if (MediaStates.Playing == vlcControl1.State) { }
+        this.vlcControl1.Position = 0; //Powered ByRED 07ABR2021
+        spotPoi = true;
+        TmrActividad.Start();
+        TmrDuracion.Start();//Powered ByRED 24ENE2023
+
+
+    }
     public void Func_ReproductorPlay()
     {
         var archivo = new System.IO.FileInfo(this.VideoEnReproduccion.rutaVideo);
@@ -209,10 +287,12 @@ public partial class frmReproductor : Form
         //var hilo = new System.Threading.Thread(Func_EstablecerPosicionInicial);
         //hilo.IsBackground = true;
         //hilo.Start();//En caso de que no cambie la posición pido la ejecución desde este hilo
-        
+
         this.NombreVideo = this.vlcControl1.GetCurrentMedia().Title;
 
         TmrActividad.Start();
+        TmrDuracion.Start();//Powered ByRED 24ENE2023
+
         TmrRevisarReproduccion.Start(); //Inicio del ciclo de recuperaciones
 
 
@@ -234,13 +314,14 @@ public partial class frmReproductor : Form
         //this.vlcControl1.Position = PosicionF;
         //this.vlcControl1.Audio.Volume = AudioInicial;
 
-        
+
         //evtInfoVideo(NombreVideo, TimeSpanMinutos);
     }
 
     public void Func_PararTmrActividad()
     {
         TmrActividad.Stop();
+        TmrDuracion.Stop();//Powered ByRED 24ENE2023
         this.vlcControl1.Stop();
         this.vlcControl1.Visible = false;
         System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1)); //Espera un segundo para garantizar el término del Timer
@@ -255,18 +336,43 @@ public partial class frmReproductor : Form
                 evtEstadoReproduccion("stop"); //Avisa al Front para cambiar el ícono
                 break;
             case MediaStates.Ended:
-                TmrActividad.Stop();
                 evtEstadoReproduccion("stop"); //Avisa al Front para cambiar el ícono
-                Func_ReproduceColaVideo();
+                if (!spotPoi)
+                {
+                    TmrActividad.Stop();
+                    TmrDuracion.Stop();//Powered ByRED 24ENE2023
+                    Func_ReproduceColaVideo();
+                }
+                else
+                {
+                    if (colaSpots.Count() == 0)
+                    {
+                        spotPoi = false;
+                        ReanudarPeliculaPOI();
+                    }
+                    else
+                    {
+                        Func_ReproduceColaSpots();
+                    }
+
+                }
                 break;
             case MediaStates.Playing:
-                if (VideoAnterior == null) VideoAnterior = VideoEnReproduccion;
-                if (VideoAnterior.idArchivo != VideoEnReproduccion.idArchivo)
+                if (!spotPoi)
                 {
-                    evtActualizarUltimaVez(VideoEnReproduccion.idArchivo);
-                    evtAgregarLog(VideoEnReproduccion.rutaVideo, VideoEnReproduccion.idArchivo, VideoEnReproduccion.MinutosMax, true);
-                    VideoAnterior = VideoEnReproduccion;
+                    if (VideoAnterior == null) VideoAnterior = VideoEnReproduccion;
+                    if (VideoAnterior.idArchivo != VideoEnReproduccion.idArchivo)
+                    {
+                        evtActualizarUltimaVez(VideoEnReproduccion.idArchivo);
+                        evtAgregarLog(VideoEnReproduccion.rutaVideo, VideoEnReproduccion.idArchivo, VideoEnReproduccion.MinutosMax, true);
+                        VideoAnterior = VideoEnReproduccion;
+                    }
                 }
+                else
+                {
+
+                }
+
                 TmrRevisarReproduccion.Start();
                 break;
         }
@@ -290,6 +396,16 @@ public partial class frmReproductor : Form
             }
         }
 
+    }
+    private void Func_ReproduceColaSpots()
+    {
+        if (colaSpots.Count > 0)
+        {
+            this.SpotEnReproduccion = colaSpots[0];
+            colaSpots.RemoveAt(0);
+            Func_ReproSpots();
+            return;
+        }
     }
 
     /// <summary>
@@ -352,6 +468,30 @@ public partial class frmReproductor : Form
         {
             TmrRevisarReproduccion.Stop();
             Func_PararTmrActividad();
+            return;
+        }
+        catch (Exception oe)
+        {
+            this.Error_ = oe.Message;
+        }
+    }
+
+    /// <summary>
+    /// Se encarga de detener la pelicula en reproduccion
+    /// Powered ByRED2020
+    /// </summary>
+    public void Func_DetenerPeliculaPOI()
+    {
+        try
+        {
+            TmrRevisarReproduccion.Stop();
+            TmrActividad.Stop();
+            //TmrDuracion.Stop();//Powered ByRED 24ENE2023
+
+            this.vlcControl1.Stop();
+            this.vlcControl1.Visible = false;
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1)); //Espera un segundo para garantizar el término del Timer
+            evtEstadoReproduccion("stop");//Avisa al Front para cambiar el ícono
             return;
         }
         catch (Exception oe)
@@ -528,7 +668,7 @@ public partial class frmReproductor : Form
     }
 
 
-    private void BarridoCintillo(int MaxY,int VelocidadCintillo, Control ControlPadre, Vlc.DotNet.Forms.VlcControl ControlReproductor, int vueltasCintillo)
+    private void BarridoCintillo(int MaxY, int VelocidadCintillo, Control ControlPadre, Vlc.DotNet.Forms.VlcControl ControlReproductor, int vueltasCintillo)
     {
         var x = this.pnl_Cintillo.Width;
         var FinCintillo = this.lbl_Cintillo.Width * -1;
@@ -575,7 +715,7 @@ public partial class frmReproductor : Form
         }
     }
 
-    
+
     /// <summary>
     /// LOAD
     /// </summary>
@@ -583,8 +723,35 @@ public partial class frmReproductor : Form
     /// <param name="e"></param>
     private void frmReproductor_Load(object sender, EventArgs e)
     {
-        
+
     }
+
+    /// <summary>
+    /// Se encarga de reproducir un Mp3
+    /// Powered Bytoto ENERO2023
+    /// </summary>
+    /// <param name="ruta"></param>
+    public void ReproducirMP3POI()
+    {
+        try
+        {
+            var archivo = new System.IO.FileInfo(this.SpotEnReproduccion.rutaVideo);
+            this.Mp3.SetMedia(archivo);
+            this.Mp3.Visible = false;
+            this.Mp3.Audio.Volume = AudioInicial;
+            this.Mp3.Play();
+            spotPoi = true;
+            TmrActividad.Start();
+            TmrDuracion.Start();//Powered ByRED 24ENE2023
+
+            TmrRevisarReproduccion.Start(); //Inicio del ciclo de recuperaciones
+        }
+        catch (Exception ex)
+        {
+            var error = ex.ToString();
+        }
+    }
+
 
     /// <summary>
     /// Se encarga de reproducir un Mp3
@@ -601,14 +768,12 @@ public partial class frmReproductor : Form
             this.Mp3.Audio.Volume = AudioTemp;
             this.Mp3.Play();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
         }
     }
 
-    
-   
     #endregion
 
     #region "Timers"
@@ -616,10 +781,57 @@ public partial class frmReproductor : Form
     private void tmrActividad_Tick(object source, ElapsedEventArgs e)
     {
         TmrActividad.Stop();
+       
+
+        // Se mueve la logica a tmr_duracion
+        //try
+        //{
+        //    var Span = TimeSpan.FromMilliseconds(this.vlcControl1.Time);
+
+
+        //    TiempoReal = Span;
+        //    TiempoDuracion = TimeSpan.FromSeconds(this.vlcControl1.GetCurrentMedia().Duration.TotalSeconds);
+        //}
+        //catch (Exception oe)
+        //{
+        //    this.Error_ = oe.Message;
+        //}
+
+        try
+        {
+            if (vlcControl1.State == MediaStates.Playing)
+            {
+                var posicion = (double)this.vlcControl1.Position;
+                var Longitud = (double)this.vlcControl1.Length;
+                if (spotPoi) return;
+                evtActualizaActividad(posicion, Longitud);
+            }
+            //else {
+            //    if (spotPoi) {
+            //        //Crear evento para avisar a Front engine  para reanudar el video
+            //        //evtTerminarPoi();
+            //    }
+            //}
+        }
+        catch (Exception o)
+        {
+            this.Error_ = o.Message;
+        }
+        TmrActividad.Start();
+    }
+
+    /// <summary>
+    /// Se encargará de actualizar la duración y posición de la película en reproducción
+    /// </summary>
+    /// <param name="source"></param>
+    /// <param name="e"></param>
+    private void tmrDuracion_Tick(object source, ElapsedEventArgs e)
+    {
+        TmrDuracion.Stop();
         try
         {
             var Span = TimeSpan.FromMilliseconds(this.vlcControl1.Time);
-            
+
 
             TiempoReal = Span;
             TiempoDuracion = TimeSpan.FromSeconds(this.vlcControl1.GetCurrentMedia().Duration.TotalSeconds);
@@ -629,26 +841,7 @@ public partial class frmReproductor : Form
             this.Error_ = oe.Message;
         }
 
-        try
-        {
-            if (vlcControl1.State == MediaStates.Playing) {
-                if (spotPoi) return;
-                var posicion = (double)this.vlcControl1.Position;
-                var Longitud = (double)this.vlcControl1.Length;
-                evtActualizaActividad(posicion, Longitud);
-            }
-            else {
-                if (spotPoi) {
-                    //Crear evento para avisar a Front engine  para reanudar el video
-                    evtTerminarPoi();
-                }
-            }
-        }
-        catch (Exception o)
-        {
-            this.Error_ = o.Message;
-        }
-        TmrActividad.Start();
+        TmrDuracion.Start();
     }
 
     private void tmrRevisarVideo_Tick(object source, ElapsedEventArgs e)
@@ -668,7 +861,12 @@ public partial class frmReproductor : Form
         public string rutaVideo { get; set; }
         public double posicion { get; set; }
     }
-
+    public class SpotPoi
+    {
+        public int idArchivo { get; set; }
+        public int tipoSpot { get; set; }
+        public string rutaVideo { get; set; }
+    }
     public class ParametrosCintillo
     {
         public DockStyle PosicionCintillo { get; set; }
@@ -719,9 +917,9 @@ public partial class frmReproductor : Form
     }
 
 
-    
 
-    
+
+
     #endregion
 }
 
