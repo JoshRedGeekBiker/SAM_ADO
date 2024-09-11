@@ -12,16 +12,15 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class testigo_poi
+    public partial class coordenadas_poi
     {
-        public long id_testigo { get; set; }
-        public long spotListaId { get; set; }
-        public long spotListaSecuencia { get; set; }
-        public long spotArchivoId { get; set; }
-        public System.DateTime fechaReproduccion { get; set; }
+        public long coordenadas_id { get; set; }
+        public long paradaId { get; set; }
+        public long sequence { get; set; }
+        public bool active { get; set; }
         public float latitud { get; set; }
+        public float latitudCan { get; set; }
         public float longitud { get; set; }
-        public bool enviado { get; set; }
-        public string numeroEconomico { get; set; }
+        public float longitudCan { get; set; }
     }
 }

@@ -33,21 +33,33 @@ public static class ParSAM
 
             string fechaarchivo = File.GetLastWriteTime(ruta).ToString();
             //Para sistemas W10
-            string fecha = "30/10/1993 12:30:00 a. m.";
+            string fecha = "30/10/1993";
 
-            if (fecha.Equals(fechaarchivo))
+            //Comentamos las siguientes lineas, ya que el cabecita de algodon quitó el horario de verano y viene retrasado, también la hora
+            //XD Cotorrea...
+
+
+            //string fecha = "30/10/1993 12:30:00 a. m.";
+
+            //if (fecha.Contains(fechaarchivo))
+            //{
+            //    ModoDeveloper = true;
+            //}else
+            //{
+            //    //Para sistemas W7
+            //    //fecha = "30/10/1993 12:30:00 a.m.";
+            //    fecha = "30/10/1993";
+
+            //    if (fecha.Contains(fechaarchivo))
+            //    {
+            //        ModoDeveloper = true;
+            //    }
+            //}
+            if (fechaarchivo.Contains(fecha))
             {
                 ModoDeveloper = true;
-            }else
-            {
-                //Para sistemas W7
-                fecha = "30/10/1993 12:30:00 a.m.";
-
-                if (fecha.Equals(fechaarchivo))
-                {
-                    ModoDeveloper = true;
-                }
             }
+            
         }
         else
         {

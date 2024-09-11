@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class Request_spot
+public class Request_spot
 {
     public String numeroEconomico { get; set; }
     public float latitud { get; set; }

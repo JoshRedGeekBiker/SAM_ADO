@@ -693,6 +693,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BotonSpotsNoc {
+            get {
+                object obj = ResourceManager.GetObject("BotonSpotsNoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BotonVIAJEPRUEBA {
             get {
                 object obj = ResourceManager.GetObject("BotonVIAJEPRUEBA", resourceCulture);
@@ -723,9 +733,19 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BotonVolumenMAS1 {
+        internal static System.Drawing.Bitmap BotonVolumenMASb {
             get {
-                object obj = ResourceManager.GetObject("BotonVolumenMAS1", resourceCulture);
+                object obj = ResourceManager.GetObject("BotonVolumenMASb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BotonVolumenMASbNoc {
+            get {
+                object obj = ResourceManager.GetObject("BotonVolumenMASbNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -753,9 +773,19 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BotonVolumenMENOS1 {
+        internal static System.Drawing.Bitmap BotonVolumenMENOSb {
             get {
-                object obj = ResourceManager.GetObject("BotonVolumenMENOS1", resourceCulture);
+                object obj = ResourceManager.GetObject("BotonVolumenMENOSb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BotonVolumenMENOSbNoc {
+            get {
+                object obj = ResourceManager.GetObject("BotonVolumenMENOSbNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -776,6 +806,16 @@ namespace SMFE.Properties {
         internal static System.Drawing.Bitmap btl_audios {
             get {
                 object obj = ResourceManager.GetObject("btl_audios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btl_audiosNoc {
+            get {
+                object obj = ResourceManager.GetObject("btl_audiosNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -853,6 +893,16 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btl_imagenesNoc {
+            get {
+                object obj = ResourceManager.GetObject("btl_imagenesNoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btl_tarjetadeviaje {
             get {
                 object obj = ResourceManager.GetObject("btl_tarjetadeviaje", resourceCulture);
@@ -906,6 +956,16 @@ namespace SMFE.Properties {
         internal static System.Drawing.Bitmap btl_videos {
             get {
                 object obj = ResourceManager.GetObject("btl_videos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btl_videosNoc {
+            get {
+                object obj = ResourceManager.GetObject("btl_videosNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1683,9 +1743,29 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap img_audioNoc {
+            get {
+                object obj = ResourceManager.GetObject("img_audioNoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img_img {
             get {
                 object obj = ResourceManager.GetObject("img_img", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_imgNoc {
+            get {
+                object obj = ResourceManager.GetObject("img_imgNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1773,9 +1853,19 @@ namespace SMFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap img_video {
+        internal static System.Drawing.Bitmap img_video1 {
             get {
-                object obj = ResourceManager.GetObject("img_video", resourceCulture);
+                object obj = ResourceManager.GetObject("img_video1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_videoNoc {
+            get {
+                object obj = ResourceManager.GetObject("img_videoNoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

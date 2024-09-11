@@ -12,26 +12,15 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class detalles_poi
+    public partial class spot_poi
     {
-        public detalles_poi()
-        {
-            this.archivo_poi = new HashSet<archivo_poi>();
-            this.cat_poi = new HashSet<cat_poi>();
-            this.testigo_poi = new HashSet<testigo_poi>();
-        }
-    
-        public long spotId { get; set; }
+        public long spotListaId { get; set; }
+        public string nombre { get; set; }
         public long orientacionInicial { get; set; }
-        public long orientacionFinal { get; set; }
-        public string programacionHoraria { get; set; }
-        public long duracion { get; set; }
-        public long tiempoEspera { get; set; }
+        public Nullable<long> orientacionFinal { get; set; }
         public bool activo { get; set; }
         public System.DateTime fechaCreacion { get; set; }
-    
-        public virtual ICollection<archivo_poi> archivo_poi { get; set; }
-        public virtual ICollection<cat_poi> cat_poi { get; set; }
-        public virtual ICollection<testigo_poi> testigo_poi { get; set; }
+        public System.DateTime fechaVigenciaInicio { get; set; }
+        public System.DateTime fechaVigenciaFin { get; set; }
     }
 }

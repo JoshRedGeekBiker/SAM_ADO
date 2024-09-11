@@ -237,6 +237,7 @@ partial class frmSpots
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CargadorSpots";
             this.Load += new System.EventHandler(this.frmSpots_Load);
+            this.Click += new System.EventHandler(this.frmSpots_Click);
             ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgAdo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnCancelar)).EndInit();

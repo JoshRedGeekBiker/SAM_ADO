@@ -27,7 +27,7 @@ public partial class frmSpots : Form
     /// </summary>
     /// <param name="_ModoPrueba"></param>
     /// <param name="Nocturno"></param>
-    public frmSpots(bool _ModoPrueba, bool Nocturno, List<string> Items, int _tipo, List<String> Spots)
+    public frmSpots(bool _ModoPrueba, bool Nocturno, List<spotPOI> Items, string _tipo)
     {
         Tipo = _tipo;
         InitializeComponent();
@@ -40,7 +40,6 @@ public partial class frmSpots : Form
             this.Size = new Size(800, 600);
             Cursor.Hide();
         }
-        listaSpots = Spots;
         CrearLayout(Items);
 
         lblFecha.Text = DateTime.Now.ToString();
@@ -54,8 +53,9 @@ public partial class frmSpots : Form
     #endregion
     #region "Propiedades"
     private bool ModoNocturno { get; set; } = false;
-    private int Tipo { get; set; }
+    private String Tipo { get; set; }
     private string SpotSeleccionado { get; set; } = "";
+    private spotPOI sp = null;
     public List<String> listaSpots = null;
     #endregion
     #region "Variables"
@@ -112,7 +112,7 @@ public partial class frmSpots : Form
     public event MostrarPopUp PopUp;
 
     //Para iniciar la reproduccion del video
-    public delegate void IniciaRepro(int Tipo, String rutaSpot, List<String>lSpots);
+    public delegate Boolean IniciaRepro(spotPOI index);
     public event IniciaRepro ReproducirSpot;
     #endregion
     #region "Métodos"
@@ -138,6 +138,9 @@ public partial class frmSpots : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESARNoc;
+                btnAceptar.BackgroundImage = Resources.AceptarSincronizarNoc;
+                BtnCancelar.BackgroundImage = Resources.CancelarSincronizarNOC;
+
 
                 ModoNocturno = true;
             }
@@ -157,6 +160,9 @@ public partial class frmSpots : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESAR;
+                BtnCancelar.BackgroundImage = Resources.CancelarSincronizar;
+                btnAceptar.BackgroundImage = Resources.AceptarSincronizar;
+
 
                 ModoNocturno = false;
             }
@@ -173,15 +179,20 @@ public partial class frmSpots : Form
     }
     private void frmSpots_Load(object sender, EventArgs e)
     {
+        UltActividad = DateTime.Now;
         this.Location = Ubicacion();
         this.TopMost = true;
+    }
+    private void frmSpots_Click(object sender, EventArgs e)
+    {
+        UltActividad = DateTime.Now;
     }
 
     /// <summary>
     /// Se encarga de crear el espacio de trabajo
     /// </summary>
     /// <param name="Items"></param>
-    private void CrearLayout(List<string> Items)
+    private void CrearLayout(List<spotPOI> Items)
     {
 
         listView1.Clear();
@@ -191,16 +202,18 @@ public partial class frmSpots : Form
         var index = 0;
         lblPauta.Text = "Spots disponibles: ";
         bool primera = true;
-        foreach (string item in Items)
+        foreach (spotPOI item in Items)
         {
-            if (primera) {
-                path += item.Split('\\').First();
-                path += "\\" + item.Split('\\').ElementAt(1);
-                path += "\\" + item.Split('\\').ElementAt(2);
-                path += "\\" + item.Split('\\').ElementAt(3) + "\\" ;
+            if (primera)
+            {
+                path += item.rutaVideo.Split('\\').First();
+                path += "\\" + item.rutaVideo.Split('\\').ElementAt(1);
+                path += "\\" + item.rutaVideo.Split('\\').ElementAt(2);
+                path += "\\" + item.rutaVideo.Split('\\').ElementAt(3) + "\\";
                 primera = false;
             }
-            ListViewItem nuevoitem = new ListViewItem(item.Split('\\').Last(), Tipo);
+            ListViewItem nuevoitem = new ListViewItem(item.rutaVideo.Split('\\').Last(), Tipo == "audio" ? 0:1);
+            nuevoitem.Tag = item;
             nuevoitem.Font = new Font(new FontFamily("Microsoft Sans Serif"), 12.0f, FontStyle.Bold);
             listView1.Items.Add(nuevoitem);
         }
@@ -217,8 +230,7 @@ public partial class frmSpots : Form
         if (listView1.SelectedItems.Count > 0)
         {
             ListViewItem item = listView1.SelectedItems[0];
-            SeleccionDeSpot(item.Text);
-
+            SeleccionDeSpot(item.Text, (spotPOI)item.Tag);
         }
     }
 
@@ -248,10 +260,10 @@ public partial class frmSpots : Form
     /// Se encarga de ajustar la pantalla para un spot seleccionado
     /// </summary>
     /// <param name="_nombreSpot"></param>
-    private void SeleccionDeSpot(string _nombreSpot)
+    private void SeleccionDeSpot(string _nombreSpot, spotPOI _sp)
     {
         SpotSeleccionado = _nombreSpot;
-
+        sp = _sp;
         this.lblTitPauta.Text = "Spot Seleccionado:";
 
         this.lblNomPauta.Text = SpotSeleccionado;
@@ -297,7 +309,8 @@ public partial class frmSpots : Form
     }
     private void btnAceptar_Click(object sender, EventArgs e)
     {
-        ReproducirSpot(Tipo, path+SpotSeleccionado, listaSpots);
+        ReproducirSpot(sp);
+        deseleccionarSpot();
     }
 
     private void BtnCancelar_Click(object sender, EventArgs e)
@@ -356,8 +369,8 @@ public partial class frmSpots : Form
             return true;
         }
     }
-    #endregion
 
-  
+    #endregion
+    
 }
 

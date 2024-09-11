@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 
-class Coordenadas
+public class Coordenadas
 {
     public int paradaId { get; set; }
     public int sequence { get; set; }

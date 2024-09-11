@@ -1,10 +1,8 @@
 ﻿using NCrontab;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 
 public class Utilidades
@@ -112,6 +110,47 @@ public class Utilidades
         }
         return res;
     }
+
+    /*public Boolean in_angle(float comienzo, float punto, float final)
+    {
+        Boolean res = false;
+        try
+        {
+            Boolean is_vuelta =false;
+            Boolean termino = false;
+            if (comienzo > final) {
+                float aux = final;
+                do {
+                    aux++;
+                        if (aux > 360) {
+                            is_vuelta = true;
+                        aux = 0;
+                        }
+
+                    if (aux == final) {
+                        termino = true;
+                    }
+                } while (!termino == true);
+            }
+            
+            comienzo = gradeToDec(comienzo);
+            punto = (is_vuelta ? gradeToDec(punto) + 100 : gradeToDec(punto));
+            final = (is_vuelta ? gradeToDec(final) + 100 : gradeToDec(final));
+            if ((comienzo <= punto) && (punto <= final)) {
+                res = true;
+            }
+        }
+        catch (Exception ex) {
+            Console.WriteLine(ex.Message);
+        }
+        return res;
+    }
+
+    public float gradeToDec(float grade) {
+        Double val_grade = 0.277777778;
+        return (float) val_grade*grade;
+    }*/
+
     public Boolean in_angle(float comienzo, float punto, float final)
     {
         Boolean res = false;
@@ -252,30 +291,76 @@ public class Utilidades
         //DateTime d = s.GetNextOccurrence();
     }
 
-    #region "Métodos públicos"
-    /// <summary>
-    /// Se encarga de recuperar el nombre de las carpetas que contienen un arhivo de script
-    /// para pauta de VMD del Disco de Películas
-    /// </summary>
-    /// <returns></returns>
-    public List<string> RecuperarSpots(string RutaCarpeta, int tipo)
+    private double CoordenadaToDecimal(double coordenada)
+
     {
-        List<String> ListaRetorno = new List<string>();
 
-        var rutaSpots = RutaCarpeta + (tipo == 0 ? "\\PUBLICIDAD\\AUDIOS" : "\\PUBLICIDAD\\VIDEOS");
-
-        if (Directory.Exists(rutaSpots))
+        bool negativo = false;
+        if (coordenada < 0)
         {
-            var Subcarpetas = Directory.GetFiles(rutaSpots);
-
-            foreach (string dir in Subcarpetas)
-            {
-                ListaRetorno.Add(dir);
-
-            }
-
+            negativo = true;
+            coordenada = coordenada * (-1);
         }
-        return ListaRetorno;
+        else
+        {
+            negativo = false;
+        }
+        double grados = Convert.ToDouble(coordenada.ToString().Substring(0, 2));
+        double minutos = (Convert.ToDouble(coordenada.ToString().Substring(2)) / 60);
+        double coordenadaFinal = grados + minutos;
+
+        if (negativo)
+        {
+            coordenadaFinal = coordenadaFinal * (-1);
+        }
+        return coordenadaFinal;
     }
-    #endregion
+
+    public static List<Response_spot> analizarListaSpot(List<Response_spot> list)
+    {
+        List<Response_spot> res = null;
+        Console.WriteLine("PUNTOS DE INTERES ENTRANTES: " + list.Count());
+        try
+        {
+            res = new List<Response_spot>();
+            foreach (Response_spot item in list)
+            {
+                if (res.Count == 0)
+                {
+                    Console.WriteLine("SE AGREGO A LA LISTA FINAL: " + item.nombre);
+                    res.Add(item);
+                }
+                else
+                {
+                    Boolean entro = false;
+                    foreach (Response_spot item2 in res)
+                    {
+                        if ((item.latitudes == item2.latitudes) & (item.longitudes == item2.longitudes))
+                        {
+                            Console.WriteLine("SE ENCONTRO IGUALDAD EN EL ELEMENTO " + item.nombre + " y " + item2.nombre);
+                            item2.isPuntoDoble = true;
+                            item2.punto2 = item;
+                            item2.orientacionInicial2 = item.orientacionInicial;
+                            item2.orientacionFinal2 = item.orientacionFinal;
+                            entro = true;
+                            break;
+                        }
+                    }
+                    if (!entro)
+                    {
+                        Console.WriteLine("SE AGREGO A LA LISTA FINAL: " + item.nombre);
+                        res.Add(item);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        Console.WriteLine("PUNTOS DE INTERES SALIENTES: " + res.Count());
+        return res;
+    }
 }
+
+

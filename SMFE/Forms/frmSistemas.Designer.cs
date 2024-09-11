@@ -698,7 +698,7 @@
             // 
             // btnVolumeDown
             // 
-            this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOS1;
+            this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOSb;
             this.btnVolumeDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnVolumeDown.Location = new System.Drawing.Point(473, 369);
             this.btnVolumeDown.Margin = new System.Windows.Forms.Padding(0);
@@ -722,7 +722,7 @@
             // 
             // btnVolumeUp
             // 
-            this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMAS1;
+            this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMASb;
             this.btnVolumeUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnVolumeUp.Location = new System.Drawing.Point(473, 314);
             this.btnVolumeUp.Margin = new System.Windows.Forms.Padding(0);

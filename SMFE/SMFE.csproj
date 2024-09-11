@@ -250,8 +250,9 @@
     <Compile Include="Model\FrontEngine.cs" />
     <Compile Include="Model\Pantalla.cs" />
     <Compile Include="Model\Sistemas.cs" />
+    <Compile Include="Model\spotPOI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -364,10 +365,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\BotonVolumenMENOS.gif" />
     <None Include="Resources\BotonVolumenMAS.gif" />
@@ -388,6 +388,12 @@
     <None Include="Imagenes\BotonPANICOAzul.gif" />
     <Content Include="Imagenes\BotonRECIBIDOS.gif" />
     <Content Include="Imagenes\BotonRECIBIDOSpeke.gif" />
+    <None Include="Imagenes\BotonSpots.gif" />
+    <None Include="Imagenes\BotonVolumenMASb.gif" />
+    <None Include="Imagenes\BotonVolumenMENOSb.gif" />
+    <None Include="Imagenes\btl_audios.gif" />
+    <None Include="Imagenes\btl_imagenes.gif" />
+    <None Include="Imagenes\btl_videos.gif" />
     <Content Include="Imagenes\encuadre-avisos2Azul.gif" />
     <Content Include="Imagenes\encuadre-avisosAzul.gif" />
     <Content Include="Imagenes\encuadre-inboxAzul.gif" />
@@ -401,6 +407,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Imagenes\FondoPISIA.gif" />
+    <None Include="Imagenes\img_img.gif" />
+    <None Include="Imagenes\img_video.gif" />
+    <None Include="Imagenes\img_audio.gif" />
     <Content Include="Imagenes\LogoADO.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -523,8 +532,14 @@
     <Content Include="Imagenes\Nocturno\BotonRECIBIDOSNoc.gif" />
     <Content Include="Imagenes\Nocturno\BotonRECIBIDOSpekeNoc.gif" />
     <Content Include="Imagenes\Nocturno\BotonReiniciarNoc.gif" />
+    <None Include="Imagenes\Nocturno\BotonSpotsNoc.gif" />
+    <None Include="Imagenes\Nocturno\BotonVolumenMASbNoc.gif" />
     <Content Include="Imagenes\Nocturno\BotonVolumenMASNoc.gif" />
+    <None Include="Imagenes\Nocturno\BotonVolumenMENOSbNoc.gif" />
     <Content Include="Imagenes\Nocturno\BotonVolumenMENOSNoc.gif" />
+    <None Include="Imagenes\Nocturno\btl_audiosNoc.gif" />
+    <None Include="Imagenes\Nocturno\btl_imagenesNoc.gif" />
+    <None Include="Imagenes\Nocturno\btl_videosNoc.gif" />
     <Content Include="Imagenes\Nocturno\btn-medioextraibleusb.gif" />
     <None Include="Imagenes\Nocturno\btn-medioextraibleusbNoc.gif" />
     <Content Include="Imagenes\Nocturno\btn_discopeliculas.gif" />
@@ -543,6 +558,9 @@
     <Content Include="Imagenes\Nocturno\FondoRECUADROSNoc.jpg" />
     <Content Include="Imagenes\Nocturno\gps_amarilloNoc.gif" />
     <Content Include="Imagenes\Nocturno\gps_naranjaNoc.gif" />
+    <None Include="Imagenes\Nocturno\img_audioNoc.gif" />
+    <None Include="Imagenes\Nocturno\img_imgNoc.gif" />
+    <None Include="Imagenes\Nocturno\img_videoNoc.gif" />
     <Content Include="Imagenes\Nocturno\LogoSIAChicoNoc.png" />
     <Content Include="Imagenes\Nocturno\LogoSIANoc.png" />
     <Content Include="Imagenes\Nocturno\LogoVMDChicoNoc.png" />

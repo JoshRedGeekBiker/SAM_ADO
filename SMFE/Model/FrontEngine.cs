@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SMFE.Properties;
 using WMPLib;
-
 public class FrontEngine : IDisposable
 {
     #region "Constructores"
@@ -388,10 +387,18 @@ public class FrontEngine : IDisposable
     public event PautasListVMD PautasVMD;
     /// <summary>
     /// Se encarga de mandar a pedir la lista de Spots disponibles para VMD
+    /// Powered byToto♫♫
     /// </summary>
     /// <returns></returns>
-    public delegate List<string> listaSpotsVMD(int tipo);
+    public delegate List<spotPOI> listaSpotsVMD(String tipo);
     public event listaSpotsVMD SpotsVMD;
+    /// <summary>
+    /// Se encarga de enviar el testigo de Spot reproducido
+    /// Powered byToto♫♫
+    /// </summary>
+    /// <returns></returns>
+    public delegate void evtTestigoSpotPoi(spotPOI sp);
+    public event evtTestigoSpotPoi testigoSpotPOISAM;
 
     /// <summary>
     /// Se encarga de mandar a planchar la pauta
@@ -694,7 +701,7 @@ public class FrontEngine : IDisposable
     /// </summary>
     private void FirstView()
     {
-        VistaSistemas = new frmSistemas(ModoPrueba, this.ModoNocturno, this.CAN, this.VMD, this.CONDUSAT, this.SIA, this.TELEMETRIA, this.GPS, this.btnOff, this.btnPanico);
+        VistaSistemas = new frmSistemas(ModoPrueba, this.ModoNocturno, this.CAN, this.VMD, this.CONDUSAT, this.SIA, this.TELEMETRIA, this.GPS, this.btnOff, this.btnPanico, this.SIIAB_POI);
         VistaSistemas.NumAutobus = this.NumAutobus;
         VistaSistemas.Version = this.Version;
 
@@ -720,6 +727,7 @@ public class FrontEngine : IDisposable
         VistaSistemas.MuestraMensajesSIA += this.MostrarMensajesSIA; //Powered ByRED 17MAR2021
         VistaSistemas.LedGPSView += this.LedGPSHorarioNocturno;//Powered ByRED 27MAY2021
         VistaSistemas.Robo += this.EnviarAlertaRobo;//Powered byRED 08JUN2021
+        VistaSistemas.CargadorSpots += this.MostarCargadorSpots; //POWERED BYTOTO CAMBIO DE REQUERIMIENTO 20ABRIIL23
 
 
 
@@ -737,6 +745,8 @@ public class FrontEngine : IDisposable
             VistaReproductor.evtAgregarLog += this.Func_AgregarLogReproductor;
             VistaReproductor.evtTerminarPoi += this.TerminaSpotPoi;
             VistaReproductor.ReanudarPeliculaPOI += this.InicializarRepro;
+            VistaReproductor.evtEnviarTestigo += this.testigoSpotPOI;
+            VistaReproductor.enviaMSG += this.MostrarPopUp;
 
 
             //Asignamos la posición al reproductor
@@ -1170,7 +1180,7 @@ public class FrontEngine : IDisposable
                 return VistaMenuSpots.VerificaActividad(TiempoCierreVentanas);
 
             case "frmSpots":
-                return VistaMenuSpots.VerificaActividad(60);
+                return VistaSpots.VerificaActividad(TiempoCierreVentanas);
 
 
             default: return true; //Si no enlistamos algun Form Aquí es porque no queremos que se cierre en automatico
@@ -2498,6 +2508,10 @@ public class FrontEngine : IDisposable
             case "DatosPauta":
                 VistaPopUp.Datos += this.DatosPauta;
                 break;
+
+            case "POI":
+                VistaPopUp.Datos += this.DatosPOI;
+                break;
         }
 
         VistaPopUp.Cerrar += this.CerrarForm;
@@ -2825,7 +2839,7 @@ public class FrontEngine : IDisposable
     {
         if (VistaHerramientasVMD == null || VistaHerramientasVMD.IsDisposed)
         {
-            VistaHerramientasVMD = new frmHerramientasVMD(this.ModoPrueba, this.ModoNocturno);
+            VistaHerramientasVMD = new frmHerramientasVMD(this.ModoPrueba, this.ModoNocturno, Version);
             VistaHerramientasVMD.Cerrar += this.CerrarForm;
             VistaHerramientasVMD.Ubicacion += this.GetlocationPant;
             VistaHerramientasVMD.CargadorPautas += this.MostrarCargadorDePautasVMD;
@@ -2843,10 +2857,10 @@ public class FrontEngine : IDisposable
     {
         if (VistaMenuSpots == null || VistaMenuSpots.IsDisposed)
         {
-            VistaMenuSpots = new frmMenuSpots(this.ModoPrueba, this.ModoNocturno);
+            VistaMenuSpots = new frmMenuSpots(this.ModoPrueba, this.ModoNocturno, Version);
             VistaMenuSpots.Cerrar += this.CerrarForm;
             VistaMenuSpots.Ubicacion += this.GetlocationPant;
-            VistaMenuSpots.CargadorSpots += this.MostarCargadorSpots;
+            //VistaMenuSpots.CargadorSpots += this.MostarCargadorSpots; Cambio de requerimiento
 
         }
 
@@ -2912,9 +2926,10 @@ public class FrontEngine : IDisposable
     /// Se encarga de mostrar la vista de cargador de pauta de VMD
     /// Powered ByToto 
     /// </summary>
-    private void MostarCargadorSpots(int tipo)
+    private void MostarCargadorSpots(String tipo)
     {
-        var listaSpots = SpotsVMD(tipo);
+        List<spotPOI> listaSpots = new List<spotPOI>();
+        listaSpots = SpotsVMD(tipo);
 
         if (listaSpots.Count > 0)
         {
@@ -2923,7 +2938,7 @@ public class FrontEngine : IDisposable
 
             if (VistaSpots == null || VistaSpots.IsDisposed)
             {
-                VistaSpots = new frmSpots(this.ModoPrueba, this.ModoNocturno, listaSpots, tipo, listaSpots);
+                VistaSpots = new frmSpots(this.ModoPrueba, this.ModoNocturno, listaSpots, tipo);
 
                 VistaSpots.Cerrar += this.CerrarForm;
                 VistaSpots.Ubicacion += this.GetlocationPant;
@@ -2942,11 +2957,11 @@ public class FrontEngine : IDisposable
             //Mandamos a mostrar un error, según su tipo
             switch (tipo)
             {
-                case 0:
+                case "audio":
                     MostrarError("No se encontraron Medios de Audio");
                     break;
-                case 1:
-                    MostrarError("No se encontraron Medios Video");
+                case "video":
+                    MostrarError("No se encontraron Spots para Reproducir");//Powered ByRED 25OCT2023
                     break;
 
                 default:
@@ -3025,7 +3040,6 @@ public class FrontEngine : IDisposable
 
         FocusON(VistaMostrarSMS);
     }
-
 
     #endregion
 
@@ -4088,6 +4102,21 @@ public class FrontEngine : IDisposable
         return Datos;
     }
 
+    /// <summary>
+    /// Sirve para mostrar mensaje de encolamiento spot
+    /// </summary>
+    /// <param name="nombrePauta"></param>
+    /// <returns></returns>
+    private List<string> DatosPOI()
+    {
+        List<string> Datos = new List<string>();
+
+        Datos.Add("Spot agregado.");
+
+        return Datos;
+    }
+
+
 
     //private List<string> DatosSync()
     //{
@@ -4416,6 +4445,8 @@ public class FrontEngine : IDisposable
             SAMPLAY();
         }
     }
+   
+
     /// <summary>
     /// se encarga de inicializar la logica del reproductor de VMD Spots
     /// </summary>
@@ -4428,36 +4459,44 @@ public class FrontEngine : IDisposable
     }
     /// <summary>
     /// SE encarga de iniciar la logica para reproducir un nuevo spot
+    /// Powered ByToto
     /// </summary>
-    private void ReproduceSpotPOI(int tipo, String nombreSpot, List<String> lSPots)
+    public Boolean ReproduceSpotPOI(spotPOI sp)
     {
         //VistaReproductor.PlaySobrePlay = playToPlay;
-        if (VistaReproductor != null)
+        Boolean res = false;
+        if (this.InLogin)
         {
-            if (!VistaReproductor.spotPoi) { Func_DetenerPeliculaPOI(); }
-            //switch (tipo)
-            //{
-            //    case 0:
-            //        VistaReproductor.ReproducirMP3POI(nombreSpot);
-            //        break;
-            //    case 1:
-            //        VistaReproductor.Func_SpotPlay(new frmReproductor.SpotPoi
-            //        {
-            //            idArchivo = 0,
-            //            rutaVideo = nombreSpot
-            //        },
-            //    true);
-            //        break;
-            //}
-                    VistaReproductor.Func_SpotPlay(new frmReproductor.SpotPoi
-                    {
-                        idArchivo = VistaReproductor.colaSpots.Count(),
-                        rutaVideo = nombreSpot,
-                        tipoSpot = tipo
-                    },
-                true);
+            if (VistaReproductor != null)
+            {
+                if (!VistaReproductor.spotPoi) { Func_DetenerPeliculaPOI(); }
+                //switch (tipo)
+                //{
+                //    case 0:
+                //        VistaReproductor.ReproducirMP3POI(nombreSpot);
+                //        break;
+                //    case 1:
+                //        VistaReproductor.Func_SpotPlay(new frmReproductor.SpotPoi
+                //        {
+                //            idArchivo = 0,
+                //            rutaVideo = nombreSpot
+                //        },
+                //    true);
+                //        break;
+                //}
+                VistaReproductor.Func_SpotPlay(sp);
+                res = true;
+            }
         }
-
+        return res;
+    }
+    /// <summary>
+    /// SE encarga de enviar el testigo de reproduccion de SPOT
+    /// </summary>
+    /// Powered ByTOTO♫♫
+    private void testigoSpotPOI(spotPOI sp)
+    {
+        testigoSpotPOISAM(sp);
     }
     /// <summary>
     /// 

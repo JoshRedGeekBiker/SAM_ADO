@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 
-class POLYGON
+public class POLYGON
 {
     const float MARGEN_ERROR = 2f;
 
@@ -13,6 +12,7 @@ class POLYGON
     public List<POINT> Vertex { get; set; }
     public List<ARISTA> LAristas { get; set; }
     #endregion
+
     #region "Constructores"  
     /// <summary>
     /// Constructor basico
@@ -219,7 +219,14 @@ class POLYGON
             }
         }
     }
-    //Este es el metodo bueno de colisión 
+    
+    /// <summary>
+    /// Este es el metodo bueno de colisión 
+    /// Powered ByRED 24OCT2023
+    /// </summary>
+    /// <param name="pt"></param>
+    /// <param name="noneZeroMode"></param>
+    /// <returns></returns>
     public Boolean in_poligone(POINT pt, bool noneZeroMode)
     {
         int ptNum = Vertex.Count();
@@ -249,11 +256,15 @@ class POLYGON
             j = k;
         }
         return noneZeroMode ? zeroState != 0 : oddNodes;
-
-
     }
+
+
+
+
     public float angulo_orientacion(POINT p1, POINT p2)
     {
+        Console.WriteLine("ANALIZANDO P1: " + p1.Latitud + ", " + p1.Longitud);
+        Console.WriteLine("ANALIZANDO P2: " + p2.Latitud + ", " + p2.Longitud);
         float res = 0.0f;
         float a = p2.Latitud - p1.Latitud;
         float b = p2.Longitud - p1.Longitud;
@@ -261,7 +272,7 @@ class POLYGON
         double m = Math.Tan(a / b);
         float[] vector = new float[2] { a, b };
         //Cambiando de indice el 1 y el 0 se cambia de lugar el norte
-        float[] vy = new float[2] { 1, 0 };
+        float[] vy = new float[2] { 0, 1 };
         float p = 0;
         for (int i = 0; i < vector.Length; i++)
         {
@@ -276,6 +287,53 @@ class POLYGON
         res = (float)Convert.ToDouble((180 / Math.PI) * r);
         return res;
     }
+
+    const double Rad2Deg = 180.0 / Math.PI;
+    const double Deg2Rad = Math.PI / 180.0;
+
+    /// <summary>
+    /// Powered ByRED 24OCT2023
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public float CalculeAngle(POINT origin, POINT target)
+    {
+        var n = 0f;
+        try
+        {
+            n = (float) (270 - (Math.Atan2(origin.Latitud - target.Latitud, origin.Longitud - target.Longitud)) * 180 / Math.PI);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message + " " + ex.StackTrace);
+        }
+        return n % 360;
+    }
+
+    /// <summary>
+    /// Version 2
+    /// Miguel Olguin 25OCT2023
+    /// No productivo
+    /// </summary>
+    /// <param name="origin"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    public float CalculeAngle2(POINT origin, POINT target)
+    {
+        double lat1 = origin.Latitud * Deg2Rad;
+        double lon1 = origin.Longitud * Deg2Rad;
+        double lat2 = target.Latitud * Deg2Rad;
+        double lon2 = target.Longitud * Deg2Rad;
+
+        double y = Math.Sin(lon2 - lon1) * Math.Cos(lat2);
+        double x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1);
+        double angleInRadians = Math.Atan2(y, x);
+
+        float angleInDegrees = (float)(angleInRadians * Rad2Deg);
+
+        return (360 + angleInDegrees) % 360;
+    }
     #endregion
 }
-

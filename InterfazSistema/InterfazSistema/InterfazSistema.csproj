@@ -62,9 +62,6 @@
     <Compile Include="ModelosBD\archivos.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelosBD\archivo_poi.cs">
-      <DependentUpon>POIEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="ModelosBD\audiovmd.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
     </Compile>
@@ -149,7 +146,7 @@
     <Compile Include="ModelosBD\cat_codigo.cs">
       <DependentUpon>TelematicsEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelosBD\cat_poi.cs">
+    <Compile Include="ModelosBD\cat_media_disponible.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\cat_type_action.cs">
@@ -191,14 +188,11 @@
     <Compile Include="ModelosBD\controlsecuencias.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelosBD\coor_polygon.cs">
+    <Compile Include="ModelosBD\coordenadas_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\cuadros.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelosBD\detalles_poi.cs">
-      <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\detsecuencias.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
@@ -218,6 +212,9 @@
     <Compile Include="Interfaces\IGPS.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
     <Compile Include="Interfaces\ISistema.cs" />
+    <Compile Include="ModelosBD\lanzador_spot.cs">
+      <DependentUpon>POIEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelosBD\listamensajes.cs">
       <DependentUpon>SIAEntities.tt</DependentUpon>
     </Compile>
@@ -229,6 +226,9 @@
     </Compile>
     <Compile Include="ModelosBD\mensajesrecibidos.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\parada_poi.cs">
+      <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\parametros_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
@@ -269,10 +269,16 @@
     <Compile Include="ModelosBD\programacion.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelosBD\testigo_poi.cs">
+    <Compile Include="ModelosBD\spotlista_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelosBD\tipo_archivo_poi.cs">
+    <Compile Include="ModelosBD\spot_manual.cs">
+      <DependentUpon>POIEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\spot_poi.cs">
+      <DependentUpon>POIEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\testigo_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

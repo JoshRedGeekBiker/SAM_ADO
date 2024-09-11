@@ -68,16 +68,19 @@
     <Compile Include="Clases\Matematica\MATH.cs" />
     <Compile Include="Clases\Matematica\POINT.cs" />
     <Compile Include="Clases\Matematica\POLYGON.cs" />
-    <Compile Include="Clases\Objeto\Archivo.cs" />
     <Compile Include="Clases\Objeto\Coordenadas.cs" />
     <Compile Include="Clases\Objeto\Parada.cs" />
+    <Compile Include="Clases\Objeto\Parametros.cs" />
     <Compile Include="Clases\Objeto\Request_spot.cs" />
     <Compile Include="Clases\Objeto\Response_spot.cs" />
+    <Compile Include="Clases\Objeto\spotArchivo.cs" />
+    <Compile Include="Clases\Objeto\spotListaDetalles.cs" />
     <Compile Include="Clases\Objeto\Testigo.cs" />
     <Compile Include="Clases\Objeto\Tipo.cs" />
     <Compile Include="Clases\POI.cs" />
     <Compile Include="Clases\Utilidades.cs" />
     <Compile Include="Clases\WS_Spot.cs" />
+    <Compile Include="Clases\XML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +91,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="Archivo\detalles.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Archivo\media_cat.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Archivo\trucate_media.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Archivo\truncatedetalles.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,7 +27,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     private string Nombre_Operador = "";
     private bool EnViaje = false;
     private DateTime FechaViaje;
-     
+
     //Ruta de VLC
     private string RutaReproductor = string.Empty;
 
@@ -35,6 +35,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     public vmdEntities VMD_BD { get; }
     public condusatEntities CONDUSAT_BD { get; }
     public telematicsEntities TELEMATICS_BD { get; }
+    public poiEntities POI_BD { get; }
 
     //Lista de sistemas
     public List<ISistema> ListaSistemas;
@@ -135,6 +136,10 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     public delegate void VMDPlay(int idArchivo, string rutaVideo, int MinutosMax, bool detenerVideo, bool playSobrePlay, double posicion);
     public event VMDPlay EPlay;
 
+    //Powered ByRED 25ABR24
+    public delegate void VMDStop();
+    public event VMDStop EStop;
+
     public delegate void VMDCintillo(string TextoMostrar,
                                   string PosicionCintillo,
                                   string ColorDFondo,
@@ -188,6 +193,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     public delegate Task<bool> ValidarPautaVMD(string _tipo, string _nombre);
     public event ValidarPautaVMD ValidaPautaVMD;
 
+    public delegate Boolean eventEncolarSpot(spotPOI sp);
+    public event eventEncolarSpot encolarSPOT;
+
     #region EventosSIA
 
     /// <summary>
@@ -228,6 +236,8 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         CONDUSAT_BD = new condusatEntities();
 
         TELEMATICS_BD = new telematicsEntities();
+
+        POI_BD = new poiEntities();
 
         HolaSAM();
     }
@@ -471,7 +481,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                                             SyncSistemas = false;
                                         }
                                     }
-                                    
+
                                     break;
 
 
@@ -494,6 +504,23 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                                             SyncSistemas = false;
                                         }
                                     }
+                                    break;
+
+                                case "POI":
+                                    var myPOI = (POI)i;
+                                    myPOI.EventoSyncPOI += this.EnviaraSync;
+                                    //Resultados.Add(myCONDUSAT.Sincronizar());
+
+                                    if (myPOI.Sincronizar())
+                                    {
+                                        EnviaraSync("SIIAB - POI: Correcto", 1);
+                                    }
+                                    else
+                                    {
+                                        EnviaraSync("SIIAB -POI: Incorrecto", 1);
+                                        SyncSistemas = false;
+                                    }
+
                                     break;
                             }
                         }
@@ -577,7 +604,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
         }
         //Cerramos la conexión
-        
+
         if (syncSAM.ServerNube)
         {//Mandamos a finalizar la conexión al webservice si es que estamos descargando en NUBE
             syncSAM.servicioWCF.Close();
@@ -818,7 +845,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
                     await Task.Delay(TiempoEsperaMensajes);
                 }
-                else if(syncSAM.ServerAlterno)
+                else if (syncSAM.ServerAlterno)
                 {
                     //Log
                     if ((bool)ParametrosInicio.LogSincronizacionBien) syncSAM.AgregarLogSync("Servidor Alterno Detectado por " + syncSAM.FormaIdentiZona + ": " + syncSAM.ZonaDescarga);
@@ -909,7 +936,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                         if ((bool)ParametrosInicio.LogSincronizacionBien) syncSAM.AgregarLogSync("Fecha y Hora Sincronizados...");
 
                         //Sleep(1000);
- 
+
                         EnviaraSync("La Fecha y Hora se" + Environment.NewLine + "Ajustaron:" + Environment.NewLine + DateTime.Now.ToString(), 0);
 
                         await Task.Delay(TiempoEsperaMensajes);
@@ -1183,7 +1210,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         FE.PautasVMD += this.eFObtenerListaPautas; //Powered ByRED16JUN2020
         FE.Pauta += this.eFPlancharPautaVMD; //Powered ByRED 16JUN2020
         FE.PautaUSB += this.eFRecuperarPautaUSB; //Powered ByRED 17JUN2020
-        FE.SpotsVMD += this.eFObtenerListaSpots; //Powered ByToto16JUN2020
+
+        FE.SpotsVMD += this.eFObtenerListaSpots; //Powered ByToto♫♫
+        FE.testigoSpotPOISAM += this.TestigoSpotPOI; //Powered ByToto♫♫ 
         //para hcer commit
         FE.ProgresoCopiado += this.eFPedirProgresoCopiado; //Powered ByRED 17JUN2020
 
@@ -1208,7 +1237,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
         //SIA Powered ByRED 18MAR2021
         FE.MensajesSIA += this.eFObtenerMensajes;
-        FE.MensajeSIA += this.eFMandarMensajeSIA;     
+        FE.MensajeSIA += this.eFMandarMensajeSIA;
         FE.AlertaRobo += this.eFMandarAlertaRobo;//Powered ByRED 08JUN2021
     }
 
@@ -1267,7 +1296,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 MyPlat.ModoPrueba = confXML.ModoPrueba;
             }
         }
-      
+
 
         //Cargamos CAN
 
@@ -1511,7 +1540,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
                 //Para relanzar de SAM hacia el Front
                 //Qué evento, dispará qué método
-                RefreshViewCondusat += FE.RecibeDeCondusat;
+                RefreshViewCondusat += FE.RecibeDeCondusat; 
             }
 
             try
@@ -1558,7 +1587,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         //CLAUS & ROJO
         if ((bool)ParametrosInicio.SIA || (bool)ParametrosInicio.MiniSIA)
         {
-            if ((bool) ParametrosInicio.MiniSIA)
+            if ((bool)ParametrosInicio.MiniSIA)
             {
                 ListaSistemas.Add(new SIA(true));
                 FE.MINISIA = true;
@@ -1647,7 +1676,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 POISIA += FE.RecibePOISIA;//Powered ByRED 23MAR2021
             }
         }
-           
+
 
         //Cargamos VMD
 
@@ -1664,8 +1693,10 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 var MyVMD = (VMD)v;
                 MyVMD.ModoPrueba = confXML.ModoPrueba;
                 MyVMD.evRepPlay += VMDToFront;
-                
+                MyVMD.evRepStop += VMDToFrontStop;//Powered ByRED 25ABR24
+
                 EPlay += FE.Func_RepPlay;
+                EStop += FE.Func_DetenerPelicula;//Powered ByRED 25ABR24
                 ECintilloInicial += FE.Func_ReproducirCintillo;
                 ECintillo += FE.Func_ReproducirCintillo;
                 PautaVMD += MyVMD.CargarPauta;
@@ -1673,6 +1704,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 //Powered ByRED 16/JUL/2020
                 ValidaPautaVMD += MyVMD.ValidadPauta;
 
+                encolarSPOT += FE.ReproduceSpotPOI;
 
                 if (confXML.ReinicioAutomatico)
                 {
@@ -1708,13 +1740,15 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         if ((bool)ParametrosInicio.SIIAB_POI)
         {
             FE.SIIAB_POI = true;
-            ListaSistemas.Add(new POI());
+            ListaSistemas.Add(new POI(ParSAM.ModoDeveloper));
             var _POI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
 
             foreach (POI p in _POI)
             {
-                var MyPlat = (POI)p;
-                MyPlat.ModoPrueba = confXML.ModoPrueba;
+                var MyPOI = (POI)p;
+                MyPOI.ModoPrueba = confXML.ModoPrueba;
+                MyPOI.NuevoSpot += this.eventoEncolarSpotSAM;
+
             }
         }
 
@@ -1925,7 +1959,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     /// <returns></returns>
     private bool Ethernet(bool Encender)
     {
-        if((bool)ParametrosInicio.SIA || (bool)ParametrosInicio.TELEMATICS)
+        if ((bool)ParametrosInicio.SIA || (bool)ParametrosInicio.TELEMATICS)
         {
             var syncSAM = new SyncSAM();
 
@@ -2280,7 +2314,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     }
 
     /// <summary>
-    /// Se encarga de enviar los últimos registros de GPS hacia CAN
+    /// Se encarga de enviar los últimos registros de GPS hacia los sistemas que lo requieran
     /// </summary>
     /// <param name="_Datos_GPS"></param>
     /// <returns></returns>
@@ -2305,9 +2339,17 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
         //Se los mandamos también a telemetria
         var MyTelematics = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
-        foreach(TELEMETRIA _telemetria in MyTelematics)
+        foreach (TELEMETRIA _telemetria in MyTelematics)
         {
             _telemetria.Datos_GPS = _Datos_GPS;
+        }
+
+        //Se los mandamos también a SIIAB - POI
+        //Powered ByRED 09FEB2023
+        var MyPOI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
+        foreach (POI _poi in MyPOI)
+        {
+            _poi.Datos_GPS = _Datos_GPS;
         }
 
     }
@@ -2331,6 +2373,15 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         {
             //Func_IniciarMensajesSIA();
         }
+    }
+
+    /// <summary>
+    /// Se encarga de enviar el stop hacia el front
+    /// Powered ByRED 25ABR25
+    /// </summary>
+    private void VMDToFrontStop()
+    {
+        EStop();
     }
 
     /// <summary>
@@ -2539,7 +2590,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
             //Logica para ADOGPS 
             //Para controlar la ejecución no necesaria de ADOGPS
             //Powered ByRED 16/JUL/2020
-            if( FE.CAN || FE.CONDUSAT)
+            if (FE.CAN || FE.CONDUSAT)
             {
                 ParametrosInicio.ADOGPS = true;
             }
@@ -2692,6 +2743,57 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 i++;
             }
 
+
+            //Para SIIAB_POI
+
+            if (FE.SIIAB_POI)
+            {
+                nuevoOrden = new orden_descarga();
+
+                nuevoOrden.Sistema = "POI";
+                nuevoOrden.Orden = i;
+
+                VMD_BD.orden_descarga.Add(nuevoOrden);
+                i++;
+
+
+                try
+                {
+                    var objCtx = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)POI_BD).ObjectContext;
+
+                    //Boramos la tabla de cat_media_disponible
+                    objCtx.ExecuteStoreCommand("Truncate Table cat_media_disponible");
+
+                    //Boramos la tabla de coordenadas_poi
+                    objCtx.ExecuteStoreCommand("Truncate Table coordenadas_poi");
+
+                    //Boramos la tabla de lanzador_spot
+                    objCtx.ExecuteStoreCommand("Truncate Table lanzador_spot");
+
+                    //Boramos la tabla de parada_poi
+                    objCtx.ExecuteStoreCommand("Truncate Table parada_poi");
+
+                    //Boramos la tabla de SPOT manual
+                    objCtx.ExecuteStoreCommand("Truncate Table spot_manual");
+
+                    //Boramos la tabla de SPOT poi
+                    objCtx.ExecuteStoreCommand("Truncate Table spot_poi");
+
+                    //Boramos la tabla de SPOTlista_poi
+                    objCtx.ExecuteStoreCommand("Truncate Table spotlista_poi");
+
+                    //Borramos la tabla de testigos poi
+                    objCtx.ExecuteStoreCommand("Truncate Table testigo_poi");
+                }
+                catch
+                {
+
+                }
+
+
+
+            }
+
             //Para CAN
 
             if (FE.CAN)
@@ -2702,19 +2804,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 nuevoOrden.Orden = i;
 
                 VMD_BD.orden_descarga.Add(nuevoOrden);
-                i++;
+                
             }
-            //Para SIIAB_POI
-
-            if (FE.SIIAB_POI)
-            {
-                nuevoOrden = new orden_descarga();
-
-                nuevoOrden.Sistema = "SIIAB_POI";
-                nuevoOrden.Orden = i;
-
-                VMD_BD.orden_descarga.Add(nuevoOrden);
-            }
+            
 
             VMD_BD.SaveChanges();
 
@@ -2727,16 +2819,20 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 case 0:
                     break;
 
-                case 2: Mycan.ConfigurarCAN("DG");
+                case 2:
+                    Mycan.ConfigurarCAN("DG");
                     break;
 
-                case 4: Mycan.ConfigurarCAN("DIDCOM");
+                case 4:
+                    Mycan.ConfigurarCAN("DIDCOM");
                     break;
 
-                case 5: Mycan.ConfigurarCAN("DIDCOM_TELEMETRIA");
+                case 5:
+                    Mycan.ConfigurarCAN("DIDCOM_TELEMETRIA");
                     break;
 
-                default: Mycan.ConfigurarCAN("ST");
+                default:
+                    Mycan.ConfigurarCAN("ST");
                     break;
             }
 
@@ -2913,7 +3009,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         foreach (VMD v in _VMD)
         {
             var MyVMD = (VMD)v;
-            listanueva =  MyVMD.ObtenerPautas(tipo);
+            listanueva = MyVMD.ObtenerPautas(tipo);
         }
 
         return listanueva;
@@ -2958,12 +3054,12 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     /// </summary>
     /// <param name="_letraUnidad"></param>
     /// <returns></returns>
-    private List<string>eFRecuperarPautaUSB(string _letraUnidad)
+    private List<string> eFRecuperarPautaUSB(string _letraUnidad)
     {
         var listaRetorno = new List<string>();
         var _VMD = ListaSistemas.Where(x => x.Sistema == Sistema.VMD).ToList();
 
-        foreach(VMD v in _VMD)
+        foreach (VMD v in _VMD)
         {
             var MyVMD = (VMD)v;
             listaRetorno = MyVMD.RecuperarScripts(_letraUnidad);
@@ -2972,22 +3068,68 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         return listaRetorno;
     }
     /// <summary>
-    /// Se encarga de pedirle al Sistema VMD la pauta alojada en el 
-    /// disco de peliculas
+    /// ByTOTO♫♫
+    /// Se encarga de pedirle al Sistema POI los spots que se pueden mostrar para ser lanzados por el conductor
     /// </summary>
     /// <returns></returns>
-    private List<string> eFObtenerListaSpots(int tipo)
+    private List<spotPOI> eFObtenerListaSpots(String tipo)
     {
         var _POI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
-        var listanueva = new List<string>();
-
+        var listanueva = new List<cat_media_disponible>();
+        List<spotPOI> SpotList = null;
         foreach (POI v in _POI)
         {
-            var myPoi = (POI) v;
+            var myPoi = (POI)v;
             listanueva = myPoi.ObtenerSpots(tipo);
+            SpotList = new List<spotPOI>();
+            foreach (cat_media_disponible x in listanueva)
+            {
+                spotPOI sp = new spotPOI();
+                sp.idArchivo = Convert.ToInt32(x.spotArchivoId);
+                sp.spotListaId = Convert.ToInt32(x.spotListaId);
+                sp.rutaVideo = x.url;
+                sp.nombre = x.url;
+                sp.tipoSpot = x.type;
+                SpotList.Add(sp);
+            }
         }
 
-        return listanueva;
+        return SpotList;
+    }
+    /// <summary>
+    /// ByTOTO♫♫
+    /// Se encarga de pedirle al Sistema POI los spots que se pueden mostrar para ser lanzados por el conductor
+    /// </summary>
+    /// <returns></returns>
+    private void TestigoSpotPOI(spotPOI sp)
+    {
+        var _POI = ListaSistemas.Where(x => x.Sistema == Sistema.POI).ToList();
+        foreach (POI v in _POI)
+        {
+            var myPoi = (POI)v;
+            myPoi.CrearTestigo(sp.spotListaId, sp.secuencia, sp.idArchivo);
+        }
+    }
+    /// <summary>
+    /// Se encarga de enviar los videos 
+    /// </summary>
+    public Boolean eventoEncolarSpotSAM(Response_spot spot)
+    {
+        Boolean res = false;
+        foreach (spotListaDetalles x in spot.spotListaDetalles)
+        {
+            if (x.reproducir) {
+                spotPOI sp = new spotPOI();
+                sp.spotListaId = spot.spotListaId;
+                sp.idArchivo = x.spotArchivo.spotArchivoId;
+                sp.nombre = x.spotArchivo.nombre;
+                sp.rutaVideo = x.spotArchivo.url;
+                sp.tipoSpot = x.spotArchivo.tipo.descripcion;
+                sp.secuencia = x.secuencia;
+                res = encolarSPOT(sp);
+            }
+        }
+        return res;
     }
     /// <summary>
     /// Se encarga de replicar el progreso de copiado 
@@ -3024,7 +3166,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     {
         return _config.RecuperarListaMetas();
     }
-    
+
 
     #region SIA
 
@@ -3078,7 +3220,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 }
             }
 
-            
+
             if (Mensajes.Count > 0) //si tenemos mensaje por reportar...
             {
                 //Enviamos los parametros que recuperamos
@@ -3333,7 +3475,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
     #region "Integración de cintillos SIA"
     public string ErrorSIA_ { get; set; }
-    public bool CintillosSIAIniciado { get; set; } = false;  
+    public bool CintillosSIAIniciado { get; set; } = false;
     DataSet GetDataSet(string sql)
     {
         // creates resulting dataset
@@ -3378,7 +3520,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     {
         if (!CintillosSIAIniciado)
         {
-            CintillosSIAIniciado = true; 
+            CintillosSIAIniciado = true;
             var mSIA = new MensajesSIA();
             mSIA.HabilitarCintillo = ParametrosInicio.HabilitarCintillo;
             mSIA.MensajeInicial = ParametrosInicio.MensajeInicial;
@@ -3392,11 +3534,11 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
             var TimerCintilloSegundos = ParametrosInicio.tmrSegVMDSIA;
             if ((bool)mSIA.HabilitarCintillo)
             {
-                ECintilloInicial(mSIA.MensajeInicial, 
-                                 mSIA.PosicionMarquee == MensajesSIA.PosicionMensaje.T ? "T" : "B", mSIA.ColorFondo, 
-                                 (int)mSIA.Velocidad, 
+                ECintilloInicial(mSIA.MensajeInicial,
+                                 mSIA.PosicionMarquee == MensajesSIA.PosicionMensaje.T ? "T" : "B", mSIA.ColorFondo,
+                                 (int)mSIA.Velocidad,
                                  (int)mSIA.TamanioFuente,
-                                 mSIA.ColorFuente, 
+                                 mSIA.ColorFuente,
                                  (int)mSIA.VueltasMensaje);
                 System.Threading.Thread.Sleep(5000);
                 LstOfSMSTouch = Func_ObtenerMensajesSIA();
@@ -3404,7 +3546,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 timerCintillo.Interval = (int)TimerCintilloSegundos * 1000;
                 timerCintillo.Enabled = true;
                 timerCintillo.Tick += new EventHandler(tm_Tick_Cintillo);
-            }                   
+            }
         }
     }
 
@@ -3415,13 +3557,13 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         if (LstOfSMSTouch.Count > 0)
         {
             var CantidadEntrue = LstOfSMSTouch.Where(x => x.Mostrado == false).Count();
-            if (CantidadEntrue == 0) foreach (var mensaje in LstOfSMSTouch) { mensaje.Mostrado = false;}
+            if (CantidadEntrue == 0) foreach (var mensaje in LstOfSMSTouch) { mensaje.Mostrado = false; }
             var elementoMensaje = LstOfSMSTouch.Where(x => x.Mostrado == false).FirstOrDefault();
             //Mostrar cintillo
             ECintillo(elementoMensaje.TexoSMS);
             LstOfSMSTouch.Where(x => x.idSmsTouch == elementoMensaje.idSmsTouch).FirstOrDefault().Mostrado = true;
 
-            
+
         }
     }
 
@@ -3447,7 +3589,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     {
         var Query = "select idsmstouch, textoSMS from SMSTouch Where IdDestinatario = 1;";
         var DSInfo = GetDataSet(Query);
-        if (DSInfo.Tables.Count > 0) return DSInfo.Tables[0].AsEnumerable().Select(x => new SMSTouch(Convert.ToInt32(x[0].ToString()),x[1].ToString().Trim())).ToList();
+        if (DSInfo.Tables.Count > 0) return DSInfo.Tables[0].AsEnumerable().Select(x => new SMSTouch(Convert.ToInt32(x[0].ToString()), x[1].ToString().Trim())).ToList();
         this.ErrorSIA_ = "No se tienen registros en la tabla SMSTouch";
         return null;
     }
@@ -3455,14 +3597,14 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
     public List<SMSTouch> LstOfSMSTouch { get; set; }
 
-    
+
 
     public class SMSTouch
     {
         public int idSmsTouch { get; set; }
-        public string TexoSMS {get; set;}
-        public bool Mostrado {get; set;}
-        public SMSTouch(int IdSmsTouch, string TextoSMS )
+        public string TexoSMS { get; set; }
+        public bool Mostrado { get; set; }
+        public SMSTouch(int IdSmsTouch, string TextoSMS)
         {
             this.idSmsTouch = IdSmsTouch;
             this.TexoSMS = TextoSMS;

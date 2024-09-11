@@ -135,8 +135,8 @@
             // btnVideo
             // 
             this.btnVideo.BackColor = System.Drawing.Color.Transparent;
+            this.btnVideo.BackgroundImage = global::SMFE.Properties.Resources.btl_videos;
             this.btnVideo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnVideo.Image = global::SMFE.Properties.Resources.btl_videos;
             this.btnVideo.Location = new System.Drawing.Point(20, 153);
             this.btnVideo.Name = "btnVideo";
             this.btnVideo.Size = new System.Drawing.Size(360, 55);
@@ -147,8 +147,8 @@
             // btnAudio
             // 
             this.btnAudio.BackColor = System.Drawing.Color.Transparent;
+            this.btnAudio.BackgroundImage = global::SMFE.Properties.Resources.btl_audios;
             this.btnAudio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAudio.Image = global::SMFE.Properties.Resources.btl_audios;
             this.btnAudio.Location = new System.Drawing.Point(20, 72);
             this.btnAudio.Name = "btnAudio";
             this.btnAudio.Size = new System.Drawing.Size(360, 55);

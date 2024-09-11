@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\siiab\OneDrive\Documentos\GIT\SAM_ADO\InterfazSistema\InterfazSistema\ModelosBD\POIEntities.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\mikeo\OneDrive\Documentos\Proyectos Mobility ADO\POI\SAM\SIIAB\SIIAB\SAM_ADOv6.3\SAM_ADO\SAM_ADO\InterfazSistema\InterfazSistema\ModelosBD\POIEntities.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

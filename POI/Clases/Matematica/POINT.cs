@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-class POINT
+
+
+public class POINT
 {
     #region "Propiedades"
     public float Latitud { get; set; }
@@ -25,7 +26,7 @@ class POINT
     public POINT(String latitud, String longitud)
     {
         this.Latitud = (float)Convert.ToDouble(latitud);
-        this.Longitud = (float)Convert.ToDouble(latitud);
+        this.Longitud = (float)Convert.ToDouble(longitud);
     }
 
     /// <summary>

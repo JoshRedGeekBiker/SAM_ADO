@@ -27,7 +27,7 @@ public partial class frmSistemas : Form
     /// Constructor Productivo
     /// </summary>
     /// <param name="_ModoPrueba"></param>
-    public frmSistemas(bool _ModoPrueba, bool Nocturno, bool _CAN, bool _VMD, bool _CONDUSAT, bool _SIA, bool _TELEMETRIA, bool _GPS,bool _btnOff, bool _btnPanico)
+    public frmSistemas(bool _ModoPrueba, bool Nocturno, bool _CAN, bool _VMD, bool _CONDUSAT, bool _SIA, bool _TELEMETRIA, bool _GPS,bool _btnOff, bool _btnPanico, bool _POI)
     {
         InitializeComponent();
         //ModoPrueba = _ModoPrueba;
@@ -54,6 +54,7 @@ public partial class frmSistemas : Form
         this.SIA = _SIA;
         this.Telemetria = _TELEMETRIA;
         this.GPS = _GPS;
+        this.POI = _POI; //Powered ByRED 21FEB24
 
         //Acomodar vistas
         CrearLayout();
@@ -142,6 +143,11 @@ public partial class frmSistemas : Form
     /// </summary>
     public delegate void VistaMenuSpots();
     public event VistaMenuSpots MuestraMenuSpots;
+    /// <summary>
+    /// Se encargará de mandar a llamar el cargador de Spots
+    /// </summary>
+    public delegate void VMDCargadorSpots(String tipo);
+    public event VMDCargadorSpots CargadorSpots;
 
     /// <summary>
     /// Se encarga mandar la instrucción de apagado del sistema SAM
@@ -187,6 +193,7 @@ public partial class frmSistemas : Form
     public bool VMD_Inicializado { get; set; } = false;
     public bool Telemetria { get; set; } = false;
     public bool GPS { get; set; } = false;
+    public bool POI { get; set; } = false;
 
     #endregion
 
@@ -332,8 +339,10 @@ public partial class frmSistemas : Form
     /// <param name="e"></param>
     private void btnSpots_Click(object sender, EventArgs e)
     {
+        //UltActividad = DateTime.Now;
+        //MuestraMenuSpots(); Se cambio requerimiento 200423
         UltActividad = DateTime.Now;
-        MuestraMenuSpots();
+        CargadorSpots("video");
     }
 
     #endregion
@@ -489,7 +498,14 @@ public partial class frmSistemas : Form
             this.ledGPS.Visible = false;
         }
 
+        //Powered ByRED 21FEB24
+        if (!this.POI)
+        {
+            this.btnSpots.Visible = false;
+        }
+
         BotonFocus(PrioridadSistema);
+
     }
 
     /// <summary>
@@ -707,6 +723,8 @@ public partial class frmSistemas : Form
                 this.btnOff.BackgroundImage = Resources.btn_offNoc;
                 this.btnbloquear.BackgroundImage = Resources.BotonBloquearNoc;
 
+               
+
                 //Indicadores
                 ledGPS.BackColor = Color.Black;
                 LedTelemetria.BackColor = Color.Black;
@@ -826,9 +844,10 @@ public partial class frmSistemas : Form
             this.btnPlay.BackgroundImage = global::SMFE.Properties.Resources.BotonIniciarNoc;
             this.btnReiniciar.BackgroundImage = global::SMFE.Properties.Resources.BotonReiniciarNoc;
             this.btnNuevaPauta.BackgroundImage = global::SMFE.Properties.Resources.BotonPautaNoc;
-            this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMASNoc;
-            this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOSNoc;
+            this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMASbNoc;
+            this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOSbNoc;
             this.btnHerramientasVMD.BackgroundImage = global::SMFE.Properties.Resources.BotonHerramientasNoc;
+            this.btnSpots.BackgroundImage = global::SMFE.Properties.Resources.BotonSpotsNoc;
 
             this.lblDuracion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.lblREproduccion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -846,6 +865,8 @@ public partial class frmSistemas : Form
             this.btnVolumeUp.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMAS;
             this.btnVolumeDown.BackgroundImage = global::SMFE.Properties.Resources.BotonVolumenMENOS;
             this.btnHerramientasVMD.BackgroundImage = global::SMFE.Properties.Resources.BotonHerramientas;
+            this.btnSpots.BackgroundImage = global::SMFE.Properties.Resources.BotonSpots;
+
 
             this.lblDuracion.ForeColor = System.Drawing.Color.Black;
             this.lblREproduccion.ForeColor = System.Drawing.Color.Black;

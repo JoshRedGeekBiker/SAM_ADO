@@ -536,7 +536,7 @@ public class SyncSAM : ICloud
         if (ParSAM.ModoDeveloper)
         {
             //Para sincronizar MXD
-            //AnilloRedCAN = 201;
+            AnilloRedCAN = 201;
 
             //Para sincronizar en SDL
             //AnilloRedCAN = 76;
@@ -548,7 +548,8 @@ public class SyncSAM : ICloud
             //AnilloRedCAN = 191;
 
             //Para Poza RIca
-            AnilloRedCAN = 238;
+            //AnilloRedCAN = 238;
+
             //Para NTE
             //AnilloRedCAN = 168;
 

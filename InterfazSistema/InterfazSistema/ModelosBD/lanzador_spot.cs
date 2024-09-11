@@ -12,18 +12,15 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class coor_polygon
+    public partial class lanzador_spot
     {
-        public long id_coor_polygon { get; set; }
-        public long id_cat_poi { get; set; }
-        public long paradaId { get; set; }
-        public long sequence { get; set; }
-        public bool active { get; set; }
+        public long id_lanzador_spot { get; set; }
+        public long spotListaId { get; set; }
+        public bool status { get; set; }
         public float latitud { get; set; }
         public float longitud { get; set; }
-        public float latitudCan { get; set; }
-        public float longitudCan { get; set; }
-    
-        public virtual cat_poi cat_poi { get; set; }
+        public System.DateTime fecha_lanzamiento { get; set; }
+        public long spotListaSecuencia { get; set; }
+        public long spotArchivoId { get; set; }
     }
 }

@@ -25,12 +25,14 @@ namespace InterfazSistema.ModelosBD
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<archivo_poi> archivo_poi { get; set; }
-        public DbSet<cat_poi> cat_poi { get; set; }
-        public DbSet<coor_polygon> coor_polygon { get; set; }
-        public DbSet<detalles_poi> detalles_poi { get; set; }
+        public DbSet<spot_poi> spot_poi { get; set; }
+        public DbSet<spotlista_poi> spotlista_poi { get; set; }
+        public DbSet<cat_media_disponible> cat_media_disponible { get; set; }
+        public DbSet<coordenadas_poi> coordenadas_poi { get; set; }
+        public DbSet<lanzador_spot> lanzador_spot { get; set; }
+        public DbSet<parada_poi> parada_poi { get; set; }
         public DbSet<parametros_poi> parametros_poi { get; set; }
         public DbSet<testigo_poi> testigo_poi { get; set; }
-        public DbSet<tipo_archivo_poi> tipo_archivo_poi { get; set; }
+        public DbSet<spot_manual> spot_manual { get; set; }
     }
 }

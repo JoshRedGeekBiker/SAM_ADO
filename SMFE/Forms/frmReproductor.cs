@@ -17,11 +17,13 @@ public partial class frmReproductor : Form
     #region "Propiedades"
     public VideoVMD VideoEnReproduccion { get; set; }
     public VideoVMD VideoAnterior { get; set; }
-    public SpotPoi SpotEnReproduccion { get; set; }
-    public SpotPoi SpotSiguiente { get; set; }
+    public spotPOI SpotEnReproduccion { get; set; }
+    public spotPOI SpotSiguiente { get; set; }
     public List<VideoVMD> ColaVideo { get; set; }
-    public List<SpotPoi> colaSpots { get; set; }
+    public List<spotPOI> colaSpots { get; set; }
     public bool detenida { get; set; } = false;
+    public bool EstadoInicialStop { get; set; } = false;
+    public bool primeraReproduccion { get; set; } = true;
     public string Error_ { get; set; }
     public ParametrosCintillo ParamCintillo { get; set; }
 
@@ -68,7 +70,7 @@ public partial class frmReproductor : Form
         }
 
         ColaVideo = new List<VideoVMD>();
-        colaSpots = new List<SpotPoi>();
+        colaSpots = new List<spotPOI>();
         TmrActividad = new System.Timers.Timer(1000);
         TmrRevisarReproduccion = new System.Timers.Timer(5000);
         TmrActividad.Enabled = false;
@@ -102,7 +104,7 @@ public partial class frmReproductor : Form
             Cursor.Hide();
         }
         ColaVideo = new List<VideoVMD>();
-        colaSpots = new List<SpotPoi>();
+        colaSpots = new List<spotPOI>();
         TmrActividad = new System.Timers.Timer(1000);
         TmrRevisarReproduccion = new System.Timers.Timer(5000);
         TmrActividad.Enabled = false;
@@ -130,9 +132,13 @@ public partial class frmReproductor : Form
     public event delAgregarLog evtAgregarLog;
     public delegate void delTerminarPoi();
     public event delTerminarPoi evtTerminarPoi;
+    public delegate void delTestigoPoi(spotPOI sp);
+    public event delTestigoPoi evtEnviarTestigo;
 
     public delegate void delReaudarPeliculaPOI();
     public event delReaudarPeliculaPOI ReanudarPeliculaPOI;
+    public delegate void enviaMensajePOI(String msg);
+    public event enviaMensajePOI enviaMSG;
     /// <summary>
     /// Sirve para trar los datos mutimedia
     /// Powered ByRED 30MAR2021
@@ -207,17 +213,38 @@ public partial class frmReproductor : Form
         Func_ReproductorPlay();
 
     }
-    public void Func_SpotPlay(SpotPoi VideoEntrante, bool DetenerVideoActual)
+    public void Func_SpotPlay(spotPOI VideoEntrante)
     {
 
-        if (vlcControl1.State == MediaStates.Playing)
+        //if (vlcControl1.State == MediaStates.Playing)
+        //{
+        //    colaSpots.Add(VideoEntrante);
+        //    return;
+        //}
+
+        colaSpots.Add(VideoEntrante);
+        if (vlcControl1.State == MediaStates.Stopped || vlcControl1.State == MediaStates.NothingSpecial)
         {
-            colaSpots.Add(VideoEntrante);
-            VideoEntrante.idArchivo = VideoEntrante.idArchivo + 1;
-            return;
+            if (primeraReproduccion)
+            {
+                EstadoInicialStop = vlcControl1.State == MediaStates.NothingSpecial ? true : false;
+                primeraReproduccion = false;
+            }
+            if (vlcControl1.State != MediaStates.Opening && vlcControl1.State == MediaStates.Stopped)
+            {
+
+                Func_ReproduceColaSpots();
+            }
+        }
+        else {
+            enviaMSG("POI");
         }
 
-        this.SpotEnReproduccion = VideoEntrante;
+        //if (primeraRepoduccion) {
+        //    EstadoInicialStop = vlcControl1.State == MediaStates.NothingSpecial ? true : false;
+        //    primeraRepoduccion = false;
+        //}
+        //this.SpotEnReproduccion = VideoEntrante;
         //En este punto ya deja reproducir
         //switch (tipo) {
         //    case 0:
@@ -227,7 +254,7 @@ public partial class frmReproductor : Form
         //        Func_ReproSpots(tipo);
         //        break;
         //}
-        Func_ReproSpots();
+        //Func_ReproSpots();
     }
     /// <summary>
     /// Metodo que reproduce los Spots
@@ -237,16 +264,21 @@ public partial class frmReproductor : Form
     public void Func_ReproSpots()
     {
 
-        var archivo = new System.IO.FileInfo(this.SpotEnReproduccion.rutaVideo );
+        var archivo = new System.IO.FileInfo(this.SpotEnReproduccion.rutaVideo);
+        
         this.vlcControl1.SetMedia(archivo);
         this.vlcControl1.BringToFront();
-        if (SpotEnReproduccion.tipoSpot == 1)
+        if (SpotEnReproduccion.tipoSpot.ToUpper().Contains("VIDEO"))
         {
             this.vlcControl1.Visible = true;
         }
+        else
+        {
+            this.vlcControl1.Visible = false;
+        }
         //this.vlcControl1.Play();
         evtEstadoReproduccion("play");//Avisa al Front para cambiar el ícono
-        var posicion = (float)this.VideoEnReproduccion.posicion;
+        //var posicion = (float)this.VideoEnReproduccion.posicion; se comento por que truena aqui
         //this.vlcControl1.Position = posicion; //Debemos de poner la posición más adelante
         //this.vlcControl1.Audio.Volume = AudioInicial;
 
@@ -260,11 +292,8 @@ public partial class frmReproductor : Form
         TmrDuracion.Start();//Powered ByRED 24ENE2023
 
         TmrRevisarReproduccion.Start(); //Inicio del ciclo de recuperaciones
-
-
-
+       
         this.vlcControl1.Play(); //Powered ByRED 20JUN2020
-        if (MediaStates.Playing == vlcControl1.State) { }
         this.vlcControl1.Position = 0; //Powered ByRED 07ABR2021
         spotPoi = true;
         TmrActividad.Start();
@@ -344,11 +373,20 @@ public partial class frmReproductor : Form
                     Func_ReproduceColaVideo();
                 }
                 else
-                {
+
+               {
+                    evtEnviarTestigo(SpotEnReproduccion);
                     if (colaSpots.Count() == 0)
                     {
                         spotPoi = false;
-                        ReanudarPeliculaPOI();
+                        if (!EstadoInicialStop)
+                        {
+                            ReanudarPeliculaPOI();
+
+                        }
+                        else {
+                            Func_DetenerPeliculaPOI();
+                        }
                     }
                     else
                     {
@@ -397,15 +435,23 @@ public partial class frmReproductor : Form
         }
 
     }
+    /// <summary>
+    /// Se encarga de asignar el siguiente spot para la reproduccion y mandar el testigo
+    /// Powered byToto2023♫♫
+    /// </summary>
     private void Func_ReproduceColaSpots()
     {
-        if (colaSpots.Count > 0)
-        {
-            this.SpotEnReproduccion = colaSpots[0];
-            colaSpots.RemoveAt(0);
-            Func_ReproSpots();
-            return;
+        if(this.vlcControl1.State != MediaStates.Playing) {
+            if (colaSpots.Count > 0)
+            {
+                //Aqui vamos a mandar el testigo del spot reproducido
+                this.SpotEnReproduccion = colaSpots[0];
+                colaSpots.RemoveAt(0);
+                Func_ReproSpots();
+                return;
+            }
         }
+        
     }
 
     /// <summary>
@@ -484,14 +530,18 @@ public partial class frmReproductor : Form
     {
         try
         {
-            TmrRevisarReproduccion.Stop();
-            TmrActividad.Stop();
-            //TmrDuracion.Stop();//Powered ByRED 24ENE2023
+            if (vlcControl1.State == MediaStates.Playing)
+            {
 
-            this.vlcControl1.Stop();
-            this.vlcControl1.Visible = false;
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1)); //Espera un segundo para garantizar el término del Timer
-            evtEstadoReproduccion("stop");//Avisa al Front para cambiar el ícono
+                TmrRevisarReproduccion.Stop();
+                TmrActividad.Stop();
+                //TmrDuracion.Stop();//Powered ByRED 24ENE2023
+
+                this.vlcControl1.Stop();
+                this.vlcControl1.Visible = false;
+                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1)); //Espera un segundo para garantizar el término del Timer
+                evtEstadoReproduccion("stop");//Avisa al Front para cambiar el ícono
+            }
             return;
         }
         catch (Exception oe)
@@ -781,7 +831,7 @@ public partial class frmReproductor : Form
     private void tmrActividad_Tick(object source, ElapsedEventArgs e)
     {
         TmrActividad.Stop();
-       
+
 
         // Se mueve la logica a tmr_duracion
         //try
@@ -861,12 +911,7 @@ public partial class frmReproductor : Form
         public string rutaVideo { get; set; }
         public double posicion { get; set; }
     }
-    public class SpotPoi
-    {
-        public int idArchivo { get; set; }
-        public int tipoSpot { get; set; }
-        public string rutaVideo { get; set; }
-    }
+
     public class ParametrosCintillo
     {
         public DockStyle PosicionCintillo { get; set; }

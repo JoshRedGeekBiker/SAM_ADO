@@ -49,7 +49,31 @@ public partial class frmMostrarMensaje : Form
 
         ProcesarTexto(_textosms);
     }
+    /// <summary>
+    /// Constructor Productivo
+    /// </summary>
+    /// <param name="_ModoPrueba"></param>
+    /// <param name="_Nocturno"></param>
+    public frmMostrarMensaje(bool _ModoPrueba, bool _Nocturno, string _textosms, bool POI)
+    {
+        InitializeComponent();
 
+        if (!_ModoPrueba)
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.MaximumSize = new Size(532, 308);
+            this.MinimumSize = new Size(532, 308);
+            this.Size = new Size(532, 308);
+            Cursor.Hide();
+        }
+
+        if (_Nocturno)
+        {
+            ActivarModonocturno(_Nocturno);
+        }
+
+        ProcesarTextoPOI(_textosms);
+    }
     #endregion
 
     #region Propiedades
@@ -169,6 +193,24 @@ public partial class frmMostrarMensaje : Form
         }
     }
 
+    /// <summary>
+    /// Se encarga de dividir el texto
+    /// </summary>
+    /// <param name="texto"></param>
+    public void ProcesarTextoPOI(string texto)
+    {
+        try
+        {
+            lblFecha.Text = "";
+            lblTitulo.Text = "¡Mensaje Spots!";
+            lblMensaje1.Text = texto;
+
+        }
+        catch
+        {
+            lblMensaje1.Text = texto;
+        }
+    }
     /// <summary>
     /// LOAD
     /// </summary>

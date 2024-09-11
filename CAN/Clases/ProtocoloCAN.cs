@@ -194,7 +194,9 @@ public class ProtocoloCAN : IBDContext, IMessage
 
                 try { FuelEconomyEstimationLMAF = Convert.ToDouble(ADOCAN.VAL_FuelEconomyEstimationLMAF); } catch { FuelEconomyEstimationLMAF = 0; }
 
-                try { FuelEconomyEstimationFE = Truncar(ADOCAN.VAL_Combustible); } catch { FuelEconomyEstimationFE = 0; }
+                //try { FuelEconomyEstimationFE = Truncar(ADOCAN.VAL_Combustible); } catch { FuelEconomyEstimationFE = 0; }
+
+                try { FuelEconomyEstimationFE = Truncar2(ADOCAN.VAL_Combustible); } catch { FuelEconomyEstimationFE = 0; }
 
                 try { RealKmPerLiterHighLevel = Convert.ToDouble(ADOCAN.VAL_Rendimiento); } catch { RealKmPerLiterHighLevel = 0; }
 
@@ -202,7 +204,9 @@ public class ProtocoloCAN : IBDContext, IMessage
 
                 try { TripDistance = Truncar(Convert.ToDouble(ADOCAN.VAL_TotalDistance)); } catch { TripDistance = 0; }
 
-                try { TripDistanceEstimationVS = Truncar(ADOCAN.VAL_Kilometros); } catch { TripDistanceEstimationVS = 0; }
+                //try { TripDistanceEstimationVS = Truncar(ADOCAN.VAL_Kilometros); } catch { TripDistanceEstimationVS = 0; }
+
+                try { TripDistanceEstimationVS = Truncar2(ADOCAN.VAL_Kilometros); } catch { TripDistanceEstimationVS = 0; }
 
                 try { TripDistanceEstimationWVS = Convert.ToDouble(ADOCAN.VAL_TripDistanceEstimationWVS); } catch { TripDistanceEstimationWVS = 0; }
 
@@ -487,6 +491,20 @@ public class ProtocoloCAN : IBDContext, IMessage
     private double Truncar(double Valor)
     {
         int temporal = (int)(Valor * 1000);
+
+        return temporal / 1000.0;
+
+    }
+
+
+    /// <summary>
+    /// Se encarga de convertir el valor a sólo 3 decimales
+    /// </summary>
+    /// <param name="Valor"></param>
+    /// <returns></returns>
+    private double Truncar2(double Valor)
+    {
+        long temporal = (long)(Valor * 1000);
 
         return temporal / 1000.0;
 

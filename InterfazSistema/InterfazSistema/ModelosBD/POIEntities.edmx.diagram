@@ -5,18 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="22c9853751944db0991b7dfb2444c399" Name="Diagram1">
-        <EntityTypeShape EntityType="poiModel.archivo_poi" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.cat_poi" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.coor_polygon" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.detalles_poi" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.parametros_poi" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.testigo_poi" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="poiModel.tipo_archivo_poi" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <AssociationConnector Association="poiModel.FK_archivo_poi" ManuallyRouted="false" />
-        <AssociationConnector Association="poiModel.FK_tipo_archivo_poi" ManuallyRouted="false" />
-        <AssociationConnector Association="poiModel.FK_cat_poi" ManuallyRouted="false" />
-        <AssociationConnector Association="poiModel.FK_parametros_poi" ManuallyRouted="false" />
-        <AssociationConnector Association="poiModel.FK_testigo_poi" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="poiModel.spot_poi" Width="1.5" PointX="6.875" PointY="0.75" />
+        <EntityTypeShape EntityType="poiModel.spotlista_poi" Width="1.5" PointX="6.875" PointY="4.25" />
+        <EntityTypeShape EntityType="poiModel.cat_media_disponible" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="poiModel.coordenadas_poi" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="poiModel.lanzador_spot" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="poiModel.parada_poi" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="poiModel.parametros_poi" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="poiModel.testigo_poi" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="poiModel.spot_manual" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

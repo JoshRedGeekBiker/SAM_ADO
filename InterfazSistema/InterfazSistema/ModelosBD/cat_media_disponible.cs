@@ -12,21 +12,15 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class archivo_poi
+    public partial class cat_media_disponible
     {
-        public archivo_poi()
-        {
-            this.tipo_archivo_poi = new HashSet<tipo_archivo_poi>();
-        }
-    
-        public long id_archivo_poi { get; set; }
-        public long spotId { get; set; }
-        public long spotArchivoId { get; set; }
-        public string nombre { get; set; }
+        public long id_cat_med_dis { get; set; }
         public string url { get; set; }
-        public bool activo { get; set; }
-    
-        public virtual detalles_poi detalles_poi { get; set; }
-        public virtual ICollection<tipo_archivo_poi> tipo_archivo_poi { get; set; }
+        public string nombre { get; set; }
+        public long spotListaId { get; set; }
+        public bool status { get; set; }
+        public long spotArchivoId { get; set; }
+        public string type { get; set; }
+        public long tipo_spot { get; set; }
     }
 }

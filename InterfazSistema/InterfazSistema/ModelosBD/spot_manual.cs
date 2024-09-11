@@ -12,16 +12,15 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class testigo_poi
+    public partial class spot_manual
     {
-        public long id_testigo { get; set; }
-        public long spotListaId { get; set; }
-        public long spotListaSecuencia { get; set; }
+        public long id_spot_manual { get; set; }
+        public string url { get; set; }
+        public string nombre { get; set; }
+        public bool status { get; set; }
         public long spotArchivoId { get; set; }
-        public System.DateTime fechaReproduccion { get; set; }
-        public float latitud { get; set; }
-        public float longitud { get; set; }
-        public bool enviado { get; set; }
-        public string numeroEconomico { get; set; }
+        public string type { get; set; }
+        public System.DateTime fechaVigenciaInicio { get; set; }
+        public System.DateTime fechaVigenciaFin { get; set; }
     }
 }

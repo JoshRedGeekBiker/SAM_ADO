@@ -12,22 +12,13 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class cat_poi
+    public partial class parada_poi
     {
-        public cat_poi()
-        {
-            this.coor_polygon = new HashSet<coor_polygon>();
-        }
-    
-        public long id_cat_poi { get; set; }
-        public long spotId { get; set; }
         public long paradaId { get; set; }
+        public long spotListaId { get; set; }
         public string nombre { get; set; }
         public bool activo { get; set; }
         public string clave { get; set; }
         public System.DateTime fechaCreacion { get; set; }
-    
-        public virtual ICollection<coor_polygon> coor_polygon { get; set; }
-        public virtual detalles_poi detalles_poi { get; set; }
     }
 }

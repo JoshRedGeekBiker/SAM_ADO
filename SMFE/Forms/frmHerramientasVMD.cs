@@ -29,7 +29,7 @@ public partial class frmHerramientasVMD : Form
     /// </summary>
     /// <param name="_modoPrueba"></param>
     /// <param name="Nocturno"></param>
-    public frmHerramientasVMD(bool _ModoPrueba, bool Nocturno)
+    public frmHerramientasVMD(bool _ModoPrueba, bool Nocturno, String version)
     {
         InitializeComponent();
 
@@ -43,6 +43,7 @@ public partial class frmHerramientasVMD : Form
         }
 
         lblFecha.Text = DateTime.Now.ToString();
+        lblVersion.Text += ": " + version;
 
         if (Nocturno)
         {
@@ -77,7 +78,7 @@ public partial class frmHerramientasVMD : Form
     public delegate void VMDCargadorPautas(string tipo);
     public event VMDCargadorPautas CargadorPautas;
 
-    public delegate void VMDCargadorSpots(int tipo);
+    public delegate void VMDCargadorSpots(String tipo);
     public event VMDCargadorSpots CargadorSpots;
     #endregion
 
@@ -203,13 +204,13 @@ public partial class frmHerramientasVMD : Form
     private void btnAudio_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
-        CargadorSpots(0);
+        CargadorSpots("audio");
     }
 
     private void btnVideo_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
-        CargadorSpots(1);
+        CargadorSpots("video");
 
     }
 

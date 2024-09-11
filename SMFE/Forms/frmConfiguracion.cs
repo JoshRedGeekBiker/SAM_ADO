@@ -359,7 +359,7 @@ public partial class frmConfiguracion : Form
         BlanquearOpciones();
 
 
-        _lblDescripcion_0.Text = "SIIAB POI";
+        _lblDescripcion_0.Text = "Comunicación Abordo";
         _lblDescripcion_1.Visible = false;
         _lblDescripcion_2.Visible = false;
         _lblDescripcion_3.Visible = false;

@@ -12,14 +12,19 @@ namespace InterfazSistema.ModelosBD
     using System;
     using System.Collections.Generic;
     
-    public partial class tipo_archivo_poi
+    public partial class spotlista_poi
     {
-        public long id_tipo_archivo_poi { get; set; }
-        public long id_archivo_poi { get; set; }
+        public long spot_id { get; set; }
+        public long spotListaId { get; set; }
+        public long secuencia { get; set; }
+        public long spotArchivoId { get; set; }
+        public string nombre { get; set; }
+        public string url { get; set; }
+        public bool activo { get; set; }
+        public System.DateTime fechaVigenciaInicio { get; set; }
+        public System.DateTime fechaVigenciaFin { get; set; }
         public long spotArchivoTipoId { get; set; }
         public string descripcion { get; set; }
-        public bool activo { get; set; }
-    
-        public virtual archivo_poi archivo_poi { get; set; }
+        public bool activo_t { get; set; }
     }
 }

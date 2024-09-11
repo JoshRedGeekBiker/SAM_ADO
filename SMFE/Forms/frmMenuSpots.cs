@@ -23,7 +23,7 @@ public partial class frmMenuSpots : Form
     /// </summary>
     /// <param name="_modoPrueba"></param>
     /// <param name="Nocturno"></param>
-    public frmMenuSpots(bool _ModoPrueba, bool Nocturno)
+    public frmMenuSpots(bool _ModoPrueba, bool Nocturno, String version)
     {
         InitializeComponent();
 
@@ -37,6 +37,7 @@ public partial class frmMenuSpots : Form
         }
 
         lblFecha.Text = DateTime.Now.ToString();
+        lblVersion.Text += ": "+version;
 
         if (Nocturno)
         {
@@ -68,7 +69,7 @@ public partial class frmMenuSpots : Form
     /// <summary>
     /// Se encargará de mandar a llamar el cargador de Spots
     /// </summary>
-    public delegate void VMDCargadorSpots(int tipo);
+    public delegate void VMDCargadorSpots(String tipo);
     public event VMDCargadorSpots CargadorSpots;
     #endregion
 
@@ -93,6 +94,8 @@ public partial class frmMenuSpots : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESARNoc;
+                btnAudio.BackgroundImage = Resources.btl_audiosNoc;
+                btnVideo.BackgroundImage = Resources.btl_videosNoc;
 
                 ModoNocturno = true;
             }
@@ -110,6 +113,8 @@ public partial class frmMenuSpots : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESAR;
+                btnAudio.BackgroundImage = Resources.btl_audios;
+                btnVideo.BackgroundImage = Resources.btl_videos;
 
                 ModoNocturno = false;
             }
@@ -177,13 +182,13 @@ public partial class frmMenuSpots : Form
     private void btnAudio_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
-        CargadorSpots(0);
+        CargadorSpots("audio");
     }
 
     private void btnVideo_Click(object sender, EventArgs e)
     {
         UltActividad = DateTime.Now;
-        CargadorSpots(1);
+        CargadorSpots("video");
 
     }
 

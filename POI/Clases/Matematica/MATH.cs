@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-class MATH
+
+public class MATH
 {
     const float RADIUS_PLANET = 6371000f;
 
@@ -136,4 +136,3 @@ class MATH
     }
 
 }
-

@@ -142,6 +142,9 @@ public partial class frmCargadorDePautas : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESARNoc;
+                BtnCancelar.BackgroundImage = Resources.CancelarSincronizarNOC;
+                btnAceptar.BackgroundImage = Resources.AceptarSincronizarNoc;
+
 
                 ModoNocturno = true;
             }
@@ -161,6 +164,8 @@ public partial class frmCargadorDePautas : Form
 
                 //Botones
                 btnRegresar.BackgroundImage = Resources.BotonREGRESAR;
+                BtnCancelar.BackgroundImage = Resources.CancelarSincronizar;
+                btnAceptar.BackgroundImage = Resources.AceptarSincronizar;
 
                 ModoNocturno = false;
             }

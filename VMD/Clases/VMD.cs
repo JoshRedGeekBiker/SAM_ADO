@@ -292,7 +292,7 @@ public class VMD : ISistema, IBDContext
 
                 RecargaBDVMD();//Powered ByRED 15JUN2021
 
-                return resultado;
+                return resultado;                                                                                                                           
 
             default:
 
@@ -1254,7 +1254,7 @@ public class VMD : ISistema, IBDContext
 
         if (!System.IO.File.Exists(Param_CarpetaVideo))
         {
-            AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "No existe el archivo en la carpeta configurada");
+           AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "No existe el archivo en la carpeta configurada");
             ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
 
             ChecaSigtVideo();
@@ -1262,30 +1262,40 @@ public class VMD : ISistema, IBDContext
             return;
         }
 
-        //if (ValidarHorario)
-        //{
-        //    if (!HorarioValido())
-        //    {
-        //        AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "Archivo se intenta ejecutar en horario no válido");
-        //        ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
-        //        return;
-        //    }
-        //}
 
-        //if (Caduco(IdArchivo))
-        //{
-        //    AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "La caducidad ya venció");
-        //    ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
-        //    return;
-        //}
+        //Powered ByRED 24ABR2024
+        //Verifica si se puede reproducir por horario valido
 
-        //if (!Vigente(IdArchivo))
-        //{
-        //    AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "El inicio de vigencia aún no es válido");
-        //    ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
-        //    return;
-        //}
-        //
+        if (ValidarHorario)
+        {
+            if (!HorarioValido())
+            {
+                AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "Archivo se intenta ejecutar en horario no válido");
+                ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
+                evRepStop();//Powered ByRED 25ABR24 Mandamos a detener la reproducción
+                return;
+            }
+        }
+
+        //Powered ByRED 24ABR2024
+        //Verifica que ya se puede reproducir por vigencia
+        if (!Vigente(IdArchivo))
+        {
+            AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "El inicio de vigencia aún no es válido");
+            ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
+            ChecaSigtVideo();
+            return;
+        }
+
+        //Powered ByRED 24ABR2024
+        //Verifica si aun no pasa el tiempo de vigencia del archivo
+        if (Caduco(IdArchivo))
+        {
+            AgregaLog(RutaVideo, IdArchivo, MinutosMax, false, "La caducidad ya venció");
+            ActualizaFechaSeleccion(Convert.ToString(IdArchivo));
+            ChecaSigtVideo();
+            return;
+        }
         evRepPlay(IdArchivo, Param_CarpetaVideo, MinutosMax, DetenerVideoActual, Convert.ToBoolean(parametros.PlaySobrePlay), posicion);
         //IdPelicula = IdArchivo;
     }
@@ -1335,9 +1345,11 @@ public class VMD : ISistema, IBDContext
     //Enviar Log de eventos de sincronización
     public delegate void dMensajeSincronizacion(string mensaje, int final);
     public event dMensajeSincronizacion evMensajeSincronizacion;
-    // Mensaje Inicial
+    //Para mandar a detener la pelicula por horario no valido
+    public delegate void dStop();
+    public event dStop evRepStop;
 
-    
+
 
     #endregion
 
