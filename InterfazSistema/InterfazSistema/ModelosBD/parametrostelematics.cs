@@ -40,5 +40,8 @@ namespace InterfazSistema.ModelosBD
         public string TEMASTREAM { get; set; }
         public string Protocolo { get; set; }
         public string Firmware { get; set; }
+        public long Num_Lote { get; set; }
+        public int Mins_Transponder { get; set; }
+        public int Hrs_Performance { get; set; }
     }
 }

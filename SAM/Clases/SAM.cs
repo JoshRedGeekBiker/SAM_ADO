@@ -1939,6 +1939,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         return ListaReg;
     }
 
+
     /// <summary>
     /// se encarga de ejecutar el script para encender
     /// o apagar el wifi según se requiera
@@ -2555,6 +2556,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     {
         return _config.VerificarRegion(this.VMD_BD, reg);
     }
+
 
     /// <summary>
     /// Se encarga de guardar la configuración de la aplicación

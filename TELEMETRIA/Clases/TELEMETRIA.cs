@@ -15,6 +15,7 @@ using Ionic.Zip;
 using System.Net.NetworkInformation;
 using System.Data.Entity.Validation;
 using System.Reflection;
+using System.Timers;
 
 public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 {
@@ -71,9 +72,15 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     public can_parametrosinicio ParametrosInicio;
     public parametrostelematics Parametros;
 
+
     //Timers
     private System.Windows.Forms.Timer timerEnvio = new System.Windows.Forms.Timer();
     private System.Windows.Forms.Timer timerProceso = new System.Windows.Forms.Timer();
+    private System.Timers.Timer timerTransponder = new System.Timers.Timer();//Powered ByRED 24JUL2024
+
+    //transponder
+    private bool EnviarTransponder = false; //Powered ByRED 24JUL2024
+
 
     //Flags
     private bool EnviarLote = false;
@@ -126,6 +133,9 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     //Powered ByRED 19ENE2022
     private string FirmwareLocal = string.Empty;
     private string ProtocoloLocal = string.Empty;
+
+    public List<Telemetria_Codigo> codigos_temporales = new List<Telemetria_Codigo>();
+
 
     #endregion
 
@@ -261,10 +271,105 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         return Reporte;
     }
 
+    /// <summary>
+    /// Se encarga de recuperar el valor de aceleración para CANV2
+    /// 09SEP2024 Powered ByRED
+    /// </summary>
+    /// <returns></returns>
+    public string ValorAceleracion()
+    {
+        var aceler = string.Empty;
+
+        try
+        {
+            if (codigos_temporales != null)
+            {
+                aceler = (from x in codigos_temporales
+                          where x.LLave == "91"
+                          select x.Valor).FirstOrDefault();
+            }
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+        return aceler;
+    }
+
     #endregion
 
     #region "Metodos Privados"
 
+    /// <summary>
+    /// Se encarga de generar un signo de vida que será enviada a nube para determinar si está vivo o no.
+    /// Powered ByRED 24JUL2024
+    /// </summary>
+    private void GenerarTransponder()
+    {
+        try
+        {
+            ultimoIDCodigo++;
+            codigo nuevocodigo = new codigo();
+
+            var Elahora = DateTime.Now;
+
+            nuevocodigo.PK_ID = ultimoIDCodigo;
+
+            nuevocodigo.Modulo = "99";
+            nuevocodigo.Codigo1 = "9997";
+            nuevocodigo.Valor = "1";
+
+            //Para ser enviado por streaming:
+            nuevocodigo.Type_Codigo_Id = 1;
+            nuevocodigo.FechaHora_Inicio = Elahora;
+            nuevocodigo.FechaHora_Fin = Elahora; //Igualamos la hora, para no tener problemas al guardar
+            nuevocodigo.Autobus = ParametrosInicio.Autobus;
+
+            if (Datos_GPS != null)
+            {
+                nuevocodigo.Lat = Convert.ToDouble(Datos_GPS.Latitud);
+                nuevocodigo.Lng = Convert.ToDouble(Datos_GPS.Longitud);
+                nuevocodigo.NS = Datos_GPS.LatitudNS;
+                nuevocodigo.WE = Datos_GPS.LongitudWE;
+            }
+            else
+            {
+                nuevocodigo.Lat = 0;
+                nuevocodigo.Lng = 0;
+                nuevocodigo.NS = "";
+                nuevocodigo.WE = "";
+            }
+
+            nuevocodigo.Marca_Id = ParametrosInicio.Marca.ToString();
+            nuevocodigo.Region_Id = ParametrosInicio.Region.ToString();
+            nuevocodigo.Region_Operativa_Id = ParametrosInicio.IDRegionOperativa.ToString();
+            nuevocodigo.Clave_Operador = this.Clave_operador;
+            nuevocodigo.Nombre_Operador = (this.Nombre_Operador).Equals("NE") ? "" : this.Nombre_Operador;
+            nuevocodigo.Fecha_Evento_Viaje = this.FechaViaje;
+            nuevocodigo.Tipo_Viaje = this.EnViaje ? "V" : "T";
+            nuevocodigo.Status_Id = 0;
+
+            //Se pone procesado en uno, por que en teoria no tendrían que tener ningún otro proceso
+            nuevocodigo.Procesado = 1;
+            nuevocodigo.Enviado = 0;
+            nuevocodigo.Lote = null;
+
+            //04MAY2020 ByRED
+            nuevocodigo.TipoLectura = "0";
+            nuevocodigo.Contador = "1";
+
+            //Powered ByRED 13OCT2021
+            nuevocodigo.Protocolo = this.ProtocoloLocal;
+            nuevocodigo.Firmware = this.FirmwareLocal;
+            TELEMATICS_BD1.codigo.Add(nuevocodigo);
+        }
+        catch
+        {
+
+        }
+    }
     /// <summary>
     /// Se encarga de reportar la versión a la tabla de Plat_versiones
     /// Powered ByRED 15ENE2021
@@ -340,7 +445,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         HiloProceso = new Thread(new ThreadStart(ProcesamientoCodigos));
 
         //se encarga del envió prioritario de los códigos
-        HiloEnvioPrioritario = new Thread(new ThreadStart(EnviarCodigoFalla));
+        HiloEnvioPrioritario = new Thread(new ThreadStart(EnviarCodigosFallas));
 
         //Se encarga del envio por lote
         HiloEnvioXLote = new Thread(new ThreadStart(CodigosPorLote));
@@ -367,6 +472,13 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         timerProceso.Enabled = true;
         timerProceso.Tick += new EventHandler(Debuggear);
         timerProceso.Start();
+
+        //Powered ByRED 24JUL2024
+
+        timerTransponder.Interval = Convert.ToDouble(Parametros.Mins_Transponder * 60000);
+        timerTransponder.Enabled = true;
+        timerTransponder.Elapsed += Transponder_Tick;
+        timerTransponder.Start();
     }
 
     /// <summary>
@@ -793,6 +905,21 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     }
 
     /// <summary>
+    /// Se encarga de flagear para que se genere el codigo de transponder
+    /// Powered ByRED 24JUL2024
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Transponder_Tick(object sender, ElapsedEventArgs e)
+    {
+        timerTransponder.Stop();
+
+        EnviarTransponder = true;
+
+        timerTransponder.Start();
+    }
+
+    /// <summary>
     /// Se encarga de Recibir, completar y almacenar los codigos de fallas
     /// Modificación: 25May2020 Powered ByRED
     /// Modificación: 24AGO2021 ByRED - Se recibe los dos nuevos parametros: Protocolo y Firmware
@@ -927,6 +1054,78 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         catch (Exception ex)
         {
             var error = ex.ToString();
+        }
+    }
+
+
+    /// <summary>
+    /// Se encarga de guardar la falla en BD en caso de que no haya podido ser enviada
+    /// Powered ByRED 20OCT2021
+    /// </summary>
+    /// <param name="JSON"></param>
+    private bool GuardarFallaBD(string _JSON, string _codigo)
+    {
+        try
+        {
+            ultimoIDFallaEnvio++;
+
+            falla_envio nuevafallaBD = new falla_envio();
+
+            nuevafallaBD.PK_ID = ultimoIDFallaEnvio;
+            nuevafallaBD.JSON = _JSON;
+            nuevafallaBD.Codigo = _codigo;
+            nuevafallaBD.Enviado = 0;
+            TELEMATICS_BD2.falla_envio.Add(nuevafallaBD);
+            return true;
+
+        }
+        catch (Exception ex)
+        {
+
+            return false;
+        }
+    }
+    /// <summary>
+    /// Se encarga de enviar las fallas rezagadas
+    /// Powered ByRED 20OCT2021
+    /// </summary>
+    private void EnviarFallaBD()
+    {
+        try
+        {
+            falla_envio codigo_Falla = (from x in TELEMATICS_BD2.falla_envio
+                                        where x.Enviado == 0
+                                        orderby x.PK_ID ascending
+                                        select x).FirstOrDefault();
+
+            if (codigo_Falla != null)
+            {
+                //Consumimos el WebService
+                if (JSONWS(codigo_Falla.JSON) > 0)
+                {
+                    codigo_Falla.Enviado = 1;
+
+                    //Powered ByRED 20OCT2021
+                    TELEMATICS_BD2.SaveChanges();
+
+                }
+            }
+            //else
+            //{
+            //    //Podriamos mandar a truncar la tabla
+
+            //    if(ultimoIDFallaEnvio != 0)
+            //    {
+            //        //Truncamos
+            //        EjecutarBatTruncate("falla_enviada");
+
+            //        //y reiniciamos el contador de ID
+            //        ultimoIDFallaEnvio = 0;
+            //    }
+            //}
+        }
+        catch (Exception ex)
+        {
         }
     }
 
@@ -1135,6 +1334,14 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                             code.Procesado = 1;
                             break;
                     }
+                }
+                //Generamos un codigo del tipo transponder para rpeortar a nube la ejecución de telematics
+                //Powered ByRED 24JUL2024
+                if (EnviarTransponder)
+                {
+                    EnviarTransponder = false;
+
+                    GenerarTransponder();
                 }
                 TELEMATICS_BD1.SaveChanges();
             }
@@ -1554,7 +1761,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
                     codigo_Falla.Enviado = 1;
 
-                    TELEMATICS_BD2.SaveChanges();
+                   // TELEMATICS_BD2.SaveChanges();
 
                     //Reportamos...
                     ReportarStatusAFront(3);
@@ -1567,8 +1774,16 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 }
                 else
                 {
-                    //Error en el envio
+                    {   //Powered ByRED 20OCT2021
+                        //Lo Almacenamos en Base de datos, para ser enviado posteriormente
+                        if (GuardarFallaBD(json, codigo_Falla.Codigo1))
+                        {
+                            codigo_Falla.Status_Id = 1;
+                            codigo_Falla.Enviado = 2;
+                        }
+                    }
                 }
+                TELEMATICS_BD2.SaveChanges();
 
                 //Para Prueba de Lógica
                 //if (true)
@@ -1585,6 +1800,27 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         catch (Exception ex)
         {
             var error = ex.ToString();
+        }
+    }
+
+
+    /// <summary>
+    /// Se encarga de enviar fallas resguardadas en BD y las que apenas se generaron
+    /// </summary>
+    private void EnviarCodigosFallas()
+    {
+        try
+        {
+            //Enviamos los codigos resagados por falta de internet
+            EnviarFallaBD();
+
+            //Enviamos Fallas recien horneadas
+            EnviarCodigoFalla();
+
+        }
+        catch
+        {
+
         }
     }
 
@@ -2675,9 +2911,6 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     }
     #endregion
 
-    #region "Nuevos Métodos Fabian - VSP"
-
-    #endregion
 
     #region "Métodos Heredados"
 
@@ -2712,7 +2945,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 {
                     if (!HiloEnvioPrioritario.IsAlive)
                     {
-                        HiloEnvioPrioritario = new Thread(new ThreadStart(EnviarCodigoFalla));
+                        HiloEnvioPrioritario = new Thread(new ThreadStart(EnviarCodigosFallas));
                         HiloEnvioPrioritario.Start();
                     }
                 }
@@ -2768,12 +3001,6 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                           select x.PK_ID).FirstOrDefault();
 
 
-        #region "FABIAN"
-
-
-        #endregion
-
-
         region = (from x in VMD_BD.can_referenciaregion
                   where x.IdRegion == ParametrosInicio.Region
                   select x).FirstOrDefault();
@@ -2791,6 +3018,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
         //Iniciamos el cliente
         Telematics.Iniciar_Cliente();
+
 
         //Timers
         PreparaTimers();

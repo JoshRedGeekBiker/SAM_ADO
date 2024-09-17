@@ -108,7 +108,6 @@
         <EntityType Name="parametrostelematics">
           <Key>
             <PropertyRef Name="PK_ID" />
-            <PropertyRef Name="Tiempo_Envio" />
           </Key>
           <Property Name="PK_ID" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Servidor" Type="varchar" MaxLength="45" Nullable="false" />
@@ -136,6 +135,9 @@
           <Property Name="TEMASTREAM" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Protocolo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Firmware" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Num_Lote" Type="uint" Nullable="false" />
+          <Property Name="Mins_Transponder" Type="int" Nullable="false" />
+          <Property Name="Hrs_Performance" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="version_tabla">
           <Key>
@@ -299,6 +301,9 @@
           <Property Name="TEMASTREAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Protocolo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Firmware" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Num_Lote" Type="Int64" Nullable="false" />
+          <Property Name="Mins_Transponder" Type="Int32" Nullable="false" />
+          <Property Name="Hrs_Performance" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="falla_envio">
           <Key>
@@ -423,6 +428,9 @@
           <EntitySetMapping Name="parametrostelematics">
             <EntityTypeMapping TypeName="telematicsModel.parametrostelematics">
               <MappingFragment StoreEntitySet="parametrostelematics">
+                <ScalarProperty Name="Hrs_Performance" ColumnName="Hrs_Performance" />
+                <ScalarProperty Name="Mins_Transponder" ColumnName="Mins_Transponder" />
+                <ScalarProperty Name="Num_Lote" ColumnName="Num_Lote" />
                 <ScalarProperty Name="Firmware" ColumnName="Firmware" />
                 <ScalarProperty Name="Protocolo" ColumnName="Protocolo" />
                 <ScalarProperty Name="TEMASTREAM" ColumnName="TEMASTREAM" />

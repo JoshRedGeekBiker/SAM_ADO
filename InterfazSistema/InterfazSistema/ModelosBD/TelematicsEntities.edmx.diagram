@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9a08dcb5b8444076992a48fececfea77" Name="Diagram1">
+      <Diagram DiagramId="9a08dcb5b8444076992a48fececfea77" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="telematicsModel.cat_codigo" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="telematicsModel.cat_type_action" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="telematicsModel.cat_type_codigo" Width="1.5" PointX="10.625" PointY="3.125" IsExpanded="true" />
@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="telematicsModel.codigo_envio" Width="1.5" PointX="2.375" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="telematicsModel.version_tabla" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="telematicsModel.parametrostelematics" Width="1.5" PointX="4.375" PointY="4.75" />
-        <EntityTypeShape EntityType="telematicsModel.falla_envio" Width="1.5" PointX="6.375" PointY="7.75" />
+        <EntityTypeShape EntityType="telematicsModel.falla_envio" Width="1.5" PointX="6" PointY="4.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
