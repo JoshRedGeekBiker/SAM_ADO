@@ -78,12 +78,14 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     private System.Windows.Forms.Timer timerProceso = new System.Windows.Forms.Timer();
     private System.Timers.Timer timerTransponder = new System.Timers.Timer();//Powered ByRED 24JUL2024
 
-    //transponder
-    private bool EnviarTransponder = false; //Powered ByRED 24JUL2024
-
+    
 
     //Flags
     private bool EnviarLote = false;
+    private DateTime HolaMundo;//Powered ByRED 24JUL2024
+    private bool EnviarTransponder = false; //Powered ByRED 24JUL2024
+
+
 
     //Para calculo de frenadas y aceleraciones
     private double velAnt = 0;
@@ -2963,6 +2965,25 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                     }
                 }
             }
+
+
+
+            var elahora = DateTime.Now;
+
+            //var horas = HolaMundo.Subtract(elahora).TotalMinutes;
+            var horas = elahora.Subtract(HolaMundo).TotalHours;
+
+            if (horas >= Parametros.Hrs_Performance)
+            {
+                //timerReiniciaAPP.Enabled = false;
+
+                //Detenemos los procesos
+                Finalizar();
+
+                //Damos el refresh al performance
+                //Performance();
+            }
+
         }
         catch
         {
@@ -3018,6 +3039,9 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
         //Iniciamos el cliente
         Telematics.Iniciar_Cliente();
+        //Powered ByRED 24JUL2024
+
+        HolaMundo = DateTime.Now;
 
 
         //Timers
