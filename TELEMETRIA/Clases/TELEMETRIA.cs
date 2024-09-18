@@ -16,6 +16,7 @@ using System.Net.NetworkInformation;
 using System.Data.Entity.Validation;
 using System.Reflection;
 using System.Timers;
+using System.Diagnostics;
 
 public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 {
@@ -43,8 +44,8 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     public bool ModoNocturno { get; set; }
 
     //Contexto de Base de datos
-    public vmdEntities VMD_BD { get; }
-    public telematicsEntities TELEMATICS_BD { get; }
+    public vmdEntities VMD_BD { get; set; }
+    public telematicsEntities TELEMATICS_BD { get; set; }
     public GPSData Datos_GPS { get; set; }
 
     #endregion
@@ -78,7 +79,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     private System.Windows.Forms.Timer timerProceso = new System.Windows.Forms.Timer();
     private System.Timers.Timer timerTransponder = new System.Timers.Timer();//Powered ByRED 24JUL2024
 
-    
+
 
     //Flags
     private bool EnviarLote = false;
@@ -157,6 +158,13 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     public delegate void IndicadorSAM(int Estado);
     public event IndicadorSAM IndicadorLed;
 
+    /// <summary>
+    /// Se encarga de reiniciar la lógica del sistema, para recuperar el performance del sistema
+    /// Powered ByRED 19Sep2024
+    /// </summary>
+    public delegate void _Performance();
+    public event _Performance Performance;
+
     #endregion
 
     #region "Constructores"
@@ -166,22 +174,25 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     /// </summary>
     public TELEMETRIA()
     {
-        VMD_BD = new vmdEntities();
-        TELEMATICS_BD = new telematicsEntities();
-        TELEMATICS_BD1 = new telematicsEntities();
-        TELEMATICS_BD2 = new telematicsEntities();
-        TELEMATICS_BD3 = new telematicsEntities();
 
         //Para obtener la versión de la DLL Powered ByRED 15ENE2021
         VersionDLL = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        //Reportamos versión a BD
-        //ReportarVersion();//Se pasa a método Inicializar Powered ByRED 19ENE2022
+        //se manda a depurar la base de datoss de telemetría para procurar la salud de las tablas
+        //18Sep2024
+        EjecutarBatBD("depurarBD");
     }
 
     #endregion
 
     #region "Metodos Publicos"
-
+    public void CargarContextoBD()
+    {
+        VMD_BD = new vmdEntities();
+        TELEMATICS_BD = new telematicsEntities();
+        TELEMATICS_BD1 = new telematicsEntities();
+        TELEMATICS_BD2 = new telematicsEntities();
+        TELEMATICS_BD3 = new telematicsEntities();
+    }
     /// <summary>
     /// Se encarga de enviar los codigos pendientes de telemetria
     /// antes de realizar una sincronización del móvil
@@ -491,7 +502,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         Catalogo_Codigos = new List<cat_codigo>();
 
         Catalogo_Codigos = (from x in TELEMATICS_BD.cat_codigo
-                             select x).ToList();
+                            select x).ToList();
     }
 
     /// <summary>
@@ -522,8 +533,8 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         Codigos_motor = new List<codigo>();
 
         //Codigos_motor = (from x in TELEMATICS_BD.codigo
-                         //where x.Type_Codigo_Id == 2
-                         //select distin x).ToList();
+        //where x.Type_Codigo_Id == 2
+        //select distin x).ToList();
     }
 
     /// <summary>
@@ -569,11 +580,12 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         RecibirCodigosV2();
         RecibirFallas();
 
-        if(contadorSinCodigos == 0)
+        if (contadorSinCodigos == 0)
         {
             //Reportamos
             ReportarStatusAFront(1);
-        }else if (contadorSinCodigos >= 100)
+        }
+        else if (contadorSinCodigos >= 100)
         {
             ReportarStatusAFront(0);
             //Para evitar acomulado de muchos codigos
@@ -684,7 +696,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
         }
@@ -711,7 +723,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             //Verificamos si trajimos codigos o no
             if (num_codigos > 0)
             {
-                
+
                 contadorSinCodigos = 0;
 
 
@@ -869,7 +881,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                         //Powered ByRED 19ENE2022
                         nuevocodigo.Protocolo = this.ProtocoloLocal;
                         nuevocodigo.Firmware = this.FirmwareLocal;
-                       
+
 
                         TELEMATICS_BD.codigo.Add(nuevocodigo);
 
@@ -1017,7 +1029,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                     //    nuevocodigo.Enviado = 1;
                     //}
                     //TELEMATICS_BD.codigo.Add(nuevocodigo);
-               
+
                     Fallas_Mem_Temp.Add(nuevocodigo);
 
                     //i++;
@@ -1112,19 +1124,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
                 }
             }
-            //else
-            //{
-            //    //Podriamos mandar a truncar la tabla
 
-            //    if(ultimoIDFallaEnvio != 0)
-            //    {
-            //        //Truncamos
-            //        EjecutarBatTruncate("falla_enviada");
-
-            //        //y reiniciamos el contador de ID
-            //        ultimoIDFallaEnvio = 0;
-            //    }
-            //}
         }
         catch (Exception ex)
         {
@@ -1272,7 +1272,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                                              orderby x.FechaHora_Inicio ascending
                                              select x).Take(250).ToList();
             //Si tenemos al menos un código entramos al procesamiento
-            if(CodigosxProcesar.Count > 0)
+            if (CodigosxProcesar.Count > 0)
             {
                 foreach (codigo code in CodigosxProcesar)
                 {
@@ -1301,7 +1301,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                         case 2:
                             //Se deja por que en un futuro se tiene que realizarle
                             //algun tipo de proceso
-                            
+
                             break;
 
                         //Guardar
@@ -1313,19 +1313,19 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                         case 4:
                             try
                             {
-                                if(Parametros.CalculoAceleracion == 1)
+                                if (Parametros.CalculoAceleracion == 1)
                                 {
                                     CalculoAceleración(code);
                                 }
                                 code.Procesado = 1;
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                                 var error = ex.ToString();
                             }
                             break;
 
-                       //Mandar mensaje al conductor
+                        //Mandar mensaje al conductor
                         case 5:
                             break;
 
@@ -1348,7 +1348,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 TELEMATICS_BD1.SaveChanges();
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
         }
@@ -1394,9 +1394,9 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 types.Add("0");
             }
 
-            
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
             types.Add("0");
@@ -1466,8 +1466,8 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         try
         {
             codigo falla = (from x in Fallas_Mem
-                                  where x.Modulo == code.Modulo && x.Codigo1 == code.Codigo1
-                                  select x).FirstOrDefault();
+                            where x.Modulo == code.Modulo && x.Codigo1 == code.Codigo1
+                            select x).FirstOrDefault();
             return falla == null ? false : true;
         }
         catch
@@ -1517,7 +1517,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
             TELEMATICS_BD1.codigo_envio.Add(nuevo_codigo);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
         }
@@ -1535,9 +1535,9 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             var Elahora = DateTime.Now.ToString("yyy-MM-dd HH:mm:ss");
 
             codigo codigo_Falla = (from x in TELEMATICS_BD2.codigo
-                                         where x.Type_Codigo_Id == 1 && x.Procesado == 1 && x.Enviado == 0
-                                         orderby x.FechaHora_Inicio ascending
-                                         select x).FirstOrDefault();
+                                   where x.Type_Codigo_Id == 1 && x.Procesado == 1 && x.Enviado == 0
+                                   orderby x.FechaHora_Inicio ascending
+                                   select x).FirstOrDefault();
             if (codigo_Falla != null)
             {
                 string json;
@@ -1763,7 +1763,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
                     codigo_Falla.Enviado = 1;
 
-                   // TELEMATICS_BD2.SaveChanges();
+                    // TELEMATICS_BD2.SaveChanges();
 
                     //Reportamos...
                     ReportarStatusAFront(3);
@@ -1886,7 +1886,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         try
         {
             List<codigo> codigosxpaquete = (from x in TELEMATICS_BD3.codigo
-                                            //where x.Type_Codigo_Id == 2 && x.Lote.Equals("")
+                                                //where x.Type_Codigo_Id == 2 && x.Lote.Equals("")
                                             where x.Type_Codigo_Id == 2 && x.Lote == null
                                             select x).ToList();
 
@@ -2001,10 +2001,10 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             }
             else
             {
-                PrimerEjecucion = false;    
+                PrimerEjecucion = false;
             }
 
-            if(this.EnViaje)
+            if (this.EnViaje)
             {
                 var tipo_viaje = "V";
                 if (region != null)
@@ -2203,7 +2203,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                      "\"Protocolo\":\"" + codigo.Protocolo + "\"," +
                      "\"Firmware\":\"" + codigo.Firmware + "\"}";
                 }
-            }   
+            }
         }
 
         //Terminamos de completar la trama
@@ -2238,7 +2238,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             File.Delete(ruta2);
         }
 
-        using(StreamWriter sw2 = File.CreateText(ruta2))
+        using (StreamWriter sw2 = File.CreateText(ruta2))
         {
             sw2.Write("{\"checksum\":\"" + numCodigos + "\"}");
         }
@@ -2438,7 +2438,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
                 //Si la diferencia entre el tiempo de los registros supera los 10 segundos, no lo pasamos por el calculo, para evitar
                 //registros de evento erroneos
-                if((_code.FechaHora_Inicio - codigoPasado.FechaHora_Inicio).TotalSeconds > 10)
+                if ((_code.FechaHora_Inicio - codigoPasado.FechaHora_Inicio).TotalSeconds > 10)
                 {
                     //Pero si actualizamos los datos
                     velAnt = velocidad;
@@ -2526,7 +2526,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 codigoPasado = _code;
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             var error = ex.ToString();
         }
@@ -2634,7 +2634,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             Ping MyPing = new Ping();
 
             //Verificamos la respuesta del Servidor
-            if (MyPing.Send(server, 10).Status == IPStatus.Success) { return true; } else{ return false; }
+            if (MyPing.Send(server, 10).Status == IPStatus.Success) { return true; } else { return false; }
         }
         else
         {
@@ -2660,6 +2660,10 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
             //Boramos la tabla de codigos de telemetria
             objctx.ExecuteStoreCommand("Truncate Table codigo");
+
+            //18Sep2024 PoweredByRED
+            //Borramos los codigos existentes
+            EjecutarBatBD("codigo");
 
             //Borramos búffer de fallas
             Fallas_Mem.Clear();
@@ -2785,7 +2789,9 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                 //Boramos la tabla de codigos de telemetria
                 objctx.ExecuteStoreCommand("Truncate Table cat_codigo");
 
-
+                //18Sep2024 PoweredByRED
+                //Mandamos a Truncar la tabla de cat_codigo
+                EjecutarBatBD("cat_codigo");
 
                 //ahora procedemos a llenar de nuevo la tabla
 
@@ -2804,7 +2810,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
             return true;
         }
-        catch(DbEntityValidationException e)
+        catch (DbEntityValidationException e)
         {
 
             foreach (var eve in e.EntityValidationErrors)
@@ -2867,7 +2873,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     private void ReportarStatusAFront(int estadoNuevo)
     {
         //Mandamos actualizar sólo si el estado es diferente
-        if(estadoNuevo != EstadoAnterior)
+        if (estadoNuevo != EstadoAnterior)
         {
             IndicadorLed(estadoNuevo);
             EstadoAnterior = estadoNuevo;
@@ -2910,6 +2916,43 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     private void ParametrosTelematics()
     {
         Parametros = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
+    }
+
+   
+
+
+    /// <summary>
+    /// Se encarga de mandar a ejecutar un .bat para truncar la table de
+    /// Cat_codigos, porque por la versión de framework y entity, no es posible
+    /// ocupar el contexto de la base de datos para mandar a truncar la tabla
+    /// </summary>
+    private void EjecutarBatBD(string nombre_BAT)
+    {
+        try
+        {
+
+            Process Truncar = new Process();
+            Truncar.StartInfo.UseShellExecute = false;
+            Truncar.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            Truncar.StartInfo.RedirectStandardOutput = true;
+            Truncar.StartInfo.CreateNoWindow = true;
+
+            string RutaBAT = AppDomain.CurrentDomain.BaseDirectory + @"Archivo\" + nombre_BAT + ".bat";
+
+            if (System.IO.File.Exists(RutaBAT))
+            {
+                Truncar.StartInfo.FileName = RutaBAT;
+
+                Truncar.Start();
+
+            }
+            else
+            {
+            }
+        }
+        catch
+        {
+        }
     }
     #endregion
 
@@ -2969,19 +3012,18 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
 
             var elahora = DateTime.Now;
+            //var horas = elahora.Subtract(HolaMundo).TotalMinutes;
 
-            //var horas = HolaMundo.Subtract(elahora).TotalMinutes;
             var horas = elahora.Subtract(HolaMundo).TotalHours;
 
             if (horas >= Parametros.Hrs_Performance)
             {
-                //timerReiniciaAPP.Enabled = false;
 
                 //Detenemos los procesos
                 Finalizar();
 
                 //Damos el refresh al performance
-                //Performance();
+                Performance();
             }
 
         }
@@ -2999,7 +3041,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         //Iniciamos los parametros generales y de telemtria
         ParametrosInicio = (from x in VMD_BD.can_parametrosinicio select x).FirstOrDefault();
         //Parametros = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();//Lógica Anterior
-        
+
         //Powered ByRED 19ENE2021
         ParametrosTelematics();
         ReportarVersion();//Powered ByRED 19ENE2022
@@ -3020,6 +3062,29 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         ultimoIDCodigo = (from x in TELEMATICS_BD.codigo
                           orderby x.PK_ID descending
                           select x.PK_ID).FirstOrDefault();
+        //Powered ByRED 21OCT2021
+        //Validamos si no tenemos fallas en BD
+        var porenviar = 0;
+        porenviar = (from x in TELEMATICS_BD2.falla_envio
+                     where x.Enviado == 0
+                     select x).Count();
+
+        if (porenviar == 0)
+        {//Si no tenemos nada por enviar, truncamos la tabla
+            EjecutarBatBD("falla_enviada");
+
+            //Recargamos el contexto de la base de datos con la que trabajaremos
+            TELEMATICS_BD2 = new telematicsEntities();
+
+        }
+        else
+        {
+            //Powered ByRED 20OCT2021
+            ultimoIDFallaEnvio = (from x in TELEMATICS_BD2.falla_envio
+                                  orderby x.PK_ID descending
+                                  select x.PK_ID).FirstOrDefault();
+        }
+
 
 
         region = (from x in VMD_BD.can_referenciaregion
@@ -3139,7 +3204,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
         //Dispara el flag para que envie por lote
         EnviarLote = true;
-        
+
         timerEnvio.Start();
     }
     #endregion

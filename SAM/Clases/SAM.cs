@@ -1348,61 +1348,12 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
                 FE.TELEMETRIA = true;
 
-                //Asignamos Eventos de Telemetria
                 var _Telematics = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
-
-                //Obtenemos los parametros de telemetria
-                parametrostelematics ParTel = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
-                foreach (TELEMETRIA myTelematics in _Telematics)
+                foreach (TELEMETRIA item in _Telematics)
                 {
-                    myTelematics.AlertaSAM += this.AlertaTELEMETRIA;
-                    this.AlertaConductor += FE.RecibeAlertaSAM;
-
-                    this.RefreshLedTelemetria += FE.RecibeLedDeTelemetria;
-                    myTelematics.IndicadorLed += this.ActualizaIndicadorTelemetria;
-
-                    this.ReporteTelemetria += myTelematics.GenerarReporte;
-
-                    if (ParTel != null)
-                    {
-                        //Validamos si hay lotes resagados
-                        myTelematics.VerificarLotes(ParTel.GuardarLote);
-                    }
+                    CargarLogicaTelemetria(item);
                 }
 
-                //Se trasladó ésta lógica hacia TELEMETRIA
-                ////Preguntamos si deseamos que se guarden lo archivos de lote por más de 2 días            
-                //parametrostelematics ParTel = (from x in TELEMATICS_BD.parametrostelematics
-                //                               select x).FirstOrDefault();
-
-                //if (ParTel != null)
-                //{
-                //    //PReguntamos si debemos de guardar el lote o no
-                //    if (ParTel.GuardarLote == 0)
-                //    {
-                //        //Recuperamos los archivos para ver si se tiene que borrar algo
-                //        try
-                //        {
-                //            DirectoryInfo di = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-                //            foreach (var fi in di.GetFiles("*.zip"))
-                //            {
-                //                //Validamos si la fecha de creación del archivo es mayor a 2 días
-                //                if((DateTime.Now - fi.LastWriteTime).Days >= 2)
-                //                {
-                //                    //De ser así, elimino la información
-                //                    if (File.Exists(fi.Name))
-                //                    {
-                //                        File.Delete(fi.Name);
-                //                    }
-                //                }
-                //            }
-                //        }
-                //        catch
-                //        {
-
-                //        }
-                //    }
-                //}
             }
 
             try
@@ -1540,7 +1491,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
                 //Para relanzar de SAM hacia el Front
                 //Qué evento, dispará qué método
-                RefreshViewCondusat += FE.RecibeDeCondusat; 
+                RefreshViewCondusat += FE.RecibeDeCondusat;
             }
 
             try
@@ -2044,13 +1995,45 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         }
     }
 
+    private void ReinicaLogicaTel()
+    {
+        var _Telematics = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
+        foreach (TELEMETRIA item in _Telematics)
+        {
+            CargarLogicaTelemetria(item);
+            item.Inicializar();
+        }
+    }
     /// <summary>
-    /// Se encarga de cargar o Recargar la lógica de VMD
+    /// Se encarga de cargar o Recargar la lógica de Telemtría
+    /// 18sep2024
     /// </summary>
-    private void CargarlogicaVMD()
+    private void CargarLogicaTelemetria(TELEMETRIA myTelematics)
     {
 
+
+        myTelematics.CargarContextoBD();
+
+        //Asignamos Eventos de Telemetria
+        myTelematics.AlertaSAM += this.AlertaTELEMETRIA;
+        this.AlertaConductor += FE.RecibeAlertaSAM;
+
+        this.RefreshLedTelemetria += FE.RecibeLedDeTelemetria;
+        myTelematics.IndicadorLed += this.ActualizaIndicadorTelemetria;
+
+        this.ReporteTelemetria += myTelematics.GenerarReporte;
+        myTelematics.Performance += this.ReinicaLogicaTel;
+        //Obtenemos los parametros de telemetria
+        var ParTel = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
+        if (ParTel != null)
+        {
+            //Validamos si hay lotes resagados
+            myTelematics.VerificarLotes(ParTel.GuardarLote);
+        }
+
     }
+
+
     #endregion
 
     #region "Manejador de Eventos"
@@ -2806,9 +2789,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 nuevoOrden.Orden = i;
 
                 VMD_BD.orden_descarga.Add(nuevoOrden);
-                
+
             }
-            
+
 
             VMD_BD.SaveChanges();
 
@@ -3120,7 +3103,8 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         Boolean res = false;
         foreach (spotListaDetalles x in spot.spotListaDetalles)
         {
-            if (x.reproducir) {
+            if (x.reproducir)
+            {
                 spotPOI sp = new spotPOI();
                 sp.spotListaId = spot.spotListaId;
                 sp.idArchivo = x.spotArchivo.spotArchivoId;

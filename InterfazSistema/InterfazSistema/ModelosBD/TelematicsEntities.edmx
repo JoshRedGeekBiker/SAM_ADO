@@ -273,7 +273,6 @@
         <EntityType Name="parametrostelematics">
           <Key>
             <PropertyRef Name="PK_ID" />
-            <PropertyRef Name="Tiempo_Envio" />
           </Key>
           <Property Name="PK_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Servidor" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
