@@ -28,12 +28,12 @@ namespace InterfazSistema.ModelosBD
         public DbSet<catsms> catsms { get; set; }
         public DbSet<historialpublicidad> historialpublicidad { get; set; }
         public DbSet<listamensajes> listamensajes { get; set; }
-        public DbSet<parametros> parametros { get; set; }
         public DbSet<puntosinteres> puntosinteres { get; set; }
         public DbSet<sia_historicoconductores> sia_historicoconductores { get; set; }
         public DbSet<sia_scripts> sia_scripts { get; set; }
         public DbSet<sia_testigo_puntointeres> sia_testigo_puntointeres { get; set; }
         public DbSet<siaparametrosinicio> siaparametrosinicio { get; set; }
         public DbSet<smstouch> smstouch { get; set; }
+        public DbSet<parametros> parametros { get; set; }
     }
 }

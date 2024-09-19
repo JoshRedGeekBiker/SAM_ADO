@@ -158,13 +158,6 @@
           <Property Name="idmensaje" Type="Int32" Nullable="false" />
           <Property Name="mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="parametros">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tiempo" Type="Int64" Nullable="false" />
-        </EntityType>
         <EntityType Name="puntosinteres">
           <Key>
             <PropertyRef Name="IdPunto" />
@@ -255,14 +248,21 @@
           <EntitySet Name="catsms" EntityType="Self.catsms" />
           <EntitySet Name="historialpublicidad" EntityType="Self.historialpublicidad" />
           <EntitySet Name="listamensajes" EntityType="Self.listamensajes" />
-          <EntitySet Name="parametros" EntityType="Self.parametros" />
           <EntitySet Name="puntosinteres" EntityType="Self.puntosinteres" />
           <EntitySet Name="sia_historicoconductores" EntityType="Self.sia_historicoconductores" />
           <EntitySet Name="sia_scripts" EntityType="Self.sia_scripts" />
           <EntitySet Name="sia_testigo_puntointeres" EntityType="Self.sia_testigo_puntointeres" />
           <EntitySet Name="siaparametrosinicio" EntityType="Self.siaparametrosinicio" />
           <EntitySet Name="smstouch" EntityType="Self.smstouch" />
+          <EntitySet Name="parametros" EntityType="SIAModel.parametros" />
         </EntityContainer>
+        <EntityType Name="parametros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tiempo" Type="Int64" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -291,14 +291,6 @@
               <MappingFragment StoreEntitySet="listamensajes">
                 <ScalarProperty Name="idmensaje" ColumnName="idmensaje" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="parametros">
-            <EntityTypeMapping TypeName="SIAModel.parametros">
-              <MappingFragment StoreEntitySet="parametros">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -391,6 +383,14 @@
                 <ScalarProperty Name="clvConductor" ColumnName="clvConductor" />
                 <ScalarProperty Name="NombreConductor" ColumnName="NombreConductor" />
                 <ScalarProperty Name="IdPunto" ColumnName="IdPunto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametros">
+            <EntityTypeMapping TypeName="SIAModel.parametros">
+              <MappingFragment StoreEntitySet="parametros">
+                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

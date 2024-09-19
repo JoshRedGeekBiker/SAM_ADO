@@ -2918,7 +2918,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         Parametros = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
     }
 
-   
+
 
 
     /// <summary>
@@ -3036,7 +3036,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     /// <summary>
     /// Se encarga de inicializar los componentes necesarios del sistema
     /// </summary>
-    public void Inicializar()
+    public void  Inicializar()
     {
         //Iniciamos los parametros generales y de telemtria
         ParametrosInicio = (from x in VMD_BD.can_parametrosinicio select x).FirstOrDefault();

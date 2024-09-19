@@ -2010,8 +2010,6 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     /// </summary>
     private void CargarLogicaTelemetria(TELEMETRIA myTelematics)
     {
-
-
         myTelematics.CargarContextoBD();
 
         //Asignamos Eventos de Telemetria
@@ -2030,7 +2028,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
             //Validamos si hay lotes resagados
             myTelematics.VerificarLotes(ParTel.GuardarLote);
         }
-
+        myTelematics.Inicializar();
     }
 
 
@@ -2318,6 +2316,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 _can._Globales.UltLon = _Datos_GPS.Longitud;
                 _can._Globales.UltLonWE = _Datos_GPS.LongitudWE;
                 _can._Globales.UltVel = _Datos_GPS.Velocidad;
+                //danchita45 nos llevamos datos de GPS para CANV2
+                //19Sep2024
+                _can._Can2.Datos_GPS = this.Datos_GPS;
             }
         }
 

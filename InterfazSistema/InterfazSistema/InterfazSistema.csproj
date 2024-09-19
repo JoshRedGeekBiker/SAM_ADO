@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextosBD\IBDContextCAN2.cs" />
     <Compile Include="ContextosBD\IBDContextPOI.cs" />
     <Compile Include="ModelosBD\actividad.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
@@ -67,6 +68,42 @@
     </Compile>
     <Compile Include="ModelosBD\autobuses.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\CAN2Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CAN2Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\CAN2Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\CAN2Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CAN2Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_config.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_coordenadas.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_geocerca.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_geocercaparametros.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_parametros.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_sync.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_testigo.cs">
+      <DependentUpon>CAN2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\can_catbuses.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
@@ -230,6 +267,12 @@
     <Compile Include="ModelosBD\parada_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelosBD\parametro.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\parametros.cs">
+      <DependentUpon>SIAEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelosBD\parametros_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
@@ -253,9 +296,6 @@
     </Compile>
     <Compile Include="ModelosBD\orden_descarga.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelosBD\parametros.cs">
-      <DependentUpon>SIAEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\parametrostelematics.cs">
       <DependentUpon>TelematicsEntities.tt</DependentUpon>
@@ -382,6 +422,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CondusatEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="ModelosBD\CAN2Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CAN2Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelosBD\CAN2Model.edmx.diagram">
+      <DependentUpon>CAN2Model.edmx</DependentUpon>
+    </None>
     <None Include="ModelosBD\CondusatEntities.edmx.diagram">
       <DependentUpon>CondusatEntities.edmx</DependentUpon>
     </None>
@@ -456,6 +503,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ModelosBD\CAN2Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CAN2Model.edmx</DependentUpon>
+      <LastGenOutput>CAN2Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelosBD\CAN2Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CAN2Model.edmx</DependentUpon>
+      <LastGenOutput>CAN2Model.cs</LastGenOutput>
+    </Content>
     <Content Include="ModelosBD\CondusatEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CondusatEntities.edmx</DependentUpon>

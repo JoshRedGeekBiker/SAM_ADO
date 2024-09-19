@@ -63,6 +63,9 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,6 +83,24 @@
     <Compile Include="Clases\AdminViaje.cs" />
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\CAN.cs" />
+    <Compile Include="Clases\CAN2\CANV2.cs" />
+    <Compile Include="Clases\CAN2\Matematica\ARISTA.cs" />
+    <Compile Include="Clases\CAN2\Matematica\MATH.cs" />
+    <Compile Include="Clases\CAN2\Matematica\POINT.cs" />
+    <Compile Include="Clases\CAN2\Matematica\POLYGON.cs" />
+    <Compile Include="Clases\CAN2\Objetos\Coordenadas.cs" />
+    <Compile Include="Clases\CAN2\Objetos\CoordenadasCan2.cs" />
+    <Compile Include="Clases\CAN2\Objetos\geocercaParametros.cs" />
+    <Compile Include="Clases\CAN2\Objetos\Parametros.cs" />
+    <Compile Include="Clases\CAN2\Objetos\ProtocoloCAN1.cs" />
+    <Compile Include="Clases\CAN2\Objetos\Request_geocerca.cs" />
+    <Compile Include="Clases\CAN2\Objetos\Response_Geocoord.cs" />
+    <Compile Include="Clases\CAN2\Testigo_Subida.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Clases\CAN2\WS.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Clases\clsCorrida.cs" />
     <Compile Include="Clases\clsCorridaDet.cs" />
     <Compile Include="Clases\clsMovTosCAN.cs" />
@@ -106,5 +127,6 @@
       <Name>InterfazSistema</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
