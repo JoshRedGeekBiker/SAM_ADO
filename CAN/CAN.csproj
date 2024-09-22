@@ -80,6 +80,19 @@
     <Compile Include="Clases\AdminViaje.cs" />
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\CAN.cs" />
+    <Compile Include="Clases\CANV2\Definiciones\ProtocoloCAN1.cs" />
+    <Compile Include="Clases\CANV2\Definiciones\Testigo_Subida.cs" />
+    <Compile Include="Clases\CANV2\Definiciones\WS.cs" />
+    <Compile Include="Clases\CANV2\Matematica\ARISTA.cs" />
+    <Compile Include="Clases\CANV2\Matematica\MATH.cs" />
+    <Compile Include="Clases\CANV2\Matematica\POINT.cs" />
+    <Compile Include="Clases\CANV2\Matematica\POLYGON.cs" />
+    <Compile Include="Clases\CANV2\Objetos\Coordenadas.cs" />
+    <Compile Include="Clases\CANV2\Objetos\CoordenadasCan2.cs" />
+    <Compile Include="Clases\CANV2\Objetos\geocercaParametros.cs" />
+    <Compile Include="Clases\CANV2\Objetos\Parametros.cs" />
+    <Compile Include="Clases\CANV2\Objetos\Request_geocerca.cs" />
+    <Compile Include="Clases\CANV2\Objetos\Response_Geocoord.cs" />
     <Compile Include="Clases\clsCorrida.cs" />
     <Compile Include="Clases\clsCorridaDet.cs" />
     <Compile Include="Clases\clsMovTosCAN.cs" />
@@ -106,5 +119,6 @@
       <Name>InterfazSistema</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
