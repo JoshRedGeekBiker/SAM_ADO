@@ -1,9 +1,9 @@
 ﻿using System;
-using InterfaceUtilidades.ModelosBD;
+using InterfazSistema.ModelosBD;
 using System.Linq;
 
 
-public class ProtocoloCAN1 : IBDContextVMD
+public class ProtocoloCAN1 : IBDContext
 {
 
     #region Propiedades

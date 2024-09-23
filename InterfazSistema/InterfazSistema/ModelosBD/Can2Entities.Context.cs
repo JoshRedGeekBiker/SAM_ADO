@@ -13,10 +13,10 @@ namespace InterfazSistema.ModelosBD
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class telematicsEntities : DbContext
+    public partial class Can2Entities : DbContext
     {
-        public telematicsEntities()
-            : base("name=telematicsEntities")
+        public Can2Entities()
+            : base("name=Can2Entities")
         {
         }
     
@@ -25,14 +25,12 @@ namespace InterfazSistema.ModelosBD
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<cat_codigo> cat_codigo { get; set; }
-        public DbSet<cat_type_action> cat_type_action { get; set; }
-        public DbSet<cat_type_codigo> cat_type_codigo { get; set; }
-        public DbSet<codigo> codigo { get; set; }
-        public DbSet<codigo_envio> codigo_envio { get; set; }
-        public DbSet<version_tabla> version_tabla { get; set; }
-        public DbSet<parametrostelematics> parametrostelematics { get; set; }
-        public DbSet<falla_envio> falla_envio { get; set; }
-        public DbSet<parametro> parametro { get; set; }
+        public DbSet<can2_config> can2_config { get; set; }
+        public DbSet<can2_coordenadas> can2_coordenadas { get; set; }
+        public DbSet<can2_geocerca> can2_geocerca { get; set; }
+        public DbSet<can2_geocercaparametros> can2_geocercaparametros { get; set; }
+        public DbSet<can2_parametros> can2_parametros { get; set; }
+        public DbSet<can2_sync> can2_sync { get; set; }
+        public DbSet<can2_testigo> can2_testigo { get; set; }
     }
 }

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CAN2Entities.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="can2_config">
+          <Key>
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_parametro" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cve_parametro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="valor_parametro" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_coordenadas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geocercaId" Type="usmallint" Nullable="false" />
+          <Property Name="sequence" Type="usmallint" Nullable="false" />
+          <Property Name="active" Type="bool" />
+          <Property Name="latitud" Type="float" Nullable="false" />
+          <Property Name="latitudCan" Type="float" Nullable="false" />
+          <Property Name="longitud" Type="float" Nullable="false" />
+          <Property Name="longitudCan" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_geocerca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="geocercaListaId" Type="uint" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_geocercaparametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parametroId" Type="uint" Nullable="false" />
+          <Property Name="nombreParametro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ValorParametro" Type="double" Nullable="false" />
+          <Property Name="margenParametro" Type="double" Nullable="false" />
+          <Property Name="activo" Type="bool" Nullable="false" />
+          <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fechaVigenciaInicio" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="fechaVigenciaFin" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="orientacionInicial" Type="uint" Nullable="false" />
+          <Property Name="orientacionFinal" Type="uint" Nullable="false" />
+          <Property Name="geocercaId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valor_parametro" Type="double" Nullable="false" />
+          <Property Name="valor_real" Type="double" Nullable="false" />
+          <Property Name="geocerca_id" Type="uint" Nullable="false" />
+          <Property Name="Fecha_Ini" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lat_Ini" Type="double" Nullable="false" />
+          <Property Name="long_Ini" Type="double" Nullable="false" />
+          <Property Name="Fecha_Fin" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="lat_Fin" Type="double" Nullable="false" />
+          <Property Name="long_Fin" Type="double" Nullable="false" />
+          <Property Name="operador" Type="uint" Nullable="false" />
+          <Property Name="Cambio_Manos" Type="uint" Nullable="false" />
+          <Property Name="parametroId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_sync">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UltimaSync" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_testigo">
+          <Key>
+            <PropertyRef Name="id_testigo" />
+          </Key>
+          <Property Name="id_testigo" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroEconomico" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="geocercaId" Type="uint" Nullable="false" />
+          <Property Name="parametroid" Type="uint" Nullable="false" />
+          <Property Name="ValorParametro" Type="double" Nullable="false" />
+          <Property Name="fechaEvento" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="latitud" Type="double" Nullable="false" />
+          <Property Name="longitud" Type="double" Nullable="false" />
+          <Property Name="enviado" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CAN2EntitiesStoreContainer">
+          <EntitySet Name="can2_config" EntityType="Self.can2_config" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_coordenadas" EntityType="Self.can2_coordenadas" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_geocerca" EntityType="Self.can2_geocerca" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_geocercaparametros" EntityType="Self.can2_geocercaparametros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_parametros" EntityType="Self.can2_parametros" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_sync" EntityType="Self.can2_sync" Schema="vmd" store:Type="Tables" />
+          <EntitySet Name="can2_testigo" EntityType="Self.can2_testigo" Schema="vmd" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CAN2Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="can2_config">
+          <Key>
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_parametro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cve_parametro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor_parametro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_coordenadas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geocercaId" Type="Int32" Nullable="false" />
+          <Property Name="sequence" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" />
+          <Property Name="latitud" Type="Single" Nullable="false" />
+          <Property Name="latitudCan" Type="Single" Nullable="false" />
+          <Property Name="longitud" Type="Single" Nullable="false" />
+          <Property Name="longitudCan" Type="Single" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_geocerca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="geocercaListaId" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_geocercaparametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parametroId" Type="Int32" Nullable="false" />
+          <Property Name="nombreParametro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ValorParametro" Type="Double" Nullable="false" />
+          <Property Name="margenParametro" Type="Double" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="fechaVigenciaInicio" Type="DateTime" Nullable="false" />
+          <Property Name="fechaVigenciaFin" Type="DateTime" Nullable="false" />
+          <Property Name="orientacionInicial" Type="Int32" Nullable="false" />
+          <Property Name="orientacionFinal" Type="Int32" Nullable="false" />
+          <Property Name="geocercaId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_parametros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valor_parametro" Type="Double" Nullable="false" />
+          <Property Name="valor_real" Type="Double" Nullable="false" />
+          <Property Name="geocerca_id" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Ini" Type="DateTime" Nullable="false" />
+          <Property Name="lat_Ini" Type="Double" Nullable="false" />
+          <Property Name="long_Ini" Type="Double" Nullable="false" />
+          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" />
+          <Property Name="lat_Fin" Type="Double" Nullable="false" />
+          <Property Name="long_Fin" Type="Double" Nullable="false" />
+          <Property Name="operador" Type="Int64" Nullable="false" />
+          <Property Name="Cambio_Manos" Type="Int64" Nullable="false" />
+          <Property Name="parametroId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_sync">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UltimaSync" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="can2_testigo">
+          <Key>
+            <PropertyRef Name="id_testigo" />
+          </Key>
+          <Property Name="id_testigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroEconomico" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="geocercaId" Type="Int32" Nullable="false" />
+          <Property Name="parametroid" Type="Int32" Nullable="false" />
+          <Property Name="ValorParametro" Type="Double" Nullable="false" />
+          <Property Name="fechaEvento" Type="DateTime" Nullable="false" />
+          <Property Name="latitud" Type="Double" Nullable="false" />
+          <Property Name="longitud" Type="Double" Nullable="false" />
+          <Property Name="enviado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="vmdEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="can2_config" EntityType="Self.can2_config" />
+          <EntitySet Name="can2_coordenadas" EntityType="Self.can2_coordenadas" />
+          <EntitySet Name="can2_geocerca" EntityType="Self.can2_geocerca" />
+          <EntitySet Name="can2_geocercaparametros" EntityType="Self.can2_geocercaparametros" />
+          <EntitySet Name="can2_parametros" EntityType="Self.can2_parametros" />
+          <EntitySet Name="can2_sync" EntityType="Self.can2_sync" />
+          <EntitySet Name="can2_testigo" EntityType="Self.can2_testigo" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CAN2EntitiesStoreContainer" CdmEntityContainer="vmdEntities1">
+          <EntitySetMapping Name="can2_config">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_config">
+              <MappingFragment StoreEntitySet="can2_config">
+                <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
+                <ScalarProperty Name="cve_parametro" ColumnName="cve_parametro" />
+                <ScalarProperty Name="valor_parametro" ColumnName="valor_parametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_coordenadas">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_coordenadas">
+              <MappingFragment StoreEntitySet="can2_coordenadas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="geocercaId" ColumnName="geocercaId" />
+                <ScalarProperty Name="sequence" ColumnName="sequence" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="latitudCan" ColumnName="latitudCan" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="longitudCan" ColumnName="longitudCan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_geocerca">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_geocerca">
+              <MappingFragment StoreEntitySet="can2_geocerca">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="geocercaListaId" ColumnName="geocercaListaId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_geocercaparametros">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_geocercaparametros">
+              <MappingFragment StoreEntitySet="can2_geocercaparametros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parametroId" ColumnName="parametroId" />
+                <ScalarProperty Name="nombreParametro" ColumnName="nombreParametro" />
+                <ScalarProperty Name="ValorParametro" ColumnName="ValorParametro" />
+                <ScalarProperty Name="margenParametro" ColumnName="margenParametro" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaVigenciaInicio" ColumnName="fechaVigenciaInicio" />
+                <ScalarProperty Name="fechaVigenciaFin" ColumnName="fechaVigenciaFin" />
+                <ScalarProperty Name="orientacionInicial" ColumnName="orientacionInicial" />
+                <ScalarProperty Name="orientacionFinal" ColumnName="orientacionFinal" />
+                <ScalarProperty Name="geocercaId" ColumnName="geocercaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_parametros">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_parametros">
+              <MappingFragment StoreEntitySet="can2_parametros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="valor_parametro" ColumnName="valor_parametro" />
+                <ScalarProperty Name="valor_real" ColumnName="valor_real" />
+                <ScalarProperty Name="geocerca_id" ColumnName="geocerca_id" />
+                <ScalarProperty Name="Fecha_Ini" ColumnName="Fecha_Ini" />
+                <ScalarProperty Name="lat_Ini" ColumnName="lat_Ini" />
+                <ScalarProperty Name="long_Ini" ColumnName="long_Ini" />
+                <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
+                <ScalarProperty Name="lat_Fin" ColumnName="lat_Fin" />
+                <ScalarProperty Name="long_Fin" ColumnName="long_Fin" />
+                <ScalarProperty Name="operador" ColumnName="operador" />
+                <ScalarProperty Name="Cambio_Manos" ColumnName="Cambio_Manos" />
+                <ScalarProperty Name="parametroId" ColumnName="parametroId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_sync">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_sync">
+              <MappingFragment StoreEntitySet="can2_sync">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UltimaSync" ColumnName="UltimaSync" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="can2_testigo">
+            <EntityTypeMapping TypeName="CAN2Entities.can2_testigo">
+              <MappingFragment StoreEntitySet="can2_testigo">
+                <ScalarProperty Name="id_testigo" ColumnName="id_testigo" />
+                <ScalarProperty Name="numeroEconomico" ColumnName="numeroEconomico" />
+                <ScalarProperty Name="geocercaId" ColumnName="geocercaId" />
+                <ScalarProperty Name="parametroid" ColumnName="parametroid" />
+                <ScalarProperty Name="ValorParametro" ColumnName="ValorParametro" />
+                <ScalarProperty Name="fechaEvento" ColumnName="fechaEvento" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="enviado" ColumnName="enviado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

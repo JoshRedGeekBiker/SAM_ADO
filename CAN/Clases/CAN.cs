@@ -49,7 +49,9 @@ public class CAN : ISistema, IBDContext, IGPS
     private Conductor _Conductor;
     private AdminViaje _AdminViaje;
     public SyncCAN _syncCAN;
-    
+    public CANV2 CanGeneral2 = null;
+
+
     private string Log = string.Empty;
 
     public bool ViajePrueba;
@@ -97,7 +99,10 @@ public class CAN : ISistema, IBDContext, IGPS
         ParametrosInicio = VMD_BD.can_parametrosinicio.FirstOrDefault();
         ViajePrueba = false;
         Protocolo = false;
-
+         CanGeneral2 = new CANV2(false);
+        Datos_GPS = new GPSData();
+        CanGeneral2.Datos_GPS = Datos_GPS;
+        CanGeneral2.Inicializar();
         //Datos_GPS = new GPSData();
 
         //_ProtocoloCAN = new ProtocoloCAN();
@@ -1153,9 +1158,8 @@ public class CAN : ISistema, IBDContext, IGPS
         {
             Protocolo = res;
         }
-
         //Protocolo = true; ///////////////
-
+        CanGeneral2.Colisionador();
         timerProcesaCAN.Start();
     }
 

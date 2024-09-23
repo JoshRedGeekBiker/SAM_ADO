@@ -63,6 +63,9 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,6 +83,7 @@
     <Compile Include="Clases\AdminViaje.cs" />
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\CAN.cs" />
+    <Compile Include="Clases\CANV2\CANV2.cs" />
     <Compile Include="Clases\CANV2\Definiciones\ProtocoloCAN1.cs" />
     <Compile Include="Clases\CANV2\Definiciones\Testigo_Subida.cs" />
     <Compile Include="Clases\CANV2\Definiciones\WS.cs" />

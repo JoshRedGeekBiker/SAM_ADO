@@ -105,6 +105,15 @@
           <Property Name="Enviado" Type="uint" Nullable="false" />
           <Property Name="Codigo" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="parametro">
+          <Key>
+            <PropertyRef Name="id_parametro_telematics" />
+          </Key>
+          <Property Name="id_parametro_telematics" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cve_parametro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="valor_parametro" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="estatus" Type="uint" Nullable="false" />
+        </EntityType>
         <EntityType Name="parametrostelematics">
           <Key>
             <PropertyRef Name="PK_ID" />
@@ -154,6 +163,7 @@
           <EntitySet Name="codigo" EntityType="Self.codigo" Schema="telematics" store:Type="Tables" />
           <EntitySet Name="codigo_envio" EntityType="Self.codigo_envio" Schema="telematics" store:Type="Tables" />
           <EntitySet Name="falla_envio" EntityType="Self.falla_envio" Schema="telematics" store:Type="Tables" />
+          <EntitySet Name="parametro" EntityType="Self.parametro" Schema="telematics" store:Type="Tables" />
           <EntitySet Name="parametrostelematics" EntityType="Self.parametrostelematics" Schema="telematics" store:Type="Tables" />
           <EntitySet Name="version_tabla" EntityType="Self.version_tabla" Schema="telematics" store:Type="Tables" />
         </EntityContainer>
@@ -269,6 +279,7 @@
           <EntitySet Name="version_tabla" EntityType="Self.version_tabla" />
           <EntitySet Name="parametrostelematics" EntityType="telematicsModel.parametrostelematics" />
           <EntitySet Name="falla_envio" EntityType="telematicsModel.falla_envio" />
+          <EntitySet Name="parametro" EntityType="telematicsModel.parametro" />
         </EntityContainer>
         <EntityType Name="parametrostelematics">
           <Key>
@@ -312,6 +323,15 @@
           <Property Name="JSON" Type="String" MaxLength="10000" FixedLength="false" Unicode="false" />
           <Property Name="Enviado" Type="Int64" Nullable="false" />
           <Property Name="Codigo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="parametro">
+          <Key>
+            <PropertyRef Name="id_parametro_telematics" />
+          </Key>
+          <Property Name="id_parametro_telematics" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cve_parametro" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="valor_parametro" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int64" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -466,6 +486,16 @@
                 <ScalarProperty Name="Enviado" ColumnName="Enviado" />
                 <ScalarProperty Name="JSON" ColumnName="JSON" />
                 <ScalarProperty Name="PK_ID" ColumnName="PK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="parametro">
+            <EntityTypeMapping TypeName="telematicsModel.parametro">
+              <MappingFragment StoreEntitySet="parametro">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="valor_parametro" ColumnName="valor_parametro" />
+                <ScalarProperty Name="cve_parametro" ColumnName="cve_parametro" />
+                <ScalarProperty Name="id_parametro_telematics" ColumnName="id_parametro_telematics" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

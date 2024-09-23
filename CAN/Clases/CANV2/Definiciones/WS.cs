@@ -1,7 +1,7 @@
 ﻿
 
 using System.Linq;
-using InterfaceUtilidades.ModelosBD;
+using InterfazSistema.ModelosBD;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,12 +15,14 @@ public class WS : IBDConextCAN2
 {
     #region Variables
     //Contexto de bases de datos
-    public CAN2Entities CAN2_BD { get; set; }
+    public Can2Entities CAN2_BD { get; set; }
     public telematicsEntities TEL_BD { get; set; }
 
     //Flags
     public Boolean isError { get; set; }
     public string msgError { get; set; }
+
+    public Can2Entities CAN_BD => throw new NotImplementedException();
     #endregion
 
     #region Constructores
@@ -39,7 +41,7 @@ public class WS : IBDConextCAN2
     public WS(bool sync)
     {
 
-        CAN2_BD = new CAN2Entities();
+        CAN2_BD = new Can2Entities();
         isError = false;
     }
 
@@ -133,7 +135,7 @@ public class WS : IBDConextCAN2
                     longitud = c.long_Fin,
                     enviado = false
                 };
-                CAN2_BD.AddTocan2_testigo(testigoSubida);
+                CAN2_BD.can2_testigo.Add(testigoSubida);
             }
 
 
@@ -419,7 +421,7 @@ public class WS : IBDConextCAN2
                         nombre = response.nombre,
                         geocercaListaId = response.geocercaId
                     };
-                    CAN2_BD.AddTocan2_geocerca(parada);
+                    CAN2_BD.can2_geocerca.Add(parada);
                     //CAN2_BD.SaveChanges();
 
 
@@ -436,7 +438,7 @@ public class WS : IBDConextCAN2
                         can2_coordenadas.longitud = CoordenadasResponse.longitud;
                         can2_coordenadas.longitudCan = CoordenadasResponse.longitudCan;
 
-                        CAN2_BD.AddTocan2_coordenadas(can2_coordenadas);
+                        CAN2_BD.can2_coordenadas.Add(can2_coordenadas);
 
                         //CAN2_BD.SaveChanges();
 
@@ -455,7 +457,7 @@ public class WS : IBDConextCAN2
                         can2_geoparam.fechaVigenciaFin = GPResponse.FechaVigenciaFin;
                         can2_geoparam.orientacionInicial = GPResponse.orientacionInicial;
                         can2_geoparam.orientacionFinal = GPResponse.orientacionFinal;
-                        CAN2_BD.AddTocan2_geocercaparametros(can2_geoparam);
+                        CAN2_BD.can2_geocercaparametros.Add(can2_geoparam);
                         //CAN2_BD.SaveChanges();
 
                     }
@@ -472,7 +474,7 @@ public class WS : IBDConextCAN2
                                                                   select x).ToList();
                     foreach (can2_coordenadas item in coordenadaExistente)
                     {
-                        CAN2_BD.DeleteObject(item);
+                        CAN2_BD.can2_coordenadas.Remove(item);
                     }
                     CAN2_BD.SaveChanges();
                     foreach (CoordenadasCan2 CoordenadasResponse in response.Coordenadas)
@@ -486,7 +488,7 @@ public class WS : IBDConextCAN2
                         can2_coordenadas.latitudCan = CoordenadasResponse.latitudCan;
                         can2_coordenadas.longitud = CoordenadasResponse.longitud;
                         can2_coordenadas.longitudCan = CoordenadasResponse.longitudCan;
-                        CAN2_BD.AddTocan2_coordenadas(can2_coordenadas);
+                        CAN2_BD.can2_coordenadas.Add(can2_coordenadas);
 
                     }
                     CAN2_BD.SaveChanges();
@@ -504,7 +506,7 @@ public class WS : IBDConextCAN2
 
                     foreach (var item in parametrosExistentes)
                     {
-                        CAN2_BD.DeleteObject(item);
+                        CAN2_BD.can2_geocercaparametros.Remove(item);
                     }
                     CAN2_BD.SaveChanges();
                     foreach (geocercaParametros GPResponse in response.geocercaParametros)
@@ -521,7 +523,7 @@ public class WS : IBDConextCAN2
                         can2_geoparam.fechaVigenciaFin = GPResponse.FechaVigenciaFin;
                         can2_geoparam.orientacionInicial = GPResponse.orientacionInicial;
                         can2_geoparam.orientacionFinal = GPResponse.orientacionFinal;
-                        CAN2_BD.AddTocan2_geocercaparametros(can2_geoparam);
+                        CAN2_BD.can2_geocercaparametros.Add(can2_geoparam);
                         //CAN2_BD.SaveChanges();
 
                     }
@@ -531,7 +533,7 @@ public class WS : IBDConextCAN2
             CAN2_BD.SaveChanges();
             EjecutarBat("ID");
             Thread.Sleep(1000);
-            CAN2_BD = new CAN2Entities();
+            CAN2_BD = new Can2Entities();
             res = true;
         }
         catch (Exception ex)
@@ -556,7 +558,7 @@ public class WS : IBDConextCAN2
         TEL_BD = new telematicsEntities();
         try
         {
-            res = (from x in TEL_BD.parametros
+            res = (from x in TEL_BD.parametro
                    where x.cve_parametro == cve_param && x.estatus == 1
                    select x.valor_parametro).FirstOrDefault();
         }
@@ -587,7 +589,7 @@ public class WS : IBDConextCAN2
 
     private void sincronizarInternet()
     {
-        string pingvalue = (from x in TEL_BD.parametros where x.cve_parametro == "ping_server" select x.valor_parametro).FirstOrDefault();
+        string pingvalue = (from x in TEL_BD.parametro where x.cve_parametro == "ping_server" select x.valor_parametro).FirstOrDefault();
 
         if (RealizarPingV2(pingvalue))
         {

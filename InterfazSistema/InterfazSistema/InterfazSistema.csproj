@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContextosBD\IBDConextCAN2.cs" />
     <Compile Include="ContextosBD\IBDContextPOI.cs" />
     <Compile Include="ModelosBD\actividad.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
@@ -67,6 +68,42 @@
     </Compile>
     <Compile Include="ModelosBD\autobuses.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\Can2Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Can2Entities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\Can2Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\Can2Entities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Can2Entities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_config.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_coordenadas.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_geocerca.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_geocercaparametros.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_parametros.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_sync.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelosBD\can2_testigo.cs">
+      <DependentUpon>Can2Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelosBD\can_catbuses.cs">
       <DependentUpon>VMDEntities.tt</DependentUpon>
@@ -230,6 +267,9 @@
     <Compile Include="ModelosBD\parada_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelosBD\parametro.cs">
+      <DependentUpon>TelematicsEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelosBD\parametros_poi.cs">
       <DependentUpon>POIEntities.tt</DependentUpon>
     </Compile>
@@ -382,6 +422,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CondusatEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="ModelosBD\Can2Entities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Can2Entities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelosBD\Can2Entities.edmx.diagram">
+      <DependentUpon>Can2Entities.edmx</DependentUpon>
+    </None>
     <None Include="ModelosBD\CondusatEntities.edmx.diagram">
       <DependentUpon>CondusatEntities.edmx</DependentUpon>
     </None>
@@ -456,6 +503,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ModelosBD\Can2Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Can2Entities.edmx</DependentUpon>
+      <LastGenOutput>Can2Entities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelosBD\Can2Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Can2Entities.edmx</DependentUpon>
+      <LastGenOutput>Can2Entities.cs</LastGenOutput>
+    </Content>
     <Content Include="ModelosBD\CondusatEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CondusatEntities.edmx</DependentUpon>
