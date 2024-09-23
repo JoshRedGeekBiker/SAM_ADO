@@ -237,6 +237,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
 
         TELEMATICS_BD = new telematicsEntities();
 
+
         POI_BD = new poiEntities();
 
         HolaSAM();

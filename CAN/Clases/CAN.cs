@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using InterfazSistema.WSCAN;
 
+
 public class CAN : ISistema, IBDContext, IGPS
 {
 
@@ -18,16 +19,16 @@ public class CAN : ISistema, IBDContext, IGPS
 
     #region "Propiedades Heredadas"
 
-        public int PuertoSocket { get; set; }
-        public int OrdenDescarga { get; set; }
-        public int OrdenLoad { get; set; }
-        public Sistema Sistema { get { return Sistema.CAN; } }
-        public string GetVersionSistema { get; }
-        public vmdEntities VMD_BD { get; }
-        public bool ModoNocturno { get; set; }
+    public int PuertoSocket { get; set; }
+    public int OrdenDescarga { get; set; }
+    public int OrdenLoad { get; set; }
+    public Sistema Sistema { get { return Sistema.CAN; } }
+    public string GetVersionSistema { get; }
+    public vmdEntities VMD_BD { get; }
+    public bool ModoNocturno { get; set; }
     //  public clsMessage AdvMsg { get; set; }
-        public bool ModoPrueba { get;  set; }
-        public GPSData Datos_GPS { get; set; }
+    public bool ModoPrueba { get; set; }
+    public GPSData Datos_GPS { get; set; }
 
 
     #endregion
@@ -50,6 +51,7 @@ public class CAN : ISistema, IBDContext, IGPS
     private AdminViaje _AdminViaje;
     public SyncCAN _syncCAN;
     public CANV2 CanGeneral2 = null;
+    public TELEMETRIA telem = null;
 
 
     private string Log = string.Empty;
@@ -99,10 +101,10 @@ public class CAN : ISistema, IBDContext, IGPS
         ParametrosInicio = VMD_BD.can_parametrosinicio.FirstOrDefault();
         ViajePrueba = false;
         Protocolo = false;
-         CanGeneral2 = new CANV2(false);
+        CanGeneral2 = new CANV2(false);
         Datos_GPS = new GPSData();
+        CanGeneral2 = new CANV2();
         CanGeneral2.Datos_GPS = Datos_GPS;
-        CanGeneral2.Inicializar();
         //Datos_GPS = new GPSData();
 
         //_ProtocoloCAN = new ProtocoloCAN();
@@ -545,14 +547,14 @@ public class CAN : ISistema, IBDContext, IGPS
     /// </summary>
     private void ActualizaCAN()
     {
-        
+
         bool Fr = false;
 
         try
         {
             //Se omiten FLags
 
-            if(_ProtocoloCAN.NombreProtocolo != null)
+            if (_ProtocoloCAN.NombreProtocolo != null)
             {
 
                 if (_ProtocoloCAN.NombreProtocolo.Substring(0, 2).Equals("DG"))
@@ -564,15 +566,15 @@ public class CAN : ISistema, IBDContext, IGPS
 
                     //Cargamos las variables de DG si es que éstas, no han sido actualizadas
 
-                    if( _ProtocoloCAN.KmsIniDg == 0) _ProtocoloCAN.KmsIniDg = _ProtocoloCAN.TripDistanceEstimationVS;
+                    if (_ProtocoloCAN.KmsIniDg == 0) _ProtocoloCAN.KmsIniDg = _ProtocoloCAN.TripDistanceEstimationVS;
 
                     if (_ProtocoloCAN.LtsIniDG == 0) _ProtocoloCAN.LtsIniDG = _ProtocoloCAN.FuelEconomyEstimationFE;
 
-                    double FactorRendimiento; 
+                    double FactorRendimiento;
 
                     if (ViajePrueba)
                     {
-                        if((_ProtocoloCAN.FuelEconomyEstimationFE - _ProtocoloCAN.LtsIniDG) > 0)
+                        if ((_ProtocoloCAN.FuelEconomyEstimationFE - _ProtocoloCAN.LtsIniDG) > 0)
                         {
                             FactorRendimiento = FactorRendimiento = ValorDG2(_ProtocoloCAN.TripDistanceEstimationVS, _ProtocoloCAN.KmsIniDg, _ProtocoloCAN.FuelEconomyEstimationFE, _ProtocoloCAN.LtsIniDG);
 
@@ -589,7 +591,7 @@ public class CAN : ISistema, IBDContext, IGPS
                                 Fr,
                                 Protocolo,
                                 _ProtocoloCAN.TachoVehicleSpeed);
-                            
+
 
                         }
                         else
@@ -607,7 +609,7 @@ public class CAN : ISistema, IBDContext, IGPS
                     }
                     else //No es Viaje de Prueba
                     {
-                        if((_ProtocoloCAN.FuelEconomyEstimationFE - _ProtocoloCAN.LtsIniDG) > 0)
+                        if ((_ProtocoloCAN.FuelEconomyEstimationFE - _ProtocoloCAN.LtsIniDG) > 0)
                         {
                             FactorRendimiento = ValorDG2(_ProtocoloCAN.TripDistanceEstimationVS, _ProtocoloCAN.KmsIniDg, _ProtocoloCAN.FuelEconomyEstimationFE, _ProtocoloCAN.LtsIniDG);
 
@@ -626,7 +628,7 @@ public class CAN : ISistema, IBDContext, IGPS
                                 Protocolo,
                                 _ProtocoloCAN.TachoVehicleSpeed);
                         }
-                        
+
                         else
                         {
                             EventoCAN(_Globales.Param_CAN_MetaRendimiento,
@@ -638,7 +640,7 @@ public class CAN : ISistema, IBDContext, IGPS
                                 _ProtocoloCAN.TachoVehicleSpeed);
                         }
                     }
-                    
+
                 }
                 else //Es St
                 {
@@ -651,9 +653,9 @@ public class CAN : ISistema, IBDContext, IGPS
                     if (ViajePrueba)
                     {
                         EventoCAN(_Globales.Param_CAN_MetaRendimientoPrueba,
-                            Truncar(_ProtocoloCAN.RealKmPerLiterHighLevel,2),
-                            Truncar(_ProtocoloCAN.TripDistanceEstimationVS,2),
-                            Truncar(_ProtocoloCAN.FuelEconomyEstimationFE,2),
+                            Truncar(_ProtocoloCAN.RealKmPerLiterHighLevel, 2),
+                            Truncar(_ProtocoloCAN.TripDistanceEstimationVS, 2),
+                            Truncar(_ProtocoloCAN.FuelEconomyEstimationFE, 2),
                             Fr,
                             Protocolo,
                             _ProtocoloCAN.TachoVehicleSpeed);
@@ -661,19 +663,19 @@ public class CAN : ISistema, IBDContext, IGPS
                     else
                     {
                         EventoCAN(_Globales.Param_CAN_MetaRendimiento,
-                            Truncar(_ProtocoloCAN.RealKmPerLiterHighLevel,2),
-                            Truncar(_ProtocoloCAN.TripDistanceEstimationVS,2),
-                            Truncar(_ProtocoloCAN.FuelEconomyEstimationFE,2),
+                            Truncar(_ProtocoloCAN.RealKmPerLiterHighLevel, 2),
+                            Truncar(_ProtocoloCAN.TripDistanceEstimationVS, 2),
+                            Truncar(_ProtocoloCAN.FuelEconomyEstimationFE, 2),
                             Fr,
                             Protocolo,
                             _ProtocoloCAN.TachoVehicleSpeed);
                     }
                 }
             }
-            
+
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }
@@ -725,7 +727,7 @@ public class CAN : ISistema, IBDContext, IGPS
             //Verificamos si tenemos viaje
             if (_Globales.Corrida.ViajeActual > 0)
             {
-                if( _CANPob != null)
+                if (_CANPob != null)
                 {
                     AvisarViajeSAM(_Globales.conductor,
                     _Conductor.ValidarConductor(_Globales.conductor.ToString()),
@@ -759,10 +761,10 @@ public class CAN : ISistema, IBDContext, IGPS
                     _Globales.ViajeAbierto,
                     DateTime.Now, 0, "", "");
                 }
-                
+
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
 
         }
@@ -827,6 +829,8 @@ public class CAN : ISistema, IBDContext, IGPS
         PreparaTimers();
 
         AsignaEventos();
+        CanGeneral2.Inicializar();
+
 
         //iniciamos Timer de procesamiento
         timerProcesaCAN.Start();
@@ -1112,8 +1116,8 @@ public class CAN : ISistema, IBDContext, IGPS
     /// <param name="mensaje"></param>
     /// <param name="caso"></param>
     private void EventoSyncCANProgreso(string mensaje, int caso)
-    { 
-            EventoSyncCAN(mensaje, caso);  
+    {
+        EventoSyncCAN(mensaje, caso);
     }
 
     /// <summary>
@@ -1246,7 +1250,7 @@ public class CAN : ISistema, IBDContext, IGPS
 
         return mes;
     }
-    
+
     /// <summary>
     /// Se encarga de truncar los valores de CAN para
     /// ser mostrados en el Front
@@ -1259,7 +1263,7 @@ public class CAN : ISistema, IBDContext, IGPS
 
         //return temporal / 100.0;
 
-        int temporal = (int)(Valor * Math.Pow(10,potencia));
+        int temporal = (int)(Valor * Math.Pow(10, potencia));
         return temporal / Math.Pow(10, potencia);
     }
 
