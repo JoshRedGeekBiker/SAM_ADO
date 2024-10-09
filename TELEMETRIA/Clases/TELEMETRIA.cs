@@ -579,6 +579,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     {
         RecibirCodigosV2();
         RecibirFallas();
+        ReportarStatusAFront(1);
 
         if (contadorSinCodigos == 0)
         {
@@ -1283,18 +1284,18 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
 
                             //Se deja por si en un futuo se tiene que realizar algun proceso
 
-                            ////Validamos de que no exista el mismo codigo
-                            //if (!EvitarFallaDuplicada(code))
-                            //{
-                            //    //PrepararEnvio(code, ref ultimoIDEnvio);
-                            //    code.Procesado = 1;
-                            //    Fallas_Mem.Add(code);
-                            //}
-                            //else
-                            //{//Si ya existe lo flageamos de que ya lo enviados
-                            //    code.Procesado = 1;
-                            //    code.Enviado = 1;
-                            //}
+                            //Validamos de que no exista el mismo codigo
+                            if (!EvitarFallaDuplicada(code))
+                            {
+                                //PrepararEnvio(code, ref ultimoIDEnvio);
+                                code.Procesado = 1;
+                                Fallas_Mem.Add(code);
+                            }
+                            else
+                            {//Si ya existe lo flageamos de que ya lo enviados
+                                code.Procesado = 1;
+                                code.Enviado = 1;
+                            }
                             break;
 
                         //Envio por paquete

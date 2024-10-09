@@ -6,6 +6,6 @@ using System.Text;
 
 public class Request_geocerca
 {
-    public int deviceid { get; set; }
-    public DateTime fecha_modificacion { get; set; }
+    public string deviceid { get; set; }
+    public string fecha_modificacion { get; set; }
 }

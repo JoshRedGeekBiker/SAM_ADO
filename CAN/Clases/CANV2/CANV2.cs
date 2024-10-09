@@ -21,10 +21,6 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     #region Variables
     private bool InDebug = false;
     private int bandera = 0;
-
-
-
-
     private int Operador = 0;
     private int CambioManos = 0;
 
@@ -38,16 +34,18 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     private int IdGeocerca = 0; //Con la que estaremos llevando el FR_META
     private bool Angulo = false;
     private bool flagColision = false; //Con la que estaremos llevando el FR_META
-    private double FR_META_DEF = 0.00; 
+    private double FR_META_DEF = 0.00;
     public double Aceleracion = 0.00;
+
+    private double ultimaAceleracion = 0;
+    private DateTime tiempoUltimaAceleracion = DateTime.Now;
+
     private int IdFR = 0;
     private int IdAceleracion = 0;
     private List<geocercaParametros> geos_temp = new List<geocercaParametros>();
     //ContextosBD
     public vmdEntities VMD_BD { get; set; }
     public Can2Entities CAN2_BD { get; set; }
-
-    public Can2Entities CAN_BD => throw new NotImplementedException();
 
     //Timers
     private System.Timers.Timer timerActualiza = new System.Timers.Timer();
@@ -129,6 +127,14 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     public delegate string _Aceleracion();
     public event _Aceleracion Aceler;
 
+    /// <summary>
+    /// Se encarga de mandar la alerta de aceleracion
+    /// Powered ByRED 04OCT2024
+    /// </summary>
+    /// <returns></returns>
+    public delegate void _AlertaAcel(string _Valor, string _Color);
+    public event _AlertaAcel AlertaAcel;
+
     #endregion
     #region Constructores
     /// <summary>
@@ -157,9 +163,10 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     /// </summary>
     private void Debugg()
     {
-        //ParametrosInicioCAN = (from x in VMD_BD.can_parametrosinicio select x).FirstOrDefault();
-        //Datos_GPS = new GPSData();
-        //Sincronizar("");
+        ParametrosInicioCAN = (from x in VMD_BD.can_parametrosinicio select x).FirstOrDefault();
+        Datos_GPS = new GPSData();
+        VerificarEventos();
+        Sincronizar("");
 
     }
 
@@ -300,7 +307,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     }
 
 
-    public void Colisionador()
+    private void Colisionador()
     {
         try
         {
@@ -551,6 +558,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     /// </summary>
     private void GenerarFR_default()
     {
+
+
         try
         {
             var def = (from x in CAN2_BD.can2_parametros
@@ -558,6 +567,22 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
                             && x.valor_real == 0
                             && x.Fecha_Fin == DateTime.MinValue
                        select x).FirstOrDefault();
+            if (this.FR_META_DEF == 0)
+            {
+
+                this.FR_META_DEF = (from x in CAN2_BD.can2_parametros
+                                    where x.geocerca_id == 0
+                                         && x.parametroId == this.IdFR
+                                    select x.valor_parametro).FirstOrDefault();
+            }
+
+            if (this.Aceleracion == 0)
+            {
+                this.Aceleracion = (from x in CAN2_BD.can2_parametros
+                                    where x.geocerca_id == 0
+                                         && x.parametroId == this.IdAceleracion
+                                    select x.valor_parametro).FirstOrDefault();
+            }
 
             if (def == null)
             {
@@ -577,6 +602,18 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
                     operador = Operador
                 };
                 CAN2_BD.can2_parametros.Add(fr);
+                can2_parametros Acel = new can2_parametros()
+                {
+                    valor_parametro = Convert.ToDouble(this.Aceleracion),
+                    geocerca_id = this.IdGeocerca,
+                    parametroId = this.IdAceleracion,
+                    Fecha_Ini = DateTime.Now,
+                    lat_Ini = Convert.ToDouble(Datos_GPS.Latitud),
+                    long_Ini = Convert.ToDouble(Datos_GPS.Longitud),
+                    Cambio_Manos = CambioManos,
+                    operador = Operador
+                };
+                CAN2_BD.can2_parametros.Add(Acel);
                 CAN2_BD.SaveChanges();
             }
 
@@ -632,6 +669,40 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     }
 
 
+    /// <summary>
+    /// Se encarga de calcular el semaforo y de enviar el valor de la aceleración
+    /// </summary>
+    private void semaforizacionAceleracion(int idGeocerca)
+    {
+        double Margen = (from x in CAN2_BD.can2_geocercaparametros
+                         where x.geocercaId == idGeocerca
+                                    && x.parametroId == 19
+                         select x.margenParametro).FirstOrDefault();
+
+        if (this.Aceleracion != ultimaAceleracion)
+        {
+            ultimaAceleracion = this.Aceleracion;
+            tiempoUltimaAceleracion = DateTime.Now;
+        }
+
+        if (this.Aceleracion < Margen)
+        {
+            AlertaAcel(Aceleracion.ToString(), "verde");
+        }
+        else if (this.Aceleracion >= Margen)
+        {
+            TimeSpan tiempoTranscurrido = DateTime.Now - tiempoUltimaAceleracion;
+
+            if (tiempoTranscurrido.TotalSeconds < 15)
+            {
+                AlertaAcel(Aceleracion.ToString(), "Amarillo");
+            }
+            else
+            {
+                AlertaAcel(Aceleracion.ToString(), "Rojo");
+            }
+        }
+    }
 
 
     #endregion
@@ -678,25 +749,25 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
             WS _ws = new WS(true);
 
             //Paso 1:Sincronizacion de testigos
-            res = _ws.syncTestigo(ParametrosInicioCAN.Autobus);
+            //res = _ws.syncTestigo(ParametrosInicioCAN.Autobus);
 
-            //MensajeSync("Sincronizacion de Testigos: " + (res ? true : false));
+            // MensajeSync("Sincronizacion de Testigos: " + (res ? true : false));
 
             //Paso 2: Sincronización de los catálogos de Geocercas
             Request_geocerca request = new Request_geocerca();
             request.deviceid = Convert.ToInt32(ParametrosInicioCAN.Autobus);
 
             can2_sync can2_sync = (from x in CAN2_BD.can2_sync select x).FirstOrDefault();
+            request.fecha_modificacion = DateTime.MinValue;
 
-            if (can2_sync != null)
-            {
-                if (can2_sync.UltimaSync != DateTime.MinValue)
-                    request.fecha_modificacion = can2_sync.UltimaSync;
-            }
-            else
-            {
-                request.fecha_modificacion = DateTime.Now;
-            }
+            //if (can2_sync != null)
+            //{
+            //    request.fecha_modificacion = can2_sync.UltimaSync.ToString();
+            //}
+            //else
+            //{
+            //    request.fecha_modificacion = Convert.ToString(DateTime.MinValue);
+            //}
             res = _ws.syncGeocercas(request);
             MensajeSync("Sincronizacion de CAN2: " + (res ? true : false));
 
@@ -754,53 +825,47 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         List<geocercaParametros> geos = new List<geocercaParametros>();
 
         this.geocercaActual = 0;
-        //this.Angulo = false;
         try
         {
             posicion_Anterior = posicion_Actual;
             Double longG = long_negativo == 1 ? Convert.ToDouble(Datos_GPS.Longitud) * -1 : Convert.ToDouble(Datos_GPS.Longitud);
-            //var latF = ParseLongitude(Datos_GPS.Latitud.ToString());
-            //var longF = ParseLongitude(Datos_GPS.Longitud.ToString());
-            //if (long_negativo == 1)
+
+
+
+
+
+            posicion_Actual = new POINT(Datos_GPS.Latitud.ToString(), longG.ToString());
+
+            //if (InDebug)
             //{
-            //    longF = ParseLongitude(Datos_GPS.Longitud.ToString()) * -1;
-            //}
-            //else
-            //{
-            //    longF = ParseLongitude(Datos_GPS.Longitud.ToString());
+            //    switch (bandera)
+            //    {
+            //        case 0:
+            //            posicion_Actual = new POINT("0000.0000", "0000.0000");
+
+            //            break;
+            //        case 1:
+            //            posicion_Actual = new POINT(Datos_GPS.Latitud, longG.ToString());
+            //            break;
+            //        case 2:
+            //            posicion_Actual = new POINT("1925.9759", "-9906.6649");
+            //            break;
+
+            //        default:
+            //            break;
+            //    }
             //}
 
-            //posicion_Actual = new POINT(latF.ToString(), longF.ToString());
-            posicion_Actual = new POINT(Datos_GPS.Latitud, longG.ToString());
 
             if (InDebug)
             {
-                switch (bandera)
-                {
-                    case 0:
-                        posicion_Actual = new POINT("0000.0000", "0000.0000");
-
-                        break;
-                    case 1:
-                        posicion_Actual = new POINT(Datos_GPS.Latitud, longG.ToString());
-                        break;
-                    case 2:
-                        posicion_Actual = new POINT("1925.9759", "-9906.6649");
-                        break;
-
-                    default:
-                        break;
-                }
+                EnviarMensaje("PUNTO ACTUAL: " + Datos_GPS.Latitud + " " + longG.ToString());
             }
-
-
-            if (InDebug) { EnviarMensaje("PUNTO ACTUAL: " + Datos_GPS.Latitud + " " + longG); }
             if (geocercas.Count != 0)
             {
                 //verificar que coincidan los puntos para que haga la colision
                 foreach (Response_Geocerca sg in geocercas)
                 {
-
                     POLYGON pol = new POLYGON(sg.points.ToArray());
 
                     if (pol.in_poligone(posicion_Actual, false))
@@ -820,7 +885,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
                         else
                         {
                             //validar logica para permanencia del bus en la misma geocerca
-                            break;
+                            if (Angulo)
+                                break;
                         }
                         if (InDebug) { EnviarMensaje("ENTRO: " + sg.clave); }
                         float angle_bus = pol.CalculeAngle(posicion_Anterior, posicion_Actual);
@@ -854,6 +920,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         {
             EnviarMensaje(ex.Message);
         }
+
+        semaforizacionAceleracion(geocercaActual);
         return geos;
     }
     /// <summary>
@@ -1021,7 +1089,6 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
 
         }
     }
-
 
     #endregion
     #region Timers

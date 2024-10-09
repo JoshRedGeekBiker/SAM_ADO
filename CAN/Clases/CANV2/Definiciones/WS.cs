@@ -10,6 +10,8 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System.Threading;
+using System.Net;
+using System.Text;
 
 public class WS : IBDConextCAN2
 {
@@ -19,10 +21,7 @@ public class WS : IBDConextCAN2
     public telematicsEntities TEL_BD { get; set; }
 
     //Flags
-    public Boolean isError { get; set; }
     public string msgError { get; set; }
-
-    public Can2Entities CAN_BD => throw new NotImplementedException();
     #endregion
 
     #region Constructores
@@ -32,7 +31,6 @@ public class WS : IBDConextCAN2
     /// </summary>
     public WS()
     {
-        isError = false;
     }
     /// <summary>
     /// constructor para sincronizar
@@ -42,7 +40,6 @@ public class WS : IBDConextCAN2
     {
 
         CAN2_BD = new Can2Entities();
-        isError = false;
     }
 
     #endregion
@@ -59,25 +56,24 @@ public class WS : IBDConextCAN2
         try
         {
             var url = getParam("ws_testigo");
-            if (!isError)
+
+            //Paso 1: Preparamos los registros de testigos
+            PrepararTestigos(numeroEconomico);
+
+            //Paso 2: Recuperamos los registros de testigos que no han sido enviados
+            List<can2_testigo> request = GetListTestigos(numeroEconomico);
+            if (request.Count > 0)
             {
-                //Paso 1: Preparamos los registros de testigos
-                PrepararTestigos(numeroEconomico);
-
-                //Paso 2: Recuperamos los registros de testigos que no han sido enviados
-                List<can2_testigo> request = GetListTestigos(numeroEconomico);
-                if (request.Count > 0)
+                //Paso 3: Mandamos los testigos hacia el WS
+                List<can2_testigo> t = Call_ws_testigo(url, request);
+                if (t.Count > 0)
                 {
-                    //Paso 3: Mandamos los testigos hacia el WS
-                    List<can2_testigo> t = Call_ws_testigo(url, request);
-                    if (t.Count > 0)
-                    {
-                        //Paso 4: Actualizamos los testigos que fueron enviados a WS
-                        updateTestigo(t);
-                    }
+                    //Paso 4: Actualizamos los testigos que fueron enviados a WS
+                    updateTestigo(t);
                 }
-
             }
+
+
         }
         catch (Exception ex)
         {
@@ -124,18 +120,22 @@ public class WS : IBDConextCAN2
 
             foreach (can2_parametros c in can2fr)
             {
-                can2_testigo testigoSubida = new can2_testigo()
+                if ((c.lat_Fin != 0 && c.long_Fin != 0))
                 {
-                    numeroEconomico = numeroEconomico,
-                    geocercaId = c.geocerca_id,
-                    parametroid = c.parametroId,
-                    ValorParametro = c.valor_real,
-                    fechaEvento = c.Fecha_Fin,
-                    latitud = c.lat_Fin,
-                    longitud = c.long_Fin,
-                    enviado = false
-                };
-                CAN2_BD.can2_testigo.Add(testigoSubida);
+                    can2_testigo testigoSubida = new can2_testigo()
+                    {
+                        numeroEconomico = numeroEconomico,
+                        geocercaId = c.geocerca_id,
+                        parametroid = c.parametroId,
+                        ValorParametro = c.valor_real,
+                        fechaEvento = c.Fecha_Fin,
+                        latitud = c.lat_Fin,
+                        longitud = c.long_Fin,
+                        enviado = false
+                    };
+                    CAN2_BD.can2_testigo.Add(testigoSubida);
+                }
+
             }
 
 
@@ -197,59 +197,78 @@ public class WS : IBDConextCAN2
                 {
                     id_testigo = r.id_testigo,
                     numeroEconomico = r.numeroEconomico,
-                    geocercaId = r.geocercaId,
-                    parametroId = r.parametroid,
-                    ValorParametro = r.ValorParametro,
-                    fechaEvento = r.fechaEvento,
-                    latitud = r.latitud,
-                    longitud = r.longitud,
+                    geocercaId = Convert.ToInt32(r.geocercaId),
+                    parametroId = Convert.ToInt32(r.parametroid),
+                    valorParametro = float.Parse(r.ValorParametro.ToString()),
+                    fechaEvento = r.fechaEvento.ToString("yyyy-MM-ddTHH:mm:ss"),
+                    latitud = float.Parse(r.latitud.ToString()),
+                    longitud = float.Parse(r.longitud.ToString()),
                 });
-
                 res.Add(r);
             }
 
             //hay que mandar el objeto a la web como TS no como res
+            //en que proyecto estas papi
+            try
+            {
+                // Crear una instancia de WebClient
+                using (WebClient webClient = new WebClient())
+                {
+                    // Establecer el tipo de contenido en la cabecera de la solicitud
+                    webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
 
 
-            //var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            //httpWebRequest.ContentType = "application/json; charset=utf-8";
-            //httpWebRequest.Accept = "application/json";
-            //httpWebRequest.Method = "POST";
-            // Serializa el objeto a una cadena JSON
+                    string json = JsonConvert.SerializeObject(ts, Formatting.Indented);
 
-            //DESCOMENTAR PARA LLENAR BD
+                    // Convertir el JSON a un arreglo de bytes para enviarlo
+                    byte[] requestBody = Encoding.UTF8.GetBytes(json);
 
-            string json = JsonConvert.SerializeObject(ts, Formatting.Indented);
+                    // Hacer la solicitud POST y recibir la respuesta en formato byte[]
+                    byte[] responseBytes = webClient.UploadData(url, "POST", requestBody);
+
+                    // Convertir la respuesta a string
+                    string responseString = Encoding.UTF8.GetString(responseBytes);
+
+                    // Procesar la respuesta JSON
+                    JObject results = JObject.Parse(responseString);
+                    List<int> enviados = new List<int>();
+
+                    foreach (var x in results["data"])
+                    {
+                        can2_testigo t = null;
+                        try
+                        {
+                            t = new can2_testigo();
+                            t = JsonConvert.DeserializeObject<can2_testigo>(x.ToString());
+                            res.Add(t);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("ERROR CALL WS FORMAT JSON: " + ex.Message + " " + ex.StackTrace);
+                        }
+                    }
+                }
+            }
+            catch (Exception EX)
+            {
+                Console.WriteLine(EX);
+                throw;
+            }
+
+
 
             // Ruta del archivo en el que quieres guardar el JSON
-            string filePath = "C:/Users/danch/Desktop/TRABAJO/JSONSubida.txt";
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                writer.Write(json);
-            }
-            //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            //string filePath = "C:/Users/danch/Desktop/TRABAJO/JSONSubida.txt";
+            //using (StreamWriter writer = new StreamWriter(filePath))
             //{
-            //    streamWriter.Write(JsonConvert.SerializeObject(request));
+            //    writer.Write(json);
             //}
-            //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            //{
-            //    var result = streamReader.ReadToEnd();
-            //    JObject results = JObject.Parse(result);
-            //    TestigoCan2 t = null;
-            //    foreach (var x in results["data"])
-            //    {
-            //        t = new TestigoCan2();
-            //        t = JsonConvert.DeserializeObject<TestigoCan2>(x.ToString());
-            //        res.Add(t);
-            //    }
-            //}
+
 
             return request;
         }
         catch (Exception ex)
         {
-            isError = true;
             msgError = "Fallo en la cosulta al WS Testigo. Causa: " + ex.Message;
             Console.Write(ex.Message);
         }
@@ -305,16 +324,15 @@ public class WS : IBDConextCAN2
         try
         {
             var url = getParam("ws_geocercas");
-            if (!isError)
+
+            //Paso 1:Mandamos a consultar el WS en búsqueda de obtener el catálogo de geocercas
+            List<Response_Geocerca> response = Call_ws_geocercas(url, request);
+            if (response.Count > 0)
             {
-                //Paso 1:Mandamos a consultar el WS en búsqueda de obtener el catálogo de geocercas
-                List<Response_Geocerca> response = Call_ws_geocercas(url, request);
-                if (response.Count > 0)
-                {
-                    //Paso 2: Si recibimos geocercas, insertarlas
-                    res = insert_Geocerca(response);
-                }
+                //Paso 2: Si recibimos geocercas, insertarlas
+                res = insert_Geocerca(response);
             }
+
         }
         catch (Exception ex)
         {
@@ -333,61 +351,74 @@ public class WS : IBDConextCAN2
     /// <returns></returns>
     private List<Response_Geocerca> Call_ws_geocercas(string url, Request_geocerca request)
     {
-        List<Response_Geocerca> res = null;
+        List<Response_Geocerca> res = new List<Response_Geocerca>();
+        List<Request_geocerca> reslist = new List<Request_geocerca>();
 
         try
         {
-
-            res = new List<Response_Geocerca>();
-            //var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            //httpWebRequest.ContentType = "application/json; charset=utf-8";
-            //httpWebRequest.Accept = "application/json";
-            //httpWebRequest.Method = "POST";
-            //using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            //{
-            //    streamWriter.Write(JsonConvert.SerializeObject(request));
-            //}
-            ////Console.WriteLine("PETICION DE SERVICIO CREADA...");
-            //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-
-            using (var streamReader = new StreamReader("C:\\Users\\danch\\Desktop\\TRABAJO\\ParametrosBajada.txt"))
+            // Crear una instancia de WebClient
+            using (WebClient webClient = new WebClient())
             {
-                var result = streamReader.ReadToEnd();
-                JArray results = JArray.Parse(result);
-                res = JsonConvert.DeserializeObject<List<Response_Geocerca>>(result);
+                // Establecer el tipo de contenido en la cabecera de la solicitud
+                webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
 
+                // Formatear la fecha en el request
+                DateTime d = Convert.ToDateTime(request.fecha_modificacion);
+                request.fecha_modificacion = d.ToString("yyyy-MM-dd HH:mm:ss");
+                reslist.Add(request);
+                // Serializar el objeto request a JSON
+                string json = JsonConvert.SerializeObject(reslist, Formatting.Indented);
+
+                // Convertir el JSON a un arreglo de bytes para enviarlo
+                byte[] requestBody = Encoding.UTF8.GetBytes(json);
+
+                // Hacer la solicitud POST y recibir la respuesta en formato byte[]
+                byte[] responseBytes = webClient.UploadData(url, "POST", requestBody);
+
+                // Convertir la respuesta a string
+                string responseString = Encoding.UTF8.GetString(responseBytes);
+
+                // Procesar la respuesta JSON
+                JArray results = JArray.Parse(responseString);
+                Response_Geocerca Geocerca = null;
+
+                foreach (var x in results)
+                {
+                    try
+                    {
+                        Geocerca = JsonConvert.DeserializeObject<Response_Geocerca>(x.ToString());
+                        res.Add(Geocerca);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ERROR CALL WS FORMAT JSON: " + ex.Message + " " + ex.StackTrace);
+                    }
+                }
             }
-
-
-            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            //{
-            //    //Console.WriteLine("RECIBIENDO RESPUESTA...");
-            //    var result = streamReader.ReadToEnd();
-            //    //Console.WriteLine("RESPUESTA OBTENIDA: "+result);
-            //    JObject results = JObject.Parse(result);
-            //    Response_spot spot = null;
-            //    foreach (var x in results["data"])
-            //    {
-            //        try
-            //        {
-            //            spot = new Response_spot();
-            //            spot = JsonConvert.DeserializeObject<Response_spot>(x.ToString());
-            //            res.Add(spot);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            Console.WriteLine("ERRO CALL WS FORMAT JSON" + ex.Message + " " + ex.StackTrace);
-            //        }
-            //    }
-            //}
+        }
+        catch (WebException ex)
+        {
+            // Manejar errores relacionados con la solicitud web
+            Console.WriteLine("Error en la solicitud web: " + ex.Message);
+            if (ex.Response != null)
+            {
+                using (var reader = new StreamReader(ex.Response.GetResponseStream()))
+                {
+                    string responseError = reader.ReadToEnd();
+                    Console.WriteLine("Detalle del error: " + responseError);
+                }
+            }
         }
         catch (Exception ex)
         {
-
-            Console.Write(ex.Message);
+            // Manejar otros tipos de errores
+            Console.WriteLine($"Error: {ex.Message}");
         }
+
         return res;
     }
+
+
 
 
     /// <summary>
@@ -497,9 +528,9 @@ public class WS : IBDConextCAN2
                     foreach (geocercaParametros c in response.geocercaParametros)
                     {
                         var cambio = (from x in CAN2_BD.can2_geocercaparametros
-                                                          where x.geocercaId == response.geocercaId
-                                                          && x.parametroId == c.ParametroId
-                                                          select x).FirstOrDefault();
+                                      where x.geocercaId == response.geocercaId
+                                      && x.parametroId == c.ParametroId
+                                      select x).FirstOrDefault();
                         if (cambio != null)
                             parametrosExistentes.Add(cambio);
                     }

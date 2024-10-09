@@ -490,6 +490,10 @@ public class CAN : ISistema, IBDContext, IGPS
 
         _Conductor = new Conductor(ref _Globales, ref _Bitacora, ref _ProtocoloCAN, ref _Secuencia);
         _Conductor.AvisarViajeaFront += this.DatosViaje;
+        CanGeneral2.Inicializar();
+        CanGeneral2.Datos_GPS = Datos_GPS;
+
+
     }
 
     /// <summary>
