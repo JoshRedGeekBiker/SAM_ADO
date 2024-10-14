@@ -1323,6 +1323,9 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 MyCan.AvisarViaje += this.StatusViajeCAN;
                 MyCan.EventoFirmaCondusat += this.CANToCondusat;
                 MyCan.AvisarViajeSAM += this.RecibeViajeDeCAN;
+                MyCan.PedirAceleracion += this.eTObtenerAceleracion;
+                MyCan.EnviarFRASAM += this.eSMMandarFR;
+
 
             }
 
@@ -2319,6 +2322,11 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 _can._Globales.UltLon = _Datos_GPS.Longitud;
                 _can._Globales.UltLonWE = _Datos_GPS.LongitudWE;
                 _can._Globales.UltVel = _Datos_GPS.Velocidad;
+            }
+            if (_can._CanV2 != null)
+            {
+                _can._CanV2.Datos_GPS = _Datos_GPS;
+
             }
         }
 
@@ -3332,6 +3340,31 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
             MySIA.AlertaRobo();
 
         }
+    }
+    #endregion
+
+    #region CAN2
+    private string eTObtenerAceleracion()
+    {
+        string aceleracionActual = String.Empty;
+        if ((bool)ParametrosInicio.TELEMATICS)
+        {
+
+            var _Telems = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
+
+            foreach (TELEMETRIA telems in _Telems)
+            {
+                aceleracionActual = telems.ValorAceleracion();
+            }
+        }
+        return aceleracionActual;
+    }
+
+
+    //codigo para plat, con muchos saludos, el dancha
+    private void eSMMandarFR(string _FR_META, string _FR_REAL, string _PARAMETROS_ID)
+    {
+
     }
     #endregion
 

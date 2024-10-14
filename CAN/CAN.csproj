@@ -87,7 +87,6 @@
     <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\CAN.cs" />
     <Compile Include="Clases\CANV2\CANV2.cs" />
-    <Compile Include="Clases\CANV2\Definiciones\ProtocoloCAN1.cs" />
     <Compile Include="Clases\CANV2\Definiciones\Testigo_Subida.cs" />
     <Compile Include="Clases\CANV2\Definiciones\WS.cs" />
     <Compile Include="Clases\CANV2\Matematica\ARISTA.cs" />

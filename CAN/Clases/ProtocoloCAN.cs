@@ -42,6 +42,20 @@ public class ProtocoloCAN : IBDContext, IMessage
     public double LtsIniDG { get; set; } = 0;
     public double KmsIniDg { get; set; } = 0;
 
+
+    private double KMS = 0.0;
+    private double LTS = 0.0;
+    public double FR_REAL = 0.0;
+    public double FR_META = 0.0;
+    private double Aceleracion = 0.0;
+    private double RendimientoCAN = 0.0;
+    public double VAL_FR_REAL = 0.0;
+    public double VAL_FR_META = 0.0;
+    public int PARAMETRO_ID = 0;
+
+    public int operador = 0;
+    public string accion = string.Empty;
+
     //Cliente CAN
     private ADO_CAN_Cliente.CAN_Cliente.ValoresCAN ADOCAN;
 
@@ -103,6 +117,25 @@ public class ProtocoloCAN : IBDContext, IMessage
 
         }
     }
+    /// <summary>
+    /// Se encarga de calcular el FR en tiempo REAL
+    /// </summary>
+    /// <returns></returns>
+    private void CalcularFR()
+    {
+        this.FR_REAL = Truncar1(((Truncar1(TripDistanceEstimationVS) - Truncar1(KMS)) / (Truncar1(FuelEconomyEstimationFE) - Truncar1(LTS))));
+        if (double.IsNaN(this.FR_REAL) || double.IsInfinity(this.FR_REAL))
+        {
+            this.FR_REAL = 0;
+        }
+    }
+
+    /// <summary>
+    /// Se encarga de convertir el valor a sólo 3 decimales
+    /// </summary>
+    /// <param name="Valor"></param>
+    /// <returns></returns>
+    private double Truncar1(double Valor) { return Math.Truncate(100 * Valor) / 100; }
 
     /// <summary>
     /// Obtiene el primer registro de Viaje con valores diferentes de cero
@@ -164,6 +197,38 @@ public class ProtocoloCAN : IBDContext, IMessage
 
             RsKml = null;
 
+        }
+        var autobus = (from x in VMD_BD.can_parametrosinicio select x.Autobus).FirstOrDefault();
+
+        var movTosCAN = (from x in VMD_BD.can_movtoscan
+                         where x.autobus == autobus
+                         orderby x.NumVuelta descending, x.NumReg descending, x.fechahora descending
+                         select new { x.fechaviaje, x.fechahora, x.operador, x.accion, x.TotalDistance, x.LiterPerHour, x.NumVuelta }).FirstOrDefault();
+
+        if (movTosCAN != null)
+        {
+            KMS = movTosCAN.TotalDistance; //Sólo en el cáso de DG serviría éste campo y está variable
+            LTS = movTosCAN.LiterPerHour; //Sólo en el cáso de DG serviría éste campo y está variable
+            operador = movTosCAN.operador;
+            accion = movTosCAN.accion;
+
+
+            //13/05/2014
+            //if ((!movTosCAN.accion.Equals("VC") && KMS == 0) || (!movTosCAN.accion.Equals("VC") && LTS == 0))
+            //{
+            //    //Tiene que ser por evento
+            //    CargaKmsLts("VA", movTosCAN.fechaviaje);
+            //}
+            //else
+            //{
+            //    //Tiene que ser por evento
+            //    CargaKmsLts("T", movTosCAN.fechaviaje);
+            //}
+        }
+        else
+        {
+            KMS = TripDistanceEstimationVS;
+            LTS = FuelEconomyEstimationFE;
         }
     }
 

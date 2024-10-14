@@ -50,7 +50,7 @@ public class CAN : ISistema, IBDContext, IGPS
     private Conductor _Conductor;
     private AdminViaje _AdminViaje;
     public SyncCAN _syncCAN;
-    public CANV2 CanGeneral2 = null;
+    public CANV2 _CanV2 = null;
     public TELEMETRIA telem = null;
 
 
@@ -87,6 +87,18 @@ public class CAN : ISistema, IBDContext, IGPS
     public delegate void ViajeSAM(int operador, string nom_operador, bool EnViaje, DateTime FechaViaje, long Origen, string DescPob, string CVEPob);
     public event ViajeSAM AvisarViajeSAM;
 
+    public delegate string _AceleracinSamToCan();
+    public event _AceleracinSamToCan PedirAceleracion;
+    /// <summary>
+    /// Se encarga de mandarle los parametros al Socket
+    /// </summary>
+    /// <param name="_FR_META"></param>
+    /// <param name="_FR_REAL"></param>
+    /// <param name="_PARAMETROS_ID"></param>
+    public delegate void _EnviarFRASAM(string _FR_META, string _FR_REAL, string _PARAMETROS_ID);
+    public event _EnviarFRASAM EnviarFRASAM;
+
+
 
     #endregion
 
@@ -101,12 +113,11 @@ public class CAN : ISistema, IBDContext, IGPS
         ParametrosInicio = VMD_BD.can_parametrosinicio.FirstOrDefault();
         ViajePrueba = false;
         Protocolo = false;
-        CanGeneral2 = new CANV2(false);
+        _CanV2 = new CANV2();
+        _CanV2.objProtocolo = _ProtocoloCAN;
+       
         Datos_GPS = new GPSData();
-        CanGeneral2 = new CANV2();
-        CanGeneral2.Datos_GPS = Datos_GPS;
-        CanGeneral2.Inicializar();
-        //Datos_GPS = new GPSData();
+
 
         //_ProtocoloCAN = new ProtocoloCAN();
         //_Globales = new Globales();
@@ -491,8 +502,8 @@ public class CAN : ISistema, IBDContext, IGPS
 
         _Conductor = new Conductor(ref _Globales, ref _Bitacora, ref _ProtocoloCAN, ref _Secuencia);
         _Conductor.AvisarViajeaFront += this.DatosViaje;
-        CanGeneral2.Inicializar();
-        CanGeneral2.Datos_GPS = Datos_GPS;
+        _CanV2.Inicializar();
+        _CanV2.Datos_GPS = Datos_GPS;
 
 
     }
@@ -545,6 +556,8 @@ public class CAN : ISistema, IBDContext, IGPS
         _AdminViaje.RegistroCAN += this.GrabaCAN;
         _AdminViaje.RegistroCondusat += this.FirmaCondusat;
         _AdminViaje.ViajeSAM += this.MandarViajeSAM;
+        _CanV2.Aceler += this.ObtenerAceleracion;
+        _CanV2.EnviarFR += this.EnviarSMFE;
     }
 
     /// <summary>
@@ -677,8 +690,7 @@ public class CAN : ISistema, IBDContext, IGPS
                     }
                 }
             }
-
-
+            _CanV2.Actualizar_Tick();
         }
         catch (Exception ex)
         {
@@ -720,6 +732,27 @@ public class CAN : ISistema, IBDContext, IGPS
     {
         EventoFirmaCondusat(_autobus, _operador, _tipo, _fechaapertura, _fechacierre, _cambioManos);
     }
+
+    private void EnviarSMFE(string _FR_META, string _FR_REAL, string _PARAMETROS_ID)
+    {
+        EnviarFRASAM(_FR_META, _FR_REAL, _PARAMETROS_ID);
+    }
+    /// <summary>
+    /// Se encarga de enviar la firma a CONDUSAT
+    /// </summary>
+    /// <param name="_autobus"></param>
+    /// <param name="_operador"></param>
+    /// <param name="_tipo"></param>
+    /// <param name="_fechaapertura"></param>
+    /// <param name="_fechacierre"></param>
+    /// <param name="_cambioManos"></param>
+    private string  ObtenerAceleracion()
+    {
+        return PedirAceleracion();
+    }
+
+
+
 
 
     /// <summary>
@@ -834,7 +867,7 @@ public class CAN : ISistema, IBDContext, IGPS
         PreparaTimers();
 
         AsignaEventos();
-        CanGeneral2.Inicializar();
+        _CanV2.Inicializar();
 
 
         //iniciamos Timer de procesamiento
@@ -852,6 +885,8 @@ public class CAN : ISistema, IBDContext, IGPS
     {
         throw new NotImplementedException();
     }
+
+
 
     /// <summary>
     /// Interface para la sincronización de CAN

@@ -291,7 +291,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
     /// <returns></returns>
     public string ValorAceleracion()
     {
-        var aceler = string.Empty;
+        var aceler = String.Empty;
 
         try
         {

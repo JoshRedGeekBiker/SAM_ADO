@@ -27,7 +27,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
 
     //Logicas
     public GPSData Datos_GPS { get; set; }
-    private ProtocoloCAN1 objProtocolo;
+    public ProtocoloCAN objProtocolo;
 
     public int geocercaActual = 0;//Para llevar el control con la que colisionó
     public int geocercaAnterior = 0;//Para llevar el control con la que colisionó
@@ -35,6 +35,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     private bool Angulo = false;
     private bool flagColision = false; //Con la que estaremos llevando el FR_META
     private double FR_META_DEF = 0.00;
+    private double FR_REAL = 0.0;
+
     public double Aceleracion = 0.00;
 
     private double ultimaAceleracion = 0;
@@ -48,7 +50,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     public Can2Entities CAN2_BD { get; set; }
 
     //Timers
-    private System.Timers.Timer timerActualiza = new System.Timers.Timer();
+
     private System.Timers.Timer timerPrueba = new System.Timers.Timer();
 
     //Parametros
@@ -90,13 +92,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     public delegate void _ReportarSync(string mensaje);
     public event _ReportarSync MensajeSync;
 
-    /// <summary>
-    /// Se encarga de mandar a pedir los Datos de GPS
-    /// Powered ByRED 21AGO24
-    /// </summary>
-    /// <returns></returns>
-    public delegate GPSData _DatosGPS();
-    public event _DatosGPS DataGPS;
+
 
     /// <summary>
     /// Se encarga de mandarle los parametros al Socket
@@ -104,9 +100,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     /// <param name="_FR_META"></param>
     /// <param name="_FR_REAL"></param>
     /// <param name="_PARAMETROS_ID"></param>
-    public delegate void _EnviarSocket(string _FR_META, string _FR_REAL, string _PARAMETROS_ID);
-    public event _EnviarSocket EnviarSocket;
-
+    public delegate void _EnviarFR(string _FR_META, string _FR_REAL, string _PARAMETROS_ID);
+    public event _EnviarFR EnviarFR;
     /// <summary>
     /// Se encarga de mandar a reiniciar la aplicación
     /// </summary>
@@ -150,8 +145,6 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         this.long_negativo = Convert.ToInt32((from x in CAN2_BD.can2_config where x.cve_parametro == "long_negativo" select x.valor_parametro).FirstOrDefault());
         this.Datos_GPS = new GPSData();
 
-        //cargamos la lógica de CAN1
-        objProtocolo = new ProtocoloCAN1();
 
     }
 
@@ -171,23 +164,6 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     }
 
 
-    /// <summary>
-    /// Se encarga de mandar a pedir los últimos datos del GPS
-    /// Powered ByRED 21AGO2024
-    /// </summary>
-    private void ActualizarDatosGPS()
-    {
-        try
-        {
-
-            this.Datos_GPS = DataGPS();
-            //EnviarMensaje("GPS REcibido" + Datos_GPS.Latitud + " " + Datos_GPS.Longitud);
-        }
-        catch
-        {
-
-        }
-    }
 
     /// <summary>
     /// Se encargará de configurar los timers necesarios para el funcionamiento del sistema
@@ -197,11 +173,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         //Hilos
         HiloDeteccionColision = new Thread(new ThreadStart(Colisionador));
 
-        //Timer de actualiza
-        timerActualiza.Interval = 500; //Configuramos a medio segundo
-        timerActualiza.Enabled = true;
-        timerActualiza.Elapsed += Actualizar_Tick;
-        timerActualiza.Start();
+
 
         ////timer para debbug
         //if (InDebug)
@@ -218,8 +190,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     /// </summary>
     private void DetieneTimersEHilos()
     {
-        timerActualiza.Stop();
-        timerActualiza.Enabled = false;
+
 
         timerPrueba.Stop();
         timerPrueba.Enabled = false;
@@ -480,11 +451,11 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
             {
                 this.IdGeocerca = geo.geocercaId;
                 //hay que preguntar acerca del numero de parametro a utilizar
-                if (geo.ParametroId == this.IdFR)
-                {
-                    objProtocolo.InicializarVariablesCAN();
-                    objProtocolo.VAL_FR_META = Convert.ToDouble(geo.ValorParametro);
-                }
+                //if (geo.ParametroId == this.IdFR)
+                //{
+                //    objProtocolo.InicializarVariablesCAN();
+                //    objProtocolo.VAL_FR_META = Convert.ToDouble(geo.ValorParametro);
+                //}
                 can2_parametros parametro = new can2_parametros()
                 {
                     valor_parametro = Convert.ToDouble(geo.ValorParametro),
@@ -519,12 +490,12 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
             {
                 foreach (geocercaParametros geo in this.geos_temp)
                 {
-                    //hay que preguntar acerca del numero de parametro a utilizar
-                    if (geo.ParametroId == this.IdFR)
-                    {
-                        objProtocolo.InicializarVariablesCAN();
-                        objProtocolo.VAL_FR_META = Convert.ToDouble(geo.ValorParametro);
-                    }
+                    ////hay que preguntar acerca del numero de parametro a utilizar
+                    //if (geo.ParametroId == this.IdFR)
+                    //{
+                    //    objProtocolo.InicializarVariablesCAN();
+                    //    objProtocolo.VAL_FR_META = Convert.ToDouble(geo.ValorParametro);
+                    //}
                     can2_parametros parametro = new can2_parametros()
                     {
                         valor_parametro = Convert.ToDouble(geo.ValorParametro),
@@ -588,7 +559,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
             {
                 //Reiniciamos Variables del protocolo
                 objProtocolo.InicializarVariablesCAN();
-                objProtocolo.VAL_FR_META = Convert.ToDouble(this.FR_META_DEF);
+                //objProtocolo.VAL_FR_META = Convert.ToDouble(this.FR_META_DEF);
 
                 can2_parametros fr = new can2_parametros()
                 {
@@ -718,7 +689,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         //Logica Productiva
         if (InDebug) { Debugg(); }
 
-        objProtocolo.RecuperarDatosBD();
+        //objProtocolo.RecuperarDatosBD();
         CargarCatalogos();
         VerificarEventos();
         PreparaTimers();
@@ -1091,6 +1062,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         }
     }
 
+
     #endregion
     #region Timers
 
@@ -1099,25 +1071,20 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void Actualizar_Tick(object sender, ElapsedEventArgs e)
+    public void Actualizar_Tick()
     {
 
-        timerActualiza.Stop();
 
         try
         {
-            //Mandamos a pedir los datos de GPS para tenerlos frescos de este lado
-            ActualizarDatosGPS();
 
-            //Mandamos a traer el valor de Aceleracion
             this.Aceleracion = Convert.ToDouble(Aceler());
 
             //Actualizamos Datos de CAN
             if (objProtocolo != null)
             {
-                objProtocolo.ProcesaCAN();
                 //Enviamos los datos para el Socket
-                EnviarSocket(objProtocolo.VAL_FR_META.ToString(), objProtocolo.VAL_FR_REAL.ToString(), objProtocolo.VAL_PARAMETRO_ID.ToString());
+                EnviarFR(objProtocolo.FR_META.ToString(), objProtocolo.FR_REAL.ToString(),this.IdFR.ToString());
             }
 
             if (!HiloDeteccionColision.IsAlive)
@@ -1132,7 +1099,6 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
 
         }
 
-        timerActualiza.Start();
     }
     #endregion
 }
