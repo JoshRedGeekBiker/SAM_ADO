@@ -755,10 +755,11 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
 
             //Paso 2: Sincronización de los catálogos de Geocercas
             Request_geocerca request = new Request_geocerca();
-            request.deviceid = Convert.ToInt32(ParametrosInicioCAN.Autobus);
+            request.deviceid = Convert.ToString(ParametrosInicioCAN.Autobus);
 
             can2_sync can2_sync = (from x in CAN2_BD.can2_sync select x).FirstOrDefault();
-            request.fecha_modificacion = DateTime.MinValue;
+            //ver que onda con el formato de la fecha aqui 
+            request.fecha_modificacion = DateTime.MinValue.ToString();
 
             //if (can2_sync != null)
             //{

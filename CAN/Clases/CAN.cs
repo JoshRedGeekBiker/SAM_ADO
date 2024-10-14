@@ -105,6 +105,7 @@ public class CAN : ISistema, IBDContext, IGPS
         Datos_GPS = new GPSData();
         CanGeneral2 = new CANV2();
         CanGeneral2.Datos_GPS = Datos_GPS;
+        CanGeneral2.Inicializar();
         //Datos_GPS = new GPSData();
 
         //_ProtocoloCAN = new ProtocoloCAN();
@@ -1167,7 +1168,7 @@ public class CAN : ISistema, IBDContext, IGPS
             Protocolo = res;
         }
         //Protocolo = true; ///////////////
-        CanGeneral2.Colisionador();
+        //CanGeneral2.Colisionador();
         timerProcesaCAN.Start();
     }
 
