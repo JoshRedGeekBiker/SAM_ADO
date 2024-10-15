@@ -301,6 +301,10 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
                           where x.LLave == "91"
                           select x.Valor).FirstOrDefault();
             }
+            if (aceler == null)
+            {
+                aceler = "0.0";
+            }
         }
         catch (Exception)
         {
@@ -2919,7 +2923,7 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
         Parametros = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
     }
 
-   
+
 
 
     /// <summary>

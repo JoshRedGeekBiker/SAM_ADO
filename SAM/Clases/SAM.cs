@@ -1325,6 +1325,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 MyCan.AvisarViajeSAM += this.RecibeViajeDeCAN;
                 MyCan.PedirAceleracion += this.eTObtenerAceleracion;
                 MyCan.EnviarFRASAM += this.eSMMandarFR;
+                MyCan.EnviarSemaf += this.RecibirSemaforizacion;
 
 
             }
@@ -3365,6 +3366,10 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     private void eSMMandarFR(string _FR_META, string _FR_REAL, string _PARAMETROS_ID)
     {
 
+    }
+    private void RecibirSemaforizacion(string Aceleracion, string Color)
+    {
+        return;
     }
     #endregion
 

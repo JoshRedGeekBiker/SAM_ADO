@@ -83,6 +83,9 @@ public class CAN : ISistema, IBDContext, IGPS
     public delegate void ViajeAbierto(string operador, string nom_operador);
     public event ViajeAbierto AvisarViaje;
 
+    public delegate void EnviarSemaASAM(string Aceleracion, string Color);
+    public event EnviarSemaASAM EnviarSemaf;
+
     //Avisa los datos de viaje a SAM **Telemetria
     public delegate void ViajeSAM(int operador, string nom_operador, bool EnViaje, DateTime FechaViaje, long Origen, string DescPob, string CVEPob);
     public event ViajeSAM AvisarViajeSAM;
@@ -558,6 +561,7 @@ public class CAN : ISistema, IBDContext, IGPS
         _AdminViaje.ViajeSAM += this.MandarViajeSAM;
         _CanV2.Aceler += this.ObtenerAceleracion;
         _CanV2.EnviarFR += this.EnviarSMFE;
+        _CanV2.AlertaAcel += this.EnviarSemaforizacion;
     }
 
     /// <summary>
@@ -736,6 +740,11 @@ public class CAN : ISistema, IBDContext, IGPS
     private void EnviarSMFE(string _FR_META, string _FR_REAL, string _PARAMETROS_ID)
     {
         EnviarFRASAM(_FR_META, _FR_REAL, _PARAMETROS_ID);
+    }
+
+    private void EnviarSemaforizacion(string aceleracion, string Color)
+    {
+        EnviarSemaf(aceleracion, Color);
     }
     /// <summary>
     /// Se encarga de enviar la firma a CONDUSAT

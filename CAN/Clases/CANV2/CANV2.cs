@@ -283,7 +283,8 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
         try
         {
             var EventoColision = DetectarColisiones();
-            if (EventoColision.Count() > 0)
+
+            if ( EventoColision.Count() > 0)
             {
                 CerrarEvento();
                 //Mandamos a generar el evento correspondiente para desatar los parametros
