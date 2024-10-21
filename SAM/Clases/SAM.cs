@@ -1349,9 +1349,28 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
                 FE.TELEMETRIA = true;
 
                 var _Telematics = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
-                foreach (TELEMETRIA item in _Telematics)
+                foreach (TELEMETRIA myTelematics in _Telematics)
                 {
-                    CargarLogicaTelemetria(item);
+
+                    //Asignamos Eventos de Telemetria
+                    myTelematics.AlertaSAM += this.AlertaTELEMETRIA;
+                    this.AlertaConductor += FE.RecibeAlertaSAM;
+
+                    this.RefreshLedTelemetria += FE.RecibeLedDeTelemetria;
+                    myTelematics.IndicadorLed += this.ActualizaIndicadorTelemetria;
+
+                    this.ReporteTelemetria += myTelematics.GenerarReporte;
+                    myTelematics.Performance += this.ReinicaLogicaTel;
+                    //Obtenemos los parametros de telemetria
+                    var ParTel = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
+                    if (ParTel != null)
+                    {
+                        //Validamos si hay lotes resagados
+                        myTelematics.VerificarLotes(ParTel.GuardarLote);
+                    }
+
+                    //Cargamos el contexto de la BD, lo separamos para poder darle un refresh más tarde
+                    myTelematics.CargarContextoBD();
                 }
 
             }
@@ -1995,44 +2014,20 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
         }
     }
 
+    /// <summary>
+    /// Se encarga de reiniciar el contexto de la BD de Telematics para darle refresh al sistema
+    /// </summary>
     private void ReinicaLogicaTel()
     {
         var _Telematics = ListaSistemas.Where(x => x.Sistema == Sistema.TELEMETRIA).ToList();
-        foreach (TELEMETRIA item in _Telematics)
+        foreach (TELEMETRIA myTelematics in _Telematics)
         {
-            CargarLogicaTelemetria(item);
-            item.Inicializar();
+
+            myTelematics.CargarContextoBD();
+
+            myTelematics.Inicializar();
         }
     }
-    /// <summary>
-    /// Se encarga de cargar o Recargar la lógica de Telemtría
-    /// 18sep2024
-    /// </summary>
-    private void CargarLogicaTelemetria(TELEMETRIA myTelematics)
-    {
-
-
-        myTelematics.CargarContextoBD();
-
-        //Asignamos Eventos de Telemetria
-        myTelematics.AlertaSAM += this.AlertaTELEMETRIA;
-        this.AlertaConductor += FE.RecibeAlertaSAM;
-
-        this.RefreshLedTelemetria += FE.RecibeLedDeTelemetria;
-        myTelematics.IndicadorLed += this.ActualizaIndicadorTelemetria;
-
-        this.ReporteTelemetria += myTelematics.GenerarReporte;
-        myTelematics.Performance += this.ReinicaLogicaTel;
-        //Obtenemos los parametros de telemetria
-        var ParTel = (from x in TELEMATICS_BD.parametrostelematics select x).FirstOrDefault();
-        if (ParTel != null)
-        {
-            //Validamos si hay lotes resagados
-            myTelematics.VerificarLotes(ParTel.GuardarLote);
-        }
-
-    }
-
 
     #endregion
 

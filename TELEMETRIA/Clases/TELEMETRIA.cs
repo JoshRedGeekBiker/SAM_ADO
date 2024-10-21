@@ -3010,12 +3010,11 @@ public class TELEMETRIA : ISistema, IBDContext, IBDContextTs, IGPS
             }
 
 
-
+            //Se encarga de darle un refresh al contexto de la BD para mejorar el performance dada las horas en la configuración
+            //Powered ByRED 21OCT24
             var elahora = DateTime.Now;
             //var horas = elahora.Subtract(HolaMundo).TotalMinutes;
-
             var horas = elahora.Subtract(HolaMundo).TotalHours;
-
             if (horas >= Parametros.Hrs_Performance)
             {
 
