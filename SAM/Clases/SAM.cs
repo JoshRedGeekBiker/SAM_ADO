@@ -3365,7 +3365,7 @@ public class SAM : IBDContext, IBDContextCon, IBDContextTs, IGPS
     //codigo para plat, con muchos saludos, el dancha
     private void eSMMandarFR(string _FR_META, string _FR_REAL, string _PARAMETROS_ID)
     {
-
+        return;
     }
     private void RecibirSemaforizacion(string Aceleracion, string Color)
     {

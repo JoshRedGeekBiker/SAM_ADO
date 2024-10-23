@@ -237,7 +237,7 @@ public class CANV2 : IGPS, IBDContext, IBDConextCAN2
                 clave = info.clave
             };
             geoCoord.points = new List<POINT>();
-            List<can2_coordenadas> cor = (from x in CAN2_BD.can2_coordenadas where x.geocercaId == info.geocercaListaId select x).ToList();
+            List<can2_coordenadas> cor = (from x in CAN2_BD.can2_coordenadas where x.geocercaId == info.geocercaListaId orderby x.sequence select x).ToList();
             foreach (can2_coordenadas c in cor)
             {
                 POINT punto = new POINT();
